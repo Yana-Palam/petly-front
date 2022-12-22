@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { device } from '../../../../shared/utils/device';
+import { device } from 'utils/device';
 
-export const Container = styled.div`
+const Container = styled.div`
   // width: 100%;
   padding-right: 20px;
   padding-left: 20px;
@@ -17,3 +17,5 @@ export const Container = styled.div`
     padding-left: 16px;
   }
 `;
+
+export default Container;
