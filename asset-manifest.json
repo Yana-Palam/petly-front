@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/petly-team-project/static/css/main.09deb740.css",
-    "main.js": "/petly-team-project/static/js/main.f00661a4.js",
+    "main.js": "/petly-team-project/static/js/main.afa79fe0.js",
     "index.html": "/petly-team-project/index.html",
     "main.09deb740.css.map": "/petly-team-project/static/css/main.09deb740.css.map",
-    "main.f00661a4.js.map": "/petly-team-project/static/js/main.f00661a4.js.map"
+    "main.afa79fe0.js.map": "/petly-team-project/static/js/main.afa79fe0.js.map"
   },
   "entrypoints": [
     "static/css/main.09deb740.css",
-    "static/js/main.f00661a4.js"
+    "static/js/main.afa79fe0.js"
   ]
 }
