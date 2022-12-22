@@ -46,6 +46,7 @@ export const theme = {
     body: 'Manrope, sans-serif',
     // heading: 'Gotham Pro, sans-serif',
     main: 'Manrope, sans-serif',
+    form-input: 'Inter, sans-serif',
   },
 
   textTransform: {
