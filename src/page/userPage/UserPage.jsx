@@ -1,5 +1,5 @@
 import Container from 'components/Common/Container';
-function NoticesPage() {
+function UserPage() {
   return (
     <>
       <Container>
@@ -9,4 +9,4 @@ function NoticesPage() {
   );
 }
 
-export default NoticesPage;
+export default UserPage;
