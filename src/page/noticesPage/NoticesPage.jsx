@@ -1,7 +1,7 @@
 import Container from 'components/Common/Container';
 import AddNoticeButton from 'components/Notices/AddNoticeButton';
 
-function UserPage() {
+function NoticesPage() {
   return (
     <>
       <Container>
@@ -12,4 +12,4 @@ function UserPage() {
   );
 }
 
-export default UserPage;
+export default NoticesPage;
