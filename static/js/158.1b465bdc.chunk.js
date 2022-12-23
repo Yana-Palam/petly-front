@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkpetly_team_project=self.webpackChunkpetly_team_project||[]).push([[158],{158:function(e,t,c){c.r(t);var n=c(726),r=c(329);t.default=function(){return(0,r.jsx)(r.Fragment,{children:(0,r.jsx)(n.Z,{children:(0,r.jsx)("p",{children:"Notices Page"})})})}}}]);
+//# sourceMappingURL=158.1b465bdc.chunk.js.map

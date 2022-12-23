@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunkpetly_team_project=self.webpackChunkpetly_team_project||[]).push([[830],{830:function(e,t,r){r.r(t);var n=r(843),c=r(329);t.default=function(){return(0,c.jsx)(c.Fragment,{children:(0,c.jsx)(n.Z,{children:(0,c.jsx)("p",{children:"Register page"})})})}}}]);
+//# sourceMappingURL=830.85f19f2d.chunk.js.map
