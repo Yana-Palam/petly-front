@@ -1,10 +1,11 @@
 import { Container } from 'components/common/container/Container';
+import LoginForm from 'components/Form/LoginForm';
 
 function LoginPage() {
   return (
     <>
       <Container>
-        <p>Login page</p>
+        <LoginForm />
       </Container>
     </>
   );
