@@ -6,7 +6,7 @@ import burger from '../../assets/icons/burger.svg';
 // import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import useScrollLock from 'hooks/useScrollLock';
 import AuthNav from './AuthNav/AuthNav';
-import Logo from './Logo';
+// import Logo from './Logo';
 import Nav from './Nav';
 import UserNav from './UserNav';
 
@@ -45,7 +45,7 @@ function Header({ closeModal, isOpen }) {
         {isLogin ? (
           <>
             <Wrap>
-              <Logo closeMobMenu={closeMobMenu} />
+              {/* <Logo closeMobMenu={closeMobMenu} /> */}
               {isTablet && !mobileMenuIsOpen && <UserNav />}
               {isDesktop ? (
                 <>
@@ -81,7 +81,7 @@ function Header({ closeModal, isOpen }) {
         ) : (
           <>
             <Wrap>
-              <Logo closeMobMenu={closeMobMenu} />
+              {/* <Logo closeMobMenu={closeMobMenu} /> */}
               {isTablet && !mobileMenuIsOpen && (
                 <>
                   <AuthNav />
