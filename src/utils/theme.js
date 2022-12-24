@@ -5,7 +5,7 @@ export const theme = {
     whiteAlpha: '#ffffff60',
     accent: '#F59256',
     primaryBackground: '#FDF7F2',
-    burgerBackground: 'FDF7F2',
+    burgerBackground: '#FDF7F2',
     // border: '#E0E0E0',
 
     text: {
