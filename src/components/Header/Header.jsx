@@ -6,7 +6,7 @@ import burger from '../../assets/icons/burger.svg';
 // import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import useScrollLock from 'hooks/useScrollLock';
 import AuthNav from './AuthNav/AuthNav';
-import Logo from './Logo/Logo';
+import Logo from './Logo';
 import Nav from './Nav';
 import UserNav from './UserNav';
 
