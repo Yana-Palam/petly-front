@@ -6,3 +6,11 @@ export const LogoContainer = styled.div`
     flex-grow: 1;
   }
 `;
+export const LogoImg = styled.img`
+  width: 82px;
+  height: 42px;
+  @media ${device.tablet} {
+    width: 94px;
+    height: 48px;
+  }
+`;
