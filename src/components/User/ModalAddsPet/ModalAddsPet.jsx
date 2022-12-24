@@ -1,5 +1,9 @@
 function ModalAddsPet() {
-  return <div>ModalAddsPet</div>;
+  return(
+    <>
+     <p>Add pet</p>
+    </>
+  );
 }
 
 export default ModalAddsPet;

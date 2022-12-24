@@ -64,9 +64,10 @@ export default function App() {
           <Route
             path="user"
             element={
-              <PrivateRouter>
+            //Alena temporarily changed the PrivateRouter
+              <PublicRouter>
                 <UserPage />
-              </PrivateRouter>
+              </PublicRouter>
             }
           />
         </Routes>
