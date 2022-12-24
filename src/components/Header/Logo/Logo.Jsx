@@ -1,7 +1,8 @@
-import logo from '../../../assets/icons/petly.svg';
+import logo from '../../../img/petly.svg';
 import { LogoContainer } from './Logo.styled';
 
 function Logo() {
+  console.log(logo);
   return (
     <LogoContainer>
       <img src={logo} alt="Logo" width={82} height={42} />
@@ -10,5 +11,3 @@ function Logo() {
 }
 
 export default Logo;
-
-//fix
