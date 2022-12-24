@@ -1,12 +1,15 @@
 import Container from 'components/Common/Container';
-function UserPage() {
+import AddNoticeButton from 'components/Notices/AddNoticeButton';
+
+function NoticesPage() {
   return (
     <>
       <Container>
+        <AddNoticeButton />
         <p>User Page</p>
       </Container>
     </>
   );
 }
 
-export default UserPage;
+export default NoticesPage;

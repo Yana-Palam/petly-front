@@ -1,4 +1,4 @@
-import { Container } from 'components/common/container/Container';
+import Container from '../../components/Common/Container/Container';
 
 function RegisterPage() {
   return (
