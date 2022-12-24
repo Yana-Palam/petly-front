@@ -54,14 +54,13 @@ export default function App() {
               </PublicRouter>
             }
           />
-          <Route
-            path="notices/:categoryName"
-            element={
-              <PrivateRouter>
-                <NoticesPage />
-              </PrivateRouter>
-            }
-          />
+          <Route path="notices" element={<NoticesPage />}>
+            <Route path="sell" element={<></>} />
+            <Route path="lost-found" element={<></>} />
+            <Route path="for-free" element={<></>} />
+            <Route path="favorites" element={<></>} />
+            <Route path="my-ads" element={<></>} />
+          </Route>
           <Route
             path="user"
             element={
