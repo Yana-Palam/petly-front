@@ -1,5 +1,25 @@
+import React from 'react';
+import {
+  LinkStyled,
+  List,
+  ListWrapper,
+  AccentLink,
+  Li,
+} from './AuthNav.styled';
+
 function AuthNav() {
-  return <p>AuthNav</p>;
+  return (
+    <ListWrapper>
+      <List>
+        <Li>
+          <AccentLink to="/login">Login</AccentLink>
+        </Li>
+        <Li>
+          <LinkStyled to="/registration">Registration</LinkStyled>
+        </Li>
+      </List>
+    </ListWrapper>
+  );
 }
 
 export default AuthNav;
