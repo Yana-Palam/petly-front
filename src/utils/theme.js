@@ -89,14 +89,14 @@ export const theme = {
   lineHeights: {
     body: 1.375,
     form: 1.75,
-    nav: 0.93,
+    nav: 1.357,
     title: 1.23,
     text: 1.21,
   },
 
   borders: {
     none: 'none',
-    normal: ' 2px solid',
+    normal: '2px solid',
   },
 
   radii: {
@@ -105,6 +105,7 @@ export const theme = {
     md: '8px',
     lg: '16px',
     xl: '30px',
+    xxl: '40px',
     round: '50%',
   },
   animation: {
