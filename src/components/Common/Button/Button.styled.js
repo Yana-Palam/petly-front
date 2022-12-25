@@ -13,5 +13,5 @@ export const StyledButton = styled.button`
   font-weight: ${x => x.theme.fontWeights.bold};
   width: 182px;
   height: 43px;
-  box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5);
+  /* box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5); */
 `;

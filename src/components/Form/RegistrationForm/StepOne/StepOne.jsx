@@ -1,8 +1,9 @@
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import TextField from '@mui/material/TextField';
-import Button from 'components/Common/Button/Button';
 import { Form } from '../RegistrationForm.styled';
+import { AuthBtn } from '../RegistrationForm.styled';
+import { InputWrp } from 'components/Form/LoginForm/LoginForm.styled';
 
 const StepOne = ({ next, data }) => {
   const stepOneValidationSchema = yup.object().shape({
@@ -37,42 +38,44 @@ const StepOne = ({ next, data }) => {
 
   return (
     <Form onSubmit={formik.handleSubmit}>
-      <TextField
-        type="email"
-        name="email"
-        label="Email"
-        value={formik.values.email}
-        onChange={formik.handleChange}
-        error={formik.touched.email && Boolean(formik.errors.email)}
-        helperText={formik.touched.email && formik.errors.email}
-        variant="outlined"
-      />
-      <TextField
-        type="password"
-        name="password"
-        label="Password"
-        value={formik.values.password}
-        onChange={formik.handleChange}
-        error={formik.touched.password && Boolean(formik.errors.password)}
-        helperText={formik.touched.password && formik.errors.password}
-        variant="outlined"
-      />
-      <TextField
-        type="password"
-        name="confirmPassword"
-        label="Confirm Password"
-        value={formik.values.confirmPassword}
-        onChange={formik.handleChange}
-        error={
-          formik.touched.confirmPassword &&
-          Boolean(formik.errors.confirmPassword)
-        }
-        helperText={
-          formik.touched.confirmPassword && formik.errors.confirmPassword
-        }
-        variant="outlined"
-      />
-      <Button type="submit">Next</Button>
+      <InputWrp>
+        <TextField
+          type="email"
+          name="email"
+          label="Email"
+          value={formik.values.email}
+          onChange={formik.handleChange}
+          error={formik.touched.email && Boolean(formik.errors.email)}
+          helperText={formik.touched.email && formik.errors.email}
+          variant="outlined"
+        />
+        <TextField
+          type="password"
+          name="password"
+          label="Password"
+          value={formik.values.password}
+          onChange={formik.handleChange}
+          error={formik.touched.password && Boolean(formik.errors.password)}
+          helperText={formik.touched.password && formik.errors.password}
+          variant="outlined"
+        />
+        <TextField
+          type="password"
+          name="confirmPassword"
+          label="Confirm Password"
+          value={formik.values.confirmPassword}
+          onChange={formik.handleChange}
+          error={
+            formik.touched.confirmPassword &&
+            Boolean(formik.errors.confirmPassword)
+          }
+          helperText={
+            formik.touched.confirmPassword && formik.errors.confirmPassword
+          }
+          variant="outlined"
+        />
+      </InputWrp>
+      <AuthBtn type="submit">Next</AuthBtn>
     </Form>
   );
 };

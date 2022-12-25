@@ -14,10 +14,11 @@ export const theme = {
       secondaryText: '#111111',
       accent: '#F59256',
       dataText: 'rgba(17, 17, 17, 0.6)',
+      link: '#3091eb',
     },
 
     button: {
-      primaryBackground: '#FFFFFF',
+      primaryBackground: '#F59256',
       secondaryBackground: '#FFFFFF',
       accent: '#F59256',
       border: '#F59256',
