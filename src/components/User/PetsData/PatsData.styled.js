@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-// import { device } from 'utils/device';
+import { device } from 'utils/device';
 
 export const DivWrapperMain = styled.div`
   display: flex;
@@ -10,6 +10,23 @@ export const DivWrapperMain = styled.div`
 export const DivWrap = styled.div`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
+  @media (${device.mobileOnly}) {
+    margin-top: 40px;
+    margin-bottom: 26px;
+  }
+  @media (${device.fabletOnly}) {
+    margin-top: 20px;
+    margin-bottom: 22px;
+  }
+  @media (${device.tabletOnly}) {
+    margin-top: 20px;
+    margin-bottom: 22px;
+  }
+  @media (${device.desktop}) {
+    margin-bottom: 24px;
+  }
 `;
 
 export const Title = styled.h2`
@@ -17,6 +34,11 @@ export const Title = styled.h2`
   font-size: 28px;
   line-height: 38px;
   color: ${p => p.theme.colors.black};
+
+  @media (${device.mobileOnly}) {
+    font-size: 20px;
+    line-height: 27px;
+  }
 `;
 
 export const DivBtn = styled.div`
