@@ -18,6 +18,7 @@ function NoticesCategoriesNav() {
   const dispatch = useDispatch();
   const { category } = useParams();
   const token = useSelector(selectAccessToken);
+
   const notice = useSelector(selectNotices);
 
   useEffect(() => {

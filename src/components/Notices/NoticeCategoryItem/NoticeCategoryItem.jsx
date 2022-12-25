@@ -14,7 +14,6 @@ import {
 } from './NoticeCategoryItem.styled';
 
 function NoticeCategoryItem(user) {
-  console.log(user.title);
   const { img, title, other, category } = user;
 
   return (
