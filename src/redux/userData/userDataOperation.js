@@ -3,7 +3,7 @@ import axios from 'axios';
 import { toast } from 'react-toastify';
 import { MdFastfood, MdNoFood } from 'react-icons/md';
 
-axios.defaults.baseURL = 'https://slimmom-backend.goit.global';
+// axios.defaults.baseURL = 'https://slimmom-backend.goit.global';
 
 const token = {
   set(token) {

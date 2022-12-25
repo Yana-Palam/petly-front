@@ -12,7 +12,7 @@ const AppRoutes = () => {
     <Suspense fallback={<Loader />}>
       <Routes>
         <Route path="/" element={<Header />} />
-        <Route path="/notices" element={<NoticesPage />} />
+        {/* <Route path="/notices" element={<NoticesPage />} /> */}
 
         <Route path="*" element={<NotFound />} />
       </Routes>
