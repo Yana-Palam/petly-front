@@ -2,19 +2,20 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import TextField from '@mui/material/TextField';
 import Button from 'components/Common/Button/Button';
+import { Text, LoginLink, Title, Form } from './RegistrationForm.styled';
 
-// const inputs = [
-//   { type: 'email', name: 'email', label: 'Email' },
-//   { type: 'password', name: 'password', label: 'Password' },
+const inputs = [
+  { type: 'email', name: 'email', label: 'Email' },
+  { type: 'password', name: 'password', label: 'Password' },
 
-//   { type: 'password', name: 'confirmPassword', label: 'Confirm Password' },
+  { type: 'password', name: 'confirmPassword', label: 'Confirm Password' },
 
-//   { type: 'text', name: 'name', label: 'Name' },
+  { type: 'text', name: 'name', label: 'Name' },
 
-//   { type: 'text', name: 'city', label: 'City, region' },
+  { type: 'text', name: 'city', label: 'City, region' },
 
-//   { type: 'text', name: 'phone', label: 'Mobile phone' },
-// ];
+  { type: 'text', name: 'phone', label: 'Mobile phone' },
+];
 
 const RegistrationForm = () => {
   const cityRegex = /^(\w+(,)\s*)+\w+$/;
@@ -65,7 +66,8 @@ const RegistrationForm = () => {
   });
 
   return (
-    <form onSubmit={formik.handleSubmit}>
+    <Form onSubmit={formik.handleSubmit}>
+      <Title>Registration</Title>
       <div>
         {/* {inputs.map(({ type, name, label }) => (
           <TextField
@@ -149,7 +151,11 @@ const RegistrationForm = () => {
         />
       </div>
       <Button type="submit">Register</Button>
-    </form>
+      <Text>
+        Already have an account?
+        <LoginLink to="/login">Login</LoginLink>
+      </Text>
+    </Form>
   );
 };
 
