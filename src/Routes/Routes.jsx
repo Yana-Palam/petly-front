@@ -5,7 +5,7 @@ import { Suspense } from 'react';
 import Header from 'components/Header';
 import NotFound from 'page/notFoundPage/NotFound';
 import Loader from 'components/Loader';
-import NoticesPage from 'page/noticesPage';
+// import NoticesPage from 'page/noticesPage';
 
 const AppRoutes = () => {
   return (
