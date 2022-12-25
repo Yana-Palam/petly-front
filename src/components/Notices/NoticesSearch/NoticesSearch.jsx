@@ -6,8 +6,8 @@ import { BsSearch } from 'react-icons/bs';
 function NoticesSearch() {
   const [search, setSearch] = useState('');
   const [searchParams, setSearchParams] = useSearchParams();
-
-  const query = searchParams.get('query');
+  console.log(searchParams);
+  // const query = searchParams.get('query');
 
   const handleChange = ({ target }) => {
     const { value } = target;

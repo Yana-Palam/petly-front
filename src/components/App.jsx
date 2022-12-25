@@ -3,7 +3,7 @@ import { Suspense, lazy } from 'react';
 import Loader from '../components/Loader';
 import AppRoutes from 'Routes/Routes';
 import PublicRouter from 'Routes/PublicRouter';
-import PrivateRouter from 'Routes/PrivateRoute';
+// import PrivateRouter from 'Routes/PrivateRoute';
 // import Layout from './Layout/Layout';
 const RegisterPage = lazy(() =>
   import('../page/registrationPage/RegisterPage')
