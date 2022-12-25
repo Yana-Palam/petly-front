@@ -5,6 +5,9 @@ export const LogoContainer = styled.div`
   @media ${device.tablet} {
     flex-grow: 1;
   }
+  @media ${device.desktop} {
+    flex-grow: 0;
+  }
 `;
 export const LogoImg = styled.img`
   width: 82px;
