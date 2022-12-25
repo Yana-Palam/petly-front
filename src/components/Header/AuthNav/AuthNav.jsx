@@ -15,7 +15,7 @@ function AuthNav() {
           <AccentLink to="/login">Login</AccentLink>
         </Li>
         <Li>
-          <LinkStyled to="/registration">Registration</LinkStyled>
+          <LinkStyled to="/register">Registration</LinkStyled>
         </Li>
       </List>
     </ListWrapper>

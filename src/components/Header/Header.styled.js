@@ -63,4 +63,7 @@ export const Wrap = styled.div`
   @media ${device.tablet} {
     margin-bottom: 88px;
   }
+  @media ${device.desktop} {
+    gap: 80px;
+  }
 `;

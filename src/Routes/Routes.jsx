@@ -1,22 +1,80 @@
-import { Routes, Route } from 'react-router-dom';
-import { Suspense } from 'react';
-// import PublicRouter from 'Routes/PublicRouter';
+import { Navigate, Routes, Route } from 'react-router-dom';
+import { Suspense, lazy } from 'react';
+import PublicRouter from 'Routes/PublicRouter';
 // import PrivateRouter from 'Routes/PrivateRoute';
-import Header from 'components/Header';
-import NotFound from 'page/notFoundPage/NotFound';
+// import NotFound from 'page/notFoundPage/NotFound';
 import Loader from 'components/Loader';
-import NoticesPage from 'page/noticesPage';
+
+import Layout from '../components/Layout/Layout';
+const RegisterPage = lazy(() =>
+  import('../page/registrationPage/RegisterPage')
+);
+const LoginPage = lazy(() => import('../page/loginPage/LoginPage'));
+const OurFriendsPage = lazy(() =>
+  import('../page/ourFriendsPage/OurFriendsPage')
+);
+const NewsPage = lazy(() => import('../page/newsPage/NewsPage'));
+const NoticesPage = lazy(() => import('../page/noticesPage/NoticesPage'));
+const UserPage = lazy(() => import('../page/userPage/UserPage'));
 
 const AppRoutes = () => {
   return (
     <Suspense fallback={<Loader />}>
-      <Routes>
-        <Route path="/" element={<Header />} />
-        <Route path="/notices" element={<NoticesPage />} />
-
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Suspense>
+    <Routes>
+      <Route path="/" element={<Layout />} >
+      <Route
+        path="register"
+        element={
+          <PublicRouter>
+            <RegisterPage />
+          </PublicRouter>
+        }
+      />
+      <Route
+        path="login"
+        element={
+          <PublicRouter>
+            <LoginPage />
+          </PublicRouter>
+        }
+      />
+      <Route
+        path="friends"
+        element={
+          <PublicRouter>
+            <OurFriendsPage />
+          </PublicRouter>
+        }
+      />
+      <Route
+        path="news"
+        element={
+          <PublicRouter>
+            <NewsPage />
+          </PublicRouter>
+        }
+      />
+      <Route
+        path="notices/:category"
+        element={
+          <PublicRouter>
+            <NoticesPage />
+          </PublicRouter>
+        }
+      />
+      <Route
+        path="user"
+        element={
+          //Alena temporarily changed the PrivateRouter
+          <PublicRouter>
+            <UserPage />
+          </PublicRouter>
+        }
+      />
+      </Route>
+      <Route path="*" element={<Navigate to={'/'} />} />
+    </Routes>
+  </Suspense>
   );
 };
 

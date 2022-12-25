@@ -11,7 +11,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import authReducer from './auth/authSlice';
-import productReducer from './productSearch/productSearchSlice';
+import noticeReducer from './notice/noticeSlice';
 import userDataReducer from './userData/userDataSlice';
 
 const persistConfig = {
@@ -23,7 +23,7 @@ const persistConfig = {
 export const store = configureStore({
   reducer: {
     auth: persistReducer(persistConfig, authReducer),
-    product: productReducer,
+    notice: noticeReducer,
     userData: userDataReducer,
   },
   middleware(getDefaultMiddleware) {

@@ -7,6 +7,9 @@ export const ListWrapper = styled.div`
   @media ${device.fabletAndMobileOnly} {
     margin-bottom: 60px;
   }
+  @media ${device.desktop} {
+    flex-grow: 1;
+  }
 `;
 export const List = styled.ul`
   display: flex;
@@ -14,6 +17,7 @@ export const List = styled.ul`
   justify-content: center;
 
   @media ${device.desktop} {
+    justify-content: flex-end;
     margin-left: 20px;
   }
 `;
