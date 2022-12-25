@@ -1,9 +1,9 @@
-import { Routes, Route } from 'react-router-dom';
+import { Navigate, Routes, Route } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 import Loader from '../components/Loader';
 import AppRoutes from 'Routes/Routes';
-import PublicRouter from '../Routes/PublicRouter';
-import PrivateRouter from '../Routes/PrivateRoute';
+import PublicRouter from 'Routes/PublicRouter';
+import PrivateRouter from 'Routes/PrivateRoute';
 // import Layout from './Layout/Layout';
 const RegisterPage = lazy(() =>
   import('../page/registrationPage/RegisterPage')
@@ -54,7 +54,14 @@ export default function App() {
               </PublicRouter>
             }
           />
-          <Route path="notices/:category" element={<NoticesPage />} />
+          <Route
+            path="notices/:category"
+            element={
+              <PublicRouter>
+                <NoticesPage />
+              </PublicRouter>
+            }
+          />
           <Route
             path="user"
             element={
@@ -64,6 +71,7 @@ export default function App() {
               </PublicRouter>
             }
           />
+          <Route path="*" element={<Navigate to={'/'} />} />
         </Routes>
       </Suspense>
     </>
