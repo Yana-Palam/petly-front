@@ -21,32 +21,32 @@ export const InputWrp = styled.div`
   gap: 20px;
 `;
 
-export const Input = styled.input`
-  width: 100%;
-  background: #fdf7f2;
-  border: 1px solid rgba(245, 146, 86, 0.5);
-  border-radius: 40px;
-  padding: 13px 32px;
-  outline: none;
+// export const Input = styled.input`
+//   width: 100%;
+//   background: #fdf7f2;
+//   border: 1px solid rgba(245, 146, 86, 0.5);
+//   border-radius: 40px;
+//   padding: 13px 32px;
+//   outline: none;
 
-  font-family: 'Manrope';
-  font-style: normal;
-  font-size: 18px;
-  line-height: 1.39;
-  letter-spacing: 0.04em;
+//   font-family: 'Manrope';
+//   font-style: normal;
+//   font-size: 18px;
+//   line-height: 1.39;
+//   letter-spacing: 0.04em;
 
-  color: rgba(17, 17, 17, 0.8);
+//   color: rgba(17, 17, 17, 0.8);
 
-  &::placeholder {
-    font-family: 'Manrope';
-    font-style: normal;
-    font-size: 18px;
-    line-height: 1.39;
-    letter-spacing: 0.04em;
+//   &::placeholder {
+//     font-family: 'Manrope';
+//     font-style: normal;
+//     font-size: 18px;
+//     line-height: 1.39;
+//     letter-spacing: 0.04em;
 
-    color: rgba(17, 17, 17, 0.6);
-  }
-`;
+//     color: rgba(17, 17, 17, 0.6);
+//   }
+// `;
 
 export const Title = styled.h2`
   font-family: 'Manrope';
@@ -73,7 +73,6 @@ export const Text = styled.p`
 `;
 
 export const RegisterLink = styled(Link)`
-  /* color: ${p => p.theme.colors.accentAlpha}; */
   color: #3091eb;
   text-decoration: underline;
 `;

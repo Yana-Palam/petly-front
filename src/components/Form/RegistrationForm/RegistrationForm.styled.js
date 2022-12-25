@@ -2,6 +2,12 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 
 export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+`;
+export const Wrapper = styled.div`
   width: 618px;
   padding: 60px 80px;
   background: #ffffff;
