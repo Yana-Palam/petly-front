@@ -54,17 +54,11 @@ export default function App() {
               </PublicRouter>
             }
           />
-          <Route path="notices" element={<NoticesPage />}>
-            <Route path="sell" element={<></>} />
-            <Route path="lost-found" element={<></>} />
-            <Route path="for-free" element={<></>} />
-            <Route path="favorites" element={<></>} />
-            <Route path="my-ads" element={<></>} />
-          </Route>
+          <Route path="notices/:category" element={<NoticesPage />} />
           <Route
             path="user"
             element={
-            //Alena temporarily changed the PrivateRouter
+              //Alena temporarily changed the PrivateRouter
               <PublicRouter>
                 <UserPage />
               </PublicRouter>

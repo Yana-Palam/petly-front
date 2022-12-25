@@ -11,7 +11,7 @@ function Nav({ closeMobMenu }) {
           </NavLinkItem>
         </NavListItem>
         <NavListItem>
-          <NavLinkItem onClick={closeMobMenu} to="/notices">
+          <NavLinkItem onClick={closeMobMenu} to="/notices/sell">
             Notices
           </NavLinkItem>
         </NavListItem>
