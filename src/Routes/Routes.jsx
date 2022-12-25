@@ -21,7 +21,7 @@ const AppRoutes = () => {
   return (
     <Suspense fallback={<Loader />}>
     <Routes>
-      <Route path="/" element={<Layout />} />
+      <Route path="/" element={<Layout />} >
       <Route
         path="register"
         element={
@@ -71,6 +71,7 @@ const AppRoutes = () => {
           </PublicRouter>
         }
       />
+      </Route>
       <Route path="*" element={<Navigate to={'/'} />} />
     </Routes>
   </Suspense>
