@@ -4,16 +4,17 @@ import { device } from 'utils/device';
 export const HeaderStyled = styled.header`
   display: flex;
   flex-direction: column;
+  background-color: ${({ theme }) => theme.colors.burgerBackground};
 
   @media ${device.fabletAndMobileOnly} {
     padding: 20px 20px 16px;
   }
   @media ${device.tablet} {
     align-items: baseline;
-    padding: 20px 32px 16px;
+    padding: 20px 32px;
   }
   @media ${device.desktop} {
-    padding: 16px 16px 0px;
+    padding: 20px 16px;
   }
 `;
 
@@ -52,6 +53,7 @@ export const ModalWrapper = styled.div`
 export const Wrap = styled.div`
   display: flex;
   justify-content: space-around;
+  align-items: center;
   width: 100%;
 
   @media ${device.mobile} {
@@ -60,5 +62,8 @@ export const Wrap = styled.div`
   }
   @media ${device.tablet} {
     margin-bottom: 88px;
+  }
+  @media ${device.desktop} {
+    gap: 80px;
   }
 `;

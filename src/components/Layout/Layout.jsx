@@ -3,14 +3,18 @@ import { Outlet } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Loader from 'components/Loader';
 import Box from 'components/Common/Box';
+import Header from 'components/Header';
 
 const Layout = () => {
   return (
-    <Suspense fallback={<Loader />}>
-      <Box as={'section'}>
-        <Outlet />
-      </Box>
-    </Suspense>
+    <>
+      <Header /*closeModal={closeModal} isOpen={isOpen} */ />
+      <Suspense fallback={<Loader />}>
+        <Box as={'section'}>
+          <Outlet />
+        </Box>
+      </Suspense>
+    </>
   );
 };
 

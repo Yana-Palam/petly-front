@@ -7,6 +7,9 @@ export const ListWrapper = styled.div`
   @media ${device.fabletAndMobileOnly} {
     margin-bottom: 60px;
   }
+  @media ${device.desktop} {
+    flex-grow: 1;
+  }
 `;
 export const List = styled.ul`
   display: flex;
@@ -14,6 +17,7 @@ export const List = styled.ul`
   justify-content: center;
 
   @media ${device.desktop} {
+    justify-content: flex-end;
     margin-left: 20px;
   }
 `;
@@ -43,7 +47,9 @@ export const LinkStyled = styled(Link)`
   &:hover,
   &:focus {
     color: ${({ theme }) => theme.colors.accent};
-    transition: color ${p => p.theme.animation.cubic};
+    outline: 2px solid #ff6101;
+    transition: color ${p => p.theme.animation.cubic},
+      outline ${p => p.theme.animation.cubic};
   }
   @media ${device.desktop} {
     align-items: flex-end;
@@ -58,6 +64,14 @@ export const AccentLink = styled(LinkStyled)`
   color: ${({ theme }) => theme.colors.white};
   background-color: ${({ theme }) => theme.colors.accent};
   border-color: ${({ theme }) => theme.colors.accent};
+  }
+
+   &:hover,
+    &:focus {
+    color: ${({ theme }) => theme.colors.black};
+  background-color: ${({ theme }) => theme.colors.white};
+
+    transition: color ${p => p.theme.animation.cubic};
   }
 `;
 

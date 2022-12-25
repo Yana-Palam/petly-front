@@ -11,6 +11,7 @@ export const NavList = styled.ul`
 
   @media ${device.desktop} {
     flex-direction: row;
+    gap: 80px;
   }
 `;
 

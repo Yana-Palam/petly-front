@@ -1,10 +1,10 @@
 import logo from '../../../assets/icons/petly.svg';
-import { LogoContainer } from './Logo.styled';
+import { LogoContainer, LogoImg } from './Logo.styled';
 
 function Logo() {
   return (
     <LogoContainer>
-      <img src={logo} alt="Logo" width={82} height={42} />
+      <LogoImg src={logo} alt="Logo" />
     </LogoContainer>
   );
 }
