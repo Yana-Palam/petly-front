@@ -7,18 +7,18 @@ import { DivWrapperMain, DivUserInfo, DivWrap, Title } from './UserPage.styled';
 
 function UserPage() {
   return (
-      <Container>
-        <DivWrapperMain>
-          <DivWrap>
-            <Title>My information:</Title>
-            <DivUserInfo>
-              <UserData />
-              <Logout />
-            </DivUserInfo>
-          </DivWrap>
-          <PetsData />
-        </DivWrapperMain>
-      </Container>
+    <Container>
+      <DivWrapperMain>
+        <DivWrap>
+          <Title>My information:</Title>
+          <DivUserInfo>
+            <UserData />
+            <Logout />
+          </DivUserInfo>
+        </DivWrap>
+        <PetsData />
+      </DivWrapperMain>
+    </Container>
   );
 }
 
