@@ -6,7 +6,7 @@ function Hero() {
   return (
     <>
       <HeroTitle>Take good care of your small pets</HeroTitle>
-      <HeroBg></HeroBg>
+      <HeroBg />
     </>
   );
 }

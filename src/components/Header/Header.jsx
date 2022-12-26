@@ -19,7 +19,7 @@ import {
   Wrap,
 } from './Header.styled';
 
-function Header({ closeModal, isOpen }) {
+function Header() {
   const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
   //  const isLogin = useSelector(selectIsLoggedIn);
   const { isDesktop, isTablet, isMobile } = useMatchMedia();
@@ -71,7 +71,7 @@ function Header({ closeModal, isOpen }) {
             </Wrap>
             {!isDesktop && mobileMenuIsOpen && (
               <ModalWrapper>
-                {isMobile && <UserNav closeModal={closeModal} />}
+                {isMobile && <UserNav />}
                 <Nav closeMobMenu={closeMobMenu} />
               </ModalWrapper>
             )}

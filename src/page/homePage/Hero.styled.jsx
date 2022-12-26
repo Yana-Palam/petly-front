@@ -19,6 +19,7 @@ export const HeroTitle = styled.h1`
     font-size: ${({ theme }) => theme.fontSizes.xxxl};
     line-height: ${({ theme }) => theme.lineHeights.hero};
   }
+
   @media ${device.tablet} {
     padding: 0 0 0 16px;
   }

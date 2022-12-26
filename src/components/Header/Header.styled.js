@@ -12,11 +12,13 @@ export const HeaderStyled = styled.header`
     padding: 20px 20px 16px;
     margin-bottom: 22px;
   }
+
   @media ${device.tablet} {
     align-items: baseline;
     padding: 20px 32px;
     margin-bottom: 72px;
   }
+
   @media ${device.desktop} {
     padding: 20px 16px;
     margin-bottom: 39px;
