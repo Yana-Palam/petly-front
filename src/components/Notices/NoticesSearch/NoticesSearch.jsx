@@ -1,42 +1,80 @@
 import { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { useFormik } from 'formik';
+import { useLocation, useSearchParams } from 'react-router-dom';
+import * as yup from 'yup';
 
-import { BsSearch } from 'react-icons/bs';
+import {
+  Form,
+  Label,
+  Input,
+  IconSearch,
+  IconClose,
+} from './NoticesSearch.styled';
+import Box from 'components/Common/Box';
+import ButtonIcon from 'components/Common/ButtonIcon';
 
 function NoticesSearch() {
-  const [search, setSearch] = useState('');
+  const [submitBtn, setSubmitBtn] = useState('search');
   const [searchParams, setSearchParams] = useSearchParams();
-  console.log(searchParams);
-  // const query = searchParams.get('query');
+  const category = useLocation().pathname;
+  const query = searchParams.get('q');
 
-  const handleChange = ({ target }) => {
-    const { value } = target;
-    setSearch(value);
-  };
+  const validationSchema = yup.object({
+    search: yup.string('Enter you search info').trim(),
+  });
 
-  const handleFormSubmit = e => {
-    e.preventDefault();
-    const query = e.target.query.value;
-    setSearchParams({ query });
-    setSearch('');
-  };
+  const formik = useFormik({
+    initialValues: {
+      search: '',
+    },
+    validationSchema: validationSchema,
+    onSubmit: handleSubmit,
+  });
+
+  function handleSubmit({ search }) {
+    if (submitBtn === 'search') {
+      const q = search.replace(/\s+/g, ' ');
+      if (Boolean(q.length > 0)) {
+        setSearchParams({ q });
+        const obj = { category: category, q };
+        console.log(obj);
+      }
+    }
+    setSubmitBtn('search');
+    //TODO dispatch
+    formik.resetForm();
+  }
 
   return (
     <>
-      <form onSubmit={handleFormSubmit}>
-        <input
-          onChange={handleChange}
-          type="text"
-          name="query"
-          autoFocus
-          autoComplete="off"
-          placeholder="Search"
-          value={search}
-        />
-        <button type="submit" aria-label="search button">
-          <BsSearch size="32px" />
-        </button>
-      </form>
+      <Form onSubmit={formik.handleSubmit}>
+        <Box position="relative">
+          <Label htmlFor="search" />
+          <Input
+            id="search"
+            type="text"
+            name="search"
+            autoFocus
+            autoComplete="off"
+            onChange={formik.handleChange}
+            placeholder="Search"
+            value={formik.values.search}
+            variant="standard"
+            aria-describedby="search info"
+          />
+          <Box position="absolute" right="10px" top="10px">
+            {Boolean(formik.values.search.length > 0) ? (
+              <ButtonIcon type="submit" aria-label="search button">
+                <IconClose onClick={() => setSubmitBtn('erase')} />
+              </ButtonIcon>
+            ) : (
+              <ButtonIcon type="submit" aria-label="search button">
+                <IconSearch onClick={() => setSubmitBtn('search')} />
+              </ButtonIcon>
+            )}
+          </Box>
+        </Box>
+      </Form>
     </>
   );
 }

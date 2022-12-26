@@ -8,8 +8,9 @@ export const Title = styled.h2`
   font-weight: ${p => p.theme.fontWeights.bold};
   line-height: ${p => p.theme.lineHeights.body};
   color: ${p => p.theme.colors.text.sectionTitle};
-
+  margin-bottom: ${p => `${p.theme.space[5] - 4}px`};
   @media ${device.tablet} {
     font-size: ${p => p.theme.fontSizes.xxl};
+    margin-bottom: ${p => `${p.theme.space[5] + 8}px`};
   }
 `;
