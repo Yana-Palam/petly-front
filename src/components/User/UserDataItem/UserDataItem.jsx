@@ -1,6 +1,10 @@
 import LiItem from './LiItem';
+import { useSelector } from 'react-redux';
 
 function UserDataItem() {
+  const userInfo = useSelector(state => state.user.data)
+  console.log('userInfo', userInfo);
+
   return (
       <ul>
        <LiItem name={'name'} label={'Name:'} defVal="Anna"/>
