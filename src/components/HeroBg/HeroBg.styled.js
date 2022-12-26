@@ -40,6 +40,7 @@ export const ImgStyled = styled.img`
   @media ${device.tablet} {
     height: calc(100% * 0.6);
   }
+
   @media ${device.desktop} {
     height: auto;
     position: absolute;
@@ -57,6 +58,7 @@ export const ImgLayerOne = styled.img`
   transform: translate(-50%, 0px);
   height: calc(100% * 0.6);
 `;
+
 export const ImgLayerTwo = styled.img`
   width: 63px;
   height: 63px;
@@ -65,6 +67,7 @@ export const ImgLayerTwo = styled.img`
   bottom: calc(100% / 3.5);
   left: calc(100% / 2.8);
 `;
+
 export const ImgLayerThree = styled.img`
   width: 100px;
   height: 100px;
@@ -73,9 +76,9 @@ export const ImgLayerThree = styled.img`
   bottom: calc(100% / 1.6);
 `;
 
-export const ImgLayerFour = styled.img`
-  width: 511px;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-`;
+// export const ImgLayerFour = styled.img`
+//   width: 511px;
+//   position: absolute;
+//   bottom: 0;
+//   right: 0;
+// `;

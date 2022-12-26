@@ -74,15 +74,3 @@ export const AccentLink = styled(LinkStyled)`
     transition: color ${p => p.theme.animation.cubic};
   }
 `;
-
-// AccentLink styles for desk
-
-// @media ${device.desktop} {
-//   &::before {
-//     content: '';
-//     height: 32px;
-//     width: 2px;
-//     margin-right: 20px;
-
-//     background-color: ${({ theme }) => theme.colors.border};
-// }
