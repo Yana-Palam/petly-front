@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-axios.defaults.baseURL = 'https://petly-bc26.cyclic.app';
+// axios.defaults.baseURL = 'https://petly-bc26.cyclic.app';
 
 const token = {
   set(token) {
