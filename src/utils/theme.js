@@ -14,10 +14,11 @@ export const theme = {
       secondaryText: '#111111',
       accent: '#F59256',
       dataText: 'rgba(17, 17, 17, 0.6)',
+      link: '#3091eb',
     },
 
     button: {
-      primaryBackground: '#FFFFFF',
+      primaryBackground: '#F59256',
       secondaryBackground: '#FFFFFF',
       accent: '#F59256',
       border: '#F59256',
@@ -59,6 +60,7 @@ export const theme = {
     xxs: '12px',
     xs: '14px',
     s: '16px',
+    sm: '20px',
     m: '24px',
     l: '28px',
     xl: '32px',
@@ -104,6 +106,7 @@ export const theme = {
     sm: '4px',
     md: '8px',
     lg: '16px',
+    lxg: '20px',
     xl: '30px',
     xxl: '40px',
     round: '50%',

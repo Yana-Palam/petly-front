@@ -15,6 +15,7 @@ export const CategoryPage = styled(NavLink)`
   cursor: pointer;
   display: flex;
   white-space: nowrap;
+  margin-bottom: ${p => `${p.theme.space[5] - 2}px`};
   padding: ${p => `${p.theme.space[3]}px ${p.theme.space[5] - 4}px`};
   border-radius: ${p => p.theme.radii.xxl};
 
@@ -45,5 +46,6 @@ export const CategoryPage = styled(NavLink)`
   @media ${device.tablet} {
     padding: ${p => `${p.theme.space[3] + 2}px ${p.theme.space[5] - 4}px`};
     font-size: ${p => p.theme.fontSizes.m};
+    margin-bottom: ${p => `${p.theme.space[6] - 4}px`};
   }
 `;
