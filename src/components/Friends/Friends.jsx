@@ -1,0 +1,31 @@
+import PropTypes from 'prop-types';
+import { StyledWrapper } from './Friedns.styled';
+import FriendsItems from './FriendsItems';
+
+function Friends({ friends }) {
+  return (
+    <StyledWrapper>
+      {friends.map(({ ...item }) => {
+        return <FriendsItems key={item._id} {...item} />;
+      })}
+    </StyledWrapper>
+  );
+}
+
+export default Friends;
+
+Friends.propTypes = {
+  friends: PropTypes.arrayOf(
+    PropTypes.shape({
+      imageUrl: PropTypes.string,
+      _id: PropTypes.string.isRequired,
+      url: PropTypes.string,
+      title: PropTypes.string.isRequired,
+      address: PropTypes.string,
+      email: PropTypes.string,
+      phone: PropTypes.string,
+      addressUrl: PropTypes.string,
+      workDays: PropTypes.array,
+    })
+  ),
+};
