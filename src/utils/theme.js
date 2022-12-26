@@ -94,6 +94,7 @@ export const theme = {
     nav: 1.357,
     title: 1.23,
     text: 1.21,
+    hero: 1.47,
   },
 
   borders: {

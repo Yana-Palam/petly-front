@@ -1,12 +1,38 @@
-import Container from '../../components/Common/Container/Container';
+import { useEffect, useState } from 'react';
+import Friends from '../../components/Friends';
+import Loader from '../../components/Loader';
+import { getFriends } from '../../services/api/FriendsApi';
+import { Section, StyledContainer, StyledTitle } from './OurFriendsPage.styled';
 
 function OurFriendsPage() {
+  const [friends, setFriends] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const fetchFriends = async () => {
+      setIsLoading(true);
+      setError(null);
+      try {
+        const data = await getFriends();
+        setFriends(data);
+      } catch (e) {
+        setError(e);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+    fetchFriends();
+  }, []);
   return (
-    <>
-      <Container>
-        <p>Our friends page</p>
-      </Container>
-    </>
+    <Section>
+      <StyledContainer>
+        <StyledTitle>Our friend</StyledTitle>
+        {isLoading && <Loader />}
+        {error && <div>{error.message}</div>}
+        {friends && <Friends friends={friends} />}
+      </StyledContainer>
+    </Section>
   );
 }
 

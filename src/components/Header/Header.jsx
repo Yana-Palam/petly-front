@@ -3,6 +3,7 @@ import { useState } from 'react';
 import useMatchMedia from 'hooks/useMatchMedia';
 // import { useSelector } from 'react-redux';
 import burger from '../../assets/icons/burger.svg';
+import close from '../../assets/icons/icon-close.svg';
 // import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import useScrollLock from 'hooks/useScrollLock';
 import AuthNav from './AuthNav/AuthNav';
@@ -14,12 +15,11 @@ import {
   HeaderStyled,
   BurgerMenu,
   MobMenuButton,
-  // MobMenu,
   ModalWrapper,
   Wrap,
 } from './Header.styled';
 
-function Header({ closeModal, isOpen }) {
+function Header() {
   const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
   //  const isLogin = useSelector(selectIsLoggedIn);
   const { isDesktop, isTablet, isMobile } = useMatchMedia();
@@ -71,9 +71,7 @@ function Header({ closeModal, isOpen }) {
             </Wrap>
             {!isDesktop && mobileMenuIsOpen && (
               <ModalWrapper>
-                {isMobile && (
-                  <UserNav closeModal={closeModal} isOpen={isOpen} />
-                )}
+                {isMobile && <UserNav />}
                 <Nav closeMobMenu={closeMobMenu} />
               </ModalWrapper>
             )}
@@ -100,7 +98,7 @@ function Header({ closeModal, isOpen }) {
                   onClick={toggleMenu}
                 >
                   <BurgerMenu
-                    src={burger}
+                    src={mobileMenuIsOpen ? close : burger}
                     alt="burger-menu-icon"
                     width={30}
                     height={20}
@@ -111,9 +109,7 @@ function Header({ closeModal, isOpen }) {
 
             {!isDesktop && mobileMenuIsOpen && (
               <ModalWrapper>
-                {isMobile && (
-                  <AuthNav closeModal={closeModal} isOpen={isOpen} />
-                )}
+                {isMobile && <AuthNav closeMobMenu={closeMobMenu} />}
                 <Nav closeMobMenu={closeMobMenu} />
               </ModalWrapper>
             )}
