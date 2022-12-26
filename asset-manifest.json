@@ -1,10 +1,10 @@
 {
   "files": {
     "main.css": "/petly-team-project/static/css/main.23ec8991.css",
-    "main.js": "/petly-team-project/static/js/main.8447e075.js",
+    "main.js": "/petly-team-project/static/js/main.e53eac6a.js",
     "static/js/67.7eed7419.chunk.js": "/petly-team-project/static/js/67.7eed7419.chunk.js",
     "static/js/210.5c9dae83.chunk.js": "/petly-team-project/static/js/210.5c9dae83.chunk.js",
-    "static/js/989.84046a81.chunk.js": "/petly-team-project/static/js/989.84046a81.chunk.js",
+    "static/js/242.a55a1651.chunk.js": "/petly-team-project/static/js/242.a55a1651.chunk.js",
     "static/js/12.355c306c.chunk.js": "/petly-team-project/static/js/12.355c306c.chunk.js",
     "static/js/202.e49b204f.chunk.js": "/petly-team-project/static/js/202.e49b204f.chunk.js",
     "static/js/539.760b79ce.chunk.js": "/petly-team-project/static/js/539.760b79ce.chunk.js",
@@ -33,10 +33,10 @@
     "static/media/ci_edit.svg": "/petly-team-project/static/media/ci_edit.52bb15026eb775c708da0f319c7b7567.svg",
     "static/media/plus.svg": "/petly-team-project/static/media/plus.40b2205dc2516cb92de4e8f4f8627464.svg",
     "main.23ec8991.css.map": "/petly-team-project/static/css/main.23ec8991.css.map",
-    "main.8447e075.js.map": "/petly-team-project/static/js/main.8447e075.js.map",
+    "main.e53eac6a.js.map": "/petly-team-project/static/js/main.e53eac6a.js.map",
     "67.7eed7419.chunk.js.map": "/petly-team-project/static/js/67.7eed7419.chunk.js.map",
     "210.5c9dae83.chunk.js.map": "/petly-team-project/static/js/210.5c9dae83.chunk.js.map",
-    "989.84046a81.chunk.js.map": "/petly-team-project/static/js/989.84046a81.chunk.js.map",
+    "242.a55a1651.chunk.js.map": "/petly-team-project/static/js/242.a55a1651.chunk.js.map",
     "12.355c306c.chunk.js.map": "/petly-team-project/static/js/12.355c306c.chunk.js.map",
     "202.e49b204f.chunk.js.map": "/petly-team-project/static/js/202.e49b204f.chunk.js.map",
     "539.760b79ce.chunk.js.map": "/petly-team-project/static/js/539.760b79ce.chunk.js.map",
@@ -47,6 +47,6 @@
   },
   "entrypoints": [
     "static/css/main.23ec8991.css",
-    "static/js/main.8447e075.js"
+    "static/js/main.e53eac6a.js"
   ]
 }
