@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useFormik } from 'formik';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import * as yup from 'yup';
-
+import { helpers } from 'utils/helpers';
 import {
   Form,
   Label,
@@ -17,7 +17,11 @@ function NoticesSearch() {
   const [submitBtn, setSubmitBtn] = useState('search');
   const [searchParams, setSearchParams] = useSearchParams();
   const category = useLocation().pathname;
-  const query = searchParams.get('q');
+  // const query = searchParams.get('q');
+
+  useEffect(() => {
+    console.log(searchParams.q);
+  }, [searchParams.q]);
 
   const validationSchema = yup.object({
     search: yup.string('Enter you search info').trim(),
@@ -33,7 +37,7 @@ function NoticesSearch() {
 
   function handleSubmit({ search }) {
     if (submitBtn === 'search') {
-      const q = search.replace(/\s+/g, ' ');
+      const q = helpers.delSpaces(search);
       if (Boolean(q.length > 0)) {
         setSearchParams({ q });
         const obj = { category: category, q };
@@ -69,7 +73,7 @@ function NoticesSearch() {
               </ButtonIcon>
             ) : (
               <ButtonIcon type="submit" aria-label="search button">
-                <IconSearch onClick={() => setSubmitBtn('search')} />
+                <IconSearch /* onClick={() => setSubmitBtn('search')}  */ />
               </ButtonIcon>
             )}
           </Box>
