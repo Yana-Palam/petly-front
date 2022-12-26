@@ -65,12 +65,15 @@ export const AnimalsSpanTitle = styled.span`
 
 export const AnimalsSpan = styled.span``;
 
+export const AnimalsCategoryBox = styled.div`
+  position: relative;
+`;
 export const AnimalsCategoryDiv = styled.div`
   position: absolute;
   width: ${p => `${p.theme.space[7] + 20}px`};
   height: ${p => `${p.theme.space[5] - 4}px`};
   left: ${p => `${p.theme.space[0]}px`};
-  top: ${p => `${p.theme.space[6] + 11}px`};
+  top: ${p => `${p.theme.space[4] + 4}px`};
   border-radius: 0 40px 40px 0;
   background: rgba(255, 255, 255, 0.6);
   backdrop-filter: blur(2px);
