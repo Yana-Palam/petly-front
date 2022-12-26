@@ -3,7 +3,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import { IoMdLogIn } from 'react-icons/io';
 
-axios.defaults.baseURL = 'https://petly-bc26.cyclic.app';
+axios.defaults.baseURL = 'https://petly-back.onrender.com/api';
 
 const token = {
   set(token) {
@@ -19,7 +19,7 @@ export const register = createAsyncThunk(
   async (user, { rejectWithValue }) => {
     try {
       await axios.post('/auth/register', user);
-      toast.success(`Пользователь ${user.username} успешно зарегистрирован`);
+      toast.success(`Пользователь ${user.name} успешно зарегистрирован`);
     } catch (error) {
       return rejectWithValue(error.message);
     }
@@ -31,7 +31,7 @@ export const login = createAsyncThunk(
   async (user, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/auth/login', user);
-      token.set(data.accessToken);
+      token.set(data.token);
       toast(`Вы успешно вошли в свой аккаунт`, {
         icon: <IoMdLogIn size={25} color="green" />,
       });
@@ -47,7 +47,7 @@ export const logout = createAsyncThunk(
   'auth/logout',
   async (_, { fulfillWithValue }) => {
     try {
-      await axios.post('/auth/logout');
+      await axios.get('/auth/logout');
       token.unset();
     } catch (error) {
       toast.error('Что-то пошло не так, попробуйте перезагрузить страницу');
