@@ -71,9 +71,7 @@ function Header({ closeModal, isOpen }) {
             </Wrap>
             {!isDesktop && mobileMenuIsOpen && (
               <ModalWrapper>
-                {isMobile && (
-                  <UserNav closeModal={closeModal} isOpen={isOpen} />
-                )}
+                {isMobile && <UserNav closeModal={closeModal} />}
                 <Nav closeMobMenu={closeMobMenu} />
               </ModalWrapper>
             )}
@@ -111,9 +109,7 @@ function Header({ closeModal, isOpen }) {
 
             {!isDesktop && mobileMenuIsOpen && (
               <ModalWrapper>
-                {isMobile && (
-                  <AuthNav closeModal={closeModal} isOpen={isOpen} />
-                )}
+                {isMobile && <AuthNav closeMobMenu={closeMobMenu} />}
                 <Nav closeMobMenu={closeMobMenu} />
               </ModalWrapper>
             )}
