@@ -12,6 +12,7 @@ export const DivPhoto = styled.div`
   }
   @media (${device.desktop}) {
     margin-bottom: 32px;
+    margin-left: 89px;
   }
 `;
 

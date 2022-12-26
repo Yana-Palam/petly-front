@@ -1,3 +1,4 @@
+// import { useDispatch } from 'react-redux';
 import {
   UlWrap,
   LiItem,
@@ -13,6 +14,12 @@ import {
 import deleteIcon from 'assets/icons/delete.svg';
 
 function PetsList() {
+// const dispatch = useDispatch();
+
+const onDeleteHandler = () => {
+  console.log('delete');
+}
+
   return (
       <UlList>
         <LiItem>
@@ -32,7 +39,7 @@ function PetsList() {
                 consectetur Lorem ipsum dolor sit amet, consectetur Lorem ipsum dolor sit amet, consectetur</Text>
             </LiWrapComment>
           </UlWrap>
-          <Button> <ImgDelete src={deleteIcon} alt='' /></Button>
+          <Button onClick={onDeleteHandler}> <ImgDelete src={deleteIcon} alt='' /></Button>
         </LiItem>
       </UlList>
   );
