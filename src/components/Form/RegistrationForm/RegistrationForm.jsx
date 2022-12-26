@@ -1,14 +1,20 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { register, login } from 'redux/auth/authOperations';
 import { Text, LoginLink, Title, Wrapper } from './RegistrationForm.styled';
 import StepOne from './StepOne';
 import StepTwo from './StepTwo';
 
 const RegistrationForm = () => {
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
   const [data, setData] = useState({
     email: '',
     password: '',
     confirmPassword: '',
-    username: '',
+    name: '',
     city: '',
     phone: '',
   });
@@ -20,9 +26,35 @@ const RegistrationForm = () => {
 
     if (final) {
       console.log(data);
-      // dispatch(register({ data })).then(({ error }) => {
-      //   !error && navigate('/login'); // if no error (success) redirect ot login page
+      const dataRegister = {
+        email: data.email,
+        password: data.password,
+        name: data.name,
+        city: data.city,
+        phone: data.phone,
+      };
+
+      const dataLogin = {
+        email: data.email,
+        password: data.password,
+      };
+
+      dispatch(register(dataRegister)).then(({ error }) => {
+        !error &&
+          dispatch(login(dataLogin)).then(({ error }) => {
+            !error && navigate('/user');
+          });
+      });
+
+      // setData({
+      //   email: '',
+      //   password: '',
+      //   confirmPassword: '',
+      //   name: '',
+      //   city: '',
+      //   phone: '',
       // });
+
       return;
     }
     setCurrentStep(prev => prev + 1);

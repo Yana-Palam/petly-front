@@ -5,6 +5,7 @@ const Container = styled.div`
   // width: 100%;
   padding-right: 20px;
   padding-left: 20px;
+  /* background: #fdf7f2; */
   // margin: 0 auto;
 
   @media (${device.tabletOnly}) {

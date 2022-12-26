@@ -1,11 +1,14 @@
 import Container from '../../components/Common/Container/Container';
 import LoginForm from 'components/Form/LoginForm';
+import { Wrapper } from './LoginPage.styled';
 
 function LoginPage() {
   return (
     <div>
       <Container>
-        <LoginForm />
+        <Wrapper>
+          <LoginForm />
+        </Wrapper>
       </Container>
     </div>
   );
