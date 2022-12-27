@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-// import { useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import DatePicker from 'react-date-picker';
 import { showAlertMessage } from '../../../utils/showMessages';
-// import { addPetInUserCard } from '../../../redux/userData/userDataOperation';
+import { addPet } from '../../../redux/userData/userDataOperation';
 import imgLoad from '../../../assets/images/Modal/loadMobile.png';
 import iconClose from '../../../assets/icons/icon-close.svg';
 import s from './ModalAddsPet.module.css';
@@ -28,7 +28,7 @@ const modalContainer = document.getElementById('modal-root');
 const ModalAddsPet = ({ setShowModal }) => {
   const [page, setPage] = useState(1);
   const [photo, setPhoto] = useState('');
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   useEffect(() => {
     const handleKeyDown = e => {
@@ -111,20 +111,20 @@ const ModalAddsPet = ({ setShowModal }) => {
       return;
     }
 
-    // const arrayOfData = Object.entries({
-    //   name,
-    //   birthday,
-    //   breed,
-    //   comments,
-    //   pet,
-    // });
+    const arrayOfData = Object.entries({
+      name,
+      birthday,
+      breed,
+      comments,
+      pet,
+    });
 
-    // const filteredArray = arrayOfData.filter(item => item[1]);
-    // const info = filteredArray.reduce((previousValue, feature) => {
-    //   return { ...previousValue, [feature[0]]: feature[1] };
-    // }, {});
+    const filteredArray = arrayOfData.filter(item => item[1]);
+    const info = filteredArray.reduce((previousValue, feature) => {
+      return { ...previousValue, [feature[0]]: feature[1] };
+    }, {});
 
-    // dispatch(addPetInUserCard(info));
+    dispatch(addPet(info));
     setShowModal(false);
   };
 
