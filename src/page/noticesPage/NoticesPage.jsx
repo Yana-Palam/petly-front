@@ -17,7 +17,7 @@ import Loader from 'components/Loader';
 function NoticesPage() {
   const { notices, isLoading } = useSelector(selectNoticeState);
   const [searchParams, setSearchParams] = useSearchParams();
-  const { isOpen, openModal, handleBackdropClick, handleKeyDown } =
+  const { isOpen, openModal, closeModal,handleBackdropClick, handleKeyDown } =
     useToggleModal();
 
   const [search, setSearch] = useState(
@@ -67,6 +67,7 @@ function NoticesPage() {
           <div>Modal Windows for {getNoticeById._id}</div>
           <h2>{getNoticeById.title}</h2>
           <img src={getNoticeById.photoURL} alt={getNoticeById.title} />
+          <button onClick={closeModal}>close</button>
         </Modal>
       )}
 
