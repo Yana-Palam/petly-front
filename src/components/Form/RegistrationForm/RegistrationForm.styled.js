@@ -2,6 +2,12 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { StyledButton } from 'components/Common/Button/Button.styled';
 import { device } from 'utils/device';
+import TextField from '@mui/material/TextField';
+
+export const Input = styled(TextField)`
+  width: 100%;
+  /* height: 48px; */
+`;
 
 export const Form = styled.form`
   display: flex;
@@ -27,6 +33,14 @@ export const Wrapper = styled.div`
   @media (${device.tablet}) {
     width: ${p => `${p.theme.space[9] + 106}px`};
   }
+`;
+
+export const ErrorText = styled.span`
+  font-family: ${x => x.theme.fonts.main};
+  position: absolute;
+  top: 40px;
+  color: #d32f2f;
+  font-weight: 600;
 `;
 
 export const AuthBtn = styled(StyledButton)`

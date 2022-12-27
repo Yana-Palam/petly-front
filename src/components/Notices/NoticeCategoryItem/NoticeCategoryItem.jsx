@@ -12,6 +12,7 @@ import {
   AnimalsSpan,
   AnimalsSpanTitle,
   AnimalsBtnDel,
+  AnimalsCategoryBox,
 } from './NoticeCategoryItem.styled';
 
 function NoticeCategoryItem({
@@ -31,11 +32,12 @@ function NoticeCategoryItem({
 
   return (
     <AnimalsBox>
-      <AnimalsImg src={photoURL} alt="Animal" />
-      <AnimalsCategoryDiv>
-        <AnimalsCategory>{category}</AnimalsCategory>
-      </AnimalsCategoryDiv>
-
+      <AnimalsCategoryBox>
+        <AnimalsImg src={photoURL} alt="Animal" />
+        <AnimalsCategoryDiv>
+          <AnimalsCategory>{category}</AnimalsCategory>
+        </AnimalsCategoryDiv>
+      </AnimalsCategoryBox>
       <AnimalsDiv>
         <Title>{title}</Title>
 

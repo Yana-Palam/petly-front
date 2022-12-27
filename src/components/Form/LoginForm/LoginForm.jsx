@@ -2,32 +2,31 @@ import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import TextField from '@mui/material/TextField';
 import { login } from 'redux/auth/authOperations';
 import { selectAccessToken } from 'redux/auth/authSelectors';
 import { AuthBtn } from './LoginForm.styled';
-import { Form, Title, Text, RegisterLink, InputWrp } from './LoginForm.styled';
+import {
+  Form,
+  Title,
+  Text,
+  RegisterLink,
+  InputWrp,
+  Input,
+} from './LoginForm.styled';
 
 const inputs = [
   { type: 'email', name: 'email', label: 'Email' },
   { type: 'password', name: 'password', label: 'Password' },
 ];
+const passwordRexExp = /^[a-zA-Z0-9]+$/;
 
-const emailRegExp = /[a-z0-9]+@[a-z]+.[a-z]{2,3}/;
+// const emailRegExp = /^[a-zA-Z0-9\._-]{2,}@[a-zA-Z0-9-]+.[a-zA-Z0-9]+$/;
 
 const LoginForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const isAuth = useSelector(selectAccessToken);
-  const stateError = useSelector(state => state.auth.error);
-  const errorExist = () => {
-    if (stateError.includes(409) === true) {
-      return 'Электронная почта занята';
-    }
-    if (stateError.includes(400) === true) {
-      return 'Ой извините, проблема с сервером';
-    }
-  };
 
   const validationSchema = yup.object().shape({
     email: yup
@@ -36,9 +35,16 @@ const LoginForm = () => {
       .required()
       .min(10)
       .max(63)
-      .matches(emailRegExp)
+      // .matches(emailRegExp, 'Email is not valid')
       .label('Email'),
-    password: yup.string().min(7).max(32).required().label('Password'),
+
+    password: yup
+      .string()
+      .min(7)
+      .max(32)
+      .matches(passwordRexExp, 'Password is not valid')
+      .required()
+      .label('Password'),
   });
 
   const initialValues = {
@@ -50,11 +56,9 @@ const LoginForm = () => {
     initialValues: initialValues,
     validationSchema: validationSchema,
 
-    onSubmit: event => {
-      const email = event.email;
-      const password = event.password;
+    onSubmit: async values => {
       if (!isAuth) {
-        dispatch(login({ email, password })).then(({ error }) => {
+        dispatch(login(values)).then(({ error }) => {
           !error && navigate('/user');
         });
       }
@@ -65,10 +69,9 @@ const LoginForm = () => {
     <>
       <Form onSubmit={formik.handleSubmit}>
         <Title>Login</Title>
-        {stateError ? <span>{errorExist()}</span> : null}
         <InputWrp>
           {inputs.map(({ type, name, label }) => (
-            <TextField
+            <Input
               key={name}
               type={type}
               name={name}

@@ -2,11 +2,6 @@ import styled from 'styled-components';
 import { device } from 'utils/device';
 
 export const UlList = styled.ul`
-  background: ${p => p.theme.colors.white};
-  box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
-  border-radius: 40px;
-  padding: 20px;
-  position: relative;
 
   @media (${device.mobileOnly}) {
     width: 280px;
@@ -17,16 +12,27 @@ export const UlList = styled.ul`
   @media (${device.tabletOnly}) {
     width: 736px;
   }
-
 `;
 
 export const LiItem = styled.li`
   display: flex;
   align-items: flex-start;
+  position: relative;
 
-  @media (${device.mobileOnly}) {
-    flex-direction: column;
+  background: ${p => p.theme.colors.white};
+  box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+  border-radius: 40px;
+  padding: 20px;
+  margin-bottom: 20px;
+
+  @media (${device.desktop}) {
+    margin-bottom: 22px;
   }
+}
+
+@media (${device.mobileOnly}) {
+  flex-direction: column;
+}
 `;
 
 export const UlWrap = styled.ul`

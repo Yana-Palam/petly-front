@@ -19,9 +19,12 @@ export const register = createAsyncThunk(
   async (user, { rejectWithValue }) => {
     try {
       await axios.post('/auth/register', user);
-      toast.success(`Пользователь ${user.name} успешно зарегистрирован`);
+      toast.success(`User ${user.name} registered successfully`);
     } catch (error) {
-      return rejectWithValue(error.message);
+      if (error.response.status === 409) {
+        return rejectWithValue(toast.error('Email in use'));
+      }
+      return rejectWithValue(toast.error('Oops, something went wrong'));
     }
   }
 );
@@ -32,13 +35,15 @@ export const login = createAsyncThunk(
     try {
       const { data } = await axios.post('/auth/login', user);
       token.set(data.token);
-      toast(`Вы успешно вошли в свой аккаунт`, {
+      toast(`You have successfully logged into your account`, {
         icon: <IoMdLogIn size={25} color="green" />,
       });
       return data;
     } catch (error) {
-      // toast.error('Что-то пошло не так, попробуйте перезагрузить страницу');
-      return rejectWithValue(error.message);
+      if (error.response.status === 401) {
+        return rejectWithValue(toast.error('Email or password invalid'));
+      }
+      return rejectWithValue(toast.error('Oops, something went wrong'));
     }
   }
 );
@@ -59,18 +64,17 @@ export const logout = createAsyncThunk(
 export const refresh = createAsyncThunk(
   'auth/refresh',
   async (sid, { rejectWithValue, getState }) => {
-    const tokenLS = getState().auth.refreshToken;
-    if (!tokenLS) {
-      return rejectWithValue('Not logged');
-    }
-    token.set(tokenLS);
-
-    try {
-      const { data } = await axios.post('/auth/refresh', { sid });
-      token.set(data.refreshToken);
-      return data;
-    } catch (error) {
-      return rejectWithValue(error.message);
-    }
+    // const tokenLS = getState().auth.refreshToken;
+    // if (!tokenLS) {
+    //   return rejectWithValue('Not logged');
+    // }
+    // token.set(tokenLS);
+    // try {
+    //   const { data } = await axios.post('/auth/refresh', { sid });
+    //   token.set(data.refreshToken);
+    //   return data;
+    // } catch (error) {
+    //   return rejectWithValue(error.message);
+    // }
   }
 );

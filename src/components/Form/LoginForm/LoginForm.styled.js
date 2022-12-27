@@ -3,6 +3,32 @@ import { Link } from 'react-router-dom';
 import { StyledButton } from 'components/Common/Button/Button.styled';
 import { device } from 'utils/device';
 
+import TextField from '@mui/material/TextField';
+
+export const Input = styled(TextField)`
+  label {
+    padding-left: 26px;
+  }
+  div {
+    height: 48px;
+    border-radius: 40px;
+    border: 1px solid tomato;
+  }
+  input {
+    padding-left: 42px;
+    // color: green;
+  }
+  span {
+  }
+
+  .css-1sumxir-MuiFormLabel-root-MuiInputLabel-root {
+    // margin-left: -30px;
+  }
+
+  width: 100%;
+  /* height: 48px; */
+`;
+
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
