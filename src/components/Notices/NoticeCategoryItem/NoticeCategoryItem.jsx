@@ -1,3 +1,4 @@
+import { helpers } from 'utils/helpers';
 import {
   Title,
   AnimalsImg,
@@ -11,33 +12,40 @@ import {
   AnimalsSpan,
   AnimalsSpanTitle,
   AnimalsBtnDel,
+  AnimalsCategoryBox,
 } from './NoticeCategoryItem.styled';
 
-function NoticeCategoryItem(user) {
-  const { img, title, other, category } = user;
-
+function NoticeCategoryItem({
+  category,
+  photoURL,
+  title,
+  breed,
+  location,
+  birthday,
+}) {
   return (
     <AnimalsBox>
-      <AnimalsImg src={img} alt="Animal" />
-      <AnimalsCategoryDiv>
-        <AnimalsCategory>{category}</AnimalsCategory>
-      </AnimalsCategoryDiv>
-
+      <AnimalsCategoryBox>
+        <AnimalsImg src={photoURL} alt="Animal" />
+        <AnimalsCategoryDiv>
+          <AnimalsCategory>{category}</AnimalsCategory>
+        </AnimalsCategoryDiv>
+      </AnimalsCategoryBox>
       <AnimalsDiv>
         <Title>{title}</Title>
 
         <AnimalsUl>
           <AnimalsLi>
             <AnimalsSpanTitle>Breed:</AnimalsSpanTitle>
-            <AnimalsSpan>{other.breed}</AnimalsSpan>
+            <AnimalsSpan>{breed}</AnimalsSpan>
           </AnimalsLi>
           <AnimalsLi>
             <AnimalsSpanTitle>Place:</AnimalsSpanTitle>
-            <AnimalsSpan>{other.place}</AnimalsSpan>
+            <AnimalsSpan>{location}</AnimalsSpan>
           </AnimalsLi>
           <AnimalsLi>
             <AnimalsSpanTitle> Age:</AnimalsSpanTitle>
-            <AnimalsSpan>{other.age}</AnimalsSpan>
+            <AnimalsSpan>{helpers.getAge(birthday)}</AnimalsSpan>
           </AnimalsLi>
         </AnimalsUl>
       </AnimalsDiv>
@@ -48,3 +56,5 @@ function NoticeCategoryItem(user) {
 }
 
 export default NoticeCategoryItem;
+
+//TODO прописати пропси.

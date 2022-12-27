@@ -17,7 +17,7 @@ function Nav({ closeMobMenu }) {
         </NavListItem>
         <NavListItem>
           <NavLinkItem onClick={closeMobMenu} to="/friends">
-            Friends
+            Our friend
           </NavLinkItem>
         </NavListItem>
       </NavList>

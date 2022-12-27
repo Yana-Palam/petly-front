@@ -3,8 +3,8 @@ import { Button, ImgDelete, Input, Label, Item } from './UserDataItem.styled';
 import penIcon from '../../../assets/icons/pen_edit.svg';
 import editIcon from '../../../assets/icons/ci_edit.svg';
 
-const LiItem = ({ label, name, defVal }) => {
-  const [value, setValue] = useState(defVal);
+const LiItem = ({ label, name, user }) => {
+  const [value, setValue] = useState(user);
   const [active, setActive] = useState(false);
 
   const onChangeHandler = (e) => {

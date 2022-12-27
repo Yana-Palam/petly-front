@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from 'utils/device';
 
 export const Button = styled.button`
   display: flex;
@@ -10,7 +11,19 @@ export const Button = styled.button`
   border: ${p => p.theme.borders.none};
   color: rgba(17, 17, 17, 0.6);
   background: none;
-  margin-top: 16px;
+  margin-top: 12px;
+  padding: 0;
+
+  @media (${device.mobileOnly}) {
+    margin-left: 145px;
+  }
+
+  @media (${device.fablet}) {
+    margin-top: 10px;
+  }
+  @media (${device.desktop}) {
+    margin-top: 16px;
+  }
 `;
 
 export const ImgLogout = styled.img`

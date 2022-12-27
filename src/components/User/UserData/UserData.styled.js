@@ -1,11 +1,19 @@
 import styled from 'styled-components';
+import { device } from 'utils/device';
 
 export const DivPhoto = styled.div`
   width: 233px;
   height: 233px;
   background: ${p => p.theme.colors.primaryBackground};
   border-radius: ${p => p.theme.radii.round};
-  margin-bottom: 32px;
+
+  @media (${device.mobileOnly}) {
+    margin-bottom: 68px;
+  }
+  @media (${device.desktop}) {
+    margin-bottom: 32px;
+    margin-left: 89px;
+  }
 `;
 
 export const ImgPhoto = styled.img`
@@ -19,6 +27,15 @@ export const Div = styled.div`
   flex-direction: column;
   align-items: center;
   position: relative;
+
+  @media (${device.fablet}) {
+    flex-direction: row-reverse;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  @media (${device.desktop}) {
+    flex-direction: column;
+  }
 `;
 
 export const Button = styled.button`
@@ -32,8 +49,17 @@ export const Button = styled.button`
   color: ${p => p.theme.colors.sectionTitle};
   background: none;
   position: absolute;
-  top: 200px;
+  top: 240px;
   right: 0;
+
+  @media (${device.fablet}) {
+    top: 240px;
+    right: 0;
+  }
+  @media (${device.desktop}) {
+    top: 210px;
+    right: 0;
+  }
 `;
 
 export const ImgCamera = styled.img`

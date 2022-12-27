@@ -2,9 +2,9 @@ import { createSlice } from '@reduxjs/toolkit';
 import { register, login, logout, refresh } from './authOperations';
 
 const initialState = {
-  user: { username: '', email: '', id: '' },
+  user: { name: '', email: '', id: '' },
   refreshToken: null,
-  accessToken: null,
+  token: null,
   sid: '',
   isLoggedIn: false,
   isLoading: false,
@@ -36,11 +36,11 @@ const authSlice = createSlice({
     },
     [login.fulfilled]: (
       state,
-      { payload: { user, accessToken, refreshToken, id, sid } }
+      { payload: { user, token, refreshToken, id, sid } }
     ) => {
       state.user = user;
 
-      state.accessToken = accessToken;
+      state.token = token;
       state.refreshToken = refreshToken;
       state.sid = sid;
 
@@ -60,7 +60,7 @@ const authSlice = createSlice({
     },
     [logout.fulfilled]: state => {
       state.user = { name: '', email: '', id: '' };
-      state.accessToken = null;
+      state.token = null;
       state.refreshToken = null;
 
       state.isLoggedIn = false;
@@ -78,9 +78,9 @@ const authSlice = createSlice({
     },
     [refresh.fulfilled]: (
       state,
-      { payload: { newRefreshToken, newAccessToken } }
+      { payload: { newRefreshToken, newtoken } }
     ) => {
-      state.accessToken = newAccessToken;
+      state.token = newtoken;
       state.refreshToken = newRefreshToken;
 
       state.isLoggedIn = true;

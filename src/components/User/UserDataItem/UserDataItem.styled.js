@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { device } from 'utils/device';
 
 export const Item = styled.li`
   display: flex;
@@ -8,40 +9,57 @@ export const Item = styled.li`
 `;
 
 export const Label = styled.label`
-  width: 83px;
+  width: 56px;
   font-weight: 500;
-  font-size: 18px;
-  line-height: 25px;
+  font-size: 12px;
+  line-height: 16px;
   letter-spacing: 0.04em;
-  color: #111111
+  color: #111111;
+  margin-right: 14px;
+
+  @media (${device.fablet}) {
+    width: 83px;
+    font-size: 18px;
+    line-height: 25px;
+    margin-right: 24px;
+  }
 `;
 
 export const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 32px;
-  height: 32px;
+  width: 20px;
+  height: 20px;
   background: ${p => p.theme.colors.primaryBackground};
   border-radius: ${p => p.theme.radii.round};
   border: ${p => p.theme.borders.none};
-  margin-left: 24px;
+
+  @media (${device.fablet}) {
+    width: 32px;
+    height: 32px;
+  }
 `;
 
 export const ImgDelete = styled.img`
-  width: 20px;
-  height: 20px;
+  width: 12px;
+  height: 12px;
+
+  @media (${device.fablet}) {
+    width: 20px;
+    height: 20px;
+  }
 `;
 
 export const Input = styled.input`
-  width: 216px;
-  height: 32px;
-  margin-left: 24px;
+  width: 159px;
+  height: 24px;
+  margin-right: 9px;
   padding-left: 12px;
   border: 1px solid transparent;
   font-weight: 400;
-  font-size: 18px;
-  line-height: 25px;
+  font-size: 12px;
+  line-height: 16px;
   letter-spacing: 0.04em;
 
   color: #111111;
@@ -53,4 +71,11 @@ export const Input = styled.input`
     border-radius: 40px;
   `}
 
+  @media (${device.fablet}) {
+    width: 216px;
+    height: 32px;
+    font-size: 18px;
+    line-height: 25px;
+    margin-right: 24px;
+  }
 `;

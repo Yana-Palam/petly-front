@@ -5,8 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import { login } from 'redux/auth/authOperations';
 import { selectAccessToken } from 'redux/auth/authSelectors';
-
-import Button from 'components/Common/Button/Button';
+import { AuthBtn } from './LoginForm.styled';
 import { Form, Title, Text, RegisterLink, InputWrp } from './LoginForm.styled';
 
 const inputs = [
@@ -31,8 +30,15 @@ const LoginForm = () => {
   };
 
   const validationSchema = yup.object().shape({
-    email: yup.string().email().required().min(10).max(63).matches(emailRegExp),
-    password: yup.string().min(7, 'min 7').max(32).required(),
+    email: yup
+      .string()
+      .email()
+      .required()
+      .min(10)
+      .max(63)
+      .matches(emailRegExp)
+      .label('Email'),
+    password: yup.string().min(7).max(32).required().label('Password'),
   });
 
   const initialValues = {
@@ -45,12 +51,11 @@ const LoginForm = () => {
     validationSchema: validationSchema,
 
     onSubmit: event => {
-      console.log(event);
       const email = event.email;
       const password = event.password;
       if (!isAuth) {
         dispatch(login({ email, password })).then(({ error }) => {
-          !error && navigate('/user'); // if no error (success) redirect ot login page
+          !error && navigate('/user');
         });
       }
     },
@@ -76,16 +81,7 @@ const LoginForm = () => {
             />
           ))}
         </InputWrp>
-        <Button
-          type="submit"
-          style={{
-            width: '100%',
-            height: '48px',
-            background: '#F59256s',
-          }}
-        >
-          Login
-        </Button>
+        <AuthBtn type="submit">Login</AuthBtn>
         <Text>
           Don't have an account?{' '}
           <RegisterLink to="/register">Register</RegisterLink>

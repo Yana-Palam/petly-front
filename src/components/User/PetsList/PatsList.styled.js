@@ -1,24 +1,50 @@
 import styled from 'styled-components';
-// import { device } from 'utils/device';
+import { device } from 'utils/device';
 
 export const UlList = styled.ul`
-  background: ${p => p.theme.colors.white};
-  box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
-  border-radius: 40px;
-  margin-top: 24px;
-  padding: 20px;
-  position: relative;
+
+  @media (${device.mobileOnly}) {
+    width: 280px;
+  }
+  @media (${device.fabletOnly}) {
+    width: 736px;
+  }
+  @media (${device.tabletOnly}) {
+    width: 736px;
+  }
 `;
 
 export const LiItem = styled.li`
   display: flex;
   align-items: flex-start;
+  position: relative;
+
+  background: ${p => p.theme.colors.white};
+  box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
+  border-radius: 40px;
+  padding: 20px;
+  margin-bottom: 20px;
+
+  @media (${device.desktop}) {
+    margin-bottom: 22px;
+  }
+}
+
+@media (${device.mobileOnly}) {
+  flex-direction: column;
+}
 `;
 
 export const UlWrap = styled.ul`
   display: flex;
   flex-direction: column;
-  margin-left: 32px;
+
+  @media (${device.mobileOnly}) {
+    margin-top: 20px;
+  }
+  @media (${device.fablet}) {
+    margin-left: 32px;
+  }
 `;
 
 export const LiWrap = styled.li`
@@ -35,6 +61,11 @@ export const Img = styled.img`
   width: 161px;
   height: 161px;
   border-radius: 40px;
+
+  @media (${device.mobileOnly}) {
+    width: 240px;
+    height: 240px;
+  }
 `;
 
 export const Span = styled.span`
@@ -62,6 +93,11 @@ export const Button = styled.button`
   background: ${p => p.theme.colors.primaryBackground};
   border-radius: ${p => p.theme.radii.round};
   border: ${p => p.theme.borders.none};
+
+  @media (${device.mobileOnly}) {
+    right: 20px;
+    top: 268px;
+  }
 `;
 
 export const ImgDelete = styled.img`

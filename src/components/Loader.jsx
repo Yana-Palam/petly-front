@@ -11,6 +11,7 @@ const Loader = () => {
         position: 'absolute',
         top: '50%',
         left: '50%',
+        transform: 'translateX(-50%)',
       }}
     >
       <ThreeDots
