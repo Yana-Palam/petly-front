@@ -25,14 +25,14 @@ export const DivUserInfo = styled.div`
 `;
 
 export const DivWrapperMain = styled.div`
-  margin-top: 61px;
+  //margin-top: 61px;
 
   @media (${device.tablet}) {
-    margin-top: 88px;
+    //margin-top: 88px;
   }
   @media (${device.desktop}) {
     display: flex;
-    margin-top: 58px;
+    //margin-top: 58px;
   }
 `;
 

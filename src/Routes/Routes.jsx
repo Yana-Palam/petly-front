@@ -1,7 +1,7 @@
 import { Navigate, Routes, Route } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 import PublicRouter from 'Routes/PublicRouter';
-// import PrivateRouter from 'Routes/PrivateRoute';
+import PrivateRouter from 'Routes/PrivateRoute';
 // import NotFound from 'page/notFoundPage/NotFound';
 import Loader from 'components/Loader';
 
@@ -75,9 +75,9 @@ const AppRoutes = () => {
             path="user"
             element={
               //Alena temporarily changed the PrivateRouter
-              <PublicRouter>
+              <PrivateRouter>
                 <UserPage />
-              </PublicRouter>
+              </PrivateRouter>
             }
           />
         </Route>
