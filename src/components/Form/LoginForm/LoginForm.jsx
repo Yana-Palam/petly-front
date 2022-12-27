@@ -20,7 +20,7 @@ const inputs = [
 ];
 const passwordRexExp = /^[a-zA-Z0-9]+$/;
 
-const emailRegExp = /^[a-zA-Z0-9\._-]{2,}@[a-zA-Z0-9-]+.[a-zA-Z0-9]+$/;
+// const emailRegExp = /^[a-zA-Z0-9\._-]{2,}@[a-zA-Z0-9-]+.[a-zA-Z0-9]+$/;
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -35,7 +35,7 @@ const LoginForm = () => {
       .required()
       .min(10)
       .max(63)
-      .matches(emailRegExp, 'Email is not valid')
+      // .matches(emailRegExp, 'Email is not valid')
       .label('Email'),
 
     password: yup
