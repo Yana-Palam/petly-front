@@ -25,38 +25,21 @@ const RegistrationForm = () => {
     setData(prev => ({ ...prev, ...newData }));
 
     if (final) {
-      console.log(data);
-      const dataRegister = {
-        email: data.email,
-        password: data.password,
-        name: data.name,
-        city: data.city,
-        phone: data.phone,
-      };
-
       const dataLogin = {
-        email: data.email,
-        password: data.password,
+        email: newData.email,
+        password: newData.password,
       };
 
-      dispatch(register(dataRegister)).then(({ error }) => {
+      dispatch(register(newData)).then(({ error }) => {
         !error &&
           dispatch(login(dataLogin)).then(({ error }) => {
             !error && navigate('/user');
           });
       });
 
-      // setData({
-      //   email: '',
-      //   password: '',
-      //   confirmPassword: '',
-      //   name: '',
-      //   city: '',
-      //   phone: '',
-      // });
-
       return;
     }
+
     setCurrentStep(prev => prev + 1);
   };
 
