@@ -4,7 +4,7 @@ import axios from 'axios';
 axios.defaults.baseURL = 'https://petly-back.onrender.com/api';
 
 const token = {
-  set() {
+  set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
   },
   unset() {
@@ -13,23 +13,25 @@ const token = {
 };
 
 export const getUserInfo = createAsyncThunk(
-  "userInfo/getUserInfo",
+  'userInfo/getUserInfo',
   async (query, thunkAPI) => {
-    try{
+    try {
       const tokenLS = thunkAPI.getState().auth.token;
       token.set(tokenLS);
-      const res = await axios.get('/user')
-      return res.data
-    }catch (err){
+      const res = await axios.get('/user');
+      return res.data;
+    } catch (err) {
       return thunkAPI.rejectWithValue('Sorry, server Error!');
     }
-  }
-)
+  },
+);
 
 export const updateUserInfo = createAsyncThunk(
   'userInfo/updateUserInfo',
   async (payload, thunkAPI) => {
     try {
+      const tokenLS = thunkAPI.getState().auth.token;
+      token.set(tokenLS);
       const { userId, ...data } = payload;
       await axios.patch(`/user/${userId}`, data);
       return { ...payload };
@@ -43,6 +45,8 @@ export const addPet = createAsyncThunk(
   'pet/addPet',
   async (payload, thunkAPI) => {
     try {
+      const tokenLS = thunkAPI.getState().auth.token;
+      token.set(tokenLS);
       const res = await axios.post('/user/pet', payload);
       return res.data;
     } catch (err) {
@@ -55,7 +59,9 @@ export const deletePet = createAsyncThunk(
   'pet/deletePet',
   async (petId, thunkAPI) => {
     try {
-      await axios.delete(`/user/pet/${petId}`);
+      // const tokenLS = thunkAPI.getState().auth.token;
+      // token.set(tokenLS);
+      // await axios.delete(`/user/pet/${petId}`);
       return { petId };
     } catch (err) {
       return thunkAPI.rejectWithValue('Sorry, can\'t delete pet, server Error!');
