@@ -16,21 +16,30 @@ import {
 } from './NoticeCategoryItem.styled';
 
 function NoticeCategoryItem({
+  id,
   category,
-  photoURL,
+  img,
   title,
   breed,
   location,
   birthday,
+  getNotice,
 }) {
+  // console.log(img)
+  const getIdForModal = e => {
+    e.preventDefault();
+    getNotice(e.target.id);
+  };
+
   return (
     <AnimalsBox>
       <AnimalsCategoryBox>
-        <AnimalsImg src={photoURL} alt="Animal" />
+        <AnimalsImg src={img[0].photoURL} alt="Animal" />
         <AnimalsCategoryDiv>
           <AnimalsCategory>{category}</AnimalsCategory>
         </AnimalsCategoryDiv>
       </AnimalsCategoryBox>
+       
       <AnimalsDiv>
         <Title>{title}</Title>
 
@@ -49,7 +58,9 @@ function NoticeCategoryItem({
           </AnimalsLi>
         </AnimalsUl>
       </AnimalsDiv>
-      <AnimalsBtnMore>Learn more</AnimalsBtnMore>
+      <AnimalsBtnMore type="button" id={id} onClick={getIdForModal}>
+        Learn more
+      </AnimalsBtnMore>
       <AnimalsBtnDel>Delete</AnimalsBtnDel>
     </AnimalsBox>
   );
