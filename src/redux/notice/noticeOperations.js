@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-axios.defaults.baseURL = 'https://petly-bc26.cyclic.app';
 
 const token = {
   set(token) {
@@ -20,7 +19,8 @@ export const noticeGetByCategory = createAsyncThunk(
         const tokenLS = getState().auth.accessToken;
         token.set(tokenLS);
       }
-      const { data } = await axios.get(`/api/notices/category/${category}`);
+      const { data } = await axios.get(`https://petly-bc26.cyclic.app/api/notices/category/${category}`);
+      console.log(data);
       return data;
     } catch (error) {
       return rejectWithValue(error.request.status);

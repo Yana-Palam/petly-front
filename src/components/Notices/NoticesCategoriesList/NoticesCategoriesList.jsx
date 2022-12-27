@@ -9,12 +9,12 @@ function NoticesCategoriesList({ notices, getIdNotice }) {
   return (
     <List>
       {notices.map(
-        ({ _id, category, photoURL, title, breed, location, birthday }) => (
+        ({ _id, category, img, title, breed, location, birthday }) => (
           <Item key={_id}>
             <NoticeCategoryItem
               id={_id}
               category={category}
-              photoURL={photoURL}
+              img={img}
               title={title}
               breed={breed}
               location={location}

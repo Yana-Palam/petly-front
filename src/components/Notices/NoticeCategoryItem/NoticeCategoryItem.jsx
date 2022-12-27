@@ -18,13 +18,14 @@ import {
 function NoticeCategoryItem({
   id,
   category,
-  photoURL,
+  img,
   title,
   breed,
   location,
   birthday,
   getNotice,
 }) {
+  // console.log(img)
   const getIdForModal = e => {
     e.preventDefault();
     getNotice(e.target.id);
@@ -33,11 +34,12 @@ function NoticeCategoryItem({
   return (
     <AnimalsBox>
       <AnimalsCategoryBox>
-        <AnimalsImg src={photoURL} alt="Animal" />
+        <AnimalsImg src={img[0].photoURL} alt="Animal" />
         <AnimalsCategoryDiv>
           <AnimalsCategory>{category}</AnimalsCategory>
         </AnimalsCategoryDiv>
       </AnimalsCategoryBox>
+       
       <AnimalsDiv>
         <Title>{title}</Title>
 

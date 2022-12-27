@@ -66,7 +66,7 @@ function NoticesPage() {
         >
           <div>Modal Windows for {getNoticeById._id}</div>
           <h2>{getNoticeById.title}</h2>
-          <img src={getNoticeById.photoURL} alt={getNoticeById.title} />
+          <img src={getNoticeById.img[0].photoURL} alt={getNoticeById.title} />
           <button onClick={closeModal}>close</button>
         </Modal>
       )}
