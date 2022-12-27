@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import NoticeCategoryItem from 'components/Notices/NoticeCategoryItem';
 import { List, Item } from './NoticesCategoriesList.styled';
 
@@ -21,6 +22,17 @@ function NoticesCategoriesList({ notices }) {
     </List>
   );
 }
+
+NoticesCategoriesList.propTypes = {
+  _id: PropTypes.string,
+  category: PropTypes.string,
+  photoURL: PropTypes.string,
+  title: PropTypes.string,
+  breed: PropTypes.string,
+  location: PropTypes.string,
+  // birthday: PropTypes.string,
+  // birthday: PropTypes.number,
+};
 
 export default NoticesCategoriesList;
 

@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 import { helpers } from 'utils/helpers';
 import {
   Title,
@@ -55,6 +56,18 @@ function NoticeCategoryItem({
   );
 }
 
+
+NoticeCategoryItem.propTypes = {
+  category: PropTypes.string,
+  photoURL: PropTypes.string,
+  title: PropTypes.string,
+  breed: PropTypes.string,
+  location: PropTypes.string,
+  // birthday: PropTypes.string,
+  // birthday: PropTypes.number,
+};
+
 export default NoticeCategoryItem;
 
 //TODO прописати пропси.
+
