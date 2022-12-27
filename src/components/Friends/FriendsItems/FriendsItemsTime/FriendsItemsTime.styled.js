@@ -72,4 +72,11 @@ export const StyledFullTime = styled.div.attrs(props => ({
   padding: 12px;
   box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.25);
   border-radius: 8px;
+
+  @media ${device.tablet} {
+    top: 42px;
+  }
+  @media ${device.desktop} {
+    top: 48px;
+  }
 `;
