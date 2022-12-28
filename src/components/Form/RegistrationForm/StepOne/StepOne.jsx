@@ -1,9 +1,9 @@
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import TextField from '@mui/material/TextField';
+// import TextField from '@mui/material/TextField';
 import { Form } from '../RegistrationForm.styled';
 import { AuthBtn } from '../RegistrationForm.styled';
-import { InputWrp } from 'components/Form/LoginForm/LoginForm.styled';
+import { InputWrp, Input } from 'components/Form/LoginForm/LoginForm.styled';
 
 const inputs = [
   { type: 'email', name: 'email', label: 'Email' },
@@ -60,7 +60,7 @@ const StepOne = ({ next, data }) => {
     <Form onSubmit={formik.handleSubmit}>
       <InputWrp>
         {inputs.map(({ type, name, label }) => (
-          <TextField
+          <Input
             key={name}
             type={type}
             name={name}
@@ -70,6 +70,7 @@ const StepOne = ({ next, data }) => {
             error={formik.touched[name] && Boolean(formik.errors[name])}
             helperText={formik.touched[name] && formik.errors[name]}
             variant="outlined"
+            placeholder={label}
           />
         ))}
 
