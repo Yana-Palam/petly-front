@@ -31,8 +31,8 @@ function NoticeCategoryItem({
 }) {
   const handleClick = e => {
     e.preventDefault();
-    const btnId = e.target.id;
-    const btnType = e.target.dataset;
+    const btnId = e.currentTarget.id;
+    const btnType = e.currentTarget.dataset;
     getNotice(btnId, btnType);
   };
 
