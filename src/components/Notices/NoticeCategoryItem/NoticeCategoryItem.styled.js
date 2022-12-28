@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { device } from 'utils/device';
+import { ReactComponent as Favorite } from 'assets/icons/favorite.svg';
 
 export const AnimalsBox = styled.div`
   width: ${p => `${p.theme.space[8] + 24}px`};
@@ -15,6 +16,30 @@ export const AnimalsBox = styled.div`
   @media ${device.desktop} {
     width: ${p => `${p.theme.space[8] + 32}px`};
   }
+`;
+
+export const AnimalsFavoriteBox = styled.div`
+  position: absolute;
+  right: 12px;
+  top: 12px;
+`;
+
+export const AnimalsFavoriteBtn = styled.button`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #ffffff99;
+  border: none;
+`;
+
+export const AnimalsFavorite = styled(Favorite)`
+  /* fill: #f59256;
+  &:hover {
+    fill: purple;
+  } */
 `;
 
 export const AnimalsImg = styled.img`

@@ -17,7 +17,8 @@ import userDataReducer from './userData/userDataSlice';
 const persistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['user', 'isLoggedIn', 'accessToken', 'refreshToken', 'sid'],
+  whitelist: ['user', 'isLoggedIn', 'token'],
+  // , 'refreshToken', 'sid'],
 };
 
 export const store = configureStore({

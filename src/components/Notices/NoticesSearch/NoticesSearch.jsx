@@ -1,6 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useFormik } from 'formik';
-import { useLocation, useSearchParams } from 'react-router-dom';
 import * as yup from 'yup';
 import { helpers } from 'utils/helpers';
 import {
@@ -13,15 +12,8 @@ import {
 import Box from 'components/Common/Box';
 import ButtonIcon from 'components/Common/ButtonIcon';
 
-function NoticesSearch() {
+function NoticesSearch({ handleSearch }) {
   const [submitBtn, setSubmitBtn] = useState('search');
-  const [searchParams, setSearchParams] = useSearchParams();
-  const category = useLocation().pathname;
-  // const query = searchParams.get('q');
-
-  useEffect(() => {
-    console.log(searchParams.q);
-  }, [searchParams.q]);
 
   const validationSchema = yup.object({
     search: yup.string('Enter you search info').trim(),
@@ -39,13 +31,10 @@ function NoticesSearch() {
     if (submitBtn === 'search') {
       const q = helpers.delSpaces(search);
       if (Boolean(q.length > 0)) {
-        setSearchParams({ q });
-        const obj = { category: category, q };
-        console.log(obj);
+        handleSearch(q);
       }
     }
     setSubmitBtn('search');
-    //TODO dispatch
     formik.resetForm();
   }
 
@@ -84,3 +73,5 @@ function NoticesSearch() {
 }
 
 export default NoticesSearch;
+
+//TODO прописати пропси
