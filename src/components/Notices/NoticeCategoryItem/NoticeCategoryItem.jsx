@@ -35,7 +35,9 @@ function NoticeCategoryItem({
     const btnType = e.currentTarget.dataset;
     getNotice(btnId, btnType);
   };
-  const favorite = false;
+  
+  const favorite = true;
+  
   return (
     <AnimalsBox>
       <AnimalsCategoryBox>
