@@ -5,18 +5,20 @@ import {
   AnimalsImg,
   AnimalsUl,
   AnimalsLi,
-  AnimalsBtnMore,
+  AnimalsBtn,
   AnimalsDiv,
   AnimalsCategory,
   AnimalsBox,
   AnimalsCategoryDiv,
   AnimalsSpan,
   AnimalsSpanTitle,
-  AnimalsBtnDel,
   AnimalsCategoryBox,
   AnimalsFavorite,
   AnimalsFavoriteBtn,
   AnimalsFavoriteBox,
+  AnimalsBtnBox,
+  AnimalsDeleteSvg,
+  AnimalsBtnDel,
 } from './NoticeCategoryItem.styled';
 
 function NoticeCategoryItem({
@@ -36,7 +38,7 @@ function NoticeCategoryItem({
     getNotice(btnId, btnType);
   };
 
-  const favorite = false;
+  const favorite = true;
 
   return (
     <AnimalsBox>
@@ -49,7 +51,7 @@ function NoticeCategoryItem({
             data-favorite="favorite"
           >
             <AnimalsFavorite
-              style={favorite ? { fill: 'black' } : { fill: 'tomato' }}
+              style={favorite ? { fill: '#F59256' } : { fill: '#FFFFFF99' }}
             />
           </AnimalsFavoriteBtn>
         </AnimalsFavoriteBox>
@@ -78,22 +80,36 @@ function NoticeCategoryItem({
           </AnimalsLi>
         </AnimalsUl>
       </AnimalsDiv>
-      <AnimalsBtnMore
-        type="button"
-        id={id}
-        onClick={handleClick}
-        data-modal="modal"
-      >
-        Learn more
-      </AnimalsBtnMore>
-      <AnimalsBtnDel
-        type="button"
-        id={id}
-        onClick={handleClick}
-        data-delete="delete"
-      >
-        Delete
-      </AnimalsBtnDel>
+      {favorite ? (
+        <AnimalsBtnBox>
+          <AnimalsBtn
+            type="button"
+            id={id}
+            onClick={handleClick}
+            data-modal="modal"
+          >
+            Learn more
+          </AnimalsBtn>
+          <AnimalsBtnDel
+            type="button"
+            id={id}
+            onClick={handleClick}
+            data-delete="delete"
+          >
+            Delete <AnimalsDeleteSvg />
+          </AnimalsBtnDel>
+        </AnimalsBtnBox>
+      ) : (
+        <AnimalsBtn
+          type="button"
+          id={id}
+          onClick={handleClick}
+          data-modal="modal"
+          style={{ marginTop: '50px' }}
+        >
+          Learn more
+        </AnimalsBtn>
+      )}
     </AnimalsBox>
   );
 }

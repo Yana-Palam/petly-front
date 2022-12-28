@@ -1,4 +1,3 @@
-// import styled, { keyframes } from 'styled-components';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { device } from 'utils/device';
@@ -69,8 +68,7 @@ export const AccentLink = styled(LinkStyled)`
    &:hover,
     &:focus {
     color: ${({ theme }) => theme.colors.black};
-  background-color: ${({ theme }) => theme.colors.white};
-
+    background-color: ${({ theme }) => theme.colors.white};
     transition: color ${p => p.theme.animation.cubic};
   }
 `;

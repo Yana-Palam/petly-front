@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { device } from 'utils/device';
 import { ReactComponent as Favorite } from 'assets/icons/favorite.svg';
+import { ReactComponent as Delete } from 'assets/icons/delete.svg';
+import { StyledButton } from 'components/Common/Button/Button.styled';
 
 export const AnimalsBox = styled.div`
   width: ${p => `${p.theme.space[8] + 24}px`};
@@ -114,37 +116,65 @@ export const AnimalsCategory = styled.p`
   padding-left: ${p => `${p.theme.space[4] + 4}px`};
 `;
 
-export const AnimalsBtnMore = styled.button`
-  margin: 20px 0 12px 16px;
-  /* margin-left: 16px; */
-  width: ${p => `${p.theme.space[8] - 8}px`};
-  height: ${p => `${p.theme.space[5] + 6}px`};
-  color: ${p => p.theme.colors.accent};
-  background: ${p => p.theme.colors.white};
-  border: ${p => p.theme.borders.normal} #f59256;
-  border-radius: ${p => `${p.theme.space[5] + 8}px`};
-
+export const AnimalsBtn = styled(StyledButton)`
+  margin-left: auto;
+  margin-right: auto;
+  &:hover {
+    color: #ff6101;
+    border-color: #ff6101;
+  }
   @media ${device.tablet} {
-    margin-left: ${p => `${p.theme.space[5] + 12}px`};
-    margin-top: ${p => `${p.theme.space[6] - 4}px`};
+    /* margin-top: ${p => `${p.theme.space[6] - 4}px`}; */
   }
   @media ${device.desktop} {
-    margin-left: ${p => `${p.theme.space[4] + 4}px`};
   }
+`;
+export const AnimalsBtnDel = styled(AnimalsBtn)`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
 `;
 
-export const AnimalsBtnDel = styled.button`
-  margin-left: ${p => `${p.theme.space[4]}px`};
-  width: ${p => `${p.theme.space[8] - 8}px`};
-  height: ${p => `${p.theme.space[5] + 6}px`};
-  color: #ff6101;
-  border: ${p => p.theme.borders.normal} #ff6101;
-  border-radius: ${p => `${p.theme.space[5] + 8}px`};
-  background: ${p => p.theme.colors.white};
-  @media ${device.tablet} {
-    margin-left: ${p => `${p.theme.space[5] + 12}px`};
-  }
-  @media ${device.desktop} {
-    margin-left: ${p => `${p.theme.space[4] + 4}px`};
-  }
+export const AnimalsBtnBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
 `;
+
+export const AnimalsDeleteSvg = styled(Delete)`
+  width: 16px;
+  height: 16px;
+  fill: currentColor;
+`;
+
+// export const AnimalsBtnDel = styled.button`
+//   margin-left: ${p => `${p.theme.space[4]}px`};
+//   width: ${p => `${p.theme.space[8] - 8}px`};
+//   height: ${p => `${p.theme.space[5] + 6}px`};
+//   color: #ff6101;
+//   border: ${p => p.theme.borders.normal} #ff6101;
+//   border-radius: ${p => `${p.theme.space[5] + 8}px`};
+//   background: ${p => p.theme.colors.white};
+//   @media ${device.tablet} {
+//     margin-left: ${p => `${p.theme.space[5] + 12}px`};
+//   }
+//   @media ${device.desktop} {
+//     margin-left: ${p => `${p.theme.space[4] + 4}px`};
+//   }
+// `;
+
+// export const AnimalsBtnMore = styled(StyledButton)`
+//   margin-left: auto;
+//   margin-right: auto;
+//   &:hover {
+//     color: #ff6101;
+//     border-color: #ff6101;
+//   }
+//   @media ${device.tablet} {
+//     margin-top: ${p => `${p.theme.space[6] - 4}px`};
+//   }
+//   @media ${device.desktop} {
+//   }
+// `;

@@ -1,9 +1,10 @@
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import TextField from '@mui/material/TextField';
+// import TextField from '@mui/material/TextField';
 import { Form } from '../RegistrationForm.styled';
 import { AuthBtn, BackBtn } from '../RegistrationForm.styled';
-import { InputWrp } from 'components/Form/LoginForm/LoginForm.styled';
+import { InputWrp, Input } from 'components/Form/LoginForm/LoginForm.styled';
+import { motion } from 'framer-motion';
 
 const inputs = [
   { type: 'text', name: 'name', label: 'Name' },
@@ -39,10 +40,15 @@ const StepTwo = ({ next, data, prev }) => {
   });
 
   return (
-    <Form onSubmit={formik.handleSubmit}>
+    <Form onSubmit={formik.handleSubmit}
+    as={motion.div}
+      initial={{ scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 0.7, delay: 0.2 }}
+    >
       <InputWrp>
         {inputs.map(({ type, name, label }) => (
-          <TextField
+          <Input
             key={name}
             type={type}
             name={name}
@@ -52,6 +58,7 @@ const StepTwo = ({ next, data, prev }) => {
             error={formik.touched[name] && Boolean(formik.errors[name])}
             helperText={formik.touched[name] && formik.errors[name]}
             variant="outlined"
+            placeholder={label}
           />
         ))}
 

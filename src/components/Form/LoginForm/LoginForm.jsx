@@ -13,6 +13,7 @@ import {
   InputWrp,
   Input,
 } from './LoginForm.styled';
+import { motion } from 'framer-motion';
 
 const inputs = [
   { type: 'email', name: 'email', label: 'Email' },
@@ -20,7 +21,7 @@ const inputs = [
 ];
 const passwordRexExp = /^[a-zA-Z0-9]+$/;
 
-// const emailRegExp = /^[a-zA-Z0-9\._-]{2,}@[a-zA-Z0-9-]+.[a-zA-Z0-9]+$/;
+const emailRegExp = /^[a-zA-Z0-9]+[a-zA-Z0-9_-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9]+$/;
 
 const LoginForm = () => {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ const LoginForm = () => {
       .required()
       .min(10)
       .max(63)
-      // .matches(emailRegExp, 'Email is not valid')
+      .matches(emailRegExp, 'Email is not valid')
       .label('Email'),
 
     password: yup
@@ -67,7 +68,12 @@ const LoginForm = () => {
 
   return (
     <>
-      <Form onSubmit={formik.handleSubmit}>
+      <Form onSubmit={formik.handleSubmit}   
+      as={motion.div}
+      initial={{ scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 1, delay: 0.2 }}
+    >
         <Title>Login</Title>
         <InputWrp>
           {inputs.map(({ type, name, label }) => (
@@ -80,7 +86,8 @@ const LoginForm = () => {
               onChange={formik.handleChange}
               error={formik.touched[name] && Boolean(formik.errors[name])}
               helperText={formik.touched[name] && formik.errors[name]}
-              variant="outlined"
+              placeholder={label}
+              // variant="outlined"
             />
           ))}
         </InputWrp>
