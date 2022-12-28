@@ -35,7 +35,7 @@ function NoticeCategoryItem({
     const btnType = e.currentTarget.dataset;
     getNotice(btnId, btnType);
   };
-
+  const favorite = true;
   return (
     <AnimalsBox>
       <AnimalsCategoryBox>
@@ -46,7 +46,9 @@ function NoticeCategoryItem({
             onClick={handleClick}
             data-favorite="favorite"
           >
-            <AnimalsFavorite />
+            <AnimalsFavorite
+              style={favorite ? { fill: 'black' } : { fill: 'tomato' }}
+            />
           </AnimalsFavoriteBtn>
         </AnimalsFavoriteBox>
 
