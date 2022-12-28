@@ -69,7 +69,6 @@ export const AccentLink = styled(LinkStyled)`
     &:focus {
     color: ${({ theme }) => theme.colors.black};
     background-color: ${({ theme }) => theme.colors.white};
-
     transition: color ${p => p.theme.animation.cubic};
   }
 `;

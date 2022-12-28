@@ -13,6 +13,7 @@ import {
   InputWrp,
   Input,
 } from './LoginForm.styled';
+import { motion } from 'framer-motion';
 
 const inputs = [
   { type: 'email', name: 'email', label: 'Email' },
@@ -67,7 +68,12 @@ const LoginForm = () => {
 
   return (
     <>
-      <Form onSubmit={formik.handleSubmit}>
+      <Form onSubmit={formik.handleSubmit}   
+      as={motion.div}
+      initial={{ scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 1, delay: 0.2 }}
+    >
         <Title>Login</Title>
         <InputWrp>
           {inputs.map(({ type, name, label }) => (
