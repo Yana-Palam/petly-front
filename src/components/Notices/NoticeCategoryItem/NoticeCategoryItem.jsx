@@ -39,7 +39,7 @@ function NoticeCategoryItem({
           <AnimalsCategory>{category}</AnimalsCategory>
         </AnimalsCategoryDiv>
       </AnimalsCategoryBox>
-       
+
       <AnimalsDiv>
         <Title>{title}</Title>
 
