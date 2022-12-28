@@ -24,7 +24,7 @@ import {
 function NoticeCategoryItem({
   id,
   category,
-  img,
+  avatarURL,
   title,
   breed,
   location,
@@ -38,9 +38,7 @@ function NoticeCategoryItem({
     getNotice(btnId, btnType);
   };
 
-  
   const favorite = true;
-  
 
   return (
     <AnimalsBox>
@@ -58,7 +56,7 @@ function NoticeCategoryItem({
           </AnimalsFavoriteBtn>
         </AnimalsFavoriteBox>
 
-        <AnimalsImg src={img[0].photoURL} alt="Animal" />
+        <AnimalsImg src={avatarURL} alt="Animal" />
         <AnimalsCategoryDiv>
           <AnimalsCategory>{category}</AnimalsCategory>
         </AnimalsCategoryDiv>

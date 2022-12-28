@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchByCategory } from 'redux/notice/noticeOperations';
 import { selectNoticeState } from 'redux/notice/noticeSelectors';
 import { useLocation, useSearchParams } from 'react-router-dom';
 import useToggleModal from 'hooks/toggleModal';
@@ -19,31 +20,33 @@ function NoticesPage() {
   const [searchParams, setSearchParams] = useSearchParams();
   const { isOpen, openModal, closeModal, handleBackdropClick, handleKeyDown } =
     useToggleModal();
-
+  const dispatch = useDispatch();
   const [search, setSearch] = useState(
     '' // searchParams.get('q') === null ? '' : searchParams.get('q')
   );
 
   const [idNotice, SetIdNotice] = useState();
 
-  const category = useLocation().pathname;
+  const path = useLocation().pathname;
 
   useEffect(() => {
     const q = searchParams.get('q');
     if (Boolean(q)) {
-      console.log(111111, { category, q: search });
+      // console.log(111111, { category, q: search });
       //TOTO dispatch /api/notices/:category?q=search
       // dispatch({ category, q: search });
-      setSearch('');
+      // setSearch('');
     } else {
-      console.log(222222, { category, q: search });
-      //TOTO dispatch /api/notices/:category
-      // dispatch({ category });
+      console.log(222222, { path, q: search });
+      // if (category.split('/')[2] !== 'undefined') {
+      const req = path.split('/')[2];
+      dispatch(fetchByCategory(req));
+      // }
     }
-  }, [search, category, searchParams]);
+  }, [search, path, searchParams, dispatch]);
 
   const getNoticeById = useMemo(() => {
-    const notice = notices.find(item => item._id === idNotice);
+    const notice = notices?.find(item => item._id === idNotice);
     return notice;
   }, [notices, idNotice]);
 
@@ -58,9 +61,9 @@ function NoticesPage() {
 
   const getIdNotice = (btnId, btnType) => {
     //TODO прописати логіку в залежності від кнопки
-    console.log(11111, btnId);
-    console.log(22222, btnType);
-
+    console.log('btnId', btnId);
+    console.log('btnType', btnType);
+    console.log(notices);
     SetIdNotice(btnId);
     openModal();
   };
@@ -74,7 +77,7 @@ function NoticesPage() {
         >
           <div>Modal Windows for {getNoticeById._id}</div>
           <h2>{getNoticeById.title}</h2>
-          <img src={getNoticeById.img[0].photoURL} alt={getNoticeById.title} />
+          <img src={getNoticeById.avatarURL} alt={getNoticeById.title} />
           <button onClick={closeModal}>close</button>
         </Modal>
       )}
@@ -85,7 +88,7 @@ function NoticesPage() {
         <NoticesCategoriesNav />
         {isLoading ? (
           <Loader />
-        ) : Boolean(notices.length > 0) ? (
+        ) : Boolean(notices?.length > 0) ? (
           <NoticesCategoriesList notices={notices} getIdNotice={getIdNotice} />
         ) : (
           <NoticeNotFound />
