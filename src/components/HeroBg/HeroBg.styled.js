@@ -21,7 +21,7 @@ export const HeroWrapper = styled.div`
 
   @media ${device.tablet} {
     background-image: url(${tab_bg});
-    background-size: contain;
+    background-size: 100% 100%;
   }
 
   @media ${device.desktop} {
