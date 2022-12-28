@@ -19,7 +19,15 @@ const delSpaces = text => {
   return normalized;
 };
 
+
 export const helpers = {
   getAge,
   delSpaces,
 };
+
+
+
+
+
+
+

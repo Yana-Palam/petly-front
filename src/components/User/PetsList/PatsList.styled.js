@@ -3,15 +3,15 @@ import { device } from 'utils/device';
 
 export const UlList = styled.ul`
 
-  @media (${device.mobileOnly}) {
-    width: 280px;
-  }
-  @media (${device.fabletOnly}) {
-    width: 736px;
-  }
-  @media (${device.tabletOnly}) {
-    width: 736px;
-  }
+  // @media (${device.mobileOnly}) {
+  //   width: 280px;
+  // }
+  // @media (${device.fabletOnly}) {
+  //   width: 736px;
+  // }
+  // @media (${device.tabletOnly}) {
+  //   width: 736px;
+  // }
 `;
 
 export const LiItem = styled.li`

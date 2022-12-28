@@ -16,7 +16,8 @@ export default function App() {
 
   return (
     <>
-      <AppRoutes/>
+      <AppRoutes />
+      <h1>Start Project Petly</h1>
     </>
   );
 }

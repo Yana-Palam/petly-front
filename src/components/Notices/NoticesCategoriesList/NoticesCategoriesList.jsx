@@ -1,19 +1,25 @@
 import NoticeCategoryItem from 'components/Notices/NoticeCategoryItem';
 import { List, Item } from './NoticesCategoriesList.styled';
 
-function NoticesCategoriesList({ notices }) {
+function NoticesCategoriesList({ notices, getIdNotice }) {
+  const getNotice = (btnId, btnType) => {
+    getIdNotice(btnId, btnType);
+  };
+
   return (
     <List>
       {notices.map(
-        ({ _id, category, photoURL, title, breed, location, birthday }) => (
+        ({ _id, category, img, title, breed, location, birthday }) => (
           <Item key={_id}>
             <NoticeCategoryItem
+              id={_id}
               category={category}
-              photoURL={photoURL}
+              img={img}
               title={title}
               breed={breed}
               location={location}
               birthday={birthday}
+              getNotice={getNotice}
             />
           </Item>
         )

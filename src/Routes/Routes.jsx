@@ -1,8 +1,7 @@
-import { Navigate, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import { Suspense, lazy } from 'react';
 import PublicRouter from 'Routes/PublicRouter';
 import PrivateRouter from 'Routes/PrivateRoute';
-// import NotFound from 'page/notFoundPage/NotFound';
 import Loader from 'components/Loader';
 
 import Layout from '../components/Layout/Layout';
@@ -17,6 +16,7 @@ const NewsPage = lazy(() => import('../page/newsPage/NewsPage'));
 const NoticesPage = lazy(() => import('../page/noticesPage/NoticesPage'));
 const UserPage = lazy(() => import('../page/userPage/UserPage'));
 const HomePage = lazy(() => import('../page/homePage/Hero'));
+const NotFoundPage = lazy(() => import('../page/notFoundPage/NotFound'));
 
 const AppRoutes = () => {
   return (
@@ -80,8 +80,8 @@ const AppRoutes = () => {
               </PrivateRouter>
             }
           />
+           <Route path="*" element={<NotFoundPage />} />
         </Route>
-        <Route path="*" element={<Navigate to={'/'} />} />
       </Routes>
     </Suspense>
   );

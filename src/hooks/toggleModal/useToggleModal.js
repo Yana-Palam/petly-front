@@ -22,6 +22,7 @@ export default function useToggleModal() {
   const toggleModal = () => {
     setIsOpen(isOpen => !isOpen);
   };
+
   const toggleFooterModal = () => {
     setIsFooterOpen(isFooterOpen => !isFooterOpen);
   };
