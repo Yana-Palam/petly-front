@@ -93,14 +93,15 @@ export const Button = styled.button`
   background: ${p => p.theme.colors.primaryBackground};
   border-radius: ${p => p.theme.radii.round};
   border: ${p => p.theme.borders.none};
+  fill: rgba(17, 17, 17, 0.6);
+
+  &:hover,
+  &:focus {
+    fill: ${p => p.theme.colors.accent}
+  }
 
   @media (${device.mobileOnly}) {
     right: 20px;
     top: 268px;
   }
-`;
-
-export const ImgDelete = styled.img`
-  width: 24px;
-  height: 24px;
 `;
