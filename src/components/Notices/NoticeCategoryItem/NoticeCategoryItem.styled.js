@@ -36,10 +36,10 @@ export const AnimalsFavoriteBtn = styled.button`
 `;
 
 export const AnimalsFavorite = styled(Favorite)`
-  fill: #f59256;
+  /* fill: #f59256;
   &:hover {
     fill: purple;
-  }
+  } */
 `;
 
 export const AnimalsImg = styled.img`
