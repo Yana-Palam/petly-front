@@ -4,6 +4,7 @@ import * as yup from 'yup';
 import { Form } from '../RegistrationForm.styled';
 import { AuthBtn, BackBtn } from '../RegistrationForm.styled';
 import { InputWrp, Input } from 'components/Form/LoginForm/LoginForm.styled';
+import { motion } from 'framer-motion';
 
 const inputs = [
   { type: 'text', name: 'name', label: 'Name' },
@@ -39,7 +40,12 @@ const StepTwo = ({ next, data, prev }) => {
   });
 
   return (
-    <Form onSubmit={formik.handleSubmit}>
+    <Form onSubmit={formik.handleSubmit}
+    as={motion.div}
+      initial={{ scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 0.7, delay: 0.2 }}
+    >
       <InputWrp>
         {inputs.map(({ type, name, label }) => (
           <Input
