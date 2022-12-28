@@ -2,8 +2,8 @@ import NoticeCategoryItem from 'components/Notices/NoticeCategoryItem';
 import { List, Item } from './NoticesCategoriesList.styled';
 
 function NoticesCategoriesList({ notices, getIdNotice }) {
-  const getNotice = id => {
-    getIdNotice(id);
+  const getNotice = (btnId, btnType) => {
+    getIdNotice(btnId, btnType);
   };
 
   return (

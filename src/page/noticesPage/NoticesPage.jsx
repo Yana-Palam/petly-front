@@ -17,7 +17,7 @@ import Loader from 'components/Loader';
 function NoticesPage() {
   const { notices, isLoading } = useSelector(selectNoticeState);
   const [searchParams, setSearchParams] = useSearchParams();
-  const { isOpen, openModal, closeModal,handleBackdropClick, handleKeyDown } =
+  const { isOpen, openModal, closeModal, handleBackdropClick, handleKeyDown } =
     useToggleModal();
 
   const [search, setSearch] = useState(
@@ -47,13 +47,21 @@ function NoticesPage() {
     return notice;
   }, [notices, idNotice]);
 
+  // const toggleFavorite = (id, isFav) => {
+
+  // };
+
   const handleSearch = q => {
     setSearch(q);
     setSearchParams({ q });
   };
 
-  const getIdNotice = id => {
-    SetIdNotice(id);
+  const getIdNotice = (btnId, btnType) => {
+    //TODO прописати логіку в залежності від кнопки
+    console.log(11111, btnId);
+    console.log(22222, btnType);
+
+    SetIdNotice(btnId);
     openModal();
   };
 
