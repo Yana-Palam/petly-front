@@ -5,11 +5,10 @@ import { useSelector } from 'react-redux';
 
 function UserData() {
   const userInfo = useSelector(state => state.userData.data)
-
   return (
     <Div>
       <DivPhoto>
-        <ImgPhoto src={userInfo.avatarURL} alt=''/>
+        <ImgPhoto src={userInfo.avatarURL} alt='avatarUrl'/>
       </DivPhoto>
       <Button><CameraIcon  width='20' height='20'/><Span>Edit photo</Span></Button>
     <UserDataItem/>

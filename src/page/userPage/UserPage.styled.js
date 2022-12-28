@@ -5,19 +5,21 @@ export const DivUserInfo = styled.div`
   background: ${p => p.theme.colors.white};
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border-radius: 0 40px 40px 0;
-  width: 280px;
+  //width: 280px;
   height: 537px;
   margin-top: 18px;
   padding: 20px 23px;
 
-  @media (${device.fablet}) {
+  @media (${device.fabletOnly}) {
     width: 736px;
+  }
+  @media (${device.fablet}) {
     height: 311px;
     margin-top: 40px;
     padding: 24px 40px 24px 32px;
   }
   @media (${device.desktop}) {
-    width: 411px;
+    //width: 411px;
     height: 541px;
     margin-top: 24px;
     padding: 20px 16px;
