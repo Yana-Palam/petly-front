@@ -1,4 +1,5 @@
 import { helpers } from 'utils/helpers';
+
 import {
   Title,
   AnimalsImg,
@@ -13,6 +14,9 @@ import {
   AnimalsSpanTitle,
   AnimalsBtnDel,
   AnimalsCategoryBox,
+  AnimalsFavorite,
+  AnimalsFavoriteBtn,
+  AnimalsFavoriteBox,
 } from './NoticeCategoryItem.styled';
 
 function NoticeCategoryItem({
@@ -25,15 +29,27 @@ function NoticeCategoryItem({
   birthday,
   getNotice,
 }) {
-  // console.log(img)
-  const getIdForModal = e => {
+  const handleClick = e => {
     e.preventDefault();
-    getNotice(e.target.id);
+    const btnId = e.target.id;
+    const btnType = e.target.dataset;
+    getNotice(btnId, btnType);
   };
 
   return (
     <AnimalsBox>
       <AnimalsCategoryBox>
+        <AnimalsFavoriteBox>
+          <AnimalsFavoriteBtn
+            type="button"
+            id={id}
+            onClick={handleClick}
+            data-favorite="favorite"
+          >
+            <AnimalsFavorite />
+          </AnimalsFavoriteBtn>
+        </AnimalsFavoriteBox>
+
         <AnimalsImg src={img[0].photoURL} alt="Animal" />
         <AnimalsCategoryDiv>
           <AnimalsCategory>{category}</AnimalsCategory>
@@ -58,10 +74,22 @@ function NoticeCategoryItem({
           </AnimalsLi>
         </AnimalsUl>
       </AnimalsDiv>
-      <AnimalsBtnMore type="button" id={id} onClick={getIdForModal}>
+      <AnimalsBtnMore
+        type="button"
+        id={id}
+        onClick={handleClick}
+        data-modal="modal"
+      >
         Learn more
       </AnimalsBtnMore>
-      <AnimalsBtnDel>Delete</AnimalsBtnDel>
+      <AnimalsBtnDel
+        type="button"
+        id={id}
+        onClick={handleClick}
+        data-delete="delete"
+      >
+        Delete
+      </AnimalsBtnDel>
     </AnimalsBox>
   );
 }
