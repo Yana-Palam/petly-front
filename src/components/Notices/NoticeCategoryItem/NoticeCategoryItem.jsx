@@ -1,4 +1,5 @@
 import { helpers } from 'utils/helpers';
+// import ModalNotice from '../ModalNotice/ModalNotice';
 import {
   Title,
   AnimalsImg,
@@ -51,6 +52,7 @@ function NoticeCategoryItem({
       </AnimalsDiv>
       <AnimalsBtnMore>Learn more</AnimalsBtnMore>
       <AnimalsBtnDel>Delete</AnimalsBtnDel>
+      {/* <ModalNotice /> */}
     </AnimalsBox>
   );
 }
