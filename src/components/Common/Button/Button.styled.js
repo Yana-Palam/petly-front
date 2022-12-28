@@ -1,17 +1,12 @@
 import styled from 'styled-components';
 
 export const StyledButton = styled.button`
-  padding: ${p => `${p.theme.space[3]}px`};
-  min-width: ${p => `${p.theme.space[7]}px`};
-  font-size: ${p => p.theme.fontSizes.m};
-  font-family: ${p => p.theme.fonts.main};
-  border-radius: ${p => p.theme.radii.xl};
-  border: ${p => p.theme.borders.none};
-  color: ${p => p.theme.colors.button.secondaryText};
-  background: ${p => p.theme.colors.button.primaryBackground};
-  line-height: ${x => x.theme.lineHeights.body};
-  font-weight: ${x => x.theme.fontWeights.bold};
-  width: 182px;
-  height: 43px;
+  display: block;
+  width: ${p => `${p.theme.space[8] - 8}px`};
+  height: ${p => `${p.theme.space[5] + 6}px`};
+  color: ${p => p.theme.colors.accent};
+  background: ${p => p.theme.colors.white};
+  border: ${p => p.theme.borders.normal} #f59256;
+  border-radius: ${p => `${p.theme.space[5] + 8}px`};
   /* box-shadow: 0px 4px 10px rgba(252, 132, 45, 0.5); */
 `;
