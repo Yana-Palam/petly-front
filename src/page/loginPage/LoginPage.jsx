@@ -1,16 +1,17 @@
 import Container from '../../components/Common/Container/Container';
 import LoginForm from 'components/Form/LoginForm';
 import { Wrapper } from './LoginPage.styled';
+import { RegistBg } from 'page/loginPage/LoginPage.styled';
 
 function LoginPage() {
   return (
-    <div>
+    <RegistBg>
       <Container>
         <Wrapper>
           <LoginForm />
         </Wrapper>
       </Container>
-    </div>
+    </RegistBg>
   );
 }
 
