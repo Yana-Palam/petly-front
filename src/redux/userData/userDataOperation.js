@@ -18,7 +18,7 @@ export const getUserInfo = createAsyncThunk(
     try {
       const tokenLS = thunkAPI.getState().auth.token;
       token.set(tokenLS);
-      const res = await axios.get('/user');
+      const res = await axios.get('/user/userInfo');
       return res.data;
     } catch (err) {
       return thunkAPI.rejectWithValue('Sorry, server Error!');
@@ -26,15 +26,17 @@ export const getUserInfo = createAsyncThunk(
   },
 );
 
+// !!!!!!!! in work !!!!!!!!!!
 export const updateUserInfo = createAsyncThunk(
   'userInfo/updateUserInfo',
   async (payload, thunkAPI) => {
     try {
       const tokenLS = thunkAPI.getState().auth.token;
       token.set(tokenLS);
-      const { userId, ...data } = payload;
-      await axios.patch(`/user/${userId}`, data);
-      return { ...payload };
+      const data = payload;
+      await axios.patch(`/user/update`, data);
+      // console.log('data', data);
+      return data;
     } catch (err) {
       return thunkAPI.rejectWithValue('Sorry, can\'t update user, server Error!');
     }
@@ -47,7 +49,7 @@ export const addPet = createAsyncThunk(
     try {
       const tokenLS = thunkAPI.getState().auth.token;
       token.set(tokenLS);
-      const res = await axios.post('/user/pet', payload);
+      const res = await axios.post('/user/pets', payload);
       return res.data;
     } catch (err) {
       return thunkAPI.rejectWithValue('Sorry, can\'t add pet, server Error!');
@@ -57,12 +59,12 @@ export const addPet = createAsyncThunk(
 
 export const deletePet = createAsyncThunk(
   'pet/deletePet',
-  async (petId, thunkAPI) => {
+  async (_id, thunkAPI) => {
     try {
-      // const tokenLS = thunkAPI.getState().auth.token;
-      // token.set(tokenLS);
-      // await axios.delete(`/user/pet/${petId}`);
-      return { petId };
+      const tokenLS = thunkAPI.getState().auth.token;
+      token.set(tokenLS);
+      await axios.delete(`/user/pets/${_id}`);
+      return { _id };
     } catch (err) {
       return thunkAPI.rejectWithValue('Sorry, can\'t delete pet, server Error!');
     }

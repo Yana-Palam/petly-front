@@ -41,15 +41,15 @@ export const Button = styled.button`
   }
 `;
 
-export const ImgDelete = styled.img`
-  width: 12px;
-  height: 12px;
-
-  @media (${device.fablet}) {
-    width: 20px;
-    height: 20px;
-  }
-`;
+// export const ImgDelete = styled.img`
+//   width: 12px;
+//   height: 12px;
+//
+//   @media (${device.fablet}) {
+//     width: 20px;
+//     height: 20px;
+//   }
+// `;
 
 export const Input = styled.input`
   width: 159px;
