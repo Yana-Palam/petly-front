@@ -81,10 +81,10 @@ function NoticeCategoryItem({
           </AnimalsLi>
         </AnimalsUl>
       </AnimalsDiv>
-      <AnimalsBtnMore>Learn more</AnimalsBtnMore>
-      <AnimalsBtnDel>Delete</AnimalsBtnDel>
-      {/* <ModalNotice /> */}
-      <AnimalsBtnMore
+      {/* <AnimalsBtnMore>Learn more</AnimalsBtnMore>
+      <AnimalsBtnDel>Delete</AnimalsBtnDel> */}
+
+      {/* <AnimalsBtnMore
         type="button"
         id={id}
         onClick={handleClick}
@@ -99,7 +99,7 @@ function NoticeCategoryItem({
         data-delete="delete"
       >
         Delete
-      </AnimalsBtnDel>
+      </AnimalsBtnDel> */}
       {favorite ? (
         <AnimalsBtnBox>
           <AnimalsBtn
@@ -130,6 +130,7 @@ function NoticeCategoryItem({
           Learn more
         </AnimalsBtn>
       )}
+      {/* <ModalNotice /> */}
     </AnimalsBox>
   );
 }
