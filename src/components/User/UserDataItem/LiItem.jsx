@@ -55,7 +55,7 @@ const LiItem = ({ label, name, user, active, setActive }) => {
           ?
           <EditIcon onClick={onEditHandler(name)}/>
           :
-          <PenIcon onClick={onSetActiveHandler(name)}/>
+          <PenIcon onClick={onSetActiveHandler(name)} fill='#F59256'/>
         }
       </Button>
     </Item>
