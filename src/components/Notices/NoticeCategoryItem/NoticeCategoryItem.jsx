@@ -1,36 +1,67 @@
 import { helpers } from 'utils/helpers';
+
 import {
   Title,
   AnimalsImg,
   AnimalsUl,
   AnimalsLi,
-  AnimalsBtnMore,
+  AnimalsBtn,
   AnimalsDiv,
   AnimalsCategory,
   AnimalsBox,
   AnimalsCategoryDiv,
   AnimalsSpan,
   AnimalsSpanTitle,
-  AnimalsBtnDel,
   AnimalsCategoryBox,
+  AnimalsFavorite,
+  AnimalsFavoriteBtn,
+  AnimalsFavoriteBox,
+  AnimalsBtnBox,
+  AnimalsDeleteSvg,
+  AnimalsBtnDel,
 } from './NoticeCategoryItem.styled';
 
 function NoticeCategoryItem({
+  id,
   category,
-  photoURL,
+  avatarURL,
   title,
   breed,
   location,
   birthday,
+  getNotice,
 }) {
+  const handleClick = e => {
+    e.preventDefault();
+    const btnId = e.currentTarget.id;
+    const btnType = e.currentTarget.dataset;
+    getNotice(btnId, btnType);
+  };
+
+  const favorite = true;
+
   return (
     <AnimalsBox>
       <AnimalsCategoryBox>
-        <AnimalsImg src={photoURL} alt="Animal" />
+        <AnimalsFavoriteBox>
+          <AnimalsFavoriteBtn
+            type="button"
+            id={id}
+            onClick={handleClick}
+            data-favorite="favorite"
+          >
+            <AnimalsFavorite
+              style={favorite ? { fill: '#F59256' } : { fill: '#FFFFFF99' }}
+            />
+          </AnimalsFavoriteBtn>
+        </AnimalsFavoriteBox>
+
+        <AnimalsImg src={avatarURL} alt="Animal" />
         <AnimalsCategoryDiv>
           <AnimalsCategory>{category}</AnimalsCategory>
         </AnimalsCategoryDiv>
       </AnimalsCategoryBox>
+
       <AnimalsDiv>
         <Title>{title}</Title>
 
@@ -49,8 +80,36 @@ function NoticeCategoryItem({
           </AnimalsLi>
         </AnimalsUl>
       </AnimalsDiv>
-      <AnimalsBtnMore>Learn more</AnimalsBtnMore>
-      <AnimalsBtnDel>Delete</AnimalsBtnDel>
+      {favorite ? (
+        <AnimalsBtnBox>
+          <AnimalsBtn
+            type="button"
+            id={id}
+            onClick={handleClick}
+            data-modal="modal"
+          >
+            Learn more
+          </AnimalsBtn>
+          <AnimalsBtnDel
+            type="button"
+            id={id}
+            onClick={handleClick}
+            data-delete="delete"
+          >
+            Delete <AnimalsDeleteSvg />
+          </AnimalsBtnDel>
+        </AnimalsBtnBox>
+      ) : (
+        <AnimalsBtn
+          type="button"
+          id={id}
+          onClick={handleClick}
+          data-modal="modal"
+          style={{ marginTop: '50px' }}
+        >
+          Learn more
+        </AnimalsBtn>
+      )}
     </AnimalsBox>
   );
 }

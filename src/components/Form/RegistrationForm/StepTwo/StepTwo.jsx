@@ -1,13 +1,20 @@
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import TextField from '@mui/material/TextField';
+// import TextField from '@mui/material/TextField';
 import { Form } from '../RegistrationForm.styled';
 import { AuthBtn, BackBtn } from '../RegistrationForm.styled';
-import { InputWrp } from 'components/Form/LoginForm/LoginForm.styled';
+import { InputWrp, Input } from 'components/Form/LoginForm/LoginForm.styled';
+import { motion } from 'framer-motion';
+
+const inputs = [
+  { type: 'text', name: 'name', label: 'Name' },
+  { type: 'text', name: 'city', label: 'City, region' },
+  { type: 'text', name: 'phone', label: 'Mobile phone' },
+];
 
 const StepTwo = ({ next, data, prev }) => {
   const cityRegex = /^(\w+(,)\s*)+\w+$/;
-  const phoneRegex = /^\+380\d{3}\d{2}\d{2}\d{2}$/;
+  const phoneRegex = /^\+380\d{9}$/;
 
   const stepTwoValidationSchema = yup.object().shape({
     name: yup.string().required(),
@@ -25,18 +32,37 @@ const StepTwo = ({ next, data, prev }) => {
     initialValues: data,
     validationSchema: stepTwoValidationSchema,
 
-    onSubmit: event => {
-      const name = event.name;
-      const city = event.city;
-      const phone = event.phone;
-      next({ name, city, phone }, true);
+    onSubmit: values => {
+      const registerValues = { ...values };
+      delete registerValues.confirmPassword;
+      next(registerValues, true);
     },
   });
 
   return (
-    <Form onSubmit={formik.handleSubmit}>
+    <Form onSubmit={formik.handleSubmit}
+    as={motion.div}
+      initial={{ scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 0.7, delay: 0.2 }}
+    >
       <InputWrp>
-        <TextField
+        {inputs.map(({ type, name, label }) => (
+          <Input
+            key={name}
+            type={type}
+            name={name}
+            label={label}
+            value={formik.values[name]}
+            onChange={formik.handleChange}
+            error={formik.touched[name] && Boolean(formik.errors[name])}
+            helperText={formik.touched[name] && formik.errors[name]}
+            variant="outlined"
+            placeholder={label}
+          />
+        ))}
+
+        {/* <TextField
           type="text"
           name="name"
           label="Name"
@@ -57,7 +83,7 @@ const StepTwo = ({ next, data, prev }) => {
           variant="outlined"
         />
         <TextField
-          type="phone"
+          type="text"
           name="phone"
           label="Mobile phone"
           value={formik.values.phone}
@@ -65,7 +91,7 @@ const StepTwo = ({ next, data, prev }) => {
           error={formik.touched.phone && Boolean(formik.errors.phone)}
           helperText={formik.touched.phone && formik.errors.phone}
           variant="outlined"
-        />
+        /> */}
       </InputWrp>
       <InputWrp>
         <AuthBtn type="submit">Register</AuthBtn>

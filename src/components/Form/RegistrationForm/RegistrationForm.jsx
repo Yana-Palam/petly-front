@@ -5,6 +5,8 @@ import { register, login } from 'redux/auth/authOperations';
 import { Text, LoginLink, Title, Wrapper } from './RegistrationForm.styled';
 import StepOne from './StepOne';
 import StepTwo from './StepTwo';
+import { motion } from 'framer-motion';
+
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
@@ -25,38 +27,21 @@ const RegistrationForm = () => {
     setData(prev => ({ ...prev, ...newData }));
 
     if (final) {
-      console.log(data);
-      const dataRegister = {
-        email: data.email,
-        password: data.password,
-        name: data.name,
-        city: data.city,
-        phone: data.phone,
-      };
-
       const dataLogin = {
-        email: data.email,
-        password: data.password,
+        email: newData.email,
+        password: newData.password,
       };
 
-      dispatch(register(dataRegister)).then(({ error }) => {
+      dispatch(register(newData)).then(({ error }) => {
         !error &&
           dispatch(login(dataLogin)).then(({ error }) => {
             !error && navigate('/user');
           });
       });
 
-      // setData({
-      //   email: '',
-      //   password: '',
-      //   confirmPassword: '',
-      //   name: '',
-      //   city: '',
-      //   phone: '',
-      // });
-
       return;
     }
+
     setCurrentStep(prev => prev + 1);
   };
 
@@ -71,7 +56,11 @@ const RegistrationForm = () => {
   ];
 
   return (
-    <Wrapper>
+    <Wrapper as={motion.div}
+      initial={{ scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 1, delay: 0.2 }}
+    >
       <Title>Registration</Title>
       {steps[currentStep]}
       <Text>

@@ -2,6 +2,12 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { StyledButton } from 'components/Common/Button/Button.styled';
 import { device } from 'utils/device';
+import TextField from '@mui/material/TextField';
+
+export const Input = styled(TextField)`
+  width: 100%;
+  /* height: 48px; */
+`;
 
 export const Form = styled.form`
   display: flex;
@@ -29,6 +35,14 @@ export const Wrapper = styled.div`
   }
 `;
 
+export const ErrorText = styled.span`
+  font-family: ${x => x.theme.fonts.main};
+  position: absolute;
+  top: 40px;
+  color: #d32f2f;
+  font-weight: 600;
+`;
+
 export const AuthBtn = styled(StyledButton)`
   width: 100%;
   background: ${p => p.theme.colors.button.primaryBackground};
@@ -36,6 +50,7 @@ export const AuthBtn = styled(StyledButton)`
   font-weight: ${p => p.theme.fontWeights.medium};
   font-size: 20px;
   height: ${p => `${p.theme.space[5] + 11}px`};
+  color: white;
 
   @media (${device.tablet}) {
     height: ${p => `${p.theme.space[5] + 16}px`};

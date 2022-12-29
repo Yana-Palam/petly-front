@@ -1,10 +1,10 @@
 import { useState } from 'react';
 // import { useLocation } from 'react-router-dom';
 import useMatchMedia from 'hooks/useMatchMedia';
-// import { useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import burger from '../../assets/icons/burger.svg';
 import close from '../../assets/icons/icon-close.svg';
-// import { selectIsLoggedIn } from 'redux/auth/authSelectors';
+import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import useScrollLock from 'hooks/useScrollLock';
 import AuthNav from './AuthNav/AuthNav';
 import Logo from './Logo';
@@ -21,7 +21,7 @@ import {
 
 function Header() {
   const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
-  //  const isLogin = useSelector(selectIsLoggedIn);
+  const isLogin = useSelector(selectIsLoggedIn);
   const { isDesktop, isTablet, isMobile } = useMatchMedia();
   // const { pathname } = useLocation();
   const { lockScroll, UnlockScroll } = useScrollLock();
@@ -36,8 +36,6 @@ function Header() {
     setMobileMenuIsOpen(false);
     UnlockScroll();
   };
-
-  const isLogin = false;
 
   return (
     <>
@@ -71,7 +69,7 @@ function Header() {
             </Wrap>
             {!isDesktop && mobileMenuIsOpen && (
               <ModalWrapper>
-                {isMobile && <UserNav />}
+                {isMobile && <UserNav closeMobMenu={closeMobMenu} />}
                 <Nav closeMobMenu={closeMobMenu} />
               </ModalWrapper>
             )}
@@ -107,6 +105,7 @@ function Header() {
               )}
             </Wrap>
 
+            {/* ----------Mobile menu is open---------- */}
             {!isDesktop && mobileMenuIsOpen && (
               <ModalWrapper>
                 {isMobile && <AuthNav closeMobMenu={closeMobMenu} />}

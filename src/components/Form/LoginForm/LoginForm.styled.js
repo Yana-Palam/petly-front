@@ -3,13 +3,57 @@ import { Link } from 'react-router-dom';
 import { StyledButton } from 'components/Common/Button/Button.styled';
 import { device } from 'utils/device';
 
+// import TextField from '@mui/material/TextField';
+
+// export const Input = styled(TextField)`
+//   width: 100%;
+
+//   label {
+//     padding-left: 26px;
+//   }
+//   div {
+//     height: 48px;
+//     border-radius: 40px;
+//     border: 1px solid tomato;
+
+//     input {
+//       padding-left: 42px;
+//     }
+//   }
+// `;
+
+export const Input = styled.input`
+  width: 100%;
+
+  height: 52px;
+  padding: 13px 32px;
+  background: #fdf7f2;
+  border: 1px solid rgba(245, 146, 86, 0.5);
+  border-radius: 40px;
+  outline: none;
+  color: rgba(17, 17, 17, 0.8);
+  font-family: 'Manrope';
+  font-size: 18px;
+  line-height: 25px;
+  letter-spacing: 0.04em;
+
+  &::placeholder {
+    font-family: 'Manrope';
+    font-size: 18px;
+    line-height: 25px;
+    letter-spacing: 0.04em;
+
+    color: rgba(17, 17, 17, 0.6);
+  }
+`;
+
 export const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: ${p => `${p.theme.space[5] + 8}px`};
 
-  @media (${device.fablet}) {
+  @media ${device.fablet} {
     width: ${p => `${p.theme.space[9] + 96}px`};
     padding: ${p => `${p.theme.space[5] + 28}px ${p.theme.space[6] + 16}px`};
     background: ${p => p.theme.colors.white};
@@ -17,7 +61,7 @@ export const Form = styled.form`
     border-radius: ${p => p.theme.radii.xxl};
   }
 
-  @media (${device.tablet}) {
+  @media ${device.tablet} {
     width: ${p => `${p.theme.space[9] + 106}px`};
   }
 `;
@@ -39,7 +83,7 @@ export const Title = styled.h2`
   letter-spacing: ${p => p.theme.letterSpacing.l};
   color: ${p => p.theme.colors.text.sectionTitle};
 
-  @media (${device.fablet}) {
+  @media ${device.fablet} {
     font-size: ${p => p.theme.fontSizes.xl};
   }
 `;
@@ -65,8 +109,9 @@ export const AuthBtn = styled(StyledButton)`
   border-radius: ${p => p.theme.radii.xxl};
   font-size: 20px;
   height: ${p => `${p.theme.space[5] + 11}px`};
+  color: white;
 
-  @media (${device.tablet}) {
+  @media ${device.tablet} {
     height: ${p => `${p.theme.space[5] + 16}px`};
   }
 `;
