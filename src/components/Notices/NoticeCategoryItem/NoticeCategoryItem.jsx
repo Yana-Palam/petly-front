@@ -1,4 +1,5 @@
 import { helpers } from 'utils/helpers';
+// import ModalNotice from '../ModalNotice/ModalNotice';
 
 import {
   Title,
@@ -80,6 +81,25 @@ function NoticeCategoryItem({
           </AnimalsLi>
         </AnimalsUl>
       </AnimalsDiv>
+      {/* <AnimalsBtnMore>Learn more</AnimalsBtnMore>
+      <AnimalsBtnDel>Delete</AnimalsBtnDel> */}
+
+      {/* <AnimalsBtnMore
+        type="button"
+        id={id}
+        onClick={handleClick}
+        data-modal="modal"
+      >
+        Learn more
+      </AnimalsBtnMore>
+      <AnimalsBtnDel
+        type="button"
+        id={id}
+        onClick={handleClick}
+        data-delete="delete"
+      >
+        Delete
+      </AnimalsBtnDel> */}
       {favorite ? (
         <AnimalsBtnBox>
           <AnimalsBtn
@@ -110,6 +130,7 @@ function NoticeCategoryItem({
           Learn more
         </AnimalsBtn>
       )}
+      {/* <ModalNotice /> */}
     </AnimalsBox>
   );
 }
