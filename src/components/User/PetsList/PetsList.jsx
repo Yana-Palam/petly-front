@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  UlWrap, LiItem, Text, UlList, LiWrap, Img, LiWrapComment, Button, Span
+  UlWrap, LiItem, Text, LiWrap, Img, LiWrapComment, Button, Span
 } from './PatsList.styled';
 import {ReactComponent as DeleteIcon} from 'assets/icons/delete.svg';
 
@@ -17,7 +17,7 @@ const pets = useSelector((state) => state.userData.data.myPets)
   if (!pets.length) return null;
 
   return (
-      <UlList>
+      <ul>
         {
           pets.map((pet) => (
             <LiItem key={pet._id}>
@@ -40,7 +40,7 @@ const pets = useSelector((state) => state.userData.data.myPets)
             </LiItem>
           ))
         }
-      </UlList>
+      </ul>
   );
 }
 

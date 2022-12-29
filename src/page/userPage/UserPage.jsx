@@ -1,24 +1,28 @@
-import Container from 'components/Common/Container';
 import UserData from '../../components/User/UserData';
 import Logout from '../../components/User/Logout';
 import PetsData from '../../components/User/PetsData';
 
-import { DivWrapperMain, DivUserInfo, DivWrap, Title } from './UserPage.styled';
+import { DivWrapperMain, DivUserInfo, DivWrap, Title, Div, DivLogout } from './UserPage.styled';
 
 function UserPage() {
   return (
-    <Container>
+    <>
       <DivWrapperMain>
         <DivWrap>
           <Title>My information:</Title>
           <DivUserInfo>
             <UserData />
-            <Logout />
+            <DivLogout>
+              <Logout />
+            </DivLogout>
           </DivUserInfo>
         </DivWrap>
-        <PetsData />
+        <Div>
+          <PetsData />
+        </Div>
       </DivWrapperMain>
-    </Container>
+    </>
+
   );
 }
 
