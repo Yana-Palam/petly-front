@@ -21,7 +21,7 @@ import {
 
 function Header() {
   const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
-   const isLogin = useSelector(selectIsLoggedIn);
+  const isLogin = useSelector(selectIsLoggedIn);
   const { isDesktop, isTablet, isMobile } = useMatchMedia();
   // const { pathname } = useLocation();
   const { lockScroll, UnlockScroll } = useScrollLock();
@@ -105,6 +105,7 @@ function Header() {
               )}
             </Wrap>
 
+            {/* ----------Mobile menu is open---------- */}
             {!isDesktop && mobileMenuIsOpen && (
               <ModalWrapper>
                 {isMobile && <AuthNav closeMobMenu={closeMobMenu} />}
