@@ -6,6 +6,7 @@ import { login } from 'redux/auth/authOperations';
 import { selectAccessToken } from 'redux/auth/authSelectors';
 import { AuthBtn } from './LoginForm.styled';
 import {
+  FormWrapper,
   Form,
   Title,
   Text,
@@ -67,13 +68,13 @@ const LoginForm = () => {
   });
 
   return (
-    <>
-      <Form onSubmit={formik.handleSubmit}   
+    <FormWrapper
       as={motion.div}
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ duration: 1, delay: 0.2 }}
     >
+      <Form onSubmit={formik.handleSubmit}>
         <Title>Login</Title>
         <InputWrp>
           {inputs.map(({ type, name, label }) => (
@@ -86,10 +87,14 @@ const LoginForm = () => {
               onChange={formik.handleChange}
               error={formik.touched[name] && Boolean(formik.errors[name])}
               helperText={formik.touched[name] && formik.errors[name]}
-              placeholder={label}
-              // variant="outlined"
+              // placeholder={label}
+              variant="outlined"
             />
           ))}
+
+          {/* {formik.touched[name] && formik.errors[name] && (
+                <span>{formik.errors[name]}</span>
+              )} */}
         </InputWrp>
         <AuthBtn type="submit">Login</AuthBtn>
         <Text>
@@ -97,7 +102,7 @@ const LoginForm = () => {
           <RegisterLink to="/register">Register</RegisterLink>
         </Text>
       </Form>
-    </>
+    </FormWrapper>
   );
 };
 

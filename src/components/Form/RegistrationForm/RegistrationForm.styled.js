@@ -6,7 +6,6 @@ import TextField from '@mui/material/TextField';
 
 export const Input = styled(TextField)`
   width: 100%;
-  /* height: 48px; */
 `;
 
 export const Form = styled.form`
