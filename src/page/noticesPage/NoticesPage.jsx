@@ -13,6 +13,7 @@ import NoticesCategoriesList from 'components/Notices/NoticesCategoriesList';
 import NoticeNotFound from 'components/Notices/noticeNotFound';
 import { Title } from './NoticesPage.styled';
 import Loader from 'components/Loader';
+import ModalNotice from '../../components/Notices/ModalNotice/ModalNotice';
 
 function NoticesPage() {
   const { notices, isLoading } = useSelector(selectNoticeState);
@@ -21,7 +22,7 @@ function NoticesPage() {
     useToggleModal();
 
   const [search, setSearch] = useState(
-    '' // searchParams.get('q') === null ? '' : searchParams.get('q')
+    '', // searchParams.get('q') === null ? '' : searchParams.get('q')
   );
 
   const [idNotice, SetIdNotice] = useState();
@@ -91,6 +92,7 @@ function NoticesPage() {
           <NoticeNotFound />
         )}
         <AddNoticeButton />
+        <ModalNotice />
       </Container>
     </>
   );

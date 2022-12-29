@@ -1,12 +1,11 @@
 import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-// import { useSelector } from 'react-redux';
 
 import { showAlertMessage } from '../../../utils/showMessages';
 import { getAdInfo } from '../../../services/api/FriendsApi';
-// import { getUserEmail } from '../../redux/auth/authSelectors';
+
 import moment from 'moment';
-// import sprite from '../../images/icons/sprite.svg';
+
 import s from './ModalNotice.module.css';
 
 const portalModal = document.querySelector('#modal-root');
