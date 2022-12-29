@@ -4,6 +4,7 @@ export const theme = {
     black: '#000000',
     whiteAlpha: '#ffffff60',
     accent: '#F59256',
+    hover: '#ff6101',
     primaryBackground: '#FDF7F2',
     burgerBackground: '#FDF7F2',
     // border: '#E0E0E0',
