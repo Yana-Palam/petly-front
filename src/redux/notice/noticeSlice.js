@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { noticeGetByCategory } from './noticeOperations';
+import { fetchByCategory } from './noticeOperations';
 
 export const initialState = {
   notices: [],
@@ -8,7 +8,7 @@ export const initialState = {
 };
 
 const noticeSlice = createSlice({
-  name: 'noticesCategory',
+  name: 'notice',
   initialState,
   reducers: {
     resetStateNoticeSlice(state) {
@@ -22,15 +22,15 @@ const noticeSlice = createSlice({
   extraReducers: {
     // --------------------NOTICE-SEARCH OPERATION--------------------
 
-    [noticeGetByCategory.pending]: state => {
+    [fetchByCategory.pending]: state => {
       state.error = null;
       state.isLoading = true;
     },
-    [noticeGetByCategory.fulfilled]: (state, { payload }) => {
-      state.notices = payload.data;
+    [fetchByCategory.fulfilled]: (state, { payload }) => {
+      state.notices = [...payload];
       state.isLoading = false;
     },
-    [noticeGetByCategory.rejected]: (state, { payload }) => {
+    [fetchByCategory.rejected]: (state, { payload }) => {
       state.notices = [];
       state.isLoading = false;
       state.error = payload;

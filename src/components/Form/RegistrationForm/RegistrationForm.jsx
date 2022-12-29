@@ -5,6 +5,8 @@ import { register, login } from 'redux/auth/authOperations';
 import { Text, LoginLink, Title, Wrapper } from './RegistrationForm.styled';
 import StepOne from './StepOne';
 import StepTwo from './StepTwo';
+import { motion } from 'framer-motion';
+
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
@@ -54,7 +56,11 @@ const RegistrationForm = () => {
   ];
 
   return (
-    <Wrapper>
+    <Wrapper as={motion.div}
+      initial={{ scale: 0, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 1, delay: 0.2 }}
+    >
       <Title>Registration</Title>
       {steps[currentStep]}
       <Text>

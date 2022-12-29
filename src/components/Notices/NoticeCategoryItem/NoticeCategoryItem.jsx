@@ -6,24 +6,26 @@ import {
   AnimalsImg,
   AnimalsUl,
   AnimalsLi,
-  AnimalsBtnMore,
+  AnimalsBtn,
   AnimalsDiv,
   AnimalsCategory,
   AnimalsBox,
   AnimalsCategoryDiv,
   AnimalsSpan,
   AnimalsSpanTitle,
-  AnimalsBtnDel,
   AnimalsCategoryBox,
   AnimalsFavorite,
   AnimalsFavoriteBtn,
   AnimalsFavoriteBox,
+  AnimalsBtnBox,
+  AnimalsDeleteSvg,
+  AnimalsBtnDel,
 } from './NoticeCategoryItem.styled';
 
 function NoticeCategoryItem({
   id,
   category,
-  img,
+  avatarURL,
   title,
   breed,
   location,
@@ -50,12 +52,12 @@ function NoticeCategoryItem({
             data-favorite="favorite"
           >
             <AnimalsFavorite
-              style={favorite ? { fill: 'black' } : { fill: 'tomato' }}
+              style={favorite ? { fill: '#F59256' } : { fill: '#FFFFFF99' }}
             />
           </AnimalsFavoriteBtn>
         </AnimalsFavoriteBox>
 
-        <AnimalsImg src={img[0].photoURL} alt="Animal" />
+        <AnimalsImg src={avatarURL} alt="Animal" />
         <AnimalsCategoryDiv>
           <AnimalsCategory>{category}</AnimalsCategory>
         </AnimalsCategoryDiv>
@@ -98,6 +100,36 @@ function NoticeCategoryItem({
       >
         Delete
       </AnimalsBtnDel>
+      {favorite ? (
+        <AnimalsBtnBox>
+          <AnimalsBtn
+            type="button"
+            id={id}
+            onClick={handleClick}
+            data-modal="modal"
+          >
+            Learn more
+          </AnimalsBtn>
+          <AnimalsBtnDel
+            type="button"
+            id={id}
+            onClick={handleClick}
+            data-delete="delete"
+          >
+            Delete <AnimalsDeleteSvg />
+          </AnimalsBtnDel>
+        </AnimalsBtnBox>
+      ) : (
+        <AnimalsBtn
+          type="button"
+          id={id}
+          onClick={handleClick}
+          data-modal="modal"
+          style={{ marginTop: '50px' }}
+        >
+          Learn more
+        </AnimalsBtn>
+      )}
     </AnimalsBox>
   );
 }

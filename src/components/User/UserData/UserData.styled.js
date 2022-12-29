@@ -41,16 +41,12 @@ export const Div = styled.div`
 export const Button = styled.button`
   display: flex;
   align-items: center;
-  font-weight: 400;
-  font-size: 12px;
-  line-height: 22px;
-  letter-spacing: 0.04em;
   border: ${p => p.theme.borders.none};
-  color: ${p => p.theme.colors.sectionTitle};
   background: none;
   position: absolute;
   top: 240px;
   right: 0;
+  fill: ${p => p.theme.colors.accent};
 
   @media (${device.fablet}) {
     top: 240px;
@@ -62,8 +58,11 @@ export const Button = styled.button`
   }
 `;
 
-export const ImgCamera = styled.img`
-  width: 20px;
-  height: 20px;
-  margin-right: 4px;
+export const Span = styled.span`
+  margin-left: 4px;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 22px;
+  letter-spacing: 0.04em;
+  color: ${p => p.theme.colors.sectionTitle};
 `;

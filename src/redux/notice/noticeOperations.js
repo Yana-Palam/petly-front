@@ -10,52 +10,20 @@ const token = {
   },
 };
 
-export const noticeGetByCategory = createAsyncThunk(
-  'notices/fetchByCategory',
+export const fetchByCategory = createAsyncThunk(
+  'notice/fetchByCategory',
   async (category, { rejectWithValue, getState }) => {
     try {
-      //TODO дописати приватні маршрути
-      if (category === 'own' || category === 'favorites') {
-        const tokenLS = getState().auth.accessToken;
+      //TODO дописати бек відправка з токеном, але якщо він присутній, то відсилати ще масив токенів, якщо він відсутній то відсилати лише з категорії.
+      const tokenLS = getState().auth.token;
+      if (Boolean(tokenLS)) {
         token.set(tokenLS);
       }
-      const { data } = await axios.get(`https://petly-bc26.cyclic.app/api/notices/category/${category}`);
-      console.log(data);
+
+      const { data } = await axios.get(`/notices/${category}`);
       return data;
     } catch (error) {
       return rejectWithValue(error.request.status);
     }
   }
 );
-
-// export const noticeSearch = createAsyncThunk(
-//   'notices/fetch',
-//   async (search, { rejectWithValue, getState }) => {
-//     try {
-//       if (search === 'own' || search === 'favorites') {
-//         const tokenLS = getState().auth.accessToken;
-//         token.set(tokenLS);
-//       }
-
-//       const { data } = await axios.get(
-//         `/api/notices/category/${search}`
-
-//         // if (search.length < 2) {
-//         //   return initialState;
-//         // }
-//         // , {
-//         // if (search.length < 30) {
-//         //   const { data } = await axios.get('/notices/sell', {
-//         //     params: {
-//         //       search,
-//         //     },
-//         //   }
-//       );
-//       console.log(data);
-//       return data;
-//       // }
-//     } catch (error) {
-//       return rejectWithValue(error.request.status);
-//     }
-//   }
-// );

@@ -1,16 +1,17 @@
 import { useDispatch, useSelector } from 'react-redux';
 import {
-  UlWrap, LiItem, Text, UlList, LiWrap, Img, LiWrapComment, Button, Span, ImgDelete,
+  UlWrap, LiItem, Text, UlList, LiWrap, Img, LiWrapComment, Button, Span
 } from './PatsList.styled';
-import deleteIcon from 'assets/icons/delete.svg';
+import {ReactComponent as DeleteIcon} from 'assets/icons/delete.svg';
+
 import { deletePet } from '../../../redux/userData/userDataOperation';
 
 function PetsList() {
 const dispatch = useDispatch();
 const pets = useSelector((state) => state.userData.data.myPets)
 
-  const onDeleteHandler = (petId) => () => {
-      dispatch(deletePet(petId));
+  const onDeleteHandler = (_id) => () => {
+      dispatch(deletePet(_id));
   };
 
   if (!pets.length) return null;
@@ -19,7 +20,7 @@ const pets = useSelector((state) => state.userData.data.myPets)
       <UlList>
         {
           pets.map((pet) => (
-            <LiItem key={pet.petId}>
+            <LiItem key={pet._id}>
               <Img src={pet.avatarURL} alt='cat' />
               <UlWrap>
                 <LiWrap>
@@ -35,7 +36,7 @@ const pets = useSelector((state) => state.userData.data.myPets)
                   <Text><Span>Comments:</Span>{pet.comments}</Text>
                 </LiWrapComment>
               </UlWrap>
-              <Button onClick={onDeleteHandler(pet.petId)}> <ImgDelete src={deleteIcon} alt='' /></Button>
+              <Button onClick={onDeleteHandler(pet._id)}><DeleteIcon width="24" height="24"/></Button>
             </LiItem>
           ))
         }

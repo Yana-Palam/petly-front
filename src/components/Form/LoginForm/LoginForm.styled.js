@@ -109,6 +109,7 @@ export const AuthBtn = styled(StyledButton)`
   border-radius: ${p => p.theme.radii.xxl};
   font-size: 20px;
   height: ${p => `${p.theme.space[5] + 11}px`};
+  color: white;
 
   @media ${device.tablet} {
     height: ${p => `${p.theme.space[5] + 16}px`};
