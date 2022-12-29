@@ -1,10 +1,9 @@
 import PropTypes from 'prop-types';
+import React from 'react';
 import NewsItems from './NewsItems';
 import { StyledWrapper } from './NewsList.styled';
 
 function NewsList({ news }) {
-  console.log(news);
-
   return (
     <StyledWrapper>
       {news.map(({ ...item }) => (
@@ -14,7 +13,7 @@ function NewsList({ news }) {
   );
 }
 
-export default NewsList;
+export default React.memo(NewsList);
 
 NewsList.propTypes = {
   friends: PropTypes.arrayOf(
