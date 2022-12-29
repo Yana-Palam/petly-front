@@ -1,7 +1,6 @@
 import React from 'react';
 import useMatchMedia from 'hooks/useMatchMedia';
 
-// import { device } from 'utils/device';
 import {
   HeroWrapper,
   ImgLayerOne,
@@ -17,15 +16,15 @@ function HeroWrap() {
   const { isDesktop } = useMatchMedia();
 
   return (
-      <HeroWrapper>
-        {isDesktop && (
-          <div>
-            <ImgLayerOne src={layerOne} alt="background layers" />
-            <ImgLayerTwo src={layerTwo} alt="background layers" />
-            <ImgLayerThree src={layerThree} alt="background layers" />
-          </div>
-        )}
-      </HeroWrapper>
+    <HeroWrapper>
+      {isDesktop && (
+        <div>
+          <ImgLayerOne src={layerOne} alt="background layers" />
+          <ImgLayerTwo src={layerTwo} alt="background layers" />
+          <ImgLayerThree src={layerThree} alt="background layers" />
+        </div>
+      )}
+    </HeroWrapper>
   );
 }
 export default HeroWrap;

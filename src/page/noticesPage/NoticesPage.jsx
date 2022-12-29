@@ -17,6 +17,7 @@ import AddNoticeButton from 'components/Notices/AddNoticeButton';
 import NoticesCategoriesList from 'components/Notices/NoticesCategoriesList';
 import NoticeNotFound from 'components/Notices/noticeNotFound';
 import Loader from 'components/Loader';
+// import ModalNotice from '../../components/Notices/ModalNotice/ModalNotice';
 import { Title } from './NoticesPage.styled';
 
 const initialState = {
@@ -36,6 +37,9 @@ function NoticesPage() {
   const { isOpen, openModal, closeModal, handleBackdropClick, handleKeyDown } =
     useToggleModal();
 
+  // const [search, setSearch] = useState(
+  //   '', // searchParams.get('q') === null ? '' : searchParams.get('q')
+  // );
   const path = useLocation().pathname;
   let navigate = useNavigate();
 
@@ -117,7 +121,8 @@ function NoticesPage() {
         ) : (
           <NoticeNotFound />
         )}
-
+        {/* <AddNoticeButton /> */}
+        {/* <ModalNotice /> */}
         <AddNoticeButton getBtnInfo={getBtnInfo} />
       </Container>
     </>

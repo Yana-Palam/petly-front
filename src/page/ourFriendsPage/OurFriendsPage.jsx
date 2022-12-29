@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import Friends from '../../components/Friends';
 import Loader from '../../components/Loader';
-import { getFriends } from '../../services/api/FriendsApi';
+import { getDate } from '../../services/api/DataApi';
 import { Section, StyledContainer, StyledTitle } from './OurFriendsPage.styled';
 
 function OurFriendsPage() {
@@ -14,7 +14,7 @@ function OurFriendsPage() {
       setIsLoading(true);
       setError(null);
       try {
-        const data = await getFriends();
+        const data = await getDate('friends');
         setFriends(data);
       } catch (e) {
         setError(e);

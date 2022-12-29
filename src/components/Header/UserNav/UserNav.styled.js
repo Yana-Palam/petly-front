@@ -10,4 +10,7 @@ export const AccountLinkWrapper = styled.div`
   @media ${device.tablet} {
     margin-bottom: 0;
   }
+  @media ${device.desktop} {
+    margin-left: auto;
+  }
 `;

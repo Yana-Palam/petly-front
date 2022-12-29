@@ -26,9 +26,15 @@ export const StyledTitle = styled.a`
   text-align: center;
   margin-bottom: 12px;
   text-decoration: underline;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  white-space: pre-wrap;
   @media ${device.tablet} {
     font-size: 16px;
     line-height: 1.36;
+    margin-bottom: 16px;
   }
   @media ${device.desktop} {
     font-size: 22px;
