@@ -17,7 +17,7 @@ import AddNoticeButton from 'components/Notices/AddNoticeButton';
 import NoticesCategoriesList from 'components/Notices/NoticesCategoriesList';
 import NoticeNotFound from 'components/Notices/noticeNotFound';
 import Loader from 'components/Loader';
-import ModalNotice from '../../components/Notices/ModalNotice/ModalNotice';
+// import ModalNotice from '../../components/Notices/ModalNotice/ModalNotice';
 import { Title } from './NoticesPage.styled';
 
 const initialState = {
@@ -122,9 +122,8 @@ function NoticesPage() {
           <NoticeNotFound />
         )}
         {/* <AddNoticeButton /> */}
-
+        {/* <ModalNotice /> */}
         <AddNoticeButton getBtnInfo={getBtnInfo} />
-        <ModalNotice />
       </Container>
     </>
   );

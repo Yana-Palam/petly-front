@@ -178,16 +178,16 @@ export const NotDescr = styled.td`
   word-break: break-all;
 `;
 
-export const NotDescrAccent = styled.td`
+export const NotDescrTitleAccent = styled(NotDescrTitle)`
   font-family: 'Manrope SemiBold';
   font-weight: 600;
 `;
 
-export const NotDescrFirst = styled.td`
+export const NotDescrTitleAccentFirst = styled(NotDescrTitleAccent)`
   padding-top: 0px;
 `;
 
-export const NotDescrLast = styled.td`
+export const NotDescrTitleAccentLast = styled(NotDescrTitleAccent)`
   padding-bottom: 0px;
 `;
 

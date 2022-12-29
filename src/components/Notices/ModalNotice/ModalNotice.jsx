@@ -13,11 +13,7 @@ import {
   NotCategory,
   NotTitle,
   NotTable,
-  NotDescrTitle,
   NotDescr,
-  NotDescrAccent,
-  NotDescrFirst,
-  NotDescrLast,
   NotComments,
   NotCommentsDescr,
   NotBlockOfBtn,
@@ -25,6 +21,9 @@ import {
   NotBtnAccent,
   NotIconTitle,
   NotImgIcon,
+  NotDescrTitleAccent,
+  NotDescrTitleAccentFirst,
+  NotDescrTitleAccentLast,
 } from './ModalNotice.styled';
 import favorite from '../../../assets/icons/favorite.svg';
 
@@ -95,43 +94,51 @@ const ModalNotice = ({
             <NotTable className={s.table}>
               <tbody>
                 <tr>
-                  <td
+                  <NotDescrTitleAccentFirst
                     className={`${s.descrTitle}  ${s.descrAccent} ${s.descrFirst}`}
                   >
                     <p>name:</p>
-                  </td>
+                  </NotDescrTitleAccentFirst>
                   <NotDescr className={s.descr}>
                     <p>name</p>
                   </NotDescr>
                 </tr>
                 <tr>
-                  <td className={`${s.descrTitle} ${s.descrAccent}`}>
+                  <NotDescrTitleAccent
+                    className={`${s.descrTitle} ${s.descrAccent}`}
+                  >
                     <p>birthday:</p>
-                  </td>
+                  </NotDescrTitleAccent>
                   <NotDescr className={s.descr}>
                     <p>birthdate</p>
                   </NotDescr>
                 </tr>
                 <tr>
-                  <td className={`${s.descrTitle} ${s.descrAccent}`}>
+                  <NotDescrTitleAccent
+                    className={`${s.descrTitle} ${s.descrAccent}`}
+                  >
                     <p>breed:</p>
-                  </td>
+                  </NotDescrTitleAccent>
                   <NotDescr className={s.descr}>
                     <p>breed </p>
                   </NotDescr>
                 </tr>
                 <tr>
-                  <td className={`${s.descrTitle} ${s.descrAccent}`}>
+                  <NotDescrTitleAccent
+                    className={`${s.descrTitle} ${s.descrAccent}`}
+                  >
                     <p>place:</p>
-                  </td>
+                  </NotDescrTitleAccent>
                   <NotDescr className={s.descr}>
                     <p>location</p>
                   </NotDescr>
                 </tr>
                 <tr>
-                  <td className={`${s.descrTitle} ${s.descrAccent}`}>
+                  <NotDescrTitleAccent
+                    className={`${s.descrTitle} ${s.descrAccent}`}
+                  >
                     <p>sex:</p>
-                  </td>
+                  </NotDescrTitleAccent>
                   <NotDescr className={s.descr}>
                     <p>
                       {/* {{sex === 'male'
@@ -141,28 +148,32 @@ const ModalNotice = ({
                   </NotDescr>
                 </tr>
                 <tr>
-                  <td className={`${s.descrTitle} ${s.descrAccent}`}>
+                  <NotDescrTitleAccent
+                    className={`${s.descrTitle} ${s.descrAccent}`}
+                  >
                     <p>email:</p>
-                  </td>
+                  </NotDescrTitleAccent>
                   <NotDescr className={s.descr}>
                     <p>email</p>
                   </NotDescr>
                 </tr>
                 <tr>
-                  <td className={`${s.descrTitle} ${s.descrAccent}`}>
+                  <NotDescrTitleAccent
+                    className={`${s.descrTitle} ${s.descrAccent}`}
+                  >
                     <p>phone:</p>
-                  </td>
+                  </NotDescrTitleAccent>
                   <NotDescr className={s.descr}>
                     <p>phone</p>
                   </NotDescr>
                 </tr>
 
                 <tr>
-                  <td
+                  <NotDescrTitleAccentLast
                     className={`${s.descrTitle} ${s.descrAccent} ${s.descrLast}`}
                   >
                     <p>sell:</p>
-                  </td>
+                  </NotDescrTitleAccentLast>
                   <NotDescr className={s.descr}>
                     <p>price UAH</p>
                   </NotDescr>
