@@ -1,7 +1,5 @@
-import { useEffect } from 'react';
 import { Navigate, useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
-import { noticeGetByCategory } from 'redux/notice/noticeOperations';
+import { useSelector } from 'react-redux';
 import { selectAccessToken } from 'redux/auth/authSelectors';
 
 import { categoryButtons, allowCategory } from './category';
@@ -14,15 +12,8 @@ import {
 // import { selectAccessToken } from 'redux/auth/authSelectors';
 
 function NoticesCategoriesNav() {
-  const dispatch = useDispatch();
   const { category } = useParams();
   const token = useSelector(selectAccessToken);
-
-  useEffect(() => {
-    if (category) {
-      dispatch(noticeGetByCategory(category));
-    }
-  }, [category, dispatch]);
 
   return (
     <>

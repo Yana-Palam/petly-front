@@ -22,27 +22,22 @@ export const AnimalsBox = styled.div`
 
 export const AnimalsFavoriteBox = styled.div`
   position: absolute;
-  right: 12px;
-  top: 12px;
+  right: ${p => `${p.theme.space[4] - 4}px`};
+  top: ${p => `${p.theme.space[4] - 4}px`}; ;
 `;
 
 export const AnimalsFavoriteBtn = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: 50%;
+  width: ${p => `${p.theme.space[6] - 20}px`};
+  height: ${p => `${p.theme.space[6] - 20}px`};
+  border-radius: ${p => p.theme.radii.round};
   background: #ffffff99;
   border: none;
 `;
 
-export const AnimalsFavorite = styled(Favorite)`
-  /* fill: #f59256;
-  &:hover {
-    fill: purple;
-  } */
-`;
+export const AnimalsFavorite = styled(Favorite)``;
 
 export const AnimalsImg = styled.img`
   width: ${p => `${p.theme.space[8] + 24}px`};
@@ -58,9 +53,6 @@ export const AnimalsImg = styled.img`
 
 export const AnimalsDiv = styled.div`
   padding-left: ${p => `${p.theme.space[4] + 4}px`};
-  @media ${device.tablet} {
-    /* padding-bottom: ${p => `${p.theme.space[4] + 4}px`}; */
-  }
 `;
 
 export const Title = styled.h2`
@@ -120,13 +112,8 @@ export const AnimalsBtn = styled(StyledButton)`
   margin-left: auto;
   margin-right: auto;
   &:hover {
-    color: #ff6101;
-    border-color: #ff6101;
-  }
-  @media ${device.tablet} {
-    /* margin-top: ${p => `${p.theme.space[6] - 4}px`}; */
-  }
-  @media ${device.desktop} {
+    color: ${p => p.theme.colors.hover};
+    border-color: ${p => p.theme.colors.hover};
   }
 `;
 export const AnimalsBtnDel = styled(AnimalsBtn)`
@@ -139,42 +126,12 @@ export const AnimalsBtnDel = styled(AnimalsBtn)`
 export const AnimalsBtnBox = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-top: 20px;
+  gap: ${p => `${p.theme.space[4] - 4}px`};
+  margin-top: ${p => `${p.theme.space[4] + 4}px`}; ;
 `;
 
 export const AnimalsDeleteSvg = styled(Delete)`
-  width: 16px;
-  height: 16px;
+  width: ${p => `${p.theme.space[4]}px`};
+  height: ${p => `${p.theme.space[4]}px`};
   fill: currentColor;
 `;
-
-// export const AnimalsBtnDel = styled.button`
-//   margin-left: ${p => `${p.theme.space[4]}px`};
-//   width: ${p => `${p.theme.space[8] - 8}px`};
-//   height: ${p => `${p.theme.space[5] + 6}px`};
-//   color: #ff6101;
-//   border: ${p => p.theme.borders.normal} #ff6101;
-//   border-radius: ${p => `${p.theme.space[5] + 8}px`};
-//   background: ${p => p.theme.colors.white};
-//   @media ${device.tablet} {
-//     margin-left: ${p => `${p.theme.space[5] + 12}px`};
-//   }
-//   @media ${device.desktop} {
-//     margin-left: ${p => `${p.theme.space[4] + 4}px`};
-//   }
-// `;
-
-// export const AnimalsBtnMore = styled(StyledButton)`
-//   margin-left: auto;
-//   margin-right: auto;
-//   &:hover {
-//     color: #ff6101;
-//     border-color: #ff6101;
-//   }
-//   @media ${device.tablet} {
-//     margin-top: ${p => `${p.theme.space[6] - 4}px`};
-//   }
-//   @media ${device.desktop} {
-//   }
-// `;
