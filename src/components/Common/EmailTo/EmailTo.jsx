@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
+import { LinkBox } from './EmailTo.styled';
 
 export default function EmailTo({ email, children }) {
-  return <a href={`mailto:${email}`}>{children}</a>;
+  return <LinkBox href={`mailto:${email}`}>{children}</LinkBox>;
 }
 
 EmailTo.propTypes = {
