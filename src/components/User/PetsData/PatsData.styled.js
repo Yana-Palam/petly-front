@@ -16,11 +16,7 @@ export const DivWrap = styled.div`
     margin-top: 40px;
     margin-bottom: 26px;
   }
-  // @media (${device.fabletOnly}) {
-  //   margin-top: 20px;
-  //   margin-bottom: 22px;
-  //   width: 736px;
-  // }
+
   @media (${device.tabletOnly}) {
     margin-top: 20px;
     margin-bottom: 22px;
