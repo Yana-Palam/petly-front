@@ -10,8 +10,10 @@ import {
   Form,
   Title,
   Text,
-  RegisterLink,
-  InputWrp,
+  AuthLink,
+  InputsWrp,
+  InputWrapper,
+  TextError,
   Input,
 } from './LoginForm.styled';
 import { motion } from 'framer-motion';
@@ -76,30 +78,26 @@ const LoginForm = () => {
     >
       <Form onSubmit={formik.handleSubmit}>
         <Title>Login</Title>
-        <InputWrp>
+        <InputsWrp>
           {inputs.map(({ type, name, label }) => (
-            <Input
-              key={name}
-              type={type}
-              name={name}
-              label={label}
-              value={formik.values[name]}
-              onChange={formik.handleChange}
-              error={formik.touched[name] && Boolean(formik.errors[name])}
-              helperText={formik.touched[name] && formik.errors[name]}
-              // placeholder={label}
-              variant="outlined"
-            />
+            <InputWrapper key={name}>
+              <Input
+                type={type}
+                name={name}
+                placeholder={label}
+                value={formik.values[name]}
+                onChange={formik.handleChange}
+                error={formik.touched[name] && Boolean(formik.errors[name])}
+              />
+              {formik.touched[name] && formik.errors[name] && (
+                <TextError>{formik.errors[name]}</TextError>
+              )}
+            </InputWrapper>
           ))}
-
-          {/* {formik.touched[name] && formik.errors[name] && (
-                <span>{formik.errors[name]}</span>
-              )} */}
-        </InputWrp>
+        </InputsWrp>
         <AuthBtn type="submit">Login</AuthBtn>
         <Text>
-          Don't have an account?{' '}
-          <RegisterLink to="/register">Register</RegisterLink>
+          Don't have an account? <AuthLink to="/register">Register</AuthLink>
         </Text>
       </Form>
     </FormWrapper>
