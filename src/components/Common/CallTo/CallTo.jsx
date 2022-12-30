@@ -1,7 +1,8 @@
 import PropTypes from 'prop-types';
+import { LinkBox } from '../EmailTo/EmailTo.styled';
 
 export default function CallTo({ phone, children }) {
-  return <a href={`tel:${phone}`}>{children}</a>;
+  return <LinkBox href={`tel:${phone}`}>{children}</LinkBox>;
 }
 
 CallTo.propTypes = {
