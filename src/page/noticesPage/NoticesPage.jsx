@@ -16,7 +16,7 @@ import NoticesSearch from 'components/Notices/NoticesSearch';
 import NoticesCategoriesNav from 'components/Notices/NoticesCategoriesNav';
 import AddNoticeButton from 'components/Notices/AddNoticeButton';
 import NoticesCategoriesList from 'components/Notices/NoticesCategoriesList';
-import NoticeNotFound from 'components/Notices/noticeNotFound';
+import NoticeNotFound from 'components/Notices/NoticeNotFound';
 import Loader from 'components/Loader';
 import DelNoticeItem from 'components/Notices/DelNoticeItem';
 
