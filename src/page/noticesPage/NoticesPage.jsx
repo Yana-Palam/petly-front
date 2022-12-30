@@ -17,6 +17,8 @@ import AddNoticeButton from 'components/Notices/AddNoticeButton';
 import NoticesCategoriesList from 'components/Notices/NoticesCategoriesList';
 import NoticeNotFound from 'components/Notices/noticeNotFound';
 import Loader from 'components/Loader';
+import DelNoticeItem from 'components/Notices/DelNoticeItem';
+
 // import ModalNotice from '../../components/Notices/ModalNotice/ModalNotice';
 import { Title } from './NoticesPage.styled';
 
@@ -105,7 +107,9 @@ function NoticesPage() {
               <button onClick={closeModal}>close</button>
             </>
           )}
-          {state.btnType?.delete && <p>Delete</p>}
+          {state.btnType?.delete && (
+            <DelNoticeItem notices={notices} closeModal={closeModal} />
+          )}
           {state.btnType?.add && <p>Add pet</p>}
         </Modal>
       )}
