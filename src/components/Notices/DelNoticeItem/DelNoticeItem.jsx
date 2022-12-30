@@ -3,11 +3,13 @@ import {
   DelPetBtn,
   AnimalsBtnDel,
   AnimalsDeleteSvg,
+  CancelPetText,
 } from './DelNoticeItem.slyled';
 
 function DelNoticeItem({ closeModal, id }) {
   return (
     <DelPetBox>
+      <CancelPetText>Are you sure to delete this pet ?</CancelPetText>
       <AnimalsBtnDel
         type="button"
         id={id}
