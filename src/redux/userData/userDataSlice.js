@@ -33,7 +33,7 @@ const userDataSlice = createSlice({
       state.error = null;
     },
     [getUserInfo.fulfilled]: (state, action) => {
-      state.data = action.payload;
+      state.data = { ...state.data, ...action.payload };
     },
     [getUserInfo.rejected]: (state, action) => {
       state.error = action.payload;
@@ -44,9 +44,9 @@ const userDataSlice = createSlice({
     [updateUserInfo.pending]: (state) => {
       state.error = null;
     },
-    // [updateUserInfo.fulfilled]: (state, action) => {
-    //   state.data = { ...state.data, ...action.payload };
-    // },
+    [updateUserInfo.fulfilled]: (state, action) => {
+      state.data = { ...state.data, ...action.payload };
+    },
     [updateUserInfo.rejected]: (state, action) => {
       state.error = action.payload;
     },

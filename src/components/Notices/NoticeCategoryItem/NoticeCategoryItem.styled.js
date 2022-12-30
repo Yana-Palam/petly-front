@@ -98,6 +98,8 @@ export const AnimalsCategoryDiv = styled.div`
   backdrop-filter: blur(2px);
   display: flex;
   align-items: center;
+  justify-content: center;
+  box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
 `;
 export const AnimalsCategory = styled.p`
   font-family: ${p => p.theme.fonts.formInput};

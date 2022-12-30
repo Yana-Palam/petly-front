@@ -9,19 +9,28 @@ export const ModalBackdrop = styled.div`
   height: 100vh;
   background-color: rgba(33, 33, 33, 0.12);
   display: flex;
-  align-items: center;
+
   justify-content: center;
+  align-items: baseline;
   pointer-events: all;
   overflow: scroll;
+
+  @media ${device.tablet} {
+    align-items: center;
+  }
 `;
 
 export const ModalContent = styled.div`
-  padding: 40px 20px;
-  border-radius: ${p => `${p.theme.space[4] + 4}px`};
+  padding: 20px 20px;
+  border-radius: ${p => `${p.theme.space[5] + 8}px`};
   background-color: ${p => p.theme.colors.white};
+
   @media ${device.tablet} {
     padding: 32px 20px;
   }
+  /* @media ${device.tablet} {
+    padding: 40px 20px;
+  } */
   /* @media ${device.desktop} {
     width: ${p => `${p.theme.space[8] + 32}px`};
   } */

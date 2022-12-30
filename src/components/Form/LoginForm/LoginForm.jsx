@@ -95,9 +95,9 @@ const LoginForm = () => {
             </InputWrapper>
           ))}
         </InputsWrp>
-        <AuthBtn type="submit">Login</AuthBtn>
+        <AuthBtn type='submit'>Login</AuthBtn>
         <Text>
-          Don't have an account? <AuthLink to="/register">Register</AuthLink>
+          Don't have an account? <AuthLink to='/register'>Register</AuthLink>
         </Text>
       </Form>
     </FormWrapper>

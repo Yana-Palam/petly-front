@@ -12,14 +12,11 @@ export const DivWrap = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  @media (${device.mobileOnly}) {
+  @media (${device.fabletAndMobileOnly}) {
     margin-top: 40px;
     margin-bottom: 26px;
   }
-  @media (${device.fabletOnly}) {
-    margin-top: 20px;
-    margin-bottom: 22px;
-  }
+
   @media (${device.tabletOnly}) {
     margin-top: 20px;
     margin-bottom: 22px;

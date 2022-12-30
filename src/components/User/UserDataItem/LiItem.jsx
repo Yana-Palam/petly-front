@@ -5,9 +5,9 @@ import {ReactComponent as EditIcon} from 'assets/icons/ci_edit.svg';
 import { useDispatch } from 'react-redux';
 import { updateUserInfo } from '../../../redux/userData/userDataOperation';
 
-const LiItem = ({ label, name, user }) => {
+const LiItem = ({ label, name, user, active, setActive }) => {
   const [value, setValue] = useState(user);
-  const [active, setActive] = useState(false);
+
   const dispatch = useDispatch()
 
   const onChangeHandler = (e) => {
@@ -39,24 +39,23 @@ const LiItem = ({ label, name, user }) => {
     }
   };
 
-  const onClickHandler = () => {
-    setActive(!active);
-    if(active){
-      dispatch(updateUserInfo(value))
-    }
-
+  const onEditHandler = (name) => () => {
+    dispatch(updateUserInfo({ [name]: value }));
+    setActive('');
   };
+
+  const onSetActiveHandler = (name) => () => setActive(name);
 
   return (
     <Item>
       <Label htmlFor={name}>{label}</Label>
-      <Input active={active} disabled={!active} type='text' name={name} value={value} onChange={onChangeHandler} />
-      <Button onClick={onClickHandler}>
-        { active
+      <Input active={active === name} disabled={active !== name} type='text' name={name} value={value} onChange={onChangeHandler} />
+      <Button >
+        { active === name
           ?
-          <EditIcon/>
+          <EditIcon onClick={onEditHandler(name)}/>
           :
-          <PenIcon/>
+          <PenIcon onClick={onSetActiveHandler(name)} fill='#F59256'/>
         }
       </Button>
     </Item>
