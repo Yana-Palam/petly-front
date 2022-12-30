@@ -35,7 +35,7 @@ export const updateUserInfo = createAsyncThunk(
       token.set(tokenLS);
       const data = payload;
       await axios.patch(`/user/update`, data);
-      // console.log('data', data);
+      console.log('data', data);
       return data;
     } catch (err) {
       return thunkAPI.rejectWithValue('Sorry, can\'t update user, server Error!');

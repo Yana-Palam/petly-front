@@ -31,7 +31,6 @@ function PetsData() {
         </DivBtn>
       </DivWrap>
       {showModal && <ModalAddsPet setShowModal={setShowModal} />}
-      {/* <ModalAddsPet /> */}
       <PetsList />
     </DivWrapperMain>
   );

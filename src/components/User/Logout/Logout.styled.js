@@ -14,11 +14,13 @@ export const Button = styled.button`
   margin-top: 12px;
   padding: 0;
 
-  @media (${device.mobileOnly}) {
-    margin-left: 145px;
-  }
-
-  @media (${device.fablet}) {
+  // @media (${device.mobileOnly}) {
+  //   margin-left: 145px;
+  // }
+  // @media (${device.fabletOnly}) {
+  //   margin-left: 318px;
+  // }
+  @media (${device.tabletOnly}) {
     margin-top: 10px;
   }
   @media (${device.desktop}) {
