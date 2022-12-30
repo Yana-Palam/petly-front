@@ -2,11 +2,11 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { register, login } from 'redux/auth/authOperations';
-import { Text, LoginLink, Title, Wrapper } from './RegistrationForm.styled';
+import { Text, AuthLink, Title } from '../LoginForm/LoginForm.styled';
+import { Wrapper } from './RegistrationForm.styled';
 import StepOne from './StepOne';
 import StepTwo from './StepTwo';
 import { motion } from 'framer-motion';
-
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
@@ -56,7 +56,8 @@ const RegistrationForm = () => {
   ];
 
   return (
-    <Wrapper as={motion.div}
+    <Wrapper
+      as={motion.div}
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ duration: 1, delay: 0.2 }}
@@ -65,7 +66,7 @@ const RegistrationForm = () => {
       {steps[currentStep]}
       <Text>
         Already have an account?
-        <LoginLink to="/login">Login</LoginLink>
+        <AuthLink to="/login">Login</AuthLink>
       </Text>
     </Wrapper>
   );
