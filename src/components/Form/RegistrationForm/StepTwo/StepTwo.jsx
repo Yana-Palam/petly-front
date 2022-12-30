@@ -1,10 +1,14 @@
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-// import TextField from '@mui/material/TextField';
 import { Form } from '../RegistrationForm.styled';
-import { AuthBtn, BackBtn } from '../RegistrationForm.styled';
-import { InputWrp, Input } from 'components/Form/LoginForm/LoginForm.styled';
-import { motion } from 'framer-motion';
+import { BackBtn } from '../RegistrationForm.styled';
+import {
+  InputsWrp,
+  Input,
+  AuthBtn,
+  InputWrapper,
+  TextError,
+} from 'components/Form/LoginForm/LoginForm.styled';
 
 const inputs = [
   { type: 'text', name: 'name', label: 'Name' },
@@ -40,65 +44,33 @@ const StepTwo = ({ next, data, prev }) => {
   });
 
   return (
-    <Form onSubmit={formik.handleSubmit}
-    as={motion.div}
-      initial={{ scale: 0, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      transition={{ duration: 0.7, delay: 0.2 }}
-    >
-      <InputWrp>
+    <Form onSubmit={formik.handleSubmit}>
+      <InputsWrp>
         {inputs.map(({ type, name, label }) => (
-          <Input
-            key={name}
-            type={type}
-            name={name}
-            label={label}
-            value={formik.values[name]}
-            onChange={formik.handleChange}
-            error={formik.touched[name] && Boolean(formik.errors[name])}
-            helperText={formik.touched[name] && formik.errors[name]}
-            variant="outlined"
-            placeholder={label}
-          />
+          <InputWrapper key={name}>
+            <Input
+              type={type}
+              name={name}
+              label={label}
+              value={formik.values[name]}
+              onChange={formik.handleChange}
+              error={formik.touched[name] && Boolean(formik.errors[name])}
+              helperText={formik.touched[name] && formik.errors[name]}
+              variant="outlined"
+              placeholder={label}
+            />
+            {formik.touched[name] && formik.errors[name] && (
+              <TextError>{formik.errors[name]}</TextError>
+            )}
+          </InputWrapper>
         ))}
-
-        {/* <TextField
-          type="text"
-          name="name"
-          label="Name"
-          value={formik.values.name}
-          onChange={formik.handleChange}
-          error={formik.touched.name && Boolean(formik.errors.name)}
-          helperText={formik.touched.name && formik.errors.name}
-          variant="outlined"
-        />
-        <TextField
-          type="text"
-          name="city"
-          label="City, region"
-          value={formik.values.city}
-          onChange={formik.handleChange}
-          error={formik.touched.city && Boolean(formik.errors.city)}
-          helperText={formik.touched.city && formik.errors.city}
-          variant="outlined"
-        />
-        <TextField
-          type="text"
-          name="phone"
-          label="Mobile phone"
-          value={formik.values.phone}
-          onChange={formik.handleChange}
-          error={formik.touched.phone && Boolean(formik.errors.phone)}
-          helperText={formik.touched.phone && formik.errors.phone}
-          variant="outlined"
-        /> */}
-      </InputWrp>
-      <InputWrp>
+      </InputsWrp>
+      <InputsWrp>
         <AuthBtn type="submit">Register</AuthBtn>
         <BackBtn type="button" onClick={() => prev(formik.values)}>
           Back
         </BackBtn>
-      </InputWrp>
+      </InputsWrp>
     </Form>
   );
 };

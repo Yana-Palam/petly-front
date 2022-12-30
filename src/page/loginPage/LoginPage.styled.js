@@ -1,19 +1,23 @@
 import styled from 'styled-components';
+import Container from 'components/Common/Container';
 
-import bg_desk from '../../assets/registlog/desk/bg-desk.png'
-import bg_tab from '../../assets/registlog/tab/bg-tab.png'
-import bg_mob from '../../assets/registlog/mob/bg-mob.png'
+import bg_desk from '../../assets/registlog/desk/bg-desk.png';
+import bg_tab from '../../assets/registlog/tab/bg-tab.png';
+import bg_mob from '../../assets/registlog/mob/bg-mob.png';
 
 import { device } from 'utils/device';
 
-export const Wrapper = styled.div`
-  width: 100%;
+export const Wrapper = styled(Container)`
+  @media ${device.mobileOnly} {
+    width: 100%;
+  }
+  /* width: 100%; */
   display: flex;
   justify-content: center;
 `;
 
 export const RegistBg = styled.div`
-display: flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   background-image: url(${bg_mob});
@@ -24,10 +28,9 @@ display: flex;
 
   @media ${device.tablet} {
     background-image: url(${bg_tab});
-
   }
 
-  @media ${device.desktop}{
+  @media ${device.desktop} {
     background-image: url(${bg_desk});
   }
 `;

@@ -11,12 +11,15 @@ import { selectNoticeState } from 'redux/notice/noticeSelectors';
 // Components
 import Container from 'components/Common/Container';
 import Modal from 'components/Common/Modal/Modal';
+import ModalNotice from 'components/Notices/ModalLearnMoreNotice/ModalNotice';
 import NoticesSearch from 'components/Notices/NoticesSearch';
 import NoticesCategoriesNav from 'components/Notices/NoticesCategoriesNav';
 import AddNoticeButton from 'components/Notices/AddNoticeButton';
 import NoticesCategoriesList from 'components/Notices/NoticesCategoriesList';
 import NoticeNotFound from 'components/Notices/noticeNotFound';
 import Loader from 'components/Loader';
+import DelNoticeItem from 'components/Notices/DelNoticeItem';
+
 // import ModalNotice from '../../components/Notices/ModalNotice/ModalNotice';
 import { Title } from './NoticesPage.styled';
 
@@ -83,7 +86,10 @@ function NoticesPage() {
       btnType,
       btnId,
     }));
-    if (token) {
+    if (
+      !Boolean(token) &&
+      (btnType?.favorite || btnType?.add || btnType?.delete)
+    ) {
       navigate('/login');
     }
     openModal();
@@ -99,13 +105,12 @@ function NoticesPage() {
           {state.btnType?.favorite && <p>Favorite</p>}
           {state.btnType?.modal && (
             <>
-              <div>Modal Windows for {getNoticeById._id}</div>
-              <h2>{getNoticeById.title}</h2>
-              <img src={getNoticeById.avatarURL} alt={getNoticeById?.title} />
-              <button onClick={closeModal}>close</button>
+              <ModalNotice notices={getNoticeById} closeModal={closeModal} />
             </>
           )}
-          {state.btnType?.delete && <p>Delete</p>}
+          {state.btnType?.delete && (
+            <DelNoticeItem notices={notices} closeModal={closeModal} />
+          )}
           {state.btnType?.add && <p>Add pet</p>}
         </Modal>
       )}
@@ -114,14 +119,15 @@ function NoticesPage() {
         <Title>Find your favorite pet</Title>
         <NoticesSearch handleSearch={handleSearch} />
         <NoticesCategoriesNav />
-        {isLoading ? (
-          <Loader />
-        ) : Boolean(notices?.length > 0) ? (
+
+        {isLoading && <Loader />}
+
+        {Boolean(notices?.length > 0) ? (
           <NoticesCategoriesList notices={notices} getBtnInfo={getBtnInfo} />
         ) : (
           <NoticeNotFound />
         )}
-        {/* <AddNoticeButton /> */}
+
         {/* <ModalNotice /> */}
         <AddNoticeButton getBtnInfo={getBtnInfo} />
       </Container>

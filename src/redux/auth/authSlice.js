@@ -1,9 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { register, login, logout } from './authOperations';
+import { register, login, logout, refresh } from './authOperations';
 
 const initialState = {
   user: { name: '', email: '', id: '' },
-  // refreshToken: null,
+  refreshToken: null,
   token: null,
   // sid: '',
   isLoggedIn: false,
@@ -41,7 +41,7 @@ const authSlice = createSlice({
       state.user = user;
 
       state.token = token;
-      // state.refreshToken = refreshToken;
+      state.refreshToken = refreshToken;
 
       state.user.id = id;
       state.user = user;
@@ -60,7 +60,7 @@ const authSlice = createSlice({
     [logout.fulfilled]: state => {
       state.user = { name: '', email: '', id: '' };
       state.token = null;
-      // state.refreshToken = null;
+      state.refreshToken = null;
 
       state.isLoggedIn = false;
       state.isLoading = false;
@@ -71,26 +71,26 @@ const authSlice = createSlice({
     },
     // --------------------REFRESH OPERATION--------------------
 
-    // [refresh.pending]: state => {
-    //   state.isLoading = true;
-    //   state.isFetchingCurrentUser = true;
-    // },
-    // [refresh.fulfilled]: (
-    //   state,
-    //   { payload: { newRefreshToken, newtoken } }
-    // ) => {
-    //   state.token = newtoken;
-    //   state.refreshToken = newRefreshToken;
+    [refresh.pending]: state => {
+      state.isLoading = true;
+      // state.isFetchingCurrentUser = true;
+    },
+    [refresh.fulfilled]: (
+      state,
+      { payload: { newRefreshToken, newToken } }
+    ) => {
+      state.token = newToken;
+      state.refreshToken = newRefreshToken;
 
-    //   state.isLoggedIn = true;
-    //   state.isLoading = false;
-    //   state.isFetchingCurrentUser = false;
-    // },
-    // [refresh.rejected]: (state, { payload }) => {
-    //   state.isLoading = false;
-    //   state.error = payload;
-    //   state.isFetchingCurrentUser = false;
-    // },
+      state.isLoggedIn = true;
+      state.isLoading = false;
+      // state.isFetchingCurrentUser = false;
+    },
+    [refresh.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
+      state.isFetchingCurrentUser = false;
+    },
   },
 });
 
