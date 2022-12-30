@@ -1,8 +1,13 @@
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { Form } from '../RegistrationForm.styled';
-import { AuthBtn } from '../RegistrationForm.styled';
-import { InputWrp, Input } from 'components/Form/LoginForm/LoginForm.styled';
+import {
+  InputsWrp,
+  Input,
+  AuthBtn,
+  InputWrapper,
+  TextError,
+} from 'components/Form/LoginForm/LoginForm.styled';
 
 const inputs = [
   { type: 'email', name: 'email', label: 'Email' },
@@ -57,22 +62,23 @@ const StepOne = ({ next, data }) => {
 
   return (
     <Form onSubmit={formik.handleSubmit}>
-      <InputWrp>
+      <InputsWrp>
         {inputs.map(({ type, name, label }) => (
-          <Input
-            key={name}
-            type={type}
-            name={name}
-            label={label}
-            value={formik.values[name]}
-            onChange={formik.handleChange}
-            error={formik.touched[name] && Boolean(formik.errors[name])}
-            helperText={formik.touched[name] && formik.errors[name]}
-            variant="outlined"
-            placeholder={label}
-          />
+          <InputWrapper key={name}>
+            <Input
+              type={type}
+              name={name}
+              value={formik.values[name]}
+              onChange={formik.handleChange}
+              error={formik.touched[name] && Boolean(formik.errors[name])}
+              placeholder={label}
+            />
+            {formik.touched[name] && formik.errors[name] && (
+              <TextError>{formik.errors[name]}</TextError>
+            )}
+          </InputWrapper>
         ))}
-      </InputWrp>
+      </InputsWrp>
       <AuthBtn type="submit">Next</AuthBtn>
     </Form>
   );
