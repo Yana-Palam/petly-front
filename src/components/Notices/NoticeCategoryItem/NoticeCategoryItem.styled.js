@@ -5,7 +5,7 @@ import { ReactComponent as Delete } from 'assets/icons/delete.svg';
 import { StyledButton } from 'components/Common/Button/Button.styled';
 
 export const ItemNotice = styled.li`
-  width: ${p => `${p.theme.space[8] + 24}px`};
+  max-width: ${p => `${p.theme.space[8] + 24}px`};
   height: ${p => `${p.theme.space[9] + 94}px`};
   background: ${p => p.theme.colors.white};
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
@@ -18,11 +18,13 @@ export const ItemNotice = styled.li`
     }}
 
   @media ${device.tablet} {
-    width: ${p => `${p.theme.space[9] - 176}px`};
+    max-width: ${p => `${p.theme.space[9] - 176}px`};
+    flex-basis: calc((100% - 32px) / 2);
   }
 
   @media ${device.desktop} {
-    width: ${p => `${p.theme.space[8] + 32}px`};
+    flex-basis: calc((100% - 96px) / 4);
+    max-width: ${p => `${p.theme.space[8] + 32}px`};
   }
 `;
 
@@ -49,15 +51,16 @@ export const IconFavorite = styled(Favorite)`
 `;
 
 export const ImgNotice = styled.img`
-  width: 280px;
+  width: 100%;
+  /* width: 280px; */
   height: 288px;
 
   @media ${device.tablet} {
-    width: ${p => `${p.theme.space[9] - 176}px`};
+    /* width: ${p => `${p.theme.space[9] - 176}px`}; */
   }
 
   @media ${device.desktop} {
-    width: ${p => `${p.theme.space[8] + 32}px`};
+    /* width: ${p => `${p.theme.space[8] + 32}px`}; */
   }
 `;
 
