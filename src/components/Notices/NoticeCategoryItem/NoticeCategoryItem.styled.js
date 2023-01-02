@@ -4,29 +4,21 @@ import { ReactComponent as Favorite } from 'assets/icons/favorite.svg';
 import { ReactComponent as Delete } from 'assets/icons/delete.svg';
 import { StyledButton } from 'components/Common/Button/Button.styled';
 
-export const AnimalsBox = styled.div`
-  width: ${p => `${p.theme.space[8] + 24}px`};
+export const ItemNotice = styled.li`
+  max-width: ${p => `${p.theme.space[8] + 24}px`};
   height: ${p => `${p.theme.space[9] + 94}px`};
   background: ${p => p.theme.colors.white};
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border-radius: 0px 0px 20px 20px;
+  padding-bottom: 32px;
 
-  @media ${device.tablet} {
-    width: ${p => `${p.theme.space[9] - 176}px`};
-  }
-
-  @media ${device.desktop} {
-    width: ${p => `${p.theme.space[8] + 32}px`};
-  }
+  ${p =>
+    p.own && {
+      paddingBottom: '12px',
+    }}
 `;
 
-export const AnimalsFavoriteBox = styled.div`
-  position: absolute;
-  right: ${p => `${p.theme.space[4] - 4}px`};
-  top: ${p => `${p.theme.space[4] - 4}px`}; ;
-`;
-
-export const AnimalsFavoriteBtn = styled.button`
+export const NoticeFavoriteBtn = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -37,25 +29,32 @@ export const AnimalsFavoriteBtn = styled.button`
   border: none;
 `;
 
-export const AnimalsFavorite = styled(Favorite)``;
+//INFO як можна стилізувати в залежності від умови пропса
 
-export const AnimalsImg = styled.img`
-  width: ${p => `${p.theme.space[8] + 24}px`};
-  height: ${p => `${p.theme.space[8] + 32}px`};
+export const IconFavorite = styled(Favorite)`
+  fill: ${p => p.theme.colors.whiteAlpha};
+
+  ${p =>
+    p.favorite === 'true' && {
+      fill: p.theme.colors.accent,
+    }}
+`;
+
+export const ImgNotice = styled.img`
+  width: 100%;
+  /* width: 280px; */
+  height: 288px;
 
   @media ${device.tablet} {
     width: ${p => `${p.theme.space[9] - 176}px`};
   }
+
   @media ${device.desktop} {
     width: ${p => `${p.theme.space[8] + 32}px`};
   }
 `;
 
-export const AnimalsDiv = styled.div`
-  padding-left: ${p => `${p.theme.space[4] + 4}px`};
-`;
-
-export const Title = styled.h2`
+export const NoticeTitle = styled.h2`
   font-family: ${p => p.theme.fonts.body};
   font-size: ${p => p.theme.fontSizes.l};
   font-weight: ${p => p.theme.fontWeights.bold};
@@ -66,28 +65,28 @@ export const Title = styled.h2`
   margin-top: ${p => `${p.theme.space[4] + 4}px`};
 `;
 
-export const AnimalsUl = styled.ul`
+export const NoticeListInfo = styled.ul`
+  display: flex;
+  flex-direction: column;
   margin-top: ${p => `${p.theme.space[4] + 4}px`};
+  gap: ${p => `${p.theme.space[3]}px`};
 `;
 
-export const AnimalsLi = styled.li`
+export const NoticeItemInfo = styled.li`
+  display: flex;
   font-family: ${p => p.theme.fonts.body};
   font-size: ${p => p.theme.fontSizes.s};
   font-weight: ${p => p.theme.fontWeights.medium};
   line-height: ${p => p.theme.lineHeights.body};
-  display: flex;
 `;
 
-export const AnimalsSpanTitle = styled.span`
+export const NoticeItemInfoTitle = styled.span`
   width: ${p => `${p.theme.space[6] - 4}px`};
 `;
 
-export const AnimalsSpan = styled.span``;
+export const NoticeItemInfoValue = styled.span``;
 
-export const AnimalsCategoryBox = styled.div`
-  position: relative;
-`;
-export const AnimalsCategoryDiv = styled.div`
+export const WrapNoticeCategory = styled.div`
   position: absolute;
   width: ${p => `${p.theme.space[7] + 20}px`};
   height: ${p => `${p.theme.space[5] - 4}px`};
@@ -101,7 +100,7 @@ export const AnimalsCategoryDiv = styled.div`
   justify-content: center;
   box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
 `;
-export const AnimalsCategory = styled.p`
+export const NoticeCategory = styled.p`
   font-family: ${p => p.theme.fonts.formInput};
   font-weight: ${p => p.theme.fontWeights.medium};
   font-size: ${p => p.theme.fontSizes.xxs};
@@ -110,29 +109,33 @@ export const AnimalsCategory = styled.p`
   padding-left: ${p => `${p.theme.space[4] + 4}px`};
 `;
 
-export const AnimalsBtn = styled(StyledButton)`
+//INFO як можна стилізувати в залежності від умови пропса
+export const BtnLearnMore = styled(StyledButton)`
+  margin-top: 50px;
   margin-left: auto;
   margin-right: auto;
+
+  ${p =>
+    (p.own || p.sell === 'sell') && {
+      marginTop: `${p.theme.space[4] + 4}px`,
+      marginBottom: `${p.theme.space[4] - 4}px`,
+    }}
+
   &:hover {
     color: ${p => p.theme.colors.hover};
     border-color: ${p => p.theme.colors.hover};
   }
 `;
-export const AnimalsBtnDel = styled(AnimalsBtn)`
+export const BtnDelOwn = styled(StyledButton)`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
   gap: 14px;
 `;
 
-export const AnimalsBtnBox = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: ${p => `${p.theme.space[4] - 4}px`};
-  margin-top: ${p => `${p.theme.space[4] + 4}px`}; ;
-`;
-
-export const AnimalsDeleteSvg = styled(Delete)`
+export const BtnDelSvg = styled(Delete)`
   width: ${p => `${p.theme.space[4]}px`};
   height: ${p => `${p.theme.space[4]}px`};
   fill: currentColor;

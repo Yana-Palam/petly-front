@@ -7,6 +7,7 @@ import useToggleModal from 'hooks/toggleModal';
 import { selectAccessToken } from 'redux/auth/authSelectors';
 import { fetchByCategory } from 'redux/notice/noticeOperations';
 import { selectNoticeState } from 'redux/notice/noticeSelectors';
+import { changeFavorite } from 'redux/notice/noticeSlice';
 
 // Components
 import Container from 'components/Common/Container';
@@ -16,7 +17,7 @@ import NoticesSearch from 'components/Notices/NoticesSearch';
 import NoticesCategoriesNav from 'components/Notices/NoticesCategoriesNav';
 import AddNoticeButton from 'components/Notices/AddNoticeButton';
 import NoticesCategoriesList from 'components/Notices/NoticesCategoriesList';
-import NoticeNotFound from 'components/Notices/noticeNotFound';
+import NoticeNotFound from 'components/Notices/NoticeNotFound';
 import Loader from 'components/Loader';
 import DelNoticeItem from 'components/Notices/DelNoticeItem';
 
@@ -43,6 +44,7 @@ function NoticesPage() {
   // const [search, setSearch] = useState(
   //   '', // searchParams.get('q') === null ? '' : searchParams.get('q')
   // );
+
   const path = useLocation().pathname;
   let navigate = useNavigate();
 
@@ -86,12 +88,19 @@ function NoticesPage() {
       btnType,
       btnId,
     }));
+
     if (
       !Boolean(token) &&
       (btnType?.favorite || btnType?.add || btnType?.delete)
     ) {
       navigate('/login');
     }
+
+    if (btnType?.favorite) {
+      dispatch(changeFavorite(btnId));
+      return;
+    }
+
     openModal();
   };
 
@@ -102,10 +111,14 @@ function NoticesPage() {
           handleBackdropClick={handleBackdropClick}
           handleKeyDown={handleKeyDown}
         >
-          {state.btnType?.favorite && <p>Favorite</p>}
+          {/* {state.btnType?.favorite && <p>Favorite</p>} */}
           {state.btnType?.modal && (
             <>
-              <ModalNotice notices={getNoticeById} closeModal={closeModal} />
+              <ModalNotice
+                notices={getNoticeById}
+                closeModal={closeModal}
+                getBtnInfo={getBtnInfo}
+              />
             </>
           )}
           {state.btnType?.delete && (
@@ -119,15 +132,12 @@ function NoticesPage() {
         <Title>Find your favorite pet</Title>
         <NoticesSearch handleSearch={handleSearch} />
         <NoticesCategoriesNav />
-
         {isLoading && <Loader />}
-
         {Boolean(notices?.length > 0) ? (
           <NoticesCategoriesList notices={notices} getBtnInfo={getBtnInfo} />
         ) : (
           <NoticeNotFound />
         )}
-
         {/* <ModalNotice /> */}
         <AddNoticeButton getBtnInfo={getBtnInfo} />
       </Container>

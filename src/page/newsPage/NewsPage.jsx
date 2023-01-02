@@ -4,7 +4,7 @@ import SearchInput from '../../components/Common/SearchInput';
 import Loader from '../../components/Loader';
 import NewsList from '../../components/News/NewsList';
 import { getDate } from '../../services/api/DataApi';
-import { Section, StyledContainer, StyledTitle } from './NewsPage.styled';
+import { StyledContainer, StyledTitle } from './NewsPage.styled';
 
 function NewsPage() {
   const [news, setNews] = useState([]);
@@ -50,7 +50,7 @@ function NewsPage() {
   }
 
   return (
-    <Section>
+    <>
       <StyledContainer>
         <StyledTitle>News page</StyledTitle>
         <SearchInput
@@ -67,7 +67,7 @@ function NewsPage() {
         )}
         {news && <NewsList news={search(news)} />}
       </StyledContainer>
-    </Section>
+    </>
   );
 }
 

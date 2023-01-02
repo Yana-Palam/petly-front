@@ -2,7 +2,7 @@ import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Loader from 'components/Loader';
-import Box from 'components/Common/Box';
+import Section from 'components/Common/Section';
 import Header from 'components/Header';
 
 const Layout = () => {
@@ -10,9 +10,9 @@ const Layout = () => {
     <>
       <Header /*closeModal={closeModal} isOpen={isOpen} */ />
       <Suspense fallback={<Loader />}>
-        <Box as={'section'}>
+        <Section>
           <Outlet />
-        </Box>
+        </Section>
       </Suspense>
     </>
   );

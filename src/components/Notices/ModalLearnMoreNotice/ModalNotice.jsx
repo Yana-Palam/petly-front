@@ -1,7 +1,8 @@
 import Box from 'components/Common/Box';
 // import Button from 'components/Common/Button';
 // import ButtonIcon from 'components/Common/ButtonIcon';
-
+import { useDispatch } from 'react-redux';
+import { changeFavorite } from 'redux/notice/noticeSlice';
 import {
   ButtonIcon,
   ButtonIconBox,
@@ -26,10 +27,11 @@ import {
   AnimalsBtn,
 } from './ModalNotice.styled';
 
-const ModalNotice = ({ notices, closeModal }) => {
+const ModalNotice = ({ notices, closeModal, getBtnInfo }) => {
   const {
     _id,
     avatarURL,
+    favorite,
     title,
     category,
     name,
@@ -43,7 +45,10 @@ const ModalNotice = ({ notices, closeModal }) => {
     // price,
   } = notices;
 
-  const favorite = false;
+  const dispatch = useDispatch();
+  const getNotice = e => {
+    dispatch(changeFavorite(e.currentTarget.id));
+  };
 
   return (
     <Box position="relative">
@@ -123,8 +128,8 @@ const ModalNotice = ({ notices, closeModal }) => {
         <AnimalsBtnFavorite
           type="button"
           id={_id}
-          // onClick={handleClick}
-          data-delete="delete"
+          onClick={getNotice}
+          data-favorite="favorite"
         >
           Add to
           <AnimalsFavoriteSvg
@@ -132,10 +137,10 @@ const ModalNotice = ({ notices, closeModal }) => {
           />
         </AnimalsBtnFavorite>
         <AnimalsBtn
-          type="button"
-          id={_id}
-          // onClick={handleClick}
-          data-modal="modal"
+        // type="button"
+        // id={_id}
+        // onClick={handleClick}
+        // data-modal="modal"
         >
           <BtnTel>Contact{phone}</BtnTel>
         </AnimalsBtn>

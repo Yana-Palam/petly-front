@@ -1,35 +1,34 @@
 import { helpers } from 'utils/helpers';
-// import ModalNotice from '../ModalNotice/ModalNotice';
 
+import Box from 'components/Common/Box';
 import {
-  Title,
-  AnimalsImg,
-  AnimalsUl,
-  AnimalsLi,
-  AnimalsBtn,
-  AnimalsDiv,
-  AnimalsCategory,
-  AnimalsBox,
-  AnimalsCategoryDiv,
-  AnimalsSpan,
-  AnimalsSpanTitle,
-  AnimalsCategoryBox,
-  AnimalsFavorite,
-  AnimalsFavoriteBtn,
-  AnimalsFavoriteBox,
-  AnimalsBtnBox,
-  AnimalsDeleteSvg,
-  AnimalsBtnDel,
+  ItemNotice,
+  ImgNotice,
+  IconFavorite,
+  NoticeFavoriteBtn,
+  NoticeTitle,
+  NoticeListInfo,
+  NoticeItemInfo,
+  BtnLearnMore,
+  NoticeCategory,
+  WrapNoticeCategory,
+  NoticeItemInfoValue,
+  NoticeItemInfoTitle,
+  BtnDelSvg,
+  BtnDelOwn,
 } from './NoticeCategoryItem.styled';
 
 function NoticeCategoryItem({
-  id,
+  _id,
   category,
   avatarURL,
   title,
   breed,
   location,
   birthday,
+  favorite,
+  // own,
+  price,
   getNotice,
 }) {
   const handleClick = e => {
@@ -39,99 +38,76 @@ function NoticeCategoryItem({
     getNotice(btnId, btnType);
   };
 
-  const favorite = true;
-
+  const own = true;
   return (
-    <AnimalsBox>
-      <AnimalsCategoryBox>
-        <AnimalsFavoriteBox>
-          <AnimalsFavoriteBtn
+    <ItemNotice own={own}>
+      <Box position="relative">
+        <Box position="absolute" top="12px" right="12px">
+          <NoticeFavoriteBtn
             type="button"
-            id={id}
+            id={_id}
             onClick={handleClick}
             data-favorite="favorite"
           >
-            <AnimalsFavorite
-              style={favorite ? { fill: '#F59256' } : { fill: '#FFFFFF99' }}
-            />
-          </AnimalsFavoriteBtn>
-        </AnimalsFavoriteBox>
+            <IconFavorite favorite={favorite.toString()} />
+          </NoticeFavoriteBtn>
+        </Box>
 
-        <AnimalsImg src={avatarURL} alt="Animal" />
-        <AnimalsCategoryDiv>
-          <AnimalsCategory>{category}</AnimalsCategory>
-        </AnimalsCategoryDiv>
-      </AnimalsCategoryBox>
+        <ImgNotice src={avatarURL} alt="Animal" />
+        <WrapNoticeCategory>
+          <NoticeCategory>{category}</NoticeCategory>
+        </WrapNoticeCategory>
+      </Box>
 
-      <AnimalsDiv>
-        <Title>{title}</Title>
+      <Box pl={'20px'}>
+        <NoticeTitle>{title}</NoticeTitle>
 
-        <AnimalsUl>
-          <AnimalsLi>
-            <AnimalsSpanTitle>Breed:</AnimalsSpanTitle>
-            <AnimalsSpan>{breed}</AnimalsSpan>
-          </AnimalsLi>
-          <AnimalsLi>
-            <AnimalsSpanTitle>Place:</AnimalsSpanTitle>
-            <AnimalsSpan>{location}</AnimalsSpan>
-          </AnimalsLi>
-          <AnimalsLi>
-            <AnimalsSpanTitle> Age:</AnimalsSpanTitle>
-            <AnimalsSpan>{helpers.getAge(birthday)}</AnimalsSpan>
-          </AnimalsLi>
-        </AnimalsUl>
-      </AnimalsDiv>
-      {/* <AnimalsBtnMore>Learn more</AnimalsBtnMore>
-      <AnimalsBtnDel>Delete</AnimalsBtnDel> */}
+        <NoticeListInfo>
+          <NoticeItemInfo>
+            <NoticeItemInfoTitle>Breed:</NoticeItemInfoTitle>
+            <NoticeItemInfoValue>{breed}</NoticeItemInfoValue>
+          </NoticeItemInfo>
+          <NoticeItemInfo>
+            <NoticeItemInfoTitle>Place:</NoticeItemInfoTitle>
+            <NoticeItemInfoValue>{location}</NoticeItemInfoValue>
+          </NoticeItemInfo>
+          <NoticeItemInfo>
+            <NoticeItemInfoTitle> Age:</NoticeItemInfoTitle>
+            <NoticeItemInfoValue>
+              {helpers.getAge(birthday)}
+            </NoticeItemInfoValue>
+          </NoticeItemInfo>
+          {category === 'sell' && (
+            <NoticeItemInfo>
+              <NoticeItemInfoTitle> Price:</NoticeItemInfoTitle>
+              <NoticeItemInfoValue>{price} uah</NoticeItemInfoValue>
+            </NoticeItemInfo>
+          )}
+        </NoticeListInfo>
+      </Box>
 
-      {/* <AnimalsBtnMore
+      <BtnLearnMore
         type="button"
-        id={id}
+        id={_id}
         onClick={handleClick}
         data-modal="modal"
+        own={own}
+        category={category}
       >
         Learn more
-      </AnimalsBtnMore>
-      <AnimalsBtnDel
-        type="button"
-        id={id}
-        onClick={handleClick}
-        data-delete="delete"
-      >
-        Delete
-      </AnimalsBtnDel> */}
-      {favorite ? (
-        <AnimalsBtnBox>
-          <AnimalsBtn
-            type="button"
-            id={id}
-            onClick={handleClick}
-            data-modal="modal"
-          >
-            Learn more
-          </AnimalsBtn>
-          <AnimalsBtnDel
-            type="button"
-            id={id}
-            onClick={handleClick}
-            data-delete="delete"
-          >
-            Delete <AnimalsDeleteSvg />
-          </AnimalsBtnDel>
-        </AnimalsBtnBox>
-      ) : (
-        <AnimalsBtn
+      </BtnLearnMore>
+
+      {own && (
+        <BtnDelOwn
           type="button"
-          id={id}
+          id={_id}
           onClick={handleClick}
-          data-modal="modal"
-          style={{ marginTop: '50px' }}
+          data-delete="delete"
         >
-          Learn more
-        </AnimalsBtn>
+          Delete <BtnDelSvg />
+        </BtnDelOwn>
       )}
-      {/* <ModalNotice /> */}
-    </AnimalsBox>
+    </ItemNotice>
   );
 }
 

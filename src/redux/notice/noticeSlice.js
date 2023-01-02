@@ -11,6 +11,15 @@ const noticeSlice = createSlice({
   name: 'notice',
   initialState,
   reducers: {
+    changeFavorite(state, { payload }) {
+      for (const notice of state.notices) {
+        if (notice._id === payload) {
+          notice.favorite = !notice.favorite;
+          break;
+        }
+      }
+    },
+
     resetStateNoticeSlice(state) {
       state = initialState;
     },
@@ -38,6 +47,7 @@ const noticeSlice = createSlice({
   },
 });
 
-export const { resetState, resetStateNoticeSlice } = noticeSlice.actions;
+export const { resetState, resetStateNoticeSlice, changeFavorite } =
+  noticeSlice.actions;
 
 export default noticeSlice.reducer;
