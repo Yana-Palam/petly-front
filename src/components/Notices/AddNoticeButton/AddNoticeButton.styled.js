@@ -3,21 +3,23 @@ import { ReactComponent as Plus } from 'assets/icons/plus.svg';
 import { device } from 'utils/device';
 
 export const AddPetBox = styled.div`
+  width: 115px;
   position: fixed;
   top: 80%;
   right: ${p => `${p.theme.space[5]}px`};
   display: flex;
   align-items: center;
   gap: ${p => `${p.theme.space[3] + 4}px`};
+  z-index: 10;
 
   @media ${device.tablet} {
-    position: absolute;
-    top: ${p => `${p.theme.space[9] - 150}px`};
+    position: static;
+    /* top: ${p => `${p.theme.space[9] - 150}px`}; */
   }
 
-  @media ${device.desktop} {
+  /* @media ${device.desktop} {
     top: ${p => `${p.theme.space[9] - 180}px`};
-  }
+  } */
 `;
 
 export const AddPetBtn = styled.button`
