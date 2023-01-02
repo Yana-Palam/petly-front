@@ -11,7 +11,6 @@ import { changeFavorite } from 'redux/notice/noticeSlice';
 
 // Components
 import Container from 'components/Common/Container';
-import Section from 'components/Common/Section';
 import Modal from 'components/Common/Modal/Modal';
 import ModalNotice from 'components/Notices/ModalLearnMoreNotice/ModalNotice';
 import NoticesSearch from 'components/Notices/NoticesSearch';
@@ -130,19 +129,17 @@ function NoticesPage() {
       )}
 
       <Container>
-        <Section>
-          <Title>Find your favorite pet</Title>
-          <NoticesSearch handleSearch={handleSearch} />
-          <NoticesCategoriesNav />
-          {isLoading && <Loader />}
-          {Boolean(notices?.length > 0) ? (
-            <NoticesCategoriesList notices={notices} getBtnInfo={getBtnInfo} />
-          ) : (
-            <NoticeNotFound />
-          )}
-          {/* <ModalNotice /> */}
-          <AddNoticeButton getBtnInfo={getBtnInfo} />
-        </Section>
+        <Title>Find your favorite pet</Title>
+        <NoticesSearch handleSearch={handleSearch} />
+        <NoticesCategoriesNav />
+        {isLoading && <Loader />}
+        {Boolean(notices?.length > 0) ? (
+          <NoticesCategoriesList notices={notices} getBtnInfo={getBtnInfo} />
+        ) : (
+          <NoticeNotFound />
+        )}
+        {/* <ModalNotice /> */}
+        <AddNoticeButton getBtnInfo={getBtnInfo} />
       </Container>
     </>
   );

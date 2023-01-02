@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Friends from '../../components/Friends';
 import Loader from '../../components/Loader';
 import { getDate } from '../../services/api/DataApi';
-import { Section, StyledContainer, StyledTitle } from './OurFriendsPage.styled';
+import { StyledContainer, StyledTitle } from './OurFriendsPage.styled';
 
 function OurFriendsPage() {
   const [friends, setFriends] = useState([]);
@@ -25,14 +25,14 @@ function OurFriendsPage() {
     fetchFriends();
   }, []);
   return (
-    <Section>
+    <>
       <StyledContainer>
         <StyledTitle>Our friend</StyledTitle>
         {isLoading && <Loader />}
         {error && <div>{error.message}</div>}
         {friends && <Friends friends={friends} />}
       </StyledContainer>
-    </Section>
+    </>
   );
 }
 

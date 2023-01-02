@@ -16,16 +16,6 @@ export const ItemNotice = styled.li`
     p.own && {
       paddingBottom: '12px',
     }}
-
-  @media ${device.tablet} {
-    max-width: ${p => `${p.theme.space[9] - 176}px`};
-    flex-basis: calc((100% - 32px) / 2);
-  }
-
-  @media ${device.desktop} {
-    flex-basis: calc((100% - 96px) / 4);
-    max-width: ${p => `${p.theme.space[8] + 32}px`};
-  }
 `;
 
 export const NoticeFavoriteBtn = styled.button`
@@ -56,11 +46,11 @@ export const ImgNotice = styled.img`
   height: 288px;
 
   @media ${device.tablet} {
-    /* width: ${p => `${p.theme.space[9] - 176}px`}; */
+    width: ${p => `${p.theme.space[9] - 176}px`};
   }
 
   @media ${device.desktop} {
-    /* width: ${p => `${p.theme.space[8] + 32}px`}; */
+    width: ${p => `${p.theme.space[8] + 32}px`};
   }
 `;
 
@@ -126,7 +116,7 @@ export const BtnLearnMore = styled(StyledButton)`
   margin-right: auto;
 
   ${p =>
-    (p.own || p.category === 'sell') && {
+    (p.own || p.sell === 'sell') && {
       marginTop: `${p.theme.space[4] + 4}px`,
       marginBottom: `${p.theme.space[4] - 4}px`,
     }}
