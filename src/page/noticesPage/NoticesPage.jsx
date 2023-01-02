@@ -17,7 +17,7 @@ import NoticesSearch from 'components/Notices/NoticesSearch';
 import NoticesCategoriesNav from 'components/Notices/NoticesCategoriesNav';
 import AddNoticeButton from 'components/Notices/AddNoticeButton';
 import NoticesCategoriesList from 'components/Notices/NoticesCategoriesList';
-import NoticeNotFound from 'components/Notices/NoticeNotFound';
+// import NoticeNotFound from 'components/Notices/NoticeNotFound';
 import Loader from 'components/Loader';
 import DelNoticeItem from 'components/Notices/DelNoticeItem';
 
@@ -136,7 +136,8 @@ function NoticesPage() {
         {Boolean(notices?.length > 0) ? (
           <NoticesCategoriesList notices={notices} getBtnInfo={getBtnInfo} />
         ) : (
-          <NoticeNotFound />
+          <p>Not Found</p>
+          // <NoticeNotFound />
         )}
         {/* <ModalNotice /> */}
         <AddNoticeButton getBtnInfo={getBtnInfo} />
