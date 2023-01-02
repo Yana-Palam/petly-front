@@ -16,6 +16,13 @@ export const ItemNotice = styled.li`
     p.own && {
       paddingBottom: '12px',
     }}
+  @media ${device.tablet} {
+    max-width: ${p => `${p.theme.space[9] - 176}px`};
+  }
+
+  @media ${device.desktop} {
+    max-width: ${p => `${p.theme.space[8] + 32}px`};
+  }
 `;
 
 export const NoticeFavoriteBtn = styled.button`

@@ -56,3 +56,10 @@ export const CategoryPage = styled(NavLink)`
     /* margin-bottom: ${p => `${p.theme.space[6] - 4}px`}; */
   }
 `;
+
+export const CategoryPageBox = styled.div`
+  @media ${device.tablet} {
+    display: flex;
+    justify-content: space-between;
+  }
+`;

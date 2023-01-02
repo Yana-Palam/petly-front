@@ -3,17 +3,23 @@ import { useSelector } from 'react-redux';
 import { selectAccessToken } from 'redux/auth/authSelectors';
 
 import { categoryButtons, allowCategory } from './category';
+import Box from 'components/Common/Box';
+import AddNoticeButton from 'components/Notices/AddNoticeButton';
 
 import {
   CategoryList,
   CategoryListItem,
   CategoryPage,
+  CategoryPageBox,
 } from './NoticesCategoriesNav.styled';
 // import { selectAccessToken } from 'redux/auth/authSelectors';
 
-function NoticesCategoriesNav() {
+function NoticesCategoriesNav({ getBtnInfo }) {
   const { category } = useParams();
   const token = useSelector(selectAccessToken);
+  const getNotice = (btnId, btnType) => {
+    getBtnInfo(btnId, btnType);
+  };
 
   return (
     <>
@@ -21,22 +27,32 @@ function NoticesCategoriesNav() {
         <Navigate to={'/'} />
       ) : (
         <>
-          <CategoryList>
-            {categoryButtons.publicRoute.map(({ pageTitle, link }) => (
-              <CategoryListItem key={pageTitle}>
-                <CategoryPage to={`/notices/${link}`}>{pageTitle}</CategoryPage>
-              </CategoryListItem>
-            ))}
+          <CategoryPageBox>
+            {' '}
+            <Box>
+              <CategoryList>
+                {categoryButtons.publicRoute.map(({ pageTitle, link }) => (
+                  <CategoryListItem key={pageTitle}>
+                    <CategoryPage to={`/notices/${link}`}>
+                      {pageTitle}
+                    </CategoryPage>
+                  </CategoryListItem>
+                ))}
 
-            {Boolean(token) &&
-              categoryButtons.privateRoute.map(({ pageTitle, link }) => (
-                <CategoryListItem key={pageTitle}>
-                  <CategoryPage to={`/notices/${link}`}>
-                    {pageTitle}
-                  </CategoryPage>
-                </CategoryListItem>
-              ))}
-          </CategoryList>
+                {Boolean(token) &&
+                  categoryButtons.privateRoute.map(({ pageTitle, link }) => (
+                    <CategoryListItem key={pageTitle}>
+                      <CategoryPage to={`/notices/${link}`}>
+                        {pageTitle}
+                      </CategoryPage>
+                    </CategoryListItem>
+                  ))}
+              </CategoryList>
+            </Box>
+            <Box>
+              <AddNoticeButton getBtnInfo={getNotice} />
+            </Box>
+          </CategoryPageBox>
         </>
       )}
     </>
