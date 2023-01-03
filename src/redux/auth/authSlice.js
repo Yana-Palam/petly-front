@@ -78,14 +78,6 @@ const authSlice = createSlice({
       // state.user.accessToken = user.accessToken;
       // state.user.refreshToken = user.refreshToken;
 
-<<<<<<< HEAD
-      state.token = user.token;
-      state.refreshToken = refreshToken;
-
-      state.user.id = id;
-      state.user = user;
-=======
->>>>>>> c60e687c630d3058543d59056bd623c654020866
       state.isLoggedIn = true;
       state.isLoading = false;
     },

@@ -1,5 +1,7 @@
-import { helpers } from 'utils/helpers';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectUserNotice } from 'redux/auth/authSelectors';
 
+import { helpers } from 'utils/helpers';
 import Box from 'components/Common/Box';
 import {
   ItemNotice,
@@ -31,7 +33,14 @@ function NoticeCategoryItem({
   price,
   getNotice,
 }) {
+  const { userFavorites, ownNotice, userPets } = useSelector(selectUserNotice);
+  console.log(userFavorites, ownNotice, userPets);
+
   const noItem = '-------------';
+
+  // console.log(user);
+
+  const isFavorites = id => {};
 
   const handleClick = e => {
     e.preventDefault();
