@@ -12,20 +12,20 @@ import {
 import storage from 'redux-persist/lib/storage';
 import authReducer from './auth/authSlice';
 import noticeReducer from './notice/noticeSlice';
-import userDataReducer from './userData/userDataSlice';
+// import userDataReducer from './userData/userDataSlice';
 
 const persistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['user', 'isLoggedIn', 'token'],
-  // , 'refreshToken', 'sid'],
+  whitelist: ['token', 'isLoggedIn'],
+  //  'sid'],
 };
 
 export const store = configureStore({
   reducer: {
     auth: persistReducer(persistConfig, authReducer),
     notice: noticeReducer,
-    userData: userDataReducer,
+    // userData: userDataReducer,
   },
   middleware(getDefaultMiddleware) {
     return getDefaultMiddleware({
