@@ -3,7 +3,7 @@ import { device } from 'utils/device';
 
 export const HeaderStyled = styled.header`
   position: relative;
-  z-index: 1;
+  z-index: 99;
   display: flex;
   flex-direction: column;
   background-color: ${({ theme }) => theme.colors.burgerBackground};
@@ -35,7 +35,7 @@ export const MobMenuButton = styled.button`
   }
 `;
 
-export const BurgerMenu = styled.img``;
+// export const BurgerMenu = styled.img``;
 
 export const ModalWrapper = styled.div`
   height: 100vh;

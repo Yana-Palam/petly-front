@@ -7,17 +7,17 @@ import {
   Li,
 } from './AuthNav.styled';
 
-function AuthNav({ closeMobMenu }) {
+function AuthNav({ onClick }) {
   return (
     <ListWrapper>
       <List>
         <Li>
-          <AccentLink onClick={closeMobMenu} to="/login">
+          <AccentLink onClick={onClick} to="/login">
             Login
           </AccentLink>
         </Li>
         <Li>
-          <LinkStyled onClick={closeMobMenu} to="/register">
+          <LinkStyled onClick={onClick} to="/register">
             Registration
           </LinkStyled>
         </Li>

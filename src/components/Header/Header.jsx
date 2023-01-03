@@ -1,29 +1,16 @@
 import { useState } from 'react';
-// import { useLocation } from 'react-router-dom';
-import useMatchMedia from 'hooks/useMatchMedia';
 import { useSelector } from 'react-redux';
-import burger from '../../assets/icons/burger.svg';
-import close from '../../assets/icons/icon-close.svg';
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import useScrollLock from 'hooks/useScrollLock';
-import AuthNav from './AuthNav/AuthNav';
-import Logo from './Logo';
-import Nav from './Nav';
-import UserNav from './UserNav';
 
-import {
-  HeaderStyled,
-  BurgerMenu,
-  MobMenuButton,
-  ModalWrapper,
-  Wrap,
-} from './Header.styled';
+import NotLoggedIn from './NotLoggedIn';
+import LoggedIn from './LoggedIn';
+
+import { HeaderStyled } from './Header.styled';
 
 function Header() {
   const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
   const isLogin = useSelector(selectIsLoggedIn);
-  const { isDesktop, isTablet, isMobile } = useMatchMedia();
-  // const { pathname } = useLocation();
   const { lockScroll, UnlockScroll } = useScrollLock();
 
   const toggleMenu = () => {
@@ -41,78 +28,17 @@ function Header() {
     <>
       <HeaderStyled>
         {isLogin ? (
-          <>
-            <Wrap>
-              <Logo closeMobMenu={closeMobMenu} />
-              {isTablet && !mobileMenuIsOpen && <UserNav />}
-              {isDesktop ? (
-                <>
-                  <Nav />
-                  <UserNav />
-                </>
-              ) : (
-                <>
-                  <MobMenuButton
-                    type="button"
-                    aria-label="burger-menu"
-                    onClick={toggleMenu}
-                  >
-                    <BurgerMenu
-                      src={burger}
-                      alt="burger-menu-icon"
-                      width={30}
-                      height={20}
-                    />
-                  </MobMenuButton>
-                </>
-              )}
-            </Wrap>
-            {!isDesktop && mobileMenuIsOpen && (
-              <ModalWrapper>
-                {isMobile && <UserNav closeMobMenu={closeMobMenu} />}
-                <Nav closeMobMenu={closeMobMenu} />
-              </ModalWrapper>
-            )}
-          </>
+          <LoggedIn
+            closeMobMenu={closeMobMenu}
+            mobileMenuIsOpen={mobileMenuIsOpen}
+            toggleMenu={toggleMenu}
+          />
         ) : (
-          <>
-            <Wrap>
-              <Logo closeMobMenu={closeMobMenu} />
-              {isTablet && !mobileMenuIsOpen && (
-                <>
-                  <AuthNav />
-                </>
-              )}
-              {isDesktop && (
-                <>
-                  <Nav />
-                  <AuthNav />
-                </>
-              )}
-              {!isDesktop && (
-                <MobMenuButton
-                  type="button"
-                  aria-label="burger-menu"
-                  onClick={toggleMenu}
-                >
-                  <BurgerMenu
-                    src={mobileMenuIsOpen ? close : burger}
-                    alt="burger-menu-icon"
-                    width={30}
-                    height={20}
-                  />
-                </MobMenuButton>
-              )}
-            </Wrap>
-
-            {/* ----------Mobile menu is open---------- */}
-            {!isDesktop && mobileMenuIsOpen && (
-              <ModalWrapper>
-                {isMobile && <AuthNav closeMobMenu={closeMobMenu} />}
-                <Nav closeMobMenu={closeMobMenu} />
-              </ModalWrapper>
-            )}
-          </>
+          <NotLoggedIn
+            closeMobMenu={closeMobMenu}
+            mobileMenuIsOpen={mobileMenuIsOpen}
+            toggleMenu={toggleMenu}
+          />
         )}
       </HeaderStyled>
     </>
