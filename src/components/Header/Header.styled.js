@@ -3,7 +3,7 @@ import { device } from 'utils/device';
 
 export const HeaderStyled = styled.header`
   position: relative;
-  z-index: 99;
+  z-index: 90;
   display: flex;
   flex-direction: column;
   background-color: ${({ theme }) => theme.colors.burgerBackground};
