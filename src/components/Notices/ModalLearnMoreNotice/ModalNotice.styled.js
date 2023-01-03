@@ -54,6 +54,10 @@ export const ModalTitle = styled.h2`
   margin-bottom: 8px;
   color: #000000;
 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
   @media ${device.tablet} {
     width: 321px;
     height: 76px;
