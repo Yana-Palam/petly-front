@@ -3,6 +3,7 @@ import { device } from 'utils/device';
 
 export const HeroTitle = styled.h1`
   padding: 0 20px;
+  position: relative;
   z-index: 1;
 
   font-family: ${({ theme }) => theme.fonts.main};
