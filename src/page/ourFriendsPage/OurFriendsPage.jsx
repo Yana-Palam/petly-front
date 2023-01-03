@@ -3,6 +3,7 @@ import Friends from '../../components/Friends';
 import Loader from '../../components/Loader';
 import { getDate } from '../../services/api/DataApi';
 import { StyledContainer, StyledTitle } from './OurFriendsPage.styled';
+import { motion } from 'framer-motion';
 
 function OurFriendsPage() {
   const [friends, setFriends] = useState([]);
@@ -26,7 +27,12 @@ function OurFriendsPage() {
   }, []);
   return (
     <>
-      <StyledContainer>
+      <StyledContainer
+        as={motion.div}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.6, delay: 0.4 }}
+      >
         <StyledTitle>Our friend</StyledTitle>
         {isLoading && <Loader />}
         {error && <div>{error.message}</div>}

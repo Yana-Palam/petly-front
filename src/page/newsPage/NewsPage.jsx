@@ -5,6 +5,7 @@ import Loader from '../../components/Loader';
 import NewsList from '../../components/News/NewsList';
 import { getDate } from '../../services/api/DataApi';
 import { StyledContainer, StyledTitle } from './NewsPage.styled';
+import { motion } from 'framer-motion';
 
 function NewsPage() {
   const [news, setNews] = useState([]);
@@ -51,7 +52,12 @@ function NewsPage() {
 
   return (
     <>
-      <StyledContainer>
+      <StyledContainer
+        as={motion.div}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1.6, delay: 0.4 }}
+      >
         <StyledTitle>News page</StyledTitle>
         <SearchInput
           onChange={changeHandler}

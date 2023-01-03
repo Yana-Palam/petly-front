@@ -40,7 +40,7 @@ const authSlice = createSlice({
     ) => {
       state.user = user;
 
-      state.token = token;
+      state.token = user.token;
       state.refreshToken = refreshToken;
 
       state.user.id = id;

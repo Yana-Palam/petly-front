@@ -39,26 +39,24 @@ export const LinkStyled = styled(Link)`
   color: ${({ theme }) => theme.colors.black};
   background-color: ${({ theme }) => theme.colors.white};
 
-  outline: ${({ theme }) => theme.borders.normal};
   border-radius: ${({ theme }) => theme.radii.xxl};
-  outline-color: ${({ theme }) => theme.colors.accent};
+  border: ${({ theme }) => theme.borders.normal};
+  border-color: ${({ theme }) => theme.colors.accent};
 
   &:hover,
   &:focus {
     color: ${({ theme }) => theme.colors.accent};
-    outline: 2px solid #ff6101;
+    border: 2px solid #ff6101;
     transition: color ${p => p.theme.animation.cubic},
-      outline ${p => p.theme.animation.cubic};
+      border ${p => p.theme.animation.cubic};
   }
   @media ${device.desktop} {
     align-items: flex-end;
-    height: 32px;
   }
 `;
 
 export const AccentLink = styled(LinkStyled)`
   min-width: 95px;
-  height: 35px;
 
   color: ${({ theme }) => theme.colors.white};
   background-color: ${({ theme }) => theme.colors.accent};

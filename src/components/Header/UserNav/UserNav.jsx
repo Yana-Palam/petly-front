@@ -11,7 +11,7 @@ function UserNav({ closeMobMenu }) {
         style={{ padding: '8px 36px' }}
         to="/user"
       >
-        <Account alt="account logo" style={{ marginRight: '14px'}} />
+        <Account alt="account logo" style={{ marginRight: '14px' }} />
         Account
       </AccentLink>
     </AccountLinkWrapper>
