@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { device } from 'utils/device';
 
 export const ModalBackdrop = styled.div`
+  z-index: 100;
   position: fixed;
   top: 0;
   left: 0;
