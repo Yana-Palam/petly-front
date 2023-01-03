@@ -32,9 +32,9 @@ export const NavLinkItem = styled(NavLink)`
 
   &:hover,
   &:focus,
-  &:active {
+  &.active {
     color: ${({ theme }) => theme.colors.accent};
-    transition: color ${p => p.theme.animation.cubic};
+    transition: color ${({ theme }) => theme.animation.cubic};
     text-decoration: underline;
   }
 `;
