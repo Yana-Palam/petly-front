@@ -2,10 +2,8 @@ import { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { selectIsLoggedIn } from 'redux/auth/authSelectors';
 import useScrollLock from 'hooks/useScrollLock';
-
 import NotLoggedIn from './NotLoggedIn';
 import LoggedIn from './LoggedIn';
-
 import { HeaderStyled } from './Header.styled';
 
 function Header() {

@@ -3,11 +3,11 @@ import Logo from '../Logo';
 import Nav from '../Nav';
 import UserNav from '../UserNav';
 import MobMenuBtn from '../MobMenuButton';
-
-import { ModalWrapper, Wrap } from '../Header.styled';
+import MobMenuOpen from '../MobMenuOpen';
+import { Wrap } from '../Header.styled';
 
 function LoggedIn({ closeMobMenu, mobileMenuIsOpen, toggleMenu }) {
-  const { isDesktop, isTablet, isMobile } = useMatchMedia();
+  const { isDesktop, isTablet } = useMatchMedia();
 
   return (
     <>
@@ -29,10 +29,7 @@ function LoggedIn({ closeMobMenu, mobileMenuIsOpen, toggleMenu }) {
 
       {/* ----------Mobile menu is open---------- */}
       {!isDesktop && mobileMenuIsOpen && (
-        <ModalWrapper>
-          {isMobile && <UserNav closeMobMenu={closeMobMenu} />}
-          <Nav closeMobMenu={closeMobMenu} />
-        </ModalWrapper>
+        <MobMenuOpen closeMobMenu={closeMobMenu} />
       )}
     </>
   );

@@ -35,8 +35,6 @@ export const MobMenuButton = styled.button`
   }
 `;
 
-// export const BurgerMenu = styled.img``;
-
 export const ModalWrapper = styled.div`
   height: 100vh;
   display: flex;
