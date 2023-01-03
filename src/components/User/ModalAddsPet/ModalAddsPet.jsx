@@ -153,7 +153,7 @@ const ModalAddsPet = ({ setShowModal }) => {
                 {/* {'userPage.addPet.title'} */}
                 Title
               </h2>
-              <Label forhtml="name" className={s.label}>
+              <Label forHtml="name" className={s.label}>
                 {/* {'userPage.addPet.name'} */}
                 Name
                 <span className={s.accent}>*</span>
@@ -172,7 +172,7 @@ const ModalAddsPet = ({ setShowModal }) => {
               <p className={s.error}>
                 {formik.touched.name && nameError && nameError}
               </p>
-              <Label forhtml="birthday" className={s.label}>
+              <Label forHtml="birthday" className={s.label}>
                 {/* {'userPage.addPet.date'} */}
                 Date
                 <span className={s.accent}>*</span>
@@ -202,7 +202,7 @@ const ModalAddsPet = ({ setShowModal }) => {
                 }}
               />
               <p className={s.error}></p>
-              <Label forhtml="breed" className={s.label}>
+              <Label forHtml="breed" className={s.label}>
                 {/* {'userPage.addPet.breed'} */}
                 Breed
                 <span className={s.accent}>*</span>
@@ -252,7 +252,7 @@ const ModalAddsPet = ({ setShowModal }) => {
                 Description
               </p>
               <div className={s.loadImgGroup}>
-                <LabelLoad forhtml="file" className={s.labelLoad}>
+                <LabelLoad forHtml="file" className={s.labelLoad}>
                   {!photo && (
                     <img src={imgLoad} alt="add_photo" width="71" height="71" />
                   )}
@@ -277,7 +277,7 @@ const ModalAddsPet = ({ setShowModal }) => {
                   />
                 </LabelLoad>
               </div>
-              <Label forhtml="comments" className={s.label}>
+              <Label forHtml="comments" className={s.label}>
                 {/* {'userPage.addPet.comments'} */}
                 Comments
               </Label>
@@ -316,7 +316,7 @@ const ModalAddsPet = ({ setShowModal }) => {
         </form>
       </Modal>
     </Backdrop>,
-    modalContainer,
+    modalContainer
   );
 };
 
