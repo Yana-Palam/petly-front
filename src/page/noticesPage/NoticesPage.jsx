@@ -139,8 +139,8 @@ function NoticesPage() {
           <p>Not Found</p>
           // <NoticeNotFound />
         )}
-        <ModalAddNotice />
-        {/* <AddNoticeButton getBtnInfo={getBtnInfo} /> */}
+        {/* <ModalAddNotice /> */}
+        <AddNoticeButton getBtnInfo={getBtnInfo} />
         {/* <ModalNotice /> */}
       </Container>
     </>
