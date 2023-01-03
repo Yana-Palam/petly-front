@@ -7,6 +7,7 @@ import { showAlertMessage } from '../../../utils/showMessages';
 import { addPet } from '../../../redux/userData/userDataOperation';
 import imgLoad from '../../../assets/images/Modal/loadMobile.png';
 import iconClose from '../../../assets/icons/icon-close.svg';
+import celendar from '../../../assets/icons/calendar.svg';
 import s from './ModalAddsPet.module.css';
 import {
   Backdrop,
@@ -137,33 +138,16 @@ const ModalAddsPet = ({ setShowModal }) => {
           onClick={onBtnCloseClick}
         >
           <ImgClose src={iconClose} alt="" />
-          {/* <svg
-            className={s.iconClose}
-            aria-label="Close modal"
-            width="21"
-            height="21"
-          >
-            <use href={'icon-close'} />
-          </svg> */}
         </BtnClose>
         <form onSubmit={onFormSubmit}>
           {page === 1 && (
             <>
-              <h2 className={s.title}>
-                {/* {'userPage.addPet.title'} */}
-                Title
-              </h2>
-              <Label forhtml="name" className={s.label}>
-                {/* {'userPage.addPet.name'} */}
-                Name
-                <span className={s.accent}>*</span>
-              </Label>
+              <h2 className={s.title}>Title</h2>
+              <Label forhtml="name">Name</Label>
               <Input
-                className={s.input}
                 type="text"
                 name="name"
                 id="name"
-                // placeholder={'userPage.addPet.placeholders.name'}
                 placeholder={'Name'}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -172,25 +156,16 @@ const ModalAddsPet = ({ setShowModal }) => {
               <p className={s.error}>
                 {formik.touched.name && nameError && nameError}
               </p>
-              <Label forhtml="birthday" className={s.label}>
-                {/* {'userPage.addPet.date'} */}
-                Date
-                <span className={s.accent}>*</span>
-              </Label>
+              <Label forhtml="birthday">Date</Label>
               <DatePicker
                 clearIcon={null}
-                calendarIcon={
-                  <svg width={20} height={20}>
-                    {/* <use href={sprite + '#icon-calendar'} /> */}
-                  </svg>
-                }
+                calendarIcon={<ImgClose src={celendar} alt="" />}
                 format="dd.MM.yyyy"
-                className={s.input}
                 selected={birthday}
                 maxDate={new Date()}
-                yearPlaceholder={'userPage.addPet.placeholders.years'}
-                monthPlaceholder={'userPage.addPet.placeholders.months'}
-                dayPlaceholder={'userPage.addPet.placeholders.days'}
+                yearPlaceholder={'years'}
+                monthPlaceholder={'months'}
+                dayPlaceholder={'days'}
                 id="birthday"
                 name="birthday"
                 value={birthday}
@@ -202,17 +177,11 @@ const ModalAddsPet = ({ setShowModal }) => {
                 }}
               />
               <p className={s.error}></p>
-              <Label forhtml="breed" className={s.label}>
-                {/* {'userPage.addPet.breed'} */}
-                Breed
-                <span className={s.accent}>*</span>
-              </Label>
+              <Label forhtml="breed">Breed</Label>
               <Input
-                className={s.input}
                 type="text"
                 name="breed"
                 id="breed"
-                // placeholder={'userPage.addPet.placeholders.breed'}
                 placeholder={'Breed'}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -221,21 +190,11 @@ const ModalAddsPet = ({ setShowModal }) => {
               <p className={s['error--last']}>
                 {formik.touched.breed && breedError && breedError}
               </p>
-              <BlockOfButtons className={s.blockOfButtons}>
-                <Button
-                  className={s.button}
-                  type="button"
-                  onClick={onBtnCloseClick}
-                >
-                  {/* {'noticesPage.buttons.cancel'} */}
+              <BlockOfButtons>
+                <Button type="button" onClick={onBtnCloseClick}>
                   Cancel
                 </Button>
-                <AccentBtn
-                  className={`${s.button} ${s.accentBtn}`}
-                  type="button"
-                  onClick={onPageChange}
-                >
-                  {/* {'noticesPage.buttons.next'} */}
+                <AccentBtn type="button" onClick={onPageChange}>
                   Next
                 </AccentBtn>
               </BlockOfButtons>
@@ -243,21 +202,15 @@ const ModalAddsPet = ({ setShowModal }) => {
           )}
           {page === 2 && (
             <>
-              <h2 className={s.titleSecondPage}>
-                {/* {'userPage.addPet.title'} */}
-                Title
-              </h2>
-              <p className={s.descr}>
-                {/* {'userPage.addPet.description'} */}
-                Description
-              </p>
+              <h2 className={s.titleSecondPage}>Title</h2>
+              <p className={s.descr}>Description</p>
               <div className={s.loadImgGroup}>
-                <LabelLoad forhtml="file" className={s.labelLoad}>
+                <LabelLoad forhtml="file">
                   {!photo && (
                     <img src={imgLoad} alt="add_photo" width="71" height="71" />
                   )}
                   {photo && (
-                    <ThumbLoadImg className={s.thumbLoadImg}>
+                    <ThumbLoadImg>
                       <img
                         src={photo}
                         alt="pet_photo"
@@ -277,16 +230,11 @@ const ModalAddsPet = ({ setShowModal }) => {
                   />
                 </LabelLoad>
               </div>
-              <Label forhtml="comments" className={s.label}>
-                {/* {'userPage.addPet.comments'} */}
-                Comments
-              </Label>
+              <Label forhtml="comments">Comments</Label>
               <Textarea
-                className={s.textarea}
                 name="comments"
                 id="comments"
                 placeholder={'Comments'}
-                // placeholder={'userPage.addPet.placeholders.comments'}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={comments}
@@ -294,22 +242,11 @@ const ModalAddsPet = ({ setShowModal }) => {
               <p className={s['error--last']}>
                 {formik.touched.comments && commentsError && commentsError}
               </p>
-              <BlockOfButtons className={s.blockOfButtons}>
-                <Button
-                  className={s.button}
-                  type="button"
-                  onClick={onPageChange}
-                >
-                  {/* {'noticesPage.buttons.back'} */}
+              <BlockOfButtons>
+                <Button type="button" onClick={onPageChange}>
                   Back
                 </Button>
-                <AccentBtn
-                  className={`${s.button} ${s.accentBtn}`}
-                  type="submit"
-                >
-                  {/* {'noticesPage.buttons.done'} */}
-                  Done
-                </AccentBtn>
+                <AccentBtn type="submit">Done</AccentBtn>
               </BlockOfButtons>
             </>
           )}
