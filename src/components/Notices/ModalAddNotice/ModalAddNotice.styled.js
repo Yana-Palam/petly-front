@@ -1,6 +1,21 @@
 import styled from 'styled-components';
 import { device } from 'utils/device';
 
+import { ReactComponent as Male } from 'assets/icons/male.svg';
+import { ReactComponent as Female } from 'assets/icons/female.svg';
+import DatePicker from 'react-date-picker';
+
+export const IconMale = styled(Male)`
+  margin-bottom: 20px;
+  width: 60px;
+  height: 60px;
+`;
+export const IconFemale = styled(Female)`
+  margin-bottom: 20px;
+  width: 60px;
+  height: 60px;
+`;
+
 export const MaddNotBackdrop = styled.div`
   position: fixed;
   top: 0;

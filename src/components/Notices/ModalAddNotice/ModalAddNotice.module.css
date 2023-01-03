@@ -3,7 +3,7 @@
   text-align: left;
   font-size: 10px;
   line-height: 12px;
-  color: var(--accent-color);
+  color: #f59256;
   letter-spacing: 0.04em;
   padding: 5px 15px;
 
@@ -18,68 +18,13 @@
 }
 
 .accent {
-  color: var(--accent-color);
+  color: #f59256;
 }
 
 .activeCategory {
   background-color: #f59256 !important;
   color: #ffffff !important;
 }
-
-/* .radioToolbarPage2 {
-  margin-bottom: 71px; */
-
-/* @include mq(tab) {
-    margin-bottom: 87px;
-  } */
-/* } */
-
-/* .radioToolbarPage2 input[type='radio'] {
-  display: none;
-} */
-
-/* .labelDistance {
-  margin-bottom: 16px; */
-
-/* @include mq(tab) {
-    margin-bottom: 28px;
-  } */
-/* } */
-/* 
-.blockOfRadio {
-  display: flex;
-  margin-bottom: 32px;
-} */
-
-/* .sexLabel {
-  position: relative;
-  display: block;
-  width: 40px;
-  height: 40px;
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-  cursor: pointer; */
-
-/* @include mq(tab) {
-    width: 60px;
-    height: 60px; */
-/* } */
-/* } */
-
-/* .labelMale { */
-/* background-image: url('../../images/modals/male.png'); */
-
-/* margin-right: 40px; */
-
-/* @include mq(tab) {
-    margin-right: 83px;
-  } */
-/* } */
-
-/* .labelFemale {
-  /* background-image: url('../../images/modals/female.png'); */
-/* } */
 
 .sexDescr {
   position: absolute;
@@ -95,55 +40,16 @@
 }
 
 .active {
-  color: var(--accent-color);
+  color: #f59256;
 }
 
 .notActive {
-  color: var(--font-color);
+  color: #111111;
 }
 
 .inputLoad {
   display: none;
 }
-
-/* .titleLoad {
-  composes: label;
-} */
-
-/* .labelLoad {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 116px;
-  height: 116px;
-  background: var(--bg-color);
-  border-radius: 20px;
-  cursor: pointer;
-  margin-bottom: 28px; */
-
-/* @include mq(tab) {
-    width: 140px;
-    height: 140px; */
-/* } */
-/* } */
-
-/* .thumbLoadImg {
-  width: 116px;
-  height: 116px;
-  border-radius: 20px; */
-
-/* @include mq(tab) {
-    width: 140px;
-    height: 140px; */
-/* } */
-/* } */
-
-/* .loadImage {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 20px;
-} */
 
 .disabled {
   display: block;
@@ -153,9 +59,9 @@
   line-height: 1.38;
   letter-spacing: 0.04em;
 
-  color: var(--font-color);
-  background-color: var(--white);
-  border: 2px solid var(--accent-color);
+  color: #111111;
+  background-color: #ffffff;
+  border: 2px solid #f59256;
   border-radius: 40px;
 
   padding-top: 9px;
