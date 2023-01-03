@@ -3,7 +3,6 @@ import { device } from 'utils/device';
 
 import { ReactComponent as Male } from 'assets/icons/male.svg';
 import { ReactComponent as Female } from 'assets/icons/female.svg';
-import DatePicker from 'react-date-picker';
 
 export const IconMale = styled(Male)`
   margin-bottom: 20px;
