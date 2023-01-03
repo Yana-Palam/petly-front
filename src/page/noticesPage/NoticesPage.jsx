@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useSearchParams, useNavigate } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 import useToggleModal from 'hooks/toggleModal';
 
@@ -22,6 +22,7 @@ import DelNoticeItem from 'components/Notices/DelNoticeItem';
 
 // import ModalNotice from '../../components/Notices/ModalNotice/ModalNotice';
 import { Title } from './NoticesPage.styled';
+import { toast } from 'react-toastify';
 
 const initialState = {
   search: '',
@@ -45,7 +46,6 @@ function NoticesPage() {
   // );
 
   const path = useLocation().pathname;
-  let navigate = useNavigate();
 
   console.log('notices', notices);
 
@@ -92,7 +92,8 @@ function NoticesPage() {
       !Boolean(token) &&
       (btnType?.favorite || btnType?.add || btnType?.delete)
     ) {
-      navigate('/login');
+      toast.warn('You are not a registered user!');
+      return;
     }
 
     if (btnType?.favorite) {
@@ -138,6 +139,8 @@ function NoticesPage() {
           <p>Not Found</p>
           // <NoticeNotFound />
         )}
+        {/* <ModalAddNotice /> */}
+        {/* <AddNoticeButton getBtnInfo={getBtnInfo} /> */}
         {/* <ModalNotice /> */}
       </Container>
     </>

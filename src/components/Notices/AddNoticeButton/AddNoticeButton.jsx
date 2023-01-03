@@ -1,14 +1,14 @@
 import useMatchMedia from 'hooks/useMatchMedia';
 import { AddPetBox, AddPetBtn, AddPetSvg } from './AddNoticeButton.styled';
 
-function AddNoticeButton({ onBtnAddPetClick }) {
+function AddNoticeButton({ handleClick }) {
   const { isMobile } = useMatchMedia();
 
   return (
     <>
       <AddPetBox>
         {!isMobile && <span>Add Pet </span>}
-        <AddPetBtn onClick={onBtnAddPetClick} data-add="add">
+        <AddPetBtn onClick={handleClick} type="button" id="1" data-add="add">
           <AddPetSvg />
           {isMobile && <span>Add Pet </span>}
         </AddPetBtn>

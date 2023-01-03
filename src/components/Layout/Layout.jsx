@@ -8,7 +8,7 @@ import Header from 'components/Header';
 const Layout = () => {
   return (
     <>
-      <Header /*closeModal={closeModal} isOpen={isOpen} */ />
+      <Header />
       <Suspense fallback={<Loader />}>
         <Section>
           <Outlet />

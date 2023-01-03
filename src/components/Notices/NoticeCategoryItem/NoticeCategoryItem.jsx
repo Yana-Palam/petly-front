@@ -4,7 +4,7 @@ import Box from 'components/Common/Box';
 import {
   ItemNotice,
   ImgNotice,
-  IconFavorite,
+  // IconFavorite,
   NoticeFavoriteBtn,
   NoticeTitle,
   NoticeListInfo,
@@ -31,6 +31,8 @@ function NoticeCategoryItem({
   price,
   getNotice,
 }) {
+  const noItem = '-------------';
+
   const handleClick = e => {
     e.preventDefault();
     const btnId = e.currentTarget.id;
@@ -49,7 +51,7 @@ function NoticeCategoryItem({
             onClick={handleClick}
             data-favorite="favorite"
           >
-            <IconFavorite favorite={favorite.toString()} />
+            {/* <IconFavorite favorite={favorite.toString()} /> */}
           </NoticeFavoriteBtn>
         </Box>
 
@@ -60,27 +62,28 @@ function NoticeCategoryItem({
       </Box>
 
       <Box pl={'20px'}>
-        <NoticeTitle>{title}</NoticeTitle>
+        <NoticeTitle>{title || noItem}</NoticeTitle>
 
         <NoticeListInfo>
           <NoticeItemInfo>
             <NoticeItemInfoTitle>Breed:</NoticeItemInfoTitle>
-            <NoticeItemInfoValue>{breed}</NoticeItemInfoValue>
+            <NoticeItemInfoValue>{breed || noItem}</NoticeItemInfoValue>
           </NoticeItemInfo>
           <NoticeItemInfo>
             <NoticeItemInfoTitle>Place:</NoticeItemInfoTitle>
-            <NoticeItemInfoValue>{location}</NoticeItemInfoValue>
+            <NoticeItemInfoValue>{location || noItem}</NoticeItemInfoValue>
           </NoticeItemInfo>
           <NoticeItemInfo>
             <NoticeItemInfoTitle> Age:</NoticeItemInfoTitle>
             <NoticeItemInfoValue>
+              {/* {birthday || noItem} */}
               {helpers.getAge(birthday)}
             </NoticeItemInfoValue>
           </NoticeItemInfo>
           {category === 'sell' && (
             <NoticeItemInfo>
               <NoticeItemInfoTitle> Price:</NoticeItemInfoTitle>
-              <NoticeItemInfoValue>{price} uah</NoticeItemInfoValue>
+              <NoticeItemInfoValue>{price || noItem} uah</NoticeItemInfoValue>
             </NoticeItemInfo>
           )}
         </NoticeListInfo>
