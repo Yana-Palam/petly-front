@@ -4,7 +4,7 @@ import Box from 'components/Common/Box';
 import {
   ItemNotice,
   ImgNotice,
-  IconFavorite,
+  // IconFavorite,
   NoticeFavoriteBtn,
   NoticeTitle,
   NoticeListInfo,
@@ -51,7 +51,7 @@ function NoticeCategoryItem({
             onClick={handleClick}
             data-favorite="favorite"
           >
-            <IconFavorite favorite={favorite.toString()} />
+            {/* <IconFavorite favorite={favorite.toString()} /> */}
           </NoticeFavoriteBtn>
         </Box>
 
