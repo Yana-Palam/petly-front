@@ -4,8 +4,8 @@ const size = {
   fablet: '480px',
   fabletOnly: '767px',
   tablet: '768px',
-  noDesktop: '1199px',
-  desktop: '1200px',
+  noDesktop: '1279px',
+  desktop: '1280px',
 };
 
 export const device = {
