@@ -22,7 +22,7 @@ import DelNoticeItem from 'components/Notices/DelNoticeItem';
 
 // import ModalNotice from '../../components/Notices/ModalNotice/ModalNotice';
 import { Title } from './NoticesPage.styled';
-// import ModalAddNotice from 'components/Notices/ModalAddNotice';
+import ModalAddNotice from 'components/Notices/ModalAddNotice';
 
 const initialState = {
   search: '',
@@ -114,7 +114,7 @@ function NoticesPage() {
           {/* {state.btnType?.favorite && <p>Favorite</p>} */}
           {state.btnType?.modal && (
             <>
-              <ModalNotice
+              <ModalAddNotice
                 notices={getNoticeById}
                 closeModal={closeModal}
                 getBtnInfo={getBtnInfo}
@@ -124,7 +124,9 @@ function NoticesPage() {
           {state.btnType?.delete && (
             <DelNoticeItem notices={notices} closeModal={closeModal} />
           )}
-          {state.btnType?.add && <p>Add pet</p>}
+          {state.btnType?.add && (
+            // <>{/* <ModalAddNotice closeModal={closeModal} /> */}</>
+          )}
         </Modal>
       )}
 

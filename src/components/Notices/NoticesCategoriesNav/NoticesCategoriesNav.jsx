@@ -7,6 +7,7 @@ import { categoryButtons, allowCategory } from './category';
 import Box from 'components/Common/Box';
 import AddNoticeButton from 'components/Notices/AddNoticeButton';
 import ModalAddsPet from 'components/User/ModalAddsPet';
+import ModalAddNotice from 'components/User/ModalAddsPet';
 
 import {
   CategoryList,
@@ -57,7 +58,7 @@ function NoticesCategoriesNav() {
             <Box>
               <AddNoticeButton onBtnAddPetClick={onBtnAddPetClick} />
             </Box>
-            {showModal && <ModalAddsPet setShowModal={setShowModal} />}
+            {showModal && <ModalAddNotice setShowModal={setShowModal} />}
           </CategoryPageBox>
         </>
       )}

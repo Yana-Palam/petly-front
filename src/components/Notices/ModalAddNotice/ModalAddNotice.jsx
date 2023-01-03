@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { createPortal } from 'react-dom';
+// import { createPortal } from 'react-dom';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { useFormik } from 'formik';
@@ -14,7 +14,7 @@ import celendar from '../../../assets/icons/calendar.svg';
 import loadMobile from '../../../assets/images/Modal/loadMobile.png';
 
 import {
-  MaddNotBackdrop,
+  // MaddNotBackdrop,
   MaddNotModal,
   MaddNotBtnClose,
   ImgClose,
@@ -45,9 +45,9 @@ import {
   IconFemale,
 } from './ModalAddNotice.styled';
 
-const portalModal = document.querySelector('#modal-root');
+// const portalModal = document.querySelector('#modal-root');
 
-const ModalAddNotice = ({ setShowModal, setArray }) => {
+const ModalAddNotice = ({ setShowModal, setArray, closeModal }) => {
   const [page, setPage] = useState(1);
   const [photo, setPhoto] = useState('');
   const { categoryName } = useParams();
@@ -66,13 +66,13 @@ const ModalAddNotice = ({ setShowModal, setArray }) => {
     // eslint-disable-next-line
   }, []);
 
-  const onBackdropClick = e => {
-    if (e.currentTarget === e.target) setShowModal(false);
-  };
+  // const onBackdropClick = e => {
+  //   if (e.currentTarget === e.target) setShowModal(false);
+  // };
 
-  const onBtnCloseClick = () => {
-    setShowModal(false);
-  };
+  // const onBtnCloseClick = () => {
+  //   setShowModal(false);
+  // };
 
   const formik = useFormik({
     initialValues: {
@@ -175,10 +175,10 @@ const ModalAddNotice = ({ setShowModal, setArray }) => {
     setPage(1);
   };
 
-  return createPortal(
-    <MaddNotBackdrop onClick={onBackdropClick}>
+  return (
+    <>
       <MaddNotModal>
-        <MaddNotBtnClose type="button" onClick={onBtnCloseClick}>
+        <MaddNotBtnClose type="button" onClick={closeModal}>
           <ImgClose src={iconClose} alt="" />
         </MaddNotBtnClose>
         <MaddNotTitle>Title</MaddNotTitle>
@@ -278,7 +278,7 @@ const ModalAddNotice = ({ setShowModal, setArray }) => {
                 value={breed}
               />
               <MaddNotBlock>
-                <MaddNotButton type="button" onClick={onBtnCloseClick}>
+                <MaddNotButton type="button" onClick={closeModal}>
                   Cancel
                 </MaddNotButton>
                 <MaddNotAccentBtn type="button" onClick={onPageChange}>
@@ -407,8 +407,7 @@ const ModalAddNotice = ({ setShowModal, setArray }) => {
           <Loader />
         </MaddNotLoader>
       )}
-    </MaddNotBackdrop>,
-    portalModal,
+    </>
   );
 };
 
