@@ -1,3 +1,5 @@
+import { helpers } from 'utils/helpers';
+
 import Box from 'components/Common/Box';
 // import Button from 'components/Common/Button';
 // import ButtonIcon from 'components/Common/ButtonIcon';
@@ -28,6 +30,8 @@ import {
 } from './ModalNotice.styled';
 
 const ModalNotice = ({ notices, closeModal, getBtnInfo }) => {
+  const noItem = '-------------';
+
   const {
     _id,
     avatarURL,
@@ -39,10 +43,10 @@ const ModalNotice = ({ notices, closeModal, getBtnInfo }) => {
     breed,
     location,
     sex,
-    // email,
+    email,
     phone,
     comments,
-    // price,
+    price,
   } = notices;
 
   const dispatch = useDispatch();
@@ -66,34 +70,34 @@ const ModalNotice = ({ notices, closeModal, getBtnInfo }) => {
           </CategoryTittleBox>
         </Box>
         <Box>
-          <ModalTitle>{title}</ModalTitle>
+          <ModalTitle>{title || noItem}</ModalTitle>
           <ListInfo>
             <ItemInfo key={'name'}>
               <TextInfoTitle>Name:</TextInfoTitle>
-              <TextInfo>{name}</TextInfo>
+              <TextInfo>{name || noItem}</TextInfo>
             </ItemInfo>
             <ItemInfo key={'birthday'}>
               <TextInfoTitle>Birthday:</TextInfoTitle>
-              <TextInfo>{birthday}</TextInfo>
+              <TextInfo> {helpers.getAge(birthday)}</TextInfo>
             </ItemInfo>
             <ItemInfo key={'breed'}>
               <TextInfoTitle>Breed:</TextInfoTitle>
-              <TextInfo>{breed}</TextInfo>
+              <TextInfo>{breed || noItem}</TextInfo>
             </ItemInfo>
             <ItemInfo key={'location'}>
               <TextInfoTitle>Location:</TextInfoTitle>
-              <TextInfo>{location}</TextInfo>
+              <TextInfo>{location || noItem}</TextInfo>
             </ItemInfo>
             <ItemInfo key={'sex'}>
               <TextInfoTitle>The sex:</TextInfoTitle>
-              <TextInfo>{sex}</TextInfo>
+              <TextInfo>{sex || noItem}</TextInfo>
             </ItemInfo>
 
             {/* //TODO деструктуризувати пропс */}
             <ItemInfo key={'email'}>
               <TextInfoTitle>Email:</TextInfoTitle>
               <TextInfo>
-                <TextEmail email="testmaksym@ddd.ua">Email</TextEmail>
+                <TextEmail email={email}>Email</TextEmail>
               </TextInfo>
             </ItemInfo>
 
@@ -109,7 +113,7 @@ const ModalNotice = ({ notices, closeModal, getBtnInfo }) => {
             {category === 'sell' && (
               <ItemInfo key={'price'}>
                 <TextInfoTitle>Price:</TextInfoTitle>
-                <TextInfo>Price</TextInfo>
+                <TextInfo>{price || noItem}</TextInfo>
               </ItemInfo>
             )}
           </ListInfo>
@@ -118,10 +122,7 @@ const ModalNotice = ({ notices, closeModal, getBtnInfo }) => {
 
       <Comment>
         <CommentsSpan>Comments:</CommentsSpan>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit veniam
-        dolores dolor odit molestiae optio quisquam, quod laborum iste porro
-        earum quos. Consequuntur iste laborum fugiat autem, dignissimos ex iure!{' '}
-        {comments}
+        {comments || noItem}
       </Comment>
 
       <BtnBox>

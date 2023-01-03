@@ -6,7 +6,6 @@ import desk_bg from '../../assets/hero/desk/layer.svg';
 import { device } from 'utils/device';
 
 export const HeroWrapper = styled.div`
-  z-index: -1;
   width: 100vw;
   height: 100vh;
   background-position: bottom;
