@@ -1,10 +1,12 @@
 import { Navigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectAccessToken } from 'redux/auth/authSelectors';
+import { useState } from 'react';
 
 import { categoryButtons, allowCategory } from './category';
 import Box from 'components/Common/Box';
 import AddNoticeButton from 'components/Notices/AddNoticeButton';
+import ModalAddsPet from 'components/User/ModalAddsPet';
 
 import {
   CategoryList,
@@ -14,11 +16,14 @@ import {
 } from './NoticesCategoriesNav.styled';
 // import { selectAccessToken } from 'redux/auth/authSelectors';
 
-function NoticesCategoriesNav({ getBtnInfo }) {
+function NoticesCategoriesNav() {
   const { category } = useParams();
   const token = useSelector(selectAccessToken);
-  const getNotice = (btnId, btnType) => {
-    getBtnInfo(btnId, btnType);
+
+  const [showModal, setShowModal] = useState(false);
+
+  const onBtnAddPetClick = () => {
+    setShowModal(true);
   };
 
   return (
@@ -50,8 +55,9 @@ function NoticesCategoriesNav({ getBtnInfo }) {
               </CategoryList>
             </Box>
             <Box>
-              <AddNoticeButton getBtnInfo={getNotice} />
+              <AddNoticeButton onBtnAddPetClick={onBtnAddPetClick} />
             </Box>
+            {showModal && <ModalAddsPet setShowModal={setShowModal} />}
           </CategoryPageBox>
         </>
       )}
