@@ -5,6 +5,7 @@ import { useState } from 'react';
 function UserDataItem() {
   const userInfo = useSelector(state => state.userData.data)
   const [active, setActive] = useState(''); // name
+
   return (
       <ul>
        <LiItem active={active} setActive={setActive} name={'name'} label={'Name:'} user={userInfo.name}/>

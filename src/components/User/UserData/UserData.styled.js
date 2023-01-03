@@ -6,6 +6,9 @@ export const DivWrap = styled.div`
 `;
 
 export const DivPhoto = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 233px;
   height: 233px;
   background: ${p => p.theme.colors.primaryBackground};
@@ -24,6 +27,10 @@ export const ImgPhoto = styled.img`
   width: 233px;
   height: 233px;
   border-radius: ${p => p.theme.radii.round};
+`;
+
+export const ImgAddFoto = styled.img`
+
 `;
 
 export const Div = styled.div`
@@ -71,4 +78,10 @@ export const Span = styled.span`
   line-height: 22px;
   letter-spacing: 0.04em;
   color: ${p => p.theme.colors.sectionTitle};
+`;
+
+export const EditWrap = styled.span`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 `;

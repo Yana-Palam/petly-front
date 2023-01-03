@@ -40,7 +40,7 @@ export const Button = styled.button`
   width: 30px;
   height: 30px;
 
-  // @media (${device.tablet}) {
+    // @media (${device.tablet}) {
   //   width: 32px;
   //   height: 32px;
   // }
@@ -77,9 +77,7 @@ export const Input = styled.input`
     background: #FDF7F2;
     border: 1px solid rgba(245, 146, 86, 0.5);
     border-radius: 40px;
-  `}
-
-  @media (${device.tablet}) {
+  `} @media (${device.tablet}) {
     width: 216px;
     height: 32px;
     font-size: 18px;
