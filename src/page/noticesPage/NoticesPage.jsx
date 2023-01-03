@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useSearchParams, useNavigate } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 import useToggleModal from 'hooks/toggleModal';
 
@@ -46,7 +46,6 @@ function NoticesPage() {
   // );
 
   const path = useLocation().pathname;
-  let navigate = useNavigate();
 
   console.log('notices', notices);
 
@@ -93,7 +92,7 @@ function NoticesPage() {
       !Boolean(token) &&
       (btnType?.favorite || btnType?.add || btnType?.delete)
     ) {
-      toast.warn('Wow so easy!');
+      toast.warn('You are not a registered user!');
       return;
     }
 
