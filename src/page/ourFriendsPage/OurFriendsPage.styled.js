@@ -31,16 +31,29 @@ export const StyledContainer = styled(Container)`
   }
 `;
 
+// export const StyledTitle = styled.h2`
+//   font-weight: 700;
+//   font-size: 24px;
+//   line-height: 1.38;
+//   text-align: center;
+//   font-family: ${p => p.theme.fonts.main};
+//   color: ${p => p.theme.colors.black};
+//   margin-bottom: 28px;
+//   @media ${device.tablet} {
+//     font-size: 48px;
+//     line-height: 2.35;
+//   }
+// `;
 export const StyledTitle = styled.h2`
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 1.38;
   text-align: center;
-  font-family: ${p => p.theme.fonts.main};
-  color: ${p => p.theme.colors.black};
-  margin-bottom: 28px;
+  font-family: ${p => p.theme.fonts.body};
+  font-size: ${p => p.theme.fontSizes.m};
+  font-weight: ${p => p.theme.fontWeights.bold};
+  line-height: ${p => p.theme.lineHeights.body};
+  color: ${p => p.theme.colors.text.sectionTitle};
+  margin-bottom: ${p => `${p.theme.space[5] - 4}px`};
   @media ${device.tablet} {
-    font-size: 48px;
-    line-height: 2.35;
+    font-size: ${p => p.theme.fontSizes.xxl};
+    margin-bottom: ${p => `${p.theme.space[5] + 8}px`};
   }
 `;
