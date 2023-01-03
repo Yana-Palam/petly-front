@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import Friends from '../../components/Friends';
 import Loader from '../../components/Loader';
-import { getFriends } from '../../services/api/FriendsApi';
-import { Section, StyledContainer, StyledTitle } from './OurFriendsPage.styled';
+import { getDate } from '../../services/api/DataApi';
+import { StyledContainer, StyledTitle } from './OurFriendsPage.styled';
 
 function OurFriendsPage() {
   const [friends, setFriends] = useState([]);
@@ -14,7 +14,7 @@ function OurFriendsPage() {
       setIsLoading(true);
       setError(null);
       try {
-        const data = await getFriends();
+        const data = await getDate('friends');
         setFriends(data);
       } catch (e) {
         setError(e);
@@ -25,14 +25,14 @@ function OurFriendsPage() {
     fetchFriends();
   }, []);
   return (
-    <Section>
+    <>
       <StyledContainer>
         <StyledTitle>Our friend</StyledTitle>
         {isLoading && <Loader />}
         {error && <div>{error.message}</div>}
         {friends && <Friends friends={friends} />}
       </StyledContainer>
-    </Section>
+    </>
   );
 }
 

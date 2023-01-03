@@ -1,14 +1,21 @@
 import styled from 'styled-components';
 import { device } from 'utils/device';
 
+export const DivWrap = styled.div`
+  position: relative;
+`;
+
 export const DivPhoto = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 233px;
   height: 233px;
   background: ${p => p.theme.colors.primaryBackground};
   border-radius: ${p => p.theme.radii.round};
 
-  @media (${device.mobileOnly}) {
-    margin-bottom: 68px;
+  @media (${device.fabletAndMobileOnly}) {
+    margin-bottom: 40px;
   }
   @media (${device.desktop}) {
     margin-bottom: 32px;
@@ -22,13 +29,16 @@ export const ImgPhoto = styled.img`
   border-radius: ${p => p.theme.radii.round};
 `;
 
+export const ImgAddFoto = styled.img`
+
+`;
+
 export const Div = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
 
-  @media (${device.fablet}) {
+  @media (${device.tablet}) {
     flex-direction: row-reverse;
     justify-content: space-between;
     align-items: flex-start;
@@ -44,17 +54,20 @@ export const Button = styled.button`
   border: ${p => p.theme.borders.none};
   background: none;
   position: absolute;
-  top: 240px;
-  right: 0;
   fill: ${p => p.theme.colors.accent};
 
-  @media (${device.fablet}) {
-    top: 240px;
-    right: 0;
+
+  @media (${device.fabletAndMobileOnly}) {
+    top: 228px;
+    right: -25px;
+  }
+  @media (${device.tablet}) {
+    top: 241px;
+    right: -6px;
   }
   @media (${device.desktop}) {
-    top: 210px;
-    right: 0;
+    top: 224px;
+    right: -61px;
   }
 `;
 
@@ -65,4 +78,10 @@ export const Span = styled.span`
   line-height: 22px;
   letter-spacing: 0.04em;
   color: ${p => p.theme.colors.sectionTitle};
+`;
+
+export const EditWrap = styled.span`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
 `;

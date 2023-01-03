@@ -6,16 +6,23 @@ export const CategoryList = styled.ul`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  gap: ${p => `${p.theme.space[3] + 4}px`};
+  margin-bottom: ${p => `${p.theme.space[5] - 2}px`};
+
+  @media ${device.tablet} {
+    margin-bottom: ${p => `${p.theme.space[6] - 4}px`};
+  }
 `;
 
-export const CategoryListItem = styled.li``;
+export const CategoryListItem = styled.li`
+  margin-right: ${p => `${p.theme.space[3] + 4}px`};
+  margin-bottom: ${p => `${p.theme.space[4]}px`};
+`;
 
 export const CategoryPage = styled(NavLink)`
   cursor: pointer;
   display: flex;
   white-space: nowrap;
-  margin-bottom: ${p => `${p.theme.space[5] - 2}px`};
+  /* margin-bottom: ${p => `${p.theme.space[5] - 2}px`}; */
   padding: ${p => `${p.theme.space[3]}px ${p.theme.space[5] - 4}px`};
   border-radius: ${p => p.theme.radii.xxl};
 
@@ -46,6 +53,13 @@ export const CategoryPage = styled(NavLink)`
   @media ${device.tablet} {
     padding: ${p => `${p.theme.space[3] + 2}px ${p.theme.space[5] - 4}px`};
     font-size: ${p => p.theme.fontSizes.m};
-    margin-bottom: ${p => `${p.theme.space[6] - 4}px`};
+    /* margin-bottom: ${p => `${p.theme.space[6] - 4}px`}; */
+  }
+`;
+
+export const CategoryPageBox = styled.div`
+  @media ${device.tablet} {
+    display: flex;
+    justify-content: space-between;
   }
 `;

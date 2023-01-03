@@ -6,11 +6,14 @@ import { login } from 'redux/auth/authOperations';
 import { selectAccessToken } from 'redux/auth/authSelectors';
 import { AuthBtn } from './LoginForm.styled';
 import {
+  FormWrapper,
   Form,
   Title,
   Text,
-  RegisterLink,
-  InputWrp,
+  AuthLink,
+  InputsWrp,
+  InputWrapper,
+  TextError,
   Input,
 } from './LoginForm.styled';
 import { motion } from 'framer-motion';
@@ -67,37 +70,37 @@ const LoginForm = () => {
   });
 
   return (
-    <>
-      <Form onSubmit={formik.handleSubmit}   
+    <FormWrapper
       as={motion.div}
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: 1, opacity: 1 }}
       transition={{ duration: 1, delay: 0.2 }}
     >
+      <Form onSubmit={formik.handleSubmit}>
         <Title>Login</Title>
-        <InputWrp>
+        <InputsWrp>
           {inputs.map(({ type, name, label }) => (
-            <Input
-              key={name}
-              type={type}
-              name={name}
-              label={label}
-              value={formik.values[name]}
-              onChange={formik.handleChange}
-              error={formik.touched[name] && Boolean(formik.errors[name])}
-              helperText={formik.touched[name] && formik.errors[name]}
-              placeholder={label}
-              // variant="outlined"
-            />
+            <InputWrapper key={name}>
+              <Input
+                type={type}
+                name={name}
+                placeholder={label}
+                value={formik.values[name]}
+                onChange={formik.handleChange}
+                error={formik.touched[name] && Boolean(formik.errors[name])}
+              />
+              {formik.touched[name] && formik.errors[name] && (
+                <TextError>{formik.errors[name]}</TextError>
+              )}
+            </InputWrapper>
           ))}
-        </InputWrp>
-        <AuthBtn type="submit">Login</AuthBtn>
+        </InputsWrp>
+        <AuthBtn type='submit'>Login</AuthBtn>
         <Text>
-          Don't have an account?{' '}
-          <RegisterLink to="/register">Register</RegisterLink>
+          Don't have an account? <AuthLink to='/register'>Register</AuthLink>
         </Text>
       </Form>
-    </>
+    </FormWrapper>
   );
 };
 

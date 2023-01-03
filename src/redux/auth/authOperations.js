@@ -34,7 +34,7 @@ export const login = createAsyncThunk(
   async (user, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/auth/login', user);
-      token.set(data.token);
+      token.set(data.accessToken);
       toast(`You have successfully logged into your account`, {
         icon: <IoMdLogIn size={25} color="green" />,
       });
@@ -55,7 +55,7 @@ export const logout = createAsyncThunk(
       await axios.get('/auth/logout');
       token.unset();
     } catch (error) {
-      toast.error('Что-то пошло не так, попробуйте перезагрузить страницу');
+      // toast.error('Что-то пошло не так, попробуйте перезагрузить страницу');
       fulfillWithValue();
     }
   }
@@ -63,14 +63,14 @@ export const logout = createAsyncThunk(
 
 export const refresh = createAsyncThunk(
   'auth/refresh',
-  async (sid, { rejectWithValue, getState }) => {
+  async (id, { rejectWithValue, getState }) => {
     // const tokenLS = getState().auth.refreshToken;
     // if (!tokenLS) {
     //   return rejectWithValue('Not logged');
     // }
     // token.set(tokenLS);
     // try {
-    //   const { data } = await axios.post('/auth/refresh', { sid });
+    //   const { data } = await axios.post('/auth/refresh', { id });
     //   token.set(data.refreshToken);
     //   return data;
     // } catch (error) {

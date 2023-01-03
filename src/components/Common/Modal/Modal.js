@@ -1,8 +1,8 @@
+import useScrollLock from 'hooks/useScrollLock';
 import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { ModalBackdrop, ModalContent } from './Modal.styled';
-import useMatchMedia from 'hooks/useMatchMedia';
 
 const modalRoot = document.querySelector('#modal-root');
 
@@ -10,34 +10,24 @@ export default function Modal({
   children = '',
   handleKeyDown = () => {},
   handleBackdropClick = () => {},
-  closeModal = () => {},
+  // closeModal = () => {},
 }) {
-  const { isMobile } = useMatchMedia();
-
+  const { lockScroll, UnlockScroll } = useScrollLock();
   useEffect(() => {
-    if (isMobile) {
-      return;
-    }
     window.addEventListener('keydown', handleKeyDown);
+    lockScroll();
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
+      UnlockScroll();
     };
-  }, [handleKeyDown, isMobile]);
+  }, [handleKeyDown, lockScroll, UnlockScroll]);
 
-  if (isMobile) {
-    return (
-      <ModalBackdrop>
-        <ModalContent>{children}</ModalContent>
-      </ModalBackdrop>
-    );
-  } else {
-    return createPortal(
-      <ModalBackdrop onClick={handleBackdropClick}>
-        <ModalContent>{children}</ModalContent>
-      </ModalBackdrop>,
-      modalRoot
-    );
-  }
+  return createPortal(
+    <ModalBackdrop onClick={handleBackdropClick}>
+      <ModalContent>{children}</ModalContent>
+    </ModalBackdrop>,
+    modalRoot
+  );
 }
 
 Modal.propTypes = {

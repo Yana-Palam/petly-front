@@ -20,7 +20,7 @@ export const HeroTitle = styled.h1`
     line-height: ${({ theme }) => theme.lineHeights.hero};
   }
 
-  @media ${device.tablet} {
+  @media ${device.desktop} {
     padding: 0 0 0 16px;
   }
 `;

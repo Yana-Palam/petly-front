@@ -1,19 +1,6 @@
 import styled from 'styled-components';
 import { device } from 'utils/device';
 
-export const UlList = styled.ul`
-
-  // @media (${device.mobileOnly}) {
-  //   width: 280px;
-  // }
-  // @media (${device.fabletOnly}) {
-  //   width: 736px;
-  // }
-  // @media (${device.tabletOnly}) {
-  //   width: 736px;
-  // }
-`;
-
 export const LiItem = styled.li`
   display: flex;
   align-items: flex-start;
@@ -30,8 +17,9 @@ export const LiItem = styled.li`
   }
 }
 
-@media (${device.mobileOnly}) {
+@media (${device.fabletAndMobileOnly}) {
   flex-direction: column;
+   align-items: center;
 }
 `;
 
@@ -39,10 +27,10 @@ export const UlWrap = styled.ul`
   display: flex;
   flex-direction: column;
 
-  @media (${device.mobileOnly}) {
+  @media (${device.fabletAndMobileOnly}) {
     margin-top: 20px;
   }
-  @media (${device.fablet}) {
+  @media (${device.tablet}) {
     margin-left: 32px;
   }
 `;
@@ -62,7 +50,7 @@ export const Img = styled.img`
   height: 161px;
   border-radius: 40px;
 
-  @media (${device.mobileOnly}) {
+  @media (${device.fabletAndMobileOnly}) {
     width: 240px;
     height: 240px;
   }
@@ -100,7 +88,7 @@ export const Button = styled.button`
     fill: ${p => p.theme.colors.accent}
   }
 
-  @media (${device.mobileOnly}) {
+  @media (${device.fabletAndMobileOnly}) {
     right: 20px;
     top: 268px;
   }

@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import React from 'react';
 import { StyledWrapper } from './Friedns.styled';
 import FriendsItems from './FriendsItems';
 
@@ -12,7 +13,7 @@ function Friends({ friends }) {
   );
 }
 
-export default Friends;
+export default React.memo(Friends);
 
 Friends.propTypes = {
   friends: PropTypes.arrayOf(
