@@ -24,7 +24,7 @@ export const Input = styled.input`
   display: flex;
   align-items: center;
   background-color: ${p => p.theme.colors.white};
-  min-width: ${p => `${p.theme.space[8] - 48}px`};
+  min-width: ${p => `${p.theme.space[8] + 24}px`};
 
   padding: ${p =>
     `${p.theme.space[3] + 2}px ` +
@@ -32,7 +32,8 @@ export const Input = styled.input`
     `${p.theme.space[3] + 2}px ` +
     `${p.theme.space[4] + 4}px`};
 
-  border: ${p => p.theme.borders.none};
+  border: 1px solid transparent;
+  /* border: ${p => p.theme.borders.none}; */
   outline: ${p => p.theme.borders.none};
   box-shadow: 7px 4px 14px rgba(49, 21, 4, 0.07);
   border-radius: ${p => p.theme.radii.lxg};
