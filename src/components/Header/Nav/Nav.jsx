@@ -1,25 +1,42 @@
 import React from 'react';
 import { NavList, NavListItem, NavLinkItem } from './Nav.styled';
 
+const links = [
+  {
+    label: 'News',
+    path: '/news',
+  },
+  {
+    label: 'Notices',
+    path: '/notices/sell',
+  },
+  {
+    label: 'Our friends',
+    path: '/friends',
+  },
+];
+
 function Nav({ closeMobMenu }) {
   return (
     <nav>
       <NavList>
-        <NavListItem>
-          <NavLinkItem onClick={closeMobMenu} to="/news">
-            News
-          </NavLinkItem>
-        </NavListItem>
-        <NavListItem>
-          <NavLinkItem onClick={closeMobMenu} to="/notices/sell">
-            Notices
-          </NavLinkItem>
-        </NavListItem>
-        <NavListItem>
-          <NavLinkItem onClick={closeMobMenu} to="/friends">
-            Our friend
-          </NavLinkItem>
-        </NavListItem>
+        {links.map(({ label, path }) => (
+          <NavListItem key={label}>
+            <NavLinkItem
+              onClick={closeMobMenu}
+              to={path}
+              style={({ isActive }) =>
+                isActive
+                  ? {
+                      color: '#F59256',
+                    }
+                  : { color: '#000' }
+              }
+            >
+              {label}
+            </NavLinkItem>
+          </NavListItem>
+        ))}
       </NavList>
     </nav>
   );
