@@ -1,7 +1,6 @@
 import { Navigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectAccessToken } from 'redux/auth/authSelectors';
-import { useState } from 'react';
 
 import { categoryButtons, allowCategory } from './category';
 import Box from 'components/Common/Box';
@@ -17,15 +16,21 @@ import {
 } from './NoticesCategoriesNav.styled';
 // import { selectAccessToken } from 'redux/auth/authSelectors';
 
-function NoticesCategoriesNav() {
+function NoticesCategoriesNav({ getBtnInfo }) {
+  const handleClick = e => {
+    e.preventDefault();
+    const btnId = e.currentTarget.id;
+    const btnType = e.currentTarget.dataset;
+    console.log(btnId);
+    getNotice(btnId, btnType);
+  };
+
+  const getNotice = (btnId, btnType) => {
+    getBtnInfo(btnId, btnType);
+  };
+
   const { category } = useParams();
   const token = useSelector(selectAccessToken);
-
-  const [showModal, setShowModal] = useState(false);
-
-  const onBtnAddPetClick = () => {
-    setShowModal(true);
-  };
 
   return (
     <>
@@ -56,7 +61,7 @@ function NoticesCategoriesNav() {
               </CategoryList>
             </Box>
             <Box>
-              <AddNoticeButton onBtnAddPetClick={onBtnAddPetClick} />
+              <AddNoticeButton handleClick={handleClick} />
             </Box>
             {showModal && <ModalAddNotice setShowModal={setShowModal} />}
           </CategoryPageBox>

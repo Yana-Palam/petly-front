@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useLocation, useSearchParams, useNavigate } from 'react-router-dom';
+import { useLocation, useSearchParams } from 'react-router-dom';
 
 import useToggleModal from 'hooks/toggleModal';
 
@@ -12,7 +12,7 @@ import { changeFavorite } from 'redux/notice/noticeSlice';
 // Components
 import Container from 'components/Common/Container';
 import Modal from 'components/Common/Modal/Modal';
-import ModalNotice from 'components/Notices/ModalLearnMoreNotice/ModalNotice';
+// import ModalNotice from 'components/Notices/ModalLearnMoreNotice/ModalNotice';
 import NoticesSearch from 'components/Notices/NoticesSearch';
 import NoticesCategoriesNav from 'components/Notices/NoticesCategoriesNav';
 import NoticesCategoriesList from 'components/Notices/NoticesCategoriesList';
@@ -23,6 +23,7 @@ import DelNoticeItem from 'components/Notices/DelNoticeItem';
 // import ModalNotice from '../../components/Notices/ModalNotice/ModalNotice';
 import { Title } from './NoticesPage.styled';
 import ModalAddNotice from 'components/Notices/ModalAddNotice';
+import { toast } from 'react-toastify';
 
 const initialState = {
   search: '',
@@ -46,7 +47,6 @@ function NoticesPage() {
   // );
 
   const path = useLocation().pathname;
-  let navigate = useNavigate();
 
   console.log('notices', notices);
 
@@ -93,7 +93,8 @@ function NoticesPage() {
       !Boolean(token) &&
       (btnType?.favorite || btnType?.add || btnType?.delete)
     ) {
-      navigate('/login');
+      toast.warn('You are not a registered user!');
+      return;
     }
 
     if (btnType?.favorite) {
@@ -125,7 +126,10 @@ function NoticesPage() {
             <DelNoticeItem notices={notices} closeModal={closeModal} />
           )}
           {state.btnType?.add && (
-            // <>{/* <ModalAddNotice closeModal={closeModal} /> */}</>
+            <>
+              {' '}
+              <ModalAddNotice closeModal={closeModal} />{' '}
+            </>
           )}
         </Modal>
       )}
