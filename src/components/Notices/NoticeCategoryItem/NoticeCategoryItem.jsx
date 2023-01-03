@@ -51,7 +51,7 @@ function NoticeCategoryItem({
             onClick={handleClick}
             data-favorite="favorite"
           >
-            <IconFavorite favorite={favorite /*.toString()*/} />
+            <IconFavorite favorite={favorite.toString()} />
           </NoticeFavoriteBtn>
         </Box>
 
