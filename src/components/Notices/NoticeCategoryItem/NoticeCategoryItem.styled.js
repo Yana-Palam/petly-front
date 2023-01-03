@@ -70,6 +70,16 @@ export const NoticeTitle = styled.h2`
   text-align: left;
   width: ${p => `${p.theme.space[8] - 26}px`};
   margin-top: ${p => `${p.theme.space[4] + 4}px`};
+  /* height: 78px;   */
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  /* display: -webkit-box;
+  -webkit-line-clamp: 2; // количество строк
+  -webkit-box-orient: vertical;
+  overflow: hidden; */
 `;
 
 export const NoticeListInfo = styled.ul`
