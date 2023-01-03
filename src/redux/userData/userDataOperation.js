@@ -26,16 +26,13 @@ export const getUserInfo = createAsyncThunk(
   },
 );
 
-// !!!!!!!! in work !!!!!!!!!!
 export const updateUserInfo = createAsyncThunk(
   'userInfo/updateUserInfo',
   async (payload, thunkAPI) => {
     try {
       const tokenLS = thunkAPI.getState().auth.token;
       token.set(tokenLS);
-      const data = payload;
-      await axios.patch(`/user/update`, data);
-      console.log('data', data);
+      const { data } = await axios.patch(`/user/update`, payload);
       return data;
     } catch (err) {
       return thunkAPI.rejectWithValue('Sorry, can\'t update user, server Error!');

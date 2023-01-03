@@ -9,8 +9,8 @@ const userDataSlice = createSlice({
       'name': '',
       'city': '',
       'phone': '',
-      'birthday': '12.03.2001',
-      'avatarURL': 'https://parade.com/.image/ar_1:1%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTkwNTgxMjI0MDQ4MzA2MDQ0/cover-wonder-woman-ftr.jpg',
+      'birthday': '',
+      'avatarUrl': null,
       'favorites': [],
       'myPets': [
         {
@@ -19,7 +19,7 @@ const userDataSlice = createSlice({
           'birthday': null,
           'breed': '',
           'comments': null,
-          'avatarURL': 'https://images.news18.com/ibnlive/uploads/2022/07/cats-2.png',
+          'avatarUrl': null,
           'owner': '',
         },
       ],
@@ -33,14 +33,13 @@ const userDataSlice = createSlice({
       state.error = null;
     },
     [getUserInfo.fulfilled]: (state, action) => {
-      state.data = { ...state.data, ...action.payload };
+      state.data = action.payload;
     },
     [getUserInfo.rejected]: (state, action) => {
       state.error = action.payload;
     },
 
     //update user info
-    // !!!!!!!! in work !!!!!!!!!!
     [updateUserInfo.pending]: (state) => {
       state.error = null;
     },
