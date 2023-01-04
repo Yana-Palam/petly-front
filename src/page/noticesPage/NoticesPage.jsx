@@ -22,6 +22,7 @@ import DelNoticeItem from 'components/Notices/DelNoticeItem';
 
 // import ModalNotice from '../../components/Notices/ModalNotice/ModalNotice';
 import { Title } from './NoticesPage.styled';
+import ModalAddNotice from 'components/Notices/ModalAddNotice';
 import { toast } from 'react-toastify';
 
 const initialState = {
@@ -89,13 +90,13 @@ function NoticesPage() {
       favorite,
     }));
 
-    if (
-      !Boolean(token) &&
-      (btnType?.favorite || btnType?.add || btnType?.delete)
-    ) {
-      toast.warn('You are not a registered user!');
-      return;
-    }
+    // if (
+    //   !Boolean(token) &&
+    //   (btnType?.favorite || btnType?.add || btnType?.delete)
+    // ) {
+    //   toast.warn('You are not a registered user!');
+    //   return;
+    // }
 
     if (btnType?.modal || btnType?.add) {
       openModal();
@@ -131,7 +132,11 @@ function NoticesPage() {
           {state.btnType?.delete && (
             <DelNoticeItem notices={resultNotice} closeModal={closeModal} />
           )}
-          {state.btnType?.add && <p>Add pet</p>}
+          {state.btnType?.add && (
+            <>
+              <ModalAddNotice closeModal={closeModal} />
+            </>
+          )}
         </Modal>
       )}
 

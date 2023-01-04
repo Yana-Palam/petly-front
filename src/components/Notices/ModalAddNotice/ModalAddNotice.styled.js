@@ -30,7 +30,7 @@ export const MaddNotModal = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50%);
+  /* -webkit-transform: translate(-50%, -50%); */
   transform: translate(-50%, -50%);
 
   width: 90%;
@@ -101,7 +101,8 @@ export const MaddNotLoader = styled.div`
 `;
 
 export const MaddNotTitle = styled.h2`
-  font-family: 'Manrope Medium';
+  font-family: 'Manrope';
+  font-style: normal;
   font-size: 24px;
   line-height: 1.38;
   text-align: center;
@@ -109,14 +110,16 @@ export const MaddNotTitle = styled.h2`
   margin-bottom: 20px;
 
   @media screen and (min-width: 768px) {
-    font-family: 'Manrope SemiBold';
+    font-family: 'Manrope';
+    font-style: normal;
     font-size: 36px;
     line-height: 1.36;
   }
 `;
 
 export const MaddNotDescr = styled.p`
-  font-family: 'Manrope Medium';
+  font-family: 'Manrope';
+  font-style: medium;
   font-size: 16px;
   line-height: 1.38;
   letter-spacing: -0.01em;
@@ -147,7 +150,8 @@ export const MaddNotLabelToolbar = styled.label`
   /* .radioToolbar label { */
   display: inline-block;
 
-  font-family: 'Manrope Medium';
+  font-family: 'Manrope';
+  font-style: normal;
   font-size: 14px;
   line-height: 1.36;
   text-align: center;
@@ -193,7 +197,8 @@ export const MaddNotLabelToolbar = styled.label`
 `;
 export const MaddNotLabel = styled.label`
   display: block;
-  font-family: 'Manrope Medium';
+  font-family: 'Manrope';
+  font-style: normal;
   font-size: 18px;
   line-height: 1.44;
   margin-bottom: 8px;
@@ -205,7 +210,7 @@ export const MaddNotLabel = styled.label`
 `;
 
 // .accent {
-//   color: var(--accent-color);
+//   color: #F59256;
 // }
 export const MaddNotinput = styled.input`
   width: 100%;
@@ -279,7 +284,8 @@ export const MaddNotBlock = styled.div`
 export const MaddNotButton = styled.button`
   display: block;
   width: 100%;
-  font-family: 'Manrope Medium';
+  font-family: 'Manrope';
+  font-style: normal;
   font-size: 16px;
   line-height: 1.38;
   letter-spacing: 0.04em;
@@ -368,14 +374,15 @@ export const MaddNotLabelFemale = styled(MaddNotSexLabel)`
 `;
 
 export const MaddNotSexDescr = styled.span`
-  position: absolute;
-  bottom: -39px;
-  font-family: 'Manrope Medium';
+  /* position: absolute; */
+  /* bottom: -39px; */
+  font-family: 'Manrope';
+  font-style: normal;
   font-size: 18px;
   line-height: 1.44px;
 
   @media screen and (min-width: 768px) {
-    bottom: -47px;
+    /* bottom: -47px; */
     text-align: center;
   }
 `;
