@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/petly-team-project/static/css/main.23ec8991.css",
-    "main.js": "/petly-team-project/static/js/main.f9430711.js",
+    "main.js": "/petly-team-project/static/js/main.c8753451.js",
     "static/js/934.11932054.chunk.js": "/petly-team-project/static/js/934.11932054.chunk.js",
     "static/js/13.c645e2c2.chunk.js": "/petly-team-project/static/js/13.c645e2c2.chunk.js",
     "static/js/173.015d0d1e.chunk.js": "/petly-team-project/static/js/173.015d0d1e.chunk.js",
@@ -49,7 +49,7 @@
     "static/media/addFoto.svg": "/petly-team-project/static/media/addFoto.76b0ca6e0a35fd66de4cf8881db5df94.svg",
     "static/media/plus.svg": "/petly-team-project/static/media/plus.40b2205dc2516cb92de4e8f4f8627464.svg",
     "main.23ec8991.css.map": "/petly-team-project/static/css/main.23ec8991.css.map",
-    "main.f9430711.js.map": "/petly-team-project/static/js/main.f9430711.js.map",
+    "main.c8753451.js.map": "/petly-team-project/static/js/main.c8753451.js.map",
     "934.11932054.chunk.js.map": "/petly-team-project/static/js/934.11932054.chunk.js.map",
     "13.c645e2c2.chunk.js.map": "/petly-team-project/static/js/13.c645e2c2.chunk.js.map",
     "173.015d0d1e.chunk.js.map": "/petly-team-project/static/js/173.015d0d1e.chunk.js.map",
@@ -71,6 +71,6 @@
   },
   "entrypoints": [
     "static/css/main.23ec8991.css",
-    "static/js/main.f9430711.js"
+    "static/js/main.c8753451.js"
   ]
 }
