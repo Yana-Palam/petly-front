@@ -27,7 +27,7 @@ const isElemArray = (arrNotice = [], noticeId) => {
   if (!isInclude) {
     return false;
   }
-  return isInclude;
+  return true;
 };
 
 export const helpers = {
