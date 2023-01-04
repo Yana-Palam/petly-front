@@ -33,7 +33,7 @@ import {
 
 const ModalNotice = ({ notices, closeModal, getBtnInfo, token }) => {
   const noItem = '-------------';
-
+  const noPrice = '0';
   const {
     _id,
     avatarURL,
@@ -123,7 +123,7 @@ const ModalNotice = ({ notices, closeModal, getBtnInfo, token }) => {
             {category === 'sell' && (
               <ItemInfo key={'price'}>
                 <TextInfoTitle>Price:</TextInfoTitle>
-                <TextInfo>{price || noItem}</TextInfo>
+                <TextInfo>{price || noPrice} uah</TextInfo>
               </ItemInfo>
             )}
           </ListInfo>
