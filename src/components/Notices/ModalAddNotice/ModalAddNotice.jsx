@@ -14,7 +14,6 @@ import celendar from '../../../assets/icons/calendar.svg';
 import loadMobile from '../../../assets/images/Modal/loadMobile.png';
 
 import {
-  // MaddNotBackdrop,
   MaddNotModal,
   MaddNotBtnClose,
   ImgClose,
@@ -264,6 +263,15 @@ const ModalAddNotice = ({ setShowModal, setArray, closeModal }) => {
               <MaddNotLabel forhtml="birthdate">Date</MaddNotLabel>
               <MaddNotinput as={'div'}>
                 <DatePicker
+                  style={{
+                    backgroundColor: 'aliceblue',
+                    height: '24px',
+                    borderRadius: '8px',
+                    fontSize: '14px',
+                    padding: '3px 10px',
+                    border: 'none',
+                  }}
+                  wrapperClassName="react-date-picker__wrapper"
                   clearIcon={null}
                   calendarIcon={<ImgClose src={celendar} alt="" />}
                   format="dd.MM.yyyy"
@@ -409,13 +417,13 @@ const ModalAddNotice = ({ setShowModal, setArray, closeModal }) => {
 
               <MaddNotBlock>
                 <MaddNotButton type="button" onClick={onPageChange}>
-                  back
+                  Back
                 </MaddNotButton>
                 <MaddNotAccentBtn
                   type="submit"
                   disabled={isLoading ? true : false}
                 >
-                  done
+                  Done
                 </MaddNotAccentBtn>
               </MaddNotBlock>
             </>

@@ -210,7 +210,7 @@ export const MaddNotLabel = styled.label`
 `;
 
 // .accent {
-//   color: var(--accent-color);
+//   color: #F59256;
 // }
 export const MaddNotinput = styled.input`
   width: 100%;

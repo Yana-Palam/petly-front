@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
+import * as Yup from 'yup';
 import DatePicker from 'react-date-picker';
 import { showAlertMessage } from '../../../utils/showMessages';
 import { addPet } from '../../../redux/userData/userDataOperation';
 import imgLoad from '../../../assets/images/Modal/loadMobile.png';
 import iconClose from '../../../assets/icons/icon-close.svg';
 import celendar from '../../../assets/icons/calendar.svg';
-import s from './ModalAddsPet.module.css';
+
 import {
   Backdrop,
   Modal,
@@ -22,6 +23,11 @@ import {
   Button,
   AccentBtn,
   ThumbLoadImg,
+  Title,
+  Error,
+  Descr,
+  LoadImage,
+  InputLoad,
 } from './ModalAddsPet.styled';
 
 const modalContainer = document.getElementById('modal-root');
@@ -81,6 +87,19 @@ const ModalAddsPet = ({ setShowModal }) => {
     onSubmit: values => {
       alert(JSON.stringify(values, null, 2));
     },
+    validationSchema: Yup.object({
+      name: Yup.string()
+        .min(2, 'validation.min')
+        .max(16, 'validation.namePetMax')
+        .required('validation.required'),
+      breed: Yup.string()
+        .min(2, 'validation.min')
+        .max(24, 'validation.max')
+        .required('validation.required'),
+      comments: Yup.string()
+        .min(8, 'validation.commentsMin')
+        .max(120, 'validation.commentsMax'),
+    }),
   });
 
   const { pet, name, birthday, breed, comments } = formik.values;
@@ -132,17 +151,13 @@ const ModalAddsPet = ({ setShowModal }) => {
   return createPortal(
     <Backdrop onClick={onBackdropClick}>
       <Modal>
-        <BtnClose
-          type="button"
-          className={s.btnClose}
-          onClick={onBtnCloseClick}
-        >
+        <BtnClose type="button" onClick={onBtnCloseClick}>
           <ImgClose src={iconClose} alt="" />
         </BtnClose>
         <form onSubmit={onFormSubmit}>
           {page === 1 && (
             <>
-              <h2 className={s.title}>Title</h2>
+              <Title>Title</Title>
               <Label forhtml="name">Name</Label>
               <Input
                 type="text"
@@ -153,30 +168,33 @@ const ModalAddsPet = ({ setShowModal }) => {
                 onBlur={formik.handleBlur}
                 value={name}
               />
-              <p className={s.error}>
-                {formik.touched.name && nameError && nameError}
-              </p>
+              <Error>{formik.touched.name && nameError && nameError}</Error>
               <Label forhtml="birthday">Date</Label>
-              <DatePicker
-                clearIcon={null}
-                calendarIcon={<ImgClose src={celendar} alt="" />}
-                format="dd.MM.yyyy"
-                selected={birthday}
-                maxDate={new Date()}
-                yearPlaceholder={'years'}
-                monthPlaceholder={'months'}
-                dayPlaceholder={'days'}
-                id="birthday"
-                name="birthday"
-                value={birthday}
-                onChange={value => {
-                  if (!value) {
-                    return;
-                  }
-                  formik.setFieldValue('birthday', new Date(Date.parse(value)));
-                }}
-              />
-              <p className={s.error}></p>
+              <Input as={'div'}>
+                <DatePicker
+                  clearIcon={null}
+                  calendarIcon={<ImgClose src={celendar} alt="" />}
+                  format="dd.MM.yyyy"
+                  selected={birthday}
+                  maxDate={new Date()}
+                  yearPlaceholder={'years'}
+                  monthPlaceholder={'months'}
+                  dayPlaceholder={'days'}
+                  id="birthday"
+                  name="birthday"
+                  value={birthday}
+                  onChange={value => {
+                    if (!value) {
+                      return;
+                    }
+                    formik.setFieldValue(
+                      'birthday',
+                      new Date(Date.parse(value)),
+                    );
+                  }}
+                />
+              </Input>
+              <Error>{formik.touched.name && nameError && nameError}</Error>
               <Label forhtml="breed">Breed</Label>
               <Input
                 type="text"
@@ -187,9 +205,7 @@ const ModalAddsPet = ({ setShowModal }) => {
                 onBlur={formik.handleBlur}
                 value={breed}
               />
-              <p className={s['error--last']}>
-                {formik.touched.breed && breedError && breedError}
-              </p>
+              <Error>{formik.touched.breed && breedError && breedError}</Error>
               <BlockOfButtons>
                 <Button type="button" onClick={onBtnCloseClick}>
                   Cancel
@@ -202,23 +218,24 @@ const ModalAddsPet = ({ setShowModal }) => {
           )}
           {page === 2 && (
             <>
-              <h2 className={s.titleSecondPage}>Title</h2>
-              <p className={s.descr}>Description</p>
-              <div className={s.loadImgGroup}>
+              <Title>Title</Title>
+              <Descr>Description</Descr>
+              <div>
                 <LabelLoad forhtml="file">
                   {!photo && (
-                    <img src={imgLoad} alt="add_photo" width="71" height="71" />
+                    <ImgClose
+                      src={imgLoad}
+                      alt="add_photo"
+                      width="71"
+                      height="71"
+                    />
                   )}
                   {photo && (
                     <ThumbLoadImg>
-                      <img
-                        src={photo}
-                        alt="pet_photo"
-                        className={s.loadImage}
-                      />
+                      <LoadImage src={photo} alt="pet_photo" />
                     </ThumbLoadImg>
                   )}
-                  <input
+                  <InputLoad
                     id="file"
                     name="pet"
                     type="file"
@@ -226,7 +243,6 @@ const ModalAddsPet = ({ setShowModal }) => {
                     onChange={event => {
                       formik.setFieldValue('pet', event.currentTarget.files[0]);
                     }}
-                    className={s.inputLoad}
                   />
                 </LabelLoad>
               </div>
@@ -239,9 +255,9 @@ const ModalAddsPet = ({ setShowModal }) => {
                 onBlur={formik.handleBlur}
                 value={comments}
               ></Textarea>
-              <p className={s['error--last']}>
+              <Error>
                 {formik.touched.comments && commentsError && commentsError}
-              </p>
+              </Error>
               <BlockOfButtons>
                 <Button type="button" onClick={onPageChange}>
                   Back

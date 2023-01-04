@@ -75,9 +75,53 @@ export const BtnClose = styled.button`
   }
 `;
 
+export const Title = styled.h2`
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.38;
+  text-align: center;
+  color: #111111;
+  margin-bottom: 28px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 36px;
+    line-height: 1.36;
+  }
+`;
+export const Error = styled.p`
+  height: 16px;
+  text-align: left;
+  font-size: 10px;
+  line-height: 12px;
+  color: #f59256;
+  letter-spacing: 0.04em;
+  padding: 5px 15px;
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 12px;
+  }
+`;
+export const Descr = styled.p`
+  font-family: 'Manrope';
+  font-style: normal;
+  font-size: 16px;
+  line-height: 1.38;
+  text-align: center;
+  color: #111111;
+  margin-bottom: 20px;
+
+  @media screen and (min-width: 768px) {
+    font-size: 20 px;
+    line-height: 1.32;
+  }
+`;
 export const Label = styled.label`
   display: block;
-  font-family: 'Manrope Medium';
+  font-family: 'Manrope';
+  font-style: normal;
+  font-style: normal;
   font-size: 18px;
   line-height: 1.44;
   margin-bottom: 8px;
@@ -117,7 +161,19 @@ export const Input = styled.input`
     }
   }
 `;
+export const LoadImage = styled.img`
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 20px;
 
+  @media screen and (min-width: 768px) {
+    border-radius: 40px;
+  }
+`;
+export const InputLoad = styled.input`
+  display: none;
+`;
 export const LabelLoad = styled.label`
   display: flex;
   align-items: center;
@@ -189,7 +245,8 @@ export const BlockOfButtons = styled.div`
 export const Button = styled.button`
   display: block;
   width: 180px;
-  font-family: 'Manrope Medium';
+  font-family: 'Manrope ';
+  font-style: normal;
   font-size: 16px;
   line-height: 1.38;
   letter-spacing: 0.04em;
@@ -223,7 +280,8 @@ export const Button = styled.button`
 export const AccentBtn = styled.button`
   display: block;
   width: 180px;
-  font-family: 'Manrope Medium';
+  font-family: 'Manrope ';
+  font-style: normal;
   font-size: 16px;
   line-height: 1.38;
   letter-spacing: 0.04em;
