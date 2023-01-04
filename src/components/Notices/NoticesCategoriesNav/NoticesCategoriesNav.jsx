@@ -19,7 +19,6 @@ function NoticesCategoriesNav({ getBtnInfo }) {
     e.preventDefault();
     const btnId = e.currentTarget.id;
     const btnType = e.currentTarget.dataset;
-    console.log(btnId);
     getNotice(btnId, btnType);
   };
 
@@ -29,7 +28,6 @@ function NoticesCategoriesNav({ getBtnInfo }) {
 
   const { category } = useParams();
   const token = useSelector(selectAccessToken);
-
   return (
     <>
       {!Boolean(allowCategory.find(item => item === category)) ? (
