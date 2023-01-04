@@ -11,15 +11,6 @@ const noticeSlice = createSlice({
   name: 'notice',
   initialState,
   reducers: {
-    changeFavorite(state, { payload }) {
-      for (const notice of state.notices) {
-        if (notice._id === payload) {
-          notice.favorite = !notice.favorite;
-          break;
-        }
-      }
-    },
-
     resetStateNoticeSlice(state) {
       state = initialState;
     },

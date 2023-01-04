@@ -1,12 +1,9 @@
-import { useSelector, useDispatch } from 'react-redux';
-import { selectUserNotice } from 'redux/auth/authSelectors';
-
 import { helpers } from 'utils/helpers';
 import Box from 'components/Common/Box';
 import {
   ItemNotice,
   ImgNotice,
-  // IconFavorite,
+  IconFavorite,
   NoticeFavoriteBtn,
   NoticeTitle,
   NoticeListInfo,
@@ -28,29 +25,45 @@ function NoticeCategoryItem({
   breed,
   location,
   birthday,
-  // favorite,
-  // own,
   price,
+  favorite,
+  own,
   getNotice,
 }) {
-  const { userFavorites, ownNotice, userPets } = useSelector(selectUserNotice);
-  console.log(userFavorites, ownNotice, userPets);
-
+  // const dispatch = useDispatch();
+  // const [isFav, setIsFav] = useState(false);
+  // const { userFavorites, ownNotice, userPets } = useSelector(selectUserNotice);
   const noItem = '-------------';
 
-  // console.log(user);
+  // useEffect(() => {
+  //   const isFavorites = (userFavorites, id) => {
+  //     if (!userFavorites.length) {
+  //       return;
+  //     }
+  //     const isInclude = userFavorites.find(id => id === _id);
+  //     if (isInclude) {
+  //       setIsFav(true);
+  //     }
+  //   };
+  //   isFavorites(userFavorites, _id);
+  // }, [userFavorites, _id]);
 
-  const isFavorites = id => {};
+  // const handleFavorite = id => {
+  //   if (!isFav) {
+  //     dispatch(addFavorite(id));
+  //   } else {
+  //     dispatch(deleteFavorite(id));
+  //   }
+  //   setIsFav(!isFav);
+  // };
 
   const handleClick = e => {
     e.preventDefault();
     const btnId = e.currentTarget.id;
     const btnType = e.currentTarget.dataset;
-    getNotice(btnId, btnType);
+    getNotice(btnId, btnType, favorite);
   };
 
-  // const favorite = false;
-  const own = true;
   return (
     <ItemNotice own={own}>
       <Box position="relative">
@@ -61,7 +74,7 @@ function NoticeCategoryItem({
             onClick={handleClick}
             data-favorite="favorite"
           >
-            {/* <IconFavorite favorite={favorite.toString()} /> */}
+            <IconFavorite favorite={favorite.toString()} />
           </NoticeFavoriteBtn>
         </Box>
 

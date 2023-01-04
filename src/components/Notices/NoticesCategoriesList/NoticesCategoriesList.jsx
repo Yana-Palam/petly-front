@@ -2,8 +2,8 @@ import NoticeCategoryItem from 'components/Notices/NoticeCategoryItem';
 import { ListNotices } from './NoticesCategoriesList.styled';
 
 function NoticesCategoriesList({ notices = [], getBtnInfo }) {
-  const getNotice = (btnId, btnType) => {
-    getBtnInfo(btnId, btnType);
+  const getNotice = (btnId, btnType, favorite) => {
+    getBtnInfo(btnId, btnType, favorite);
   };
   return (
     <ListNotices>
