@@ -31,7 +31,7 @@ const initialState = {
       },
     ],
     favorites: [],
-    notices: [],
+    own: [],
 
     // accessToken: null,
     // refreshToken: null,
@@ -73,7 +73,7 @@ const authSlice = createSlice({
       state.user.avatarUrl = user.avatarUrl;
       state.user.myPets = [...user.myPets];
       state.user.favorites = [...user.favorites];
-      // state.user.notices = [...user.notices];
+      state.user.notices = [...user.own];
       state.token = user.token;
       // state.user.accessToken = user.accessToken;
       // state.user.refreshToken = user.refreshToken;
@@ -152,7 +152,7 @@ const authSlice = createSlice({
       state.error = null;
     },
     [updateUserInfo.fulfilled]: (state, action) => {
-      state.user = { ...state.data, ...action.payload };
+      state.user = { ...state.user, ...action.payload };
     },
     [updateUserInfo.rejected]: (state, action) => {
       state.error = action.payload;
@@ -163,7 +163,7 @@ const authSlice = createSlice({
       state.error = null;
     },
     [addPet.fulfilled]: (state, action) => {
-      state.data.myPets.push(action.payload);
+      state.user.myPets.push(action.payload);
     },
     [addPet.rejected]: (state, action) => {
       state.error = action.payload;
