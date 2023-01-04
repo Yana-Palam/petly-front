@@ -18,7 +18,7 @@ const delSpaces = text => {
   return normalized;
 };
 
-const isElemArray = (arrNotice, noticeId) => {
+const isElemArray = (arrNotice = [], noticeId) => {
   if (!arrNotice?.length === 0) {
     return false;
   }
@@ -27,7 +27,7 @@ const isElemArray = (arrNotice, noticeId) => {
   if (!isInclude) {
     return false;
   }
-  return true;
+  return isInclude;
 };
 
 export const helpers = {

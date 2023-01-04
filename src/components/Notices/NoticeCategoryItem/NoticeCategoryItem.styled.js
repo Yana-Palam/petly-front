@@ -133,7 +133,7 @@ export const BtnLearnMore = styled(StyledButton)`
   margin-right: auto;
 
   ${p =>
-    (p.own || p.sell === 'sell') && {
+    (p.own === false || p.category === 'sell') && {
       marginTop: `${p.theme.space[4] + 4}px`,
       marginBottom: `${p.theme.space[4] - 4}px`,
     }}

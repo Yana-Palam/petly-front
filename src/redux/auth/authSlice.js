@@ -47,12 +47,10 @@ const authSlice = createSlice({
   initialState,
   reducers: {
     addFavorite(state, { payload }) {
-      console.log('first', payload);
       state.user.favorites.push(payload);
     },
 
     deleteFavorite(state, { payload }) {
-      console.log('first', payload);
       state.user.favorites = state.user.favorites.filter(
         item => item !== payload
       );

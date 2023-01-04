@@ -14,9 +14,9 @@ export const selectUserData = state => state.auth.user;
 
 export const selectPets = state => state.auth.user.myPets;
 
-export const selectUserNotice = state => {
-  const userFavorites = state.auth.user.favorites;
-  const ownNotice = state.auth.user.own;
-  const userPets = state.auth.user.myPets;
-  return { userFavorites, ownNotice, userPets };
-};
+// export const selectUserNotice = state => {
+//   const userFavorites = state.auth.user.favorites;
+//   const ownNotice = state.auth.user.own;
+//   const userPets = state.auth.user.myPets;
+//   return { userFavorites, ownNotice, userPets };
+// };
