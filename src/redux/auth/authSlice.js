@@ -14,7 +14,7 @@ const initialState = {
   user: {
     email: '',
     name: '',
-    id: '',
+    _id: '',
     city: '',
     phone: '',
     birthday: '',
@@ -32,11 +32,9 @@ const initialState = {
     ],
     favorites: [],
     own: [],
-
-    // accessToken: null,
-    // refreshToken: null,
   },
-  token: null,
+  accessToken: null,
+  refreshToken: null,
   isLoggedIn: false,
   isLoading: false,
   error: null,
@@ -80,16 +78,15 @@ const authSlice = createSlice({
     [login.fulfilled]: (state, { payload: { user } }) => {
       state.user.email = user.email;
       state.user.name = user.name;
-      state.user.id = user._id;
+      state.user._id = user._id;
       state.user.city = user.city;
       state.user.phone = user.phone;
       state.user.avatarUrl = user.avatarUrl;
       state.user.myPets = [...user.myPets];
       state.user.favorites = [...user.favorites, '63b4a4794dd4e4742c08c58b'];
       state.user.own = [...user.own];
-      state.token = user.token;
-      // state.user.accessToken = user.accessToken;
-      // state.user.refreshToken = user.refreshToken;
+      state.accessToken = user.accessToken;
+      state.refreshToken = user.refreshToken;
 
       state.isLoggedIn = true;
       state.isLoading = false;
@@ -114,11 +111,9 @@ const authSlice = createSlice({
         myPets: [],
         favorites: [],
         own: [],
-
-        // accessToken: null,
-        // refreshToken: null,
       };
-      state.token = null;
+      state.accessToken = null;
+      state.refreshToken = null;
 
       state.isLoggedIn = false;
       state.isLoading = false;
@@ -136,8 +131,8 @@ const authSlice = createSlice({
       state,
       { payload: { refreshToken, accessToken } }
     ) => {
-      state.user.accessToken = accessToken;
-      state.user.refreshToken = refreshToken;
+      state.accessToken = accessToken;
+      state.refreshToken = refreshToken;
 
       // state.isLoggedIn = true;
       state.isLoading = false;

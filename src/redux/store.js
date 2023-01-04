@@ -17,7 +17,7 @@ import noticeReducer from './notice/noticeSlice';
 const persistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['token', 'isLoggedIn'],
+  whitelist: ['isLoggedIn', 'accessToken', 'refreshToken'],
   //  'sid'],
 };
 
