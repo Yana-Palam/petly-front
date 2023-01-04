@@ -14,7 +14,7 @@ const initialState = {
   user: {
     email: '',
     name: '',
-    id: '',
+    _id: '',
     city: '',
     phone: '',
     birthday: '',
@@ -35,7 +35,6 @@ const initialState = {
   },
   accessToken: null,
   refreshToken: null,
-  // token: null,
   isLoggedIn: false,
   isLoading: false,
   error: null,
@@ -79,14 +78,13 @@ const authSlice = createSlice({
     [login.fulfilled]: (state, { payload: { user } }) => {
       state.user.email = user.email;
       state.user.name = user.name;
-      state.user.id = user._id;
+      state.user._id = user._id;
       state.user.city = user.city;
       state.user.phone = user.phone;
       state.user.avatarUrl = user.avatarUrl;
       state.user.myPets = [...user.myPets];
       state.user.favorites = [...user.favorites, '63b4a4794dd4e4742c08c58b'];
       state.user.own = [...user.own];
-      // state.token = user.token;
       state.accessToken = user.accessToken;
       state.refreshToken = user.refreshToken;
 
@@ -116,7 +114,6 @@ const authSlice = createSlice({
       };
       state.accessToken = null;
       state.refreshToken = null;
-      // state.token = null;
 
       state.isLoggedIn = false;
       state.isLoading = false;
