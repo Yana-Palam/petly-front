@@ -78,7 +78,7 @@ const StepOne = ({ next, data }) => {
             value={formik.values.email}
             onChange={formik.handleChange}
             error={formik.touched.email && Boolean(formik.errors.email)}
-            placeholder="Confirm Password"
+            placeholder="Email"
           />
           {formik.touched.email && formik.errors.email && (
             <TextError>{formik.errors.email}</TextError>
