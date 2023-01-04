@@ -105,7 +105,7 @@ const ModalAddNotice = ({ setShowModal, setArray, closeModal }) => {
     notices,
   } = formik.values;
 
-  console.log(formik.values);
+  // console.log(formik.values);
 
   const {
     title: titleError,
@@ -140,6 +140,7 @@ const ModalAddNotice = ({ setShowModal, setArray, closeModal }) => {
       showAlertMessage('errors.allFieldsFormat');
       return;
     }
+
     setIsLoading(true);
     // const transformedPrice = category === 'sell' ? Number(price) : '';
 
