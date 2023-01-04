@@ -200,14 +200,14 @@ const ModalAddNotice = ({ setShowModal, setArray, closeModal }) => {
         <MaddNotBtnClose type="button" onClick={closeModal}>
           <ImgClose src={iconClose} alt="" />
         </MaddNotBtnClose>
-        <MaddNotTitle>{title}</MaddNotTitle>
+        <MaddNotTitle>Add pet</MaddNotTitle>
         {page === 1 && <MaddNotDescr>Descr</MaddNotDescr>}
         <form onSubmit={onFormSubmit}>
           {page === 1 && (
             <>
               <MaddNotRadioToolbar>
                 <MaddNotLabelToolbar>
-                  Lost/found
+                  lost/found
                   <MaddNotInputToolbar
                     type="radio"
                     id="radio1"
@@ -218,7 +218,7 @@ const ModalAddNotice = ({ setShowModal, setArray, closeModal }) => {
                   />
                 </MaddNotLabelToolbar>
                 <MaddNotLabelToolbar>
-                  inGoodHands
+                  in good hands
                   <MaddNotInputToolbar
                     type="radio"
                     id="radio2"
@@ -229,7 +229,7 @@ const ModalAddNotice = ({ setShowModal, setArray, closeModal }) => {
                   />
                 </MaddNotLabelToolbar>
                 <MaddNotLabelToolbar>
-                  Sell
+                  sell
                   <MaddNotInputToolbar
                     type="radio"
                     id="radio3"
@@ -240,7 +240,7 @@ const ModalAddNotice = ({ setShowModal, setArray, closeModal }) => {
                   />
                 </MaddNotLabelToolbar>
               </MaddNotRadioToolbar>
-              <MaddNotLabel forhtml="title">TitleAd</MaddNotLabel>
+              <MaddNotLabel forhtml="title">Tittle of ad*</MaddNotLabel>
               <MaddNotinput
                 type="text"
                 name="title"
@@ -250,7 +250,7 @@ const ModalAddNotice = ({ setShowModal, setArray, closeModal }) => {
                 onBlur={formik.handleBlur}
                 value={title}
               />
-              <MaddNotLabel forhtml="name">Name</MaddNotLabel>
+              <MaddNotLabel forhtml="name">Name pet</MaddNotLabel>
               <MaddNotinput
                 type="text"
                 name="name"
@@ -318,7 +318,7 @@ const ModalAddNotice = ({ setShowModal, setArray, closeModal }) => {
           {page === 2 && (
             <>
               <MaddNotRadioToolbar2>
-                <MaddNotLabelDistance>Title</MaddNotLabelDistance>
+                <MaddNotLabelDistance>Add pet</MaddNotLabelDistance>
                 <MaddNotBlockOfRadio>
                   <MaddNotLabelMale>
                     <IconMale />
@@ -369,7 +369,7 @@ const ModalAddNotice = ({ setShowModal, setArray, closeModal }) => {
               />
 
               <div className={s.loadImgGroup}>
-                <p className={s.titleLoad}>Load</p>
+                <p>Load the pet’s image:</p>
                 <MaddNotLabelLoad forhtml="file">
                   {!photo && <ImgClose src={loadMobile} alt="add_photo" />}
                   {photo && (

@@ -121,7 +121,7 @@ export const Label = styled.label`
   display: block;
   font-family: 'Manrope';
   font-style: normal;
-  font-style: normal;
+
   font-size: 18px;
   line-height: 1.44;
   margin-bottom: 8px;
@@ -245,7 +245,7 @@ export const BlockOfButtons = styled.div`
 export const Button = styled.button`
   display: block;
   width: 180px;
-  font-family: 'Manrope ';
+  font-family: 'Manrope';
   font-style: normal;
   font-size: 16px;
   line-height: 1.38;
@@ -280,9 +280,10 @@ export const Button = styled.button`
 export const AccentBtn = styled.button`
   display: block;
   width: 180px;
-  font-family: 'Manrope ';
+  font-family: 'Manrope';
   font-style: normal;
-  font-size: 16px;
+  font-weight: 500;
+  font-size: 20px;
   line-height: 1.38;
   letter-spacing: 0.04em;
 
