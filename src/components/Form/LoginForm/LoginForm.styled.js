@@ -1,9 +1,12 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
+import { BsFillEyeFill, BsFillEyeSlashFill } from 'react-icons/bs';
+
 import { StyledButton } from 'components/Common/Button/Button.styled';
 import { device } from 'utils/device';
 
 export const Input = styled.input`
+  position: relative;
   width: 100%;
   height: ${p => `${p.theme.space[5] + 8}px`};
 
@@ -125,4 +128,24 @@ export const AuthBtn = styled(StyledButton)`
   @media ${device.tablet} {
     height: ${p => `${p.theme.space[5] + 16}px`};
   }
+`;
+export const EyeBtn = styled.button`
+  background-color: inherit;
+  position: absolute;
+  cursor: pointer;
+  top: 8px;
+
+  right: 22px;
+  border: none;
+
+  @media ${device.fablet} {
+    top: 12px;
+  }
+`;
+
+export const IconEye = styled(BsFillEyeFill)`
+  color: ${p => p.theme.colors.button.primaryBackground};
+`;
+export const IconEyeSlash = styled(BsFillEyeSlashFill)`
+  color: ${p => p.theme.colors.button.primaryBackground};
 `;

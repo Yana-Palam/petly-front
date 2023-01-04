@@ -1,5 +1,6 @@
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import { useState } from 'react';
 import { Form } from '../RegistrationForm.styled';
 import {
   InputsWrp,
@@ -7,17 +8,24 @@ import {
   AuthBtn,
   InputWrapper,
   TextError,
+  EyeBtn,
+  IconEye,
+  IconEyeSlash,
 } from 'components/Form/LoginForm/LoginForm.styled';
-
-const inputs = [
-  { type: 'email', name: 'email', label: 'Email' },
-  { type: 'password', name: 'password', label: 'Password' },
-  { type: 'password', name: 'confirmPassword', label: 'ConfirmPassword' },
-];
 
 const StepOne = ({ next, data }) => {
   const passwordRexExp = /^[a-zA-Z0-9]+$/;
   const emailRegExp = /^[a-zA-Z0-9]+[a-zA-Z0-9_-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9]+$/;
+
+  const [showPassword, setShowPassword] = useState(true);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(true);
+
+  const changeVisiblePassword = () => {
+    setShowPassword(prev => !prev);
+  };
+  const changeVisibleConfirmPassword = () => {
+    setShowConfirmPassword(prev => !prev);
+  };
 
   const stepOneValidationSchema = yup.object().shape({
     email: yup
@@ -63,21 +71,64 @@ const StepOne = ({ next, data }) => {
   return (
     <Form onSubmit={formik.handleSubmit}>
       <InputsWrp>
-        {inputs.map(({ type, name, label }) => (
-          <InputWrapper key={name}>
-            <Input
-              type={type}
-              name={name}
-              value={formik.values[name]}
-              onChange={formik.handleChange}
-              error={formik.touched[name] && Boolean(formik.errors[name])}
-              placeholder={label}
-            />
-            {formik.touched[name] && formik.errors[name] && (
-              <TextError>{formik.errors[name]}</TextError>
+        <InputWrapper>
+          <Input
+            type="email"
+            name="email"
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            error={formik.touched.email && Boolean(formik.errors.email)}
+            placeholder="Confirm Password"
+          />
+          {formik.touched.email && formik.errors.email && (
+            <TextError>{formik.errors.email}</TextError>
+          )}
+        </InputWrapper>
+        <InputWrapper>
+          <Input
+            type={showPassword ? 'password' : 'text'}
+            name="password"
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            error={formik.touched.password && Boolean(formik.errors.password)}
+            placeholder="Password"
+          />
+          {formik.touched.password && formik.errors.password && (
+            <TextError>{formik.errors.password}</TextError>
+          )}
+
+          <EyeBtn type="button" onClick={changeVisiblePassword}>
+            {showPassword ? (
+              <IconEye size="26px" />
+            ) : (
+              <IconEyeSlash size="26px" />
             )}
-          </InputWrapper>
-        ))}
+          </EyeBtn>
+        </InputWrapper>
+        <InputWrapper>
+          <Input
+            type={showConfirmPassword ? 'password' : 'text'}
+            name="confirmPassword"
+            value={formik.values.confirmPassword}
+            onChange={formik.handleChange}
+            error={
+              formik.touched.confirmPassword &&
+              Boolean(formik.errors.confirmPassword)
+            }
+            placeholder="Confirm Password"
+          />
+          {formik.touched.confirmPassword && formik.errors.confirmPassword && (
+            <TextError>{formik.errors.confirmPassword}</TextError>
+          )}
+
+          <EyeBtn type="button" onClick={changeVisibleConfirmPassword}>
+            {showConfirmPassword ? (
+              <IconEye size="26px" />
+            ) : (
+              <IconEyeSlash size="26px" />
+            )}
+          </EyeBtn>
+        </InputWrapper>
       </InputsWrp>
       <AuthBtn type="submit">Next</AuthBtn>
     </Form>

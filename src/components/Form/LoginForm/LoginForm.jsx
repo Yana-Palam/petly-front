@@ -1,6 +1,7 @@
 import { useFormik } from 'formik';
 import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from 'redux/auth/authOperations';
 import { selectAccessToken } from 'redux/auth/authSelectors';
@@ -15,6 +16,9 @@ import {
   InputWrapper,
   TextError,
   Input,
+  EyeBtn,
+  IconEye,
+  IconEyeSlash,
 } from './LoginForm.styled';
 import { motion } from 'framer-motion';
 
@@ -29,6 +33,12 @@ const emailRegExp = /^[a-zA-Z0-9]+[a-zA-Z0-9_-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9]+$/;
 const LoginForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
+  const [showPassword, setShowPassword] = useState(true);
+
+  const changeVisiblePassword = () => {
+    setShowPassword(prev => !prev);
+  };
 
   const isAuth = useSelector(selectAccessToken);
 
@@ -82,7 +92,7 @@ const LoginForm = () => {
           {inputs.map(({ type, name, label }) => (
             <InputWrapper key={name}>
               <Input
-                type={type}
+                type={type === 'password' && showPassword ? type : 'text'}
                 name={name}
                 placeholder={label}
                 value={formik.values[name]}
@@ -92,12 +102,21 @@ const LoginForm = () => {
               {formik.touched[name] && formik.errors[name] && (
                 <TextError>{formik.errors[name]}</TextError>
               )}
+              {type === 'password' && (
+                <EyeBtn type="button" onClick={changeVisiblePassword}>
+                  {showPassword ? (
+                    <IconEye size="26px" />
+                  ) : (
+                    <IconEyeSlash size="26px" />
+                  )}
+                </EyeBtn>
+              )}
             </InputWrapper>
           ))}
         </InputsWrp>
-        <AuthBtn type='submit'>Login</AuthBtn>
+        <AuthBtn type="submit">Login</AuthBtn>
         <Text>
-          Don't have an account? <AuthLink to='/register'>Register</AuthLink>
+          Don't have an account? <AuthLink to="/register">Register</AuthLink>
         </Text>
       </Form>
     </FormWrapper>
