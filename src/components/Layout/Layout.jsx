@@ -2,17 +2,17 @@ import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import Loader from 'components/Loader';
-import Section from 'components/Common/Section';
-import Header from 'components/Header';
+// import Section from 'components/Common/Section';
+import Header from '../../components/Header/Header';
 
 const Layout = () => {
   return (
     <>
       <Header />
       <Suspense fallback={<Loader />}>
-        <Section>
+        {/* <Section> */}
           <Outlet />
-        </Section>
+        {/* </Section> */}
       </Suspense>
     </>
   );

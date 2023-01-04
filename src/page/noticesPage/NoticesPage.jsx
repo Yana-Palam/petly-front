@@ -24,6 +24,7 @@ import DelNoticeItem from 'components/Notices/DelNoticeItem';
 import { Title } from './NoticesPage.styled';
 import ModalAddNotice from 'components/Notices/ModalAddNotice';
 // import { toast } from 'react-toastify';
+import Section from 'components/Common/Section';
 
 const initialState = {
   search: '',
@@ -115,6 +116,7 @@ function NoticesPage() {
 
   return (
     <>
+    <Section>
       {isOpen && (
         <Modal
           handleBackdropClick={handleBackdropClick}
@@ -158,6 +160,7 @@ function NoticesPage() {
         {/* <AddNoticeButton getBtnInfo={getBtnInfo} /> */}
         {/* <ModalNotice /> */}
       </Container>
+      </Section>
     </>
   );
 }
