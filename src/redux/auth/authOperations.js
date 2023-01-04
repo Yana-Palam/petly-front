@@ -14,6 +14,21 @@ const token = {
   },
 };
 
+// axios.interceptors.response.use(
+//   res => {
+//     // const refreshToken = useSelector(selectRefreshToken);
+//     // console.log(refreshToken);
+//     return res;
+//   },
+//   async error => {
+//     const { response, config } = error;
+//     if (response.status === 401) {
+//       console.log(11111);
+
+//     }
+//   }
+// );
+
 export const refresh = createAsyncThunk(
   'auth/refresh',
   async (_, { getState, rejectWithValue }) => {
@@ -55,7 +70,7 @@ export const login = createAsyncThunk(
   async (user, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/auth/login', user);
-      token.set({ token: data.user.token });
+      token.set(data.user.accessToken);
       toast(`You have successfully logged into your account`, {
         icon: <IoMdLogIn size={25} color="green" />,
       });
@@ -64,7 +79,7 @@ export const login = createAsyncThunk(
     } catch (error) {
       if (error.response.status === 401) {
         toast.error('Email or password invalid');
-        return rejectWithValue(error.request.status);
+        return rejectWithValue(error.request.message);
       }
       toast.error('Oops, something went wrong');
       return rejectWithValue(error.request.status);
