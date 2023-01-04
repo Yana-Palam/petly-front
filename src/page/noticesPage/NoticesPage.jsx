@@ -23,7 +23,7 @@ import DelNoticeItem from 'components/Notices/DelNoticeItem';
 // import ModalNotice from '../../components/Notices/ModalNotice/ModalNotice';
 import { Title } from './NoticesPage.styled';
 import ModalAddNotice from 'components/Notices/ModalAddNotice';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
 
 const initialState = {
   search: '',
