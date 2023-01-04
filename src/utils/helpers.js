@@ -19,7 +19,20 @@ const delSpaces = text => {
   return normalized;
 };
 
+const isElemArray = (arrNotice, noticeId) => {
+  if (!arrNotice?.length === 0) {
+    return false;
+  }
+  const isInclude = arrNotice.find(id => id === noticeId);
+
+  if (!isInclude) {
+    return false;
+  }
+  return true;
+};
+
 export const helpers = {
   getAge,
   delSpaces,
+  isElemArray,
 };

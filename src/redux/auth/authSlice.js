@@ -45,6 +45,19 @@ const initialState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
+  reducers: {
+    addFavorite(state, { payload }) {
+      console.log('first', payload);
+      state.user.favorites.push(payload);
+    },
+
+    deleteFavorite(state, { payload }) {
+      console.log('first', payload);
+      state.user.favorites = state.user.favorites.filter(
+        item => item !== payload
+      );
+    },
+  },
   extraReducers: {
     // --------------------REGISTER OPERATION--------------------
 
@@ -72,7 +85,7 @@ const authSlice = createSlice({
       state.user.phone = user.phone;
       state.user.avatarUrl = user.avatarUrl;
       state.user.myPets = [...user.myPets];
-      state.user.favorites = [...user.favorites];
+      state.user.favorites = [...user.favorites, '63b4a4794dd4e4742c08c58b'];
       state.user.notices = [...user.own];
       state.token = user.token;
       // state.user.accessToken = user.accessToken;
@@ -183,5 +196,7 @@ const authSlice = createSlice({
     },
   },
 });
+
+export const { addFavorite, deleteFavorite } = authSlice.actions;
 
 export default authSlice.reducer;

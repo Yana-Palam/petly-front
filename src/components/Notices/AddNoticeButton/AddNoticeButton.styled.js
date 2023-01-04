@@ -38,4 +38,5 @@ export const AddPetBtn = styled.button`
     height: ${p => `${p.theme.space[6] - 20}px`};
   }
 `;
+
 export const AddPetSvg = styled(Plus)``;
