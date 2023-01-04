@@ -3,7 +3,7 @@ import {
   register,
   login,
   logout,
-  // refresh,
+  refresh,
   addPet,
   deletePet,
   getUserInfo,
@@ -86,7 +86,7 @@ const authSlice = createSlice({
       state.user.avatarUrl = user.avatarUrl;
       state.user.myPets = [...user.myPets];
       state.user.favorites = [...user.favorites, '63b4a4794dd4e4742c08c58b'];
-      state.user.notices = [...user.own];
+      state.user.own = [...user.own];
       state.token = user.token;
       // state.user.accessToken = user.accessToken;
       // state.user.refreshToken = user.refreshToken;
@@ -113,7 +113,7 @@ const authSlice = createSlice({
         avatarUrl: null,
         myPets: [],
         favorites: [],
-        notices: [],
+        own: [],
 
         // accessToken: null,
         // refreshToken: null,
@@ -129,23 +129,23 @@ const authSlice = createSlice({
     },
     // --------------------REFRESH OPERATION--------------------
 
-    // [refresh.pending]: state => {
-    //   state.isLoading = true;
-    // },
-    // [refresh.fulfilled]: (
-    //   state,
-    //   { payload: { newRefreshToken, newToken } }
-    // ) => {
-    //   state.user.accessToken = newToken;
-    //   state.user.refreshToken = newRefreshToken;
+    [refresh.pending]: state => {
+      state.isLoading = true;
+    },
+    [refresh.fulfilled]: (
+      state,
+      { payload: { refreshToken, accessToken } }
+    ) => {
+      state.user.accessToken = accessToken;
+      state.user.refreshToken = refreshToken;
 
-    //   // state.isLoggedIn = true;
-    //   state.isLoading = false;
-    // },
-    // [refresh.rejected]: (state, { payload }) => {
-    //   state.isLoading = false;
-    //   state.error = payload;
-    // },
+      // state.isLoggedIn = true;
+      state.isLoading = false;
+    },
+    [refresh.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
+    },
 
     //-----------------USER-------------------------------
 
