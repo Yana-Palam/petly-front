@@ -121,7 +121,11 @@ function NoticesPage() {
         >
           {state.btnType?.modal && (
             <>
-              <ModalNotice notices={getNoticeById} closeModal={closeModal} />
+              <ModalNotice
+                notices={getNoticeById}
+                token={token}
+                closeModal={closeModal}
+              />
             </>
           )}
           {state.btnType?.delete && (
