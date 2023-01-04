@@ -12,7 +12,7 @@ import { changeFavorite } from 'redux/notice/noticeSlice';
 // Components
 import Container from 'components/Common/Container';
 import Modal from 'components/Common/Modal/Modal';
-// import ModalNotice from 'components/Notices/ModalLearnMoreNotice/ModalNotice';
+import ModalNotice from 'components/Notices/ModalLearnMoreNotice/ModalNotice';
 import NoticesSearch from 'components/Notices/NoticesSearch';
 import NoticesCategoriesNav from 'components/Notices/NoticesCategoriesNav';
 import NoticesCategoriesList from 'components/Notices/NoticesCategoriesList';
@@ -89,13 +89,13 @@ function NoticesPage() {
       btnId,
     }));
 
-    if (
-      !Boolean(token) &&
-      (btnType?.favorite || btnType?.add || btnType?.delete)
-    ) {
-      toast.warn('You are not a registered user!');
-      return;
-    }
+    // if (
+    //   !Boolean(token) &&
+    //   (btnType?.favorite || btnType?.add || btnType?.delete)
+    // ) {
+    //   toast.warn('You are not a registered user!');
+    //   return;
+    // }
 
     if (btnType?.favorite) {
       dispatch(changeFavorite(btnId));
@@ -115,7 +115,7 @@ function NoticesPage() {
           {/* {state.btnType?.favorite && <p>Favorite</p>} */}
           {state.btnType?.modal && (
             <>
-              <ModalAddNotice
+              <ModalNotice
                 notices={getNoticeById}
                 closeModal={closeModal}
                 getBtnInfo={getBtnInfo}
@@ -127,8 +127,7 @@ function NoticesPage() {
           )}
           {state.btnType?.add && (
             <>
-              {' '}
-              <ModalAddNotice closeModal={closeModal} />{' '}
+              <ModalAddNotice closeModal={closeModal} />
             </>
           )}
         </Modal>

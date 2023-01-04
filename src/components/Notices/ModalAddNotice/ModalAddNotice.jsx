@@ -106,6 +106,8 @@ const ModalAddNotice = ({ setShowModal, setArray, closeModal }) => {
     notices,
   } = formik.values;
 
+  console.log(formik.values);
+
   const {
     title: titleError,
     name: nameError,
@@ -140,6 +142,24 @@ const ModalAddNotice = ({ setShowModal, setArray, closeModal }) => {
       return;
     }
     setIsLoading(true);
+    // const transformedPrice = category === 'sell' ? Number(price) : '';
+
+    // const arrayOfData = Object.entries({
+    //   category,
+    //   title,
+    //   name,
+    //   birthdate,
+    //   breed,
+    //   sex,
+    //   location,
+    //   price: transformedPrice,
+    //   comments,
+    //   notices,
+    // });
+    // const filteredArray = arrayOfData.filter(item => item[1]);
+    // const info = filteredArray.reduce((previousValue, feature) => {
+    //   return { ...previousValue, [feature[0]]: feature[1] };
+    // }, {});
 
     try {
       // await addNotice(info);
@@ -152,7 +172,7 @@ const ModalAddNotice = ({ setShowModal, setArray, closeModal }) => {
       setShowModal(false);
       // setArray(response);
     } catch (error) {
-      showAlertMessage(error.response.data.message);
+      // showAlertMessage(error.response.data.message);
     } finally {
       setIsLoading(false);
     }
@@ -181,7 +201,7 @@ const ModalAddNotice = ({ setShowModal, setArray, closeModal }) => {
         <MaddNotBtnClose type="button" onClick={closeModal}>
           <ImgClose src={iconClose} alt="" />
         </MaddNotBtnClose>
-        <MaddNotTitle>Title</MaddNotTitle>
+        <MaddNotTitle>{title}</MaddNotTitle>
         {page === 1 && <MaddNotDescr>Descr</MaddNotDescr>}
         <form onSubmit={onFormSubmit}>
           {page === 1 && (
@@ -242,31 +262,31 @@ const ModalAddNotice = ({ setShowModal, setArray, closeModal }) => {
                 value={name}
               />
               <MaddNotLabel forhtml="birthdate">Date</MaddNotLabel>
-              {/* <MaddNotinput> */}
-              <DatePicker
-                clearIcon={null}
-                calendarIcon={<ImgClose src={celendar} alt="" />}
-                format="dd.MM.yyyy"
-                dateFormat="dd.MM.yyyy"
-                selected={birthdate}
-                maxDate={new Date()}
-                yearPlaceholder={'years'}
-                monthPlaceholder={'months'}
-                dayPlaceholder={'days'}
-                id="birthdate"
-                name="birthdate"
-                value={birthdate}
-                onChange={value => {
-                  if (!value) {
-                    return;
-                  }
-                  formik.setFieldValue(
-                    'birthdate',
-                    new Date(Date.parse(value)),
-                  );
-                }}
-              />
-              {/* </MaddNotinput> */}
+              <MaddNotinput as={'div'}>
+                <DatePicker
+                  clearIcon={null}
+                  calendarIcon={<ImgClose src={celendar} alt="" />}
+                  format="dd.MM.yyyy"
+                  dateFormat="dd.MM.yyyy"
+                  selected={birthdate}
+                  maxDate={new Date()}
+                  yearPlaceholder={'years'}
+                  monthPlaceholder={'months'}
+                  dayPlaceholder={'days'}
+                  id="birthdate"
+                  name="birthdate"
+                  value={birthdate}
+                  onChange={value => {
+                    if (!value) {
+                      return;
+                    }
+                    formik.setFieldValue(
+                      'birthdate',
+                      new Date(Date.parse(value)),
+                    );
+                  }}
+                />
+              </MaddNotinput>
               <MaddNotLabel forhtml="breed">Breed</MaddNotLabel>
               <MaddNotinput
                 type="text"
