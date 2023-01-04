@@ -1,10 +1,12 @@
 import { helpers } from 'utils/helpers';
+import { toast } from 'react-toastify';
+
+import { useDispatch } from 'react-redux';
+import { addFavorite, deleteFavorite } from 'redux/auth/authSlice';
 
 import Box from 'components/Common/Box';
 // import Button from 'components/Common/Button';
 // import ButtonIcon from 'components/Common/ButtonIcon';
-import { useDispatch } from 'react-redux';
-import { changeFavorite } from 'redux/notice/noticeSlice';
 import {
   ButtonIcon,
   ButtonIconBox,
@@ -29,7 +31,7 @@ import {
   AnimalsBtn,
 } from './ModalNotice.styled';
 
-const ModalNotice = ({ notices, closeModal, getBtnInfo }) => {
+const ModalNotice = ({ notices, closeModal, getBtnInfo, token }) => {
   const noItem = '-------------';
 
   const {
@@ -43,15 +45,23 @@ const ModalNotice = ({ notices, closeModal, getBtnInfo }) => {
     breed,
     location,
     sex,
-    email,
-    phone,
+    owner,
     comments,
     price,
   } = notices;
 
   const dispatch = useDispatch();
-  const getNotice = e => {
-    dispatch(changeFavorite(e.currentTarget.id));
+
+  const handleFavorite = id => {
+    if (!Boolean(token)) {
+      toast.warn('You are not a registered user!');
+      return;
+    }
+    if (favorite) {
+      dispatch(deleteFavorite(id));
+    } else {
+      dispatch(addFavorite(id));
+    }
   };
 
   return (
@@ -97,7 +107,7 @@ const ModalNotice = ({ notices, closeModal, getBtnInfo }) => {
             <ItemInfo key={'email'}>
               <TextInfoTitle>Email:</TextInfoTitle>
               <TextInfo>
-                <TextEmail email={email}>Email</TextEmail>
+                <TextEmail email={owner.email}>{owner.email}</TextEmail>
               </TextInfo>
             </ItemInfo>
 
@@ -105,7 +115,7 @@ const ModalNotice = ({ notices, closeModal, getBtnInfo }) => {
             <ItemInfo key={'phone'}>
               <TextInfoTitle>Phone:</TextInfoTitle>
               <TextInfo>
-                <TextTel phone="+302101234567">Phone</TextTel>
+                <TextTel phone={owner.phone}>{owner.phone}</TextTel>
               </TextInfo>
             </ItemInfo>
 
@@ -129,7 +139,7 @@ const ModalNotice = ({ notices, closeModal, getBtnInfo }) => {
         <AnimalsBtnFavorite
           type="button"
           id={_id}
-          onClick={getNotice}
+          onClick={() => handleFavorite(_id)}
           data-favorite="favorite"
         >
           Add to
@@ -143,7 +153,7 @@ const ModalNotice = ({ notices, closeModal, getBtnInfo }) => {
         // onClick={handleClick}
         // data-modal="modal"
         >
-          <BtnTel>Contact{phone}</BtnTel>
+          <BtnTel phone={owner.phone}>Contact</BtnTel>
         </AnimalsBtn>
 
         {/* //TODO прописати телефон */}

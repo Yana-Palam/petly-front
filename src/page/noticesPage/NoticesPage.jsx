@@ -7,7 +7,7 @@ import useToggleModal from 'hooks/toggleModal';
 import { selectAccessToken } from 'redux/auth/authSelectors';
 import { fetchByCategory } from 'redux/notice/noticeOperations';
 import { selectNoticeState } from 'redux/notice/noticeSelectors';
-import { changeFavorite } from 'redux/notice/noticeSlice';
+import { addFavorite, deleteFavorite } from 'redux/auth/authSlice';
 
 // Components
 import Container from 'components/Common/Container';
@@ -29,6 +29,7 @@ const initialState = {
   search: '',
   btnType: '',
   btnId: '',
+  favorite: '',
 };
 
 function NoticesPage() {
@@ -36,7 +37,7 @@ function NoticesPage() {
 
   const dispatch = useDispatch();
   const token = useSelector(selectAccessToken);
-  const { notices, isLoading } = useSelector(selectNoticeState);
+  const { resultNotice, isLoading } = useSelector(selectNoticeState);
   const [searchParams, setSearchParams] = useSearchParams();
 
   const { isOpen, openModal, closeModal, handleBackdropClick, handleKeyDown } =
@@ -48,7 +49,7 @@ function NoticesPage() {
 
   const path = useLocation().pathname;
 
-  console.log('notices', notices);
+  console.log('notices', resultNotice);
 
   useEffect(() => {
     const q = searchParams.get('q');
@@ -58,7 +59,6 @@ function NoticesPage() {
       // dispatch({ category, q: search });
       // setSearch('');
     } else {
-      console.log(222222, { path, q: state.search });
       const category = path.split('/')[2];
       dispatch(fetchByCategory(category));
       // }
@@ -67,9 +67,9 @@ function NoticesPage() {
 
   /**Select notice by id  */
   const getNoticeById = useMemo(() => {
-    const notice = notices?.find(item => item._id === state.btnId);
+    const notice = resultNotice?.find(item => item._id === state.btnId);
     return notice;
-  }, [notices, state.btnId]);
+  }, [resultNotice, state.btnId]);
 
   /**Search info by search form */
   const handleSearch = q => {
@@ -81,12 +81,13 @@ function NoticesPage() {
   };
 
   /**Get button-id and button-dataset*/
-  const getBtnInfo = (btnId, btnType) => {
+  const getBtnInfo = (btnId, btnType, favorite) => {
     //TODO прописати логіку в залежності від кнопки
     setState(prevState => ({
       ...prevState,
       btnType,
       btnId,
+      favorite,
     }));
 
     // if (
@@ -97,12 +98,19 @@ function NoticesPage() {
     //   return;
     // }
 
-    if (btnType?.favorite) {
-      dispatch(changeFavorite(btnId));
+    if (btnType?.modal || btnType?.add) {
+      openModal();
       return;
     }
 
-    openModal();
+    if (btnType?.favorite) {
+      if (!favorite) {
+        dispatch(addFavorite(btnId));
+      } else {
+        dispatch(deleteFavorite(btnId));
+      }
+    }
+    return;
   };
 
   return (
@@ -112,18 +120,17 @@ function NoticesPage() {
           handleBackdropClick={handleBackdropClick}
           handleKeyDown={handleKeyDown}
         >
-          {/* {state.btnType?.favorite && <p>Favorite</p>} */}
           {state.btnType?.modal && (
             <>
               <ModalNotice
                 notices={getNoticeById}
+                token={token}
                 closeModal={closeModal}
-                getBtnInfo={getBtnInfo}
               />
             </>
           )}
           {state.btnType?.delete && (
-            <DelNoticeItem notices={notices} closeModal={closeModal} />
+            <DelNoticeItem notices={resultNotice} closeModal={closeModal} />
           )}
           {state.btnType?.add && (
             <>
@@ -138,8 +145,11 @@ function NoticesPage() {
         <NoticesSearch handleSearch={handleSearch} />
         <NoticesCategoriesNav getBtnInfo={getBtnInfo} />
         {isLoading && <Loader />}
-        {Boolean(notices?.length > 0) ? (
-          <NoticesCategoriesList notices={notices} getBtnInfo={getBtnInfo} />
+        {Boolean(resultNotice?.length > 0) ? (
+          <NoticesCategoriesList
+            notices={resultNotice}
+            getBtnInfo={getBtnInfo}
+          />
         ) : (
           <p>Not Found</p>
           // <NoticeNotFound />
