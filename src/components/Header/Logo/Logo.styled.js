@@ -4,11 +4,7 @@ import { device } from 'utils/device';
 
 export const LogoContainer = styled(Link)`
   @media ${device.tablet} {
-    flex-grow: 1;
-  }
-
-  @media ${device.desktop} {
-    flex-grow: 0;
+    margin-right: auto;
   }
 `;
 

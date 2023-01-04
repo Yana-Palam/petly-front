@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { device } from 'utils/device';
 
 export const ListWrapper = styled.div`
@@ -25,7 +25,7 @@ export const Li = styled.li`
   align-items: center;
 `;
 
-export const LinkStyled = styled(Link)`
+export const LinkStyled = styled(NavLink)`
   display: flex;
   padding: 8px 28px;
 
@@ -44,7 +44,8 @@ export const LinkStyled = styled(Link)`
   border-color: ${({ theme }) => theme.colors.accent};
 
   &:hover,
-  &:focus {
+  &:focus,
+  &.active {
     color: ${({ theme }) => theme.colors.accent};
     border: 2px solid #ff6101;
     transition: color ${p => p.theme.animation.cubic},
@@ -64,7 +65,8 @@ export const AccentLink = styled(LinkStyled)`
   }
 
    &:hover,
-    &:focus {
+   &:focus,
+   &.active {
     color: ${({ theme }) => theme.colors.black};
     background-color: ${({ theme }) => theme.colors.white};
     transition: color ${p => p.theme.animation.cubic};
