@@ -87,6 +87,12 @@ export const NoticeListInfo = styled.ul`
   flex-direction: column;
   margin-top: ${p => `${p.theme.space[4] + 4}px`};
   gap: ${p => `${p.theme.space[3]}px`};
+  /* margin-bottom: ${p => `${p.theme.space[5] + 10}px`}; */
+  /* 
+  ${p =>
+    p.category === 'sell' && {
+      marginBottom: `${p.theme.space[5] - 4}px`,
+    }} */
 `;
 
 export const NoticeItemInfo = styled.li`
@@ -128,12 +134,22 @@ export const NoticeCategory = styled.p`
 
 //INFO як можна стилізувати в залежності від умови пропса
 export const BtnLearnMore = styled(StyledButton)`
-  margin-top: 50px;
+  margin-top: 76px;
   margin-left: auto;
   margin-right: auto;
-
   ${p =>
-    (p.own === false || p.category === 'sell') && {
+    p.category === 'sell' && {
+      marginTop: `${p.theme.space[5] + 12}px`,
+    }}
+  ${p =>
+    p.own &&
+    p.sell !== 'sell' && {
+      marginTop: `${p.theme.space[5] + 18}px`,
+      marginBottom: `${p.theme.space[4] - 4}px`,
+    }}
+  ${p =>
+    p.own &&
+    p.category === 'sell' && {
       marginTop: `${p.theme.space[4] + 4}px`,
       marginBottom: `${p.theme.space[4] - 4}px`,
     }}
