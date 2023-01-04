@@ -1,4 +1,5 @@
 import { helpers } from 'utils/helpers';
+import { toast } from 'react-toastify';
 
 import { useDispatch } from 'react-redux';
 import { addFavorite, deleteFavorite } from 'redux/auth/authSlice';
@@ -30,7 +31,7 @@ import {
   AnimalsBtn,
 } from './ModalNotice.styled';
 
-const ModalNotice = ({ notices, closeModal, getBtnInfo }) => {
+const ModalNotice = ({ notices, closeModal, getBtnInfo, token }) => {
   const noItem = '-------------';
 
   const {
@@ -52,6 +53,10 @@ const ModalNotice = ({ notices, closeModal, getBtnInfo }) => {
   const dispatch = useDispatch();
 
   const handleFavorite = id => {
+    if (!Boolean(token)) {
+      toast.warn('You are not a registered user!');
+      return;
+    }
     if (favorite) {
       dispatch(deleteFavorite(id));
     } else {
