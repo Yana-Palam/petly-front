@@ -6,6 +6,7 @@ import NewsList from '../../components/News/NewsList';
 import { getDate } from '../../services/api/DataApi';
 import { StyledContainer, StyledTitle } from './NewsPage.styled';
 import { motion } from 'framer-motion';
+import Section from 'components/Common/Section';
 
 function NewsPage() {
   const [news, setNews] = useState([]);
@@ -52,6 +53,7 @@ function NewsPage() {
 
   return (
     <>
+    <Section>
       <StyledContainer
         as={motion.div}
         initial={{ opacity: 0 }}
@@ -73,6 +75,7 @@ function NewsPage() {
         )}
         {news && <NewsList news={search(news)} />}
       </StyledContainer>
+      </Section>
     </>
   );
 }
