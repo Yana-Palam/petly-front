@@ -22,17 +22,7 @@ function Nav({ closeMobMenu }) {
       <NavList>
         {links.map(({ label, path }) => (
           <NavListItem key={label}>
-            <NavLinkItem
-              onClick={closeMobMenu}
-              to={path}
-              style={({ isActive }) =>
-                isActive
-                  ? {
-                      color: '#F59256',
-                    }
-                  : { color: '#000' }
-              }
-            >
+            <NavLinkItem onClick={closeMobMenu} to={path}>
               {label}
             </NavLinkItem>
           </NavListItem>
