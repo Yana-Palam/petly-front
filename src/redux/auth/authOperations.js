@@ -79,7 +79,7 @@ export const logout = createAsyncThunk(
       await axios.get('/auth/logout');
       token.unset();
     } catch (error) {
-      toast.error('Oops, something went wrong');
+      // toast.error('Oops, something went wrong');
       fulfillWithValue(error.request.status);
     }
   }
@@ -89,12 +89,12 @@ export const getUserInfo = createAsyncThunk(
   'userInfo/getUserInfo',
   async (query, thunkAPI) => {
     try {
-      const tokenLS = thunkAPI.getState().auth.token;
+      const tokenLS = thunkAPI.getState().auth.accessToken;
       token.set(tokenLS);
       const res = await axios.get('/user/userInfo');
       return res.data;
     } catch (error) {
-      toast.error('Oops, something went wrong');
+      // toast.error('Oops, something went wrong');
       return thunkAPI.rejectWithValue(error.request.status);
     }
   }
@@ -104,7 +104,7 @@ export const updateUserInfo = createAsyncThunk(
   'userInfo/updateUserInfo',
   async (payload, thunkAPI) => {
     try {
-      const tokenLS = thunkAPI.getState().auth.token;
+      const tokenLS = thunkAPI.getState().auth.accessToken;
       token.set(tokenLS);
       const { data } = await axios.patch(`/user/update`, payload);
       return data;
@@ -119,7 +119,7 @@ export const addPet = createAsyncThunk(
   'pet/addPet',
   async (payload, thunkAPI) => {
     try {
-      const tokenLS = thunkAPI.getState().auth.token;
+      const tokenLS = thunkAPI.getState().auth.accessToken;
       token.set(tokenLS);
       const res = await axios.post('/user/pets', payload);
       return res.data;
@@ -134,7 +134,7 @@ export const deletePet = createAsyncThunk(
   'pet/deletePet',
   async (_id, thunkAPI) => {
     try {
-      const tokenLS = thunkAPI.getState().auth.token;
+      const tokenLS = thunkAPI.getState().auth.accessToken;
       token.set(tokenLS);
       await axios.delete(`/user/pets/${_id}`);
       return { _id };
