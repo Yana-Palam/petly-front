@@ -29,6 +29,7 @@ import {
   LoadImage,
   InputLoad,
 } from './ModalAddsPet.styled';
+// import { useSelect } from '@mui/base';
 
 const modalContainer = document.getElementById('modal-root');
 
