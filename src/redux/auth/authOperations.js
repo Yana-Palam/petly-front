@@ -2,6 +2,7 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import { IoMdLogIn } from 'react-icons/io';
+import { store } from 'redux/store';
 
 axios.defaults.baseURL = 'https://petly-back.onrender.com/api';
 
@@ -14,36 +15,43 @@ const token = {
   },
 };
 
-// axios.interceptors.response.use(
-//   res => {
-//     // const refreshToken = useSelector(selectRefreshToken);
-//     // console.log(refreshToken);
-//     return res;
-//   },
-//   async error => {
-//     const { response, config } = error;
-//     if (response.status === 401) {
-//       console.log(11111);
+axios.interceptors.response.use(
+  res => {
+    return res;
+  },
+  async error => {
+    const { response, config } = error;
+    if (response.status === 401) {
+      const state = store.getState();
+      const accessToken = state.auth.accessToken;
 
-//     }
-//   }
-// );
+      if (accessToken) {
+        store.dispatch(refresh());
+
+        setTimeout(() => {
+          const newAccessToken = state.auth.accessToken;
+
+          config.headers['Authorization'] = 'Bearer ' + newAccessToken;
+          return axios(config);
+        }, 300);
+      }
+    }
+    return Promise.reject(error);
+  }
+);
 
 export const refresh = createAsyncThunk(
   'auth/refresh',
   async (_, { getState, rejectWithValue }) => {
     const state = getState();
     const refreshToken = state.auth.refreshToken;
-    const errorAuth = state.auth.error;
-    const errorNotice = state.notice.error;
 
-    if (errorAuth === 401 || errorNotice === 401) {
-      try {
-        const { data } = await axios.post('/auth/refresh', { refreshToken });
-        return data;
-      } catch (error) {
-        return rejectWithValue(error.request.status);
-      }
+    try {
+      const { data } = await axios.post('/auth/refresh', { refreshToken });
+      token.set(data.accessToken);
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.request.status);
     }
   }
 );

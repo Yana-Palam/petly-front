@@ -2,12 +2,10 @@ import styled from 'styled-components';
 import { device } from 'utils/device';
 
 const Container = styled.div`
-  // width: 100%;
+  width: 100%;
   margin: 0 auto;
   padding-right: 20px;
   padding-left: 20px;
-  /* background: #fdf7f2; */
-  // margin: 0 auto;
 
   @media ${device.tabletOnly} {
     width: 768px;
