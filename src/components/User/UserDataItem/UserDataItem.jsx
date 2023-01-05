@@ -20,6 +20,7 @@ function UserDataItem() {
         label={'Name:'}
         user={userInfo.name}
       />
+
       <LiItem
         active={active}
         setActive={setActive}
@@ -27,13 +28,14 @@ function UserDataItem() {
         label={'Email:'}
         user={userInfo.email}
       />
-      <LiItem
-        active={active}
-        setActive={setActive}
-        name={'birthday'}
-        label={'Birthday:'}
-        user={userInfo.birthday}
-      >
+
+      {/*<LiItem*/}
+      {/*  active={active}*/}
+      {/*  setActive={setActive}*/}
+      {/*  name={'birthday'}*/}
+      {/*  label={'Birthday:'}*/}
+      {/*  user={userInfo.birthday}*/}
+      {/*>*/}
         {/*<DatePicker*/}
         {/*  clearIcon={null}*/}
         {/*  calendarIcon={!active ? '' : <ImgClose src={celendar} alt='' />}*/}
@@ -48,7 +50,8 @@ function UserDataItem() {
         {/*    // console.log('data1',data);*/}
         {/*    }}*/}
         {/*/>*/}
-      </LiItem>
+      {/*</LiItem>*/}
+
       <LiItem
         active={active}
         setActive={setActive}
@@ -56,6 +59,7 @@ function UserDataItem() {
         label={'Phone:'}
         user={userInfo.phone}
       />
+
       <LiItem
         active={active}
         setActive={setActive}
