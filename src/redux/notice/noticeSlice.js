@@ -27,7 +27,7 @@ const noticeSlice = createSlice({
       state.isLoading = true;
     },
     [fetchByCategory.fulfilled]: (state, { payload }) => {
-      state.notices = [...payload];
+      state.notices = [...payload.data];
       state.isLoading = false;
     },
     [fetchByCategory.rejected]: (state, { payload }) => {
