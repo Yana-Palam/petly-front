@@ -23,23 +23,21 @@ function Header() {
   };
 
   return (
-    <>
-      <HeaderStyled>
-        {isLogin ? (
-          <LoggedIn
-            closeMobMenu={closeMobMenu}
-            mobileMenuIsOpen={mobileMenuIsOpen}
-            toggleMenu={toggleMenu}
-          />
-        ) : (
-          <NotLoggedIn
-            closeMobMenu={closeMobMenu}
-            mobileMenuIsOpen={mobileMenuIsOpen}
-            toggleMenu={toggleMenu}
-          />
-        )}
-      </HeaderStyled>
-    </>
+    <HeaderStyled>
+      {isLogin ? (
+        <LoggedIn
+          closeMobMenu={closeMobMenu}
+          mobileMenuIsOpen={mobileMenuIsOpen}
+          toggleMenu={toggleMenu}
+        />
+      ) : (
+        <NotLoggedIn
+          closeMobMenu={closeMobMenu}
+          mobileMenuIsOpen={mobileMenuIsOpen}
+          toggleMenu={toggleMenu}
+        />
+      )}
+    </HeaderStyled>
   );
 }
 

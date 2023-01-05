@@ -24,10 +24,16 @@ export const RegistBg = styled.div`
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: contain;
-  height: calc(100vh - 74px);
+  height: calc(100vh - 100px);
+
 
   @media ${device.tablet} {
     background-image: url(${bg_tab});
+
+  }
+
+  @media ${device.tabletOnly} {
+    background-image: url(${bg_desk});
   }
 
   @media ${device.desktop} {

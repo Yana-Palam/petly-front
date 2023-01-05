@@ -1,5 +1,5 @@
 const getAge = birthday => {
-  if (!birthday || birthday === '00.00.0000') return '---------';
+  if (!birthday || birthday === '00.00.0000') return '-------------';
 
   const dateNow = new Date().getFullYear();
   const age = dateNow - new Date(birthday).getFullYear();
@@ -18,7 +18,7 @@ const delSpaces = text => {
   return normalized;
 };
 
-const isElemArray = (arrNotice, noticeId) => {
+const isElemArray = (arrNotice = [], noticeId) => {
   if (!arrNotice?.length === 0) {
     return false;
   }

@@ -63,6 +63,18 @@ const GlobalStyles = createGlobalStyle`
     font-size: 100%;
     background: transparent;
   }
+ 
+    .react-date-picker.react-date-picker--closed.react-date-picker--enabled .react-date-picker__wrapper {
+        border: none;
+    }
+    .react-date-picker.react-date-picker--open.react-date-picker--enabled .react-date-picker__wrapper{
+      border: none;
+      
+    }
+    .react-date-picker.react-date-picker--closed.react-date-picker--enabled,.react-date-picker.react-date-picker--open.react-date-picker--enabled{
+      display: block;
+    }
+
 `;
 
 export default GlobalStyles;

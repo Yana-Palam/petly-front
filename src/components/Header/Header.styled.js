@@ -50,7 +50,7 @@ export const ModalWrapper = styled.div`
 
 export const Wrap = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-end;
   align-items: center;
   width: 100%;
 

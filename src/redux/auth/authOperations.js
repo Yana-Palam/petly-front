@@ -14,6 +14,21 @@ const token = {
   },
 };
 
+// axios.interceptors.response.use(
+//   res => {
+//     // const refreshToken = useSelector(selectRefreshToken);
+//     // console.log(refreshToken);
+//     return res;
+//   },
+//   async error => {
+//     const { response, config } = error;
+//     if (response.status === 401) {
+//       console.log(11111);
+
+//     }
+//   }
+// );
+
 export const refresh = createAsyncThunk(
   'auth/refresh',
   async (_, { getState, rejectWithValue }) => {
@@ -55,7 +70,7 @@ export const login = createAsyncThunk(
   async (user, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/auth/login', user);
-      token.set({ token: data.user.token });
+      token.set(data.user.accessToken);
       toast(`You have successfully logged into your account`, {
         icon: <IoMdLogIn size={25} color="green" />,
       });
@@ -64,7 +79,7 @@ export const login = createAsyncThunk(
     } catch (error) {
       if (error.response.status === 401) {
         toast.error('Email or password invalid');
-        return rejectWithValue(error.request.status);
+        return rejectWithValue(error.request.message);
       }
       toast.error('Oops, something went wrong');
       return rejectWithValue(error.request.status);
@@ -79,7 +94,7 @@ export const logout = createAsyncThunk(
       await axios.get('/auth/logout');
       token.unset();
     } catch (error) {
-      toast.error('Oops, something went wrong');
+      // toast.error('Oops, something went wrong');
       fulfillWithValue(error.request.status);
     }
   }
@@ -89,12 +104,12 @@ export const getUserInfo = createAsyncThunk(
   'userInfo/getUserInfo',
   async (query, thunkAPI) => {
     try {
-      const tokenLS = thunkAPI.getState().auth.token;
+      const tokenLS = thunkAPI.getState().auth.accessToken;
       token.set(tokenLS);
       const res = await axios.get('/user/userInfo');
       return res.data;
     } catch (error) {
-      toast.error('Oops, something went wrong');
+      // toast.error('Oops, something went wrong');
       return thunkAPI.rejectWithValue(error.request.status);
     }
   }
@@ -104,7 +119,7 @@ export const updateUserInfo = createAsyncThunk(
   'userInfo/updateUserInfo',
   async (payload, thunkAPI) => {
     try {
-      const tokenLS = thunkAPI.getState().auth.token;
+      const tokenLS = thunkAPI.getState().auth.accessToken;
       token.set(tokenLS);
       const { data } = await axios.patch(`/user/update`, payload);
       return data;
@@ -119,7 +134,7 @@ export const addPet = createAsyncThunk(
   'pet/addPet',
   async (payload, thunkAPI) => {
     try {
-      const tokenLS = thunkAPI.getState().auth.token;
+      const tokenLS = thunkAPI.getState().auth.accessToken;
       token.set(tokenLS);
       const res = await axios.post('/user/pets', payload);
       return res.data;
@@ -134,12 +149,74 @@ export const deletePet = createAsyncThunk(
   'pet/deletePet',
   async (_id, thunkAPI) => {
     try {
-      const tokenLS = thunkAPI.getState().auth.token;
+      const tokenLS = thunkAPI.getState().auth.accessToken;
       token.set(tokenLS);
       await axios.delete(`/user/pets/${_id}`);
-      return { _id };
+      return _id;
     } catch (error) {
       toast.error("Sorry, can't delete pet, server Error!");
+      return thunkAPI.rejectWithValue(error.request.status);
+    }
+  }
+);
+
+//INFO Notices operations
+export const addFavoriteNotice = createAsyncThunk(
+  'notices/addFavorite',
+  async (_id, thunkAPI) => {
+    try {
+      const tokenLS = thunkAPI.getState().auth.accessToken;
+      token.set(tokenLS);
+      await axios.patch(`/notices/own/${_id}/favorites`);
+      return _id;
+    } catch (error) {
+      toast.error("Sorry, can't add favorite notices, server Error!");
+      return thunkAPI.rejectWithValue(error.request.status);
+    }
+  }
+);
+
+export const deleteFavoriteNotice = createAsyncThunk(
+  'notices/deleteFavorite',
+  async (_id, thunkAPI) => {
+    try {
+      const tokenLS = thunkAPI.getState().auth.accessToken;
+      token.set(tokenLS);
+      await axios.delete(`/notices/own/${_id}/favorites`);
+      return _id;
+    } catch (error) {
+      toast.error("Sorry, can't delete favorite notices, server Error!");
+      return thunkAPI.rejectWithValue(error.request.status);
+    }
+  }
+);
+
+//TODO Синхронізувати запит згідно беку
+export const addOwnNotice = createAsyncThunk(
+  'notices/addOwnNotice',
+  async (notice, thunkAPI) => {
+    try {
+      const tokenLS = thunkAPI.getState().auth.accessToken;
+      token.set(tokenLS);
+      await axios.post(`notices/addnotice`, notice);
+      return { notice };
+    } catch (error) {
+      toast.error("Sorry, can't add notices, server Error!");
+      return thunkAPI.rejectWithValue(error.request.status);
+    }
+  }
+);
+
+export const deleteOwnNotice = createAsyncThunk(
+  'notices/deleteOwnNotice',
+  async (_id, thunkAPI) => {
+    try {
+      const tokenLS = thunkAPI.getState().auth.accessToken;
+      token.set(tokenLS);
+      await axios.delete(`/notices/own/${_id}`);
+      return { _id };
+    } catch (error) {
+      toast.error("Sorry, can't delete notices, server Error!");
       return thunkAPI.rejectWithValue(error.request.status);
     }
   }

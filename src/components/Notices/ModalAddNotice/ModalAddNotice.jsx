@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { createPortal } from 'react-dom';
+// import { createPortal } from 'react-dom';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import { useFormik } from 'formik';
@@ -14,7 +14,6 @@ import celendar from '../../../assets/icons/calendar.svg';
 import loadMobile from '../../../assets/images/Modal/loadMobile.png';
 
 import {
-  MaddNotBackdrop,
   MaddNotModal,
   MaddNotBtnClose,
   ImgClose,
@@ -45,9 +44,9 @@ import {
   IconFemale,
 } from './ModalAddNotice.styled';
 
-const portalModal = document.querySelector('#modal-root');
+// const portalModal = document.querySelector('#modal-root');
 
-const ModalAddNotice = ({ setShowModal, setArray }) => {
+const ModalAddNotice = ({ setShowModal, setArray, closeModal }) => {
   const [page, setPage] = useState(1);
   const [photo, setPhoto] = useState('');
   const { categoryName } = useParams();
@@ -66,13 +65,13 @@ const ModalAddNotice = ({ setShowModal, setArray }) => {
     // eslint-disable-next-line
   }, []);
 
-  const onBackdropClick = e => {
-    if (e.currentTarget === e.target) setShowModal(false);
-  };
+  // const onBackdropClick = e => {
+  //   if (e.currentTarget === e.target) setShowModal(false);
+  // };
 
-  const onBtnCloseClick = () => {
-    setShowModal(false);
-  };
+  // const onBtnCloseClick = () => {
+  //   setShowModal(false);
+  // };
 
   const formik = useFormik({
     initialValues: {
@@ -105,6 +104,8 @@ const ModalAddNotice = ({ setShowModal, setArray }) => {
     comments,
     notices,
   } = formik.values;
+
+  console.log(formik.values);
 
   const {
     title: titleError,
@@ -140,6 +141,24 @@ const ModalAddNotice = ({ setShowModal, setArray }) => {
       return;
     }
     setIsLoading(true);
+    // const transformedPrice = category === 'sell' ? Number(price) : '';
+
+    // const arrayOfData = Object.entries({
+    //   category,
+    //   title,
+    //   name,
+    //   birthdate,
+    //   breed,
+    //   sex,
+    //   location,
+    //   price: transformedPrice,
+    //   comments,
+    //   notices,
+    // });
+    // const filteredArray = arrayOfData.filter(item => item[1]);
+    // const info = filteredArray.reduce((previousValue, feature) => {
+    //   return { ...previousValue, [feature[0]]: feature[1] };
+    // }, {});
 
     try {
       // await addNotice(info);
@@ -152,7 +171,7 @@ const ModalAddNotice = ({ setShowModal, setArray }) => {
       setShowModal(false);
       // setArray(response);
     } catch (error) {
-      showAlertMessage(error.response.data.message);
+      // showAlertMessage(error.response.data.message);
     } finally {
       setIsLoading(false);
     }
@@ -175,20 +194,20 @@ const ModalAddNotice = ({ setShowModal, setArray }) => {
     setPage(1);
   };
 
-  return createPortal(
-    <MaddNotBackdrop onClick={onBackdropClick}>
+  return (
+    <>
       <MaddNotModal>
-        <MaddNotBtnClose type="button" onClick={onBtnCloseClick}>
+        <MaddNotBtnClose type="button" onClick={closeModal}>
           <ImgClose src={iconClose} alt="" />
         </MaddNotBtnClose>
-        <MaddNotTitle>Title</MaddNotTitle>
+        <MaddNotTitle>Add pet</MaddNotTitle>
         {page === 1 && <MaddNotDescr>Descr</MaddNotDescr>}
         <form onSubmit={onFormSubmit}>
           {page === 1 && (
             <>
               <MaddNotRadioToolbar>
                 <MaddNotLabelToolbar>
-                  Lost/found
+                  lost/found
                   <MaddNotInputToolbar
                     type="radio"
                     id="radio1"
@@ -199,7 +218,7 @@ const ModalAddNotice = ({ setShowModal, setArray }) => {
                   />
                 </MaddNotLabelToolbar>
                 <MaddNotLabelToolbar>
-                  inGoodHands
+                  in good hands
                   <MaddNotInputToolbar
                     type="radio"
                     id="radio2"
@@ -210,7 +229,7 @@ const ModalAddNotice = ({ setShowModal, setArray }) => {
                   />
                 </MaddNotLabelToolbar>
                 <MaddNotLabelToolbar>
-                  Sell
+                  sell
                   <MaddNotInputToolbar
                     type="radio"
                     id="radio3"
@@ -221,7 +240,7 @@ const ModalAddNotice = ({ setShowModal, setArray }) => {
                   />
                 </MaddNotLabelToolbar>
               </MaddNotRadioToolbar>
-              <MaddNotLabel forhtml="title">TitleAd</MaddNotLabel>
+              <MaddNotLabel forhtml="title">Tittle of ad*</MaddNotLabel>
               <MaddNotinput
                 type="text"
                 name="title"
@@ -231,7 +250,7 @@ const ModalAddNotice = ({ setShowModal, setArray }) => {
                 onBlur={formik.handleBlur}
                 value={title}
               />
-              <MaddNotLabel forhtml="name">Name</MaddNotLabel>
+              <MaddNotLabel forhtml="name">Name pet</MaddNotLabel>
               <MaddNotinput
                 type="text"
                 name="name"
@@ -242,31 +261,40 @@ const ModalAddNotice = ({ setShowModal, setArray }) => {
                 value={name}
               />
               <MaddNotLabel forhtml="birthdate">Date</MaddNotLabel>
-              {/* <MaddNotinput> */}
-              <DatePicker
-                clearIcon={null}
-                calendarIcon={<ImgClose src={celendar} alt="" />}
-                format="dd.MM.yyyy"
-                dateFormat="dd.MM.yyyy"
-                selected={birthdate}
-                maxDate={new Date()}
-                yearPlaceholder={'years'}
-                monthPlaceholder={'months'}
-                dayPlaceholder={'days'}
-                id="birthdate"
-                name="birthdate"
-                value={birthdate}
-                onChange={value => {
-                  if (!value) {
-                    return;
-                  }
-                  formik.setFieldValue(
-                    'birthdate',
-                    new Date(Date.parse(value)),
-                  );
-                }}
-              />
-              {/* </MaddNotinput> */}
+              <MaddNotinput as={'div'}>
+                <DatePicker
+                  style={{
+                    backgroundColor: 'aliceblue',
+                    height: '24px',
+                    borderRadius: '8px',
+                    fontSize: '14px',
+                    padding: '3px 10px',
+                    border: 'none',
+                  }}
+                  wrapperClassName="react-date-picker__wrapper"
+                  clearIcon={null}
+                  calendarIcon={<ImgClose src={celendar} alt="" />}
+                  format="dd.MM.yyyy"
+                  dateFormat="dd.MM.yyyy"
+                  selected={birthdate}
+                  maxDate={new Date()}
+                  yearPlaceholder={'years'}
+                  monthPlaceholder={'months'}
+                  dayPlaceholder={'days'}
+                  id="birthdate"
+                  name="birthdate"
+                  value={birthdate}
+                  onChange={value => {
+                    if (!value) {
+                      return;
+                    }
+                    formik.setFieldValue(
+                      'birthdate',
+                      new Date(Date.parse(value)),
+                    );
+                  }}
+                />
+              </MaddNotinput>
               <MaddNotLabel forhtml="breed">Breed</MaddNotLabel>
               <MaddNotinput
                 type="text"
@@ -278,7 +306,7 @@ const ModalAddNotice = ({ setShowModal, setArray }) => {
                 value={breed}
               />
               <MaddNotBlock>
-                <MaddNotButton type="button" onClick={onBtnCloseClick}>
+                <MaddNotButton type="button" onClick={closeModal}>
                   Cancel
                 </MaddNotButton>
                 <MaddNotAccentBtn type="button" onClick={onPageChange}>
@@ -290,7 +318,7 @@ const ModalAddNotice = ({ setShowModal, setArray }) => {
           {page === 2 && (
             <>
               <MaddNotRadioToolbar2>
-                <MaddNotLabelDistance>Title</MaddNotLabelDistance>
+                <MaddNotLabelDistance>Add pet</MaddNotLabelDistance>
                 <MaddNotBlockOfRadio>
                   <MaddNotLabelMale>
                     <IconMale />
@@ -341,7 +369,7 @@ const ModalAddNotice = ({ setShowModal, setArray }) => {
               />
 
               <div className={s.loadImgGroup}>
-                <p className={s.titleLoad}>Load</p>
+                <p>Load the pet’s image:</p>
                 <MaddNotLabelLoad forhtml="file">
                   {!photo && <ImgClose src={loadMobile} alt="add_photo" />}
                   {photo && (
@@ -389,13 +417,13 @@ const ModalAddNotice = ({ setShowModal, setArray }) => {
 
               <MaddNotBlock>
                 <MaddNotButton type="button" onClick={onPageChange}>
-                  back
+                  Back
                 </MaddNotButton>
                 <MaddNotAccentBtn
                   type="submit"
                   disabled={isLoading ? true : false}
                 >
-                  done
+                  Done
                 </MaddNotAccentBtn>
               </MaddNotBlock>
             </>
@@ -407,8 +435,7 @@ const ModalAddNotice = ({ setShowModal, setArray }) => {
           <Loader />
         </MaddNotLoader>
       )}
-    </MaddNotBackdrop>,
-    portalModal,
+    </>
   );
 };
 
