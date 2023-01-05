@@ -190,7 +190,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
     const info = filteredArray.reduce((previousValue, feature) => {
       return { ...previousValue, [feature[0]]: feature[1] };
     }, {});
-    dispatch(addFavoriteNotice(info));
+    dispatch(addOwnNotice(info));
     // setShowModal(false);
     // // setShowModal(false);
     // setArray(response);
@@ -243,9 +243,11 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
             <>
               <MaddNotRadioToolbar>
                 <MaddNotLabelToolbar
-                // {category === 'lostFound'
-                //     ? activeCategory
-                //   : notActiveCategory}
+                  className={
+                    category === 'lostFound'
+                      ? s.activeCategory
+                      : s.notActiveCategory
+                  }
                 >
                   lost/found
                   <MaddNotInputToolbar
@@ -257,7 +259,13 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                     onBlur={formik.handleBlur}
                   />
                 </MaddNotLabelToolbar>
-                <MaddNotLabelToolbar>
+                <MaddNotLabelToolbar
+                  className={
+                    category === 'inGoodHands'
+                      ? s.activeCategory
+                      : s.notActiveCategory
+                  }
+                >
                   in good hands
                   <MaddNotInputToolbar
                     type="radio"
@@ -268,7 +276,11 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                     onBlur={formik.handleBlur}
                   />
                 </MaddNotLabelToolbar>
-                <MaddNotLabelToolbar>
+                <MaddNotLabelToolbar
+                  className={
+                    category === 'sell' ? s.activeCategory : s.notActiveCategory
+                  }
+                >
                   sell
                   <MaddNotInputToolbar
                     type="radio"
@@ -446,7 +458,6 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
               )}
               <MaddNotLabel forhtml="comments">Comments</MaddNotLabel>
               <MaddNotTextarea
-                className={s.textarea}
                 name="comments"
                 id="comments"
                 placeholder={'comments'}
@@ -461,7 +472,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                 </MaddNotButton>
                 <MaddNotAccentBtn
                   type="submit"
-                  disabled={isLoading ? true : false}
+                  // disabled={isLoading ? true : false}
                 >
                   Done
                 </MaddNotAccentBtn>
