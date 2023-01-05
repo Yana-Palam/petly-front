@@ -79,6 +79,7 @@ const authSlice = createSlice({
       state.user._id = user._id;
       state.user.city = user.city;
       state.user.phone = user.phone;
+      state.user.birthday = user.birthday;
       state.user.avatarUrl = user.avatarUrl;
       state.user.myPets = [...user.myPets];
       state.user.favorites = [...user.favorites, '63b4a4794dd4e4742c08c58b'];
@@ -102,9 +103,10 @@ const authSlice = createSlice({
       state.user = {
         email: null,
         name: null,
-        id: null,
+        _id: null,
         city: null,
         phone: null,
+        birthday: null,
         avatarUrl: null,
         myPets: [],
         favorites: [],
@@ -147,7 +149,20 @@ const authSlice = createSlice({
       state.error = null;
     },
     [getUserInfo.fulfilled]: (state, action) => {
-      state.user = action.payload;
+      state.user.email = action.payload.email;
+      state.user.name = action.payload.name;
+      state.user._id = action.payload._id;
+      state.user.city = action.payload.city;
+      state.user.phone = action.payload.phone;
+      state.user.birthday = action.payload.birthday;
+
+      state.user.avatarUrl = action.payload.avatarUrl;
+      state.user.myPets = [...action.payload.myPets];
+      state.user.favorites = [...action.payload.favorites];
+      state.user.own = [...action.payload.own];
+      // state.user = action.payload;
+      state.accessToken = action.payload.accessToken;
+      state.refreshToken = action.payload.refreshToken;
     },
     [getUserInfo.rejected]: (state, action) => {
       state.error = action.payload;

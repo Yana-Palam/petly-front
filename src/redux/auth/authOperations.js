@@ -25,19 +25,15 @@ axios.interceptors.response.use(
       const state = store.getState();
       const accessToken = state.auth.accessToken;
 
-      // console.log('1111', accessToken);
-      console.log(config);
-
       if (accessToken) {
-        //тут перевіряю чи є в стейті accessToken - чи потрібен взагалі рефреш
-
         store.dispatch(refresh());
-        const newAccessToken = state.auth.accessToken;
 
-        // console.log('22222', newAccessToken);
-        config.headers.common.Authorization = `Bearer ${newAccessToken}`;
+        setTimeout(() => {
+          const newAccessToken = state.auth.accessToken;
 
-        return axios(config);
+          config.headers['Authorization'] = 'Bearer ' + newAccessToken;
+          return axios(config);
+        }, 300);
       }
     }
     return Promise.reject(error);
