@@ -124,7 +124,6 @@ const authSlice = createSlice({
       state.accessToken = accessToken;
       state.refreshToken = refreshToken;
 
-      // state.isLoggedIn = true;
       state.isLoading = false;
     },
     [refresh.rejected]: (state, { payload }) => {
@@ -139,12 +138,7 @@ const authSlice = createSlice({
       state.error = null;
     },
     [getUserInfo.fulfilled]: (state, action) => {
-      state.user.email = action.payload.email;
-      state.user.name = action.payload.name;
-      state.user._id = action.payload._id;
-      state.user.city = action.payload.city;
-      state.user.phone = action.payload.phone;
-      state.user.birthday = action.payload.birthday;
+      state.user = action.payload;
 
       state.user.avatarUrl = action.payload.avatarUrl;
       state.user.myPets = [...action.payload.myPets];
