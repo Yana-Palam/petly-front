@@ -1,12 +1,14 @@
 import { helpers } from 'utils/helpers';
 
 export const selectNoticeState = state => {
-  const ownNotice = state.auth.user.own;
+  const userId = state.auth.user._id;
+  // const ownNotice = state.auth.user.own;
   const favNotice = state.auth.user.favorites;
 
   const { notices, isLoading, error } = state.notice;
   const resultNotice = notices.reduce((acc, notice) => {
-    const own = helpers.isElemArray(ownNotice, notice._id);
+    // const own = helpers.isElemArray(ownNotice, notice._id);
+    const own = notice?.owner?._id === userId ? true : false;
     const favorite = helpers.isElemArray(favNotice, notice._id);
     const newObject = { ...notice, favorite, own };
     acc.push(newObject);
