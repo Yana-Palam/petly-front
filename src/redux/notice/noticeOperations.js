@@ -21,6 +21,7 @@ export const fetchByCategory = createAsyncThunk(
       }
 
       const { data } = await axios.get(`/notices/${category}`);
+
       return data;
     } catch (error) {
       return rejectWithValue(error.request.status);
