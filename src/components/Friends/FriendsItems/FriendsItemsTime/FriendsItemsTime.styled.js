@@ -66,7 +66,7 @@ export const StyledFullTime = styled.div.attrs(props => ({
   position: absolute;
   top: 35px;
   left: 0;
-  width: 125px;
+  min-width: 130px;
   background-color: ${props => props.theme.colors.white};
   border: 1px solid ${props => props.theme.colors.accent};
   padding: 12px;

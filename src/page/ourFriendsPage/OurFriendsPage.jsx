@@ -4,6 +4,7 @@ import Loader from '../../components/Loader';
 import { getDate } from '../../services/api/DataApi';
 import { StyledContainer, StyledTitle } from './OurFriendsPage.styled';
 import { motion } from 'framer-motion';
+import Section from 'components/Common/Section';
 
 function OurFriendsPage() {
   const [friends, setFriends] = useState([]);
@@ -27,6 +28,7 @@ function OurFriendsPage() {
   }, []);
   return (
     <>
+    <Section>
       <StyledContainer
         as={motion.div}
         initial={{ opacity: 0 }}
@@ -38,6 +40,7 @@ function OurFriendsPage() {
         {error && <div>{error.message}</div>}
         {friends && <Friends friends={friends} />}
       </StyledContainer>
+      </Section>
     </>
   );
 }

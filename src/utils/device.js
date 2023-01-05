@@ -11,7 +11,7 @@ const size = {
 export const device = {
   mobile: `(min-width: ${size.mobile})`,
   mobileOnly: `(max-width: ${size.mobileOnly})`,
-
+  
   fablet: `(min-width: ${size.fablet})`,
   fabletOnly: `(min-width:${size.fablet}) and (max-width:${size.fabletOnly})`,
   fabletAndMobileOnly: `(max-width:${size.fabletOnly})`,

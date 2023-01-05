@@ -7,7 +7,10 @@ import useToggleModal from 'hooks/toggleModal';
 import { selectAccessToken } from 'redux/auth/authSelectors';
 import { fetchByCategory } from 'redux/notice/noticeOperations';
 import { selectNoticeState } from 'redux/notice/noticeSelectors';
-import { addFavorite, deleteFavorite } from 'redux/auth/authSlice';
+import {
+  addFavoriteNotice,
+  deleteFavoriteNotice,
+} from 'redux/auth/authOperations';
 
 // Components
 import Container from 'components/Common/Container';
@@ -23,7 +26,8 @@ import DelNoticeItem from 'components/Notices/DelNoticeItem';
 // import ModalNotice from '../../components/Notices/ModalNotice/ModalNotice';
 import { Title } from './NoticesPage.styled';
 import ModalAddNotice from 'components/Notices/ModalAddNotice';
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
+import Section from 'components/Common/Section';
 
 const initialState = {
   search: '',
@@ -34,7 +38,6 @@ const initialState = {
 
 function NoticesPage() {
   const [state, setState] = useState(initialState);
-
   const dispatch = useDispatch();
   const token = useSelector(selectAccessToken);
   const { resultNotice, isLoading } = useSelector(selectNoticeState);
@@ -90,13 +93,13 @@ function NoticesPage() {
       favorite,
     }));
 
-    // if (
-    //   !Boolean(token) &&
-    //   (btnType?.favorite || btnType?.add || btnType?.delete)
-    // ) {
-    //   toast.warn('You are not a registered user!');
-    //   return;
-    // }
+    if (
+      !Boolean(token) &&
+      (btnType?.favorite || btnType?.add || btnType?.delete)
+    ) {
+      toast.warn('You are not a registered user!');
+      return;
+    }
 
     if (btnType?.modal || btnType?.add) {
       openModal();
@@ -105,9 +108,9 @@ function NoticesPage() {
 
     if (btnType?.favorite) {
       if (!favorite) {
-        dispatch(addFavorite(btnId));
+        dispatch(addFavoriteNotice(btnId));
       } else {
-        dispatch(deleteFavorite(btnId));
+        dispatch(deleteFavoriteNotice(btnId));
       }
     }
     return;
@@ -115,49 +118,51 @@ function NoticesPage() {
 
   return (
     <>
-      {isOpen && (
-        <Modal
-          handleBackdropClick={handleBackdropClick}
-          handleKeyDown={handleKeyDown}
-        >
-          {state.btnType?.modal && (
-            <>
-              <ModalNotice
-                notices={getNoticeById}
-                token={token}
-                closeModal={closeModal}
-              />
-            </>
-          )}
-          {state.btnType?.delete && (
-            <DelNoticeItem notices={resultNotice} closeModal={closeModal} />
-          )}
-          {state.btnType?.add && (
-            <>
-              <ModalAddNotice closeModal={closeModal} />
-            </>
-          )}
-        </Modal>
-      )}
-
-      <Container>
-        <Title>Find your favorite pet</Title>
-        <NoticesSearch handleSearch={handleSearch} />
-        <NoticesCategoriesNav getBtnInfo={getBtnInfo} />
-        {isLoading && <Loader />}
-        {Boolean(resultNotice?.length > 0) ? (
-          <NoticesCategoriesList
-            notices={resultNotice}
-            getBtnInfo={getBtnInfo}
-          />
-        ) : (
-          <p>Not Found</p>
-          // <NoticeNotFound />
+      <Section>
+        {isOpen && (
+          <Modal
+            handleBackdropClick={handleBackdropClick}
+            handleKeyDown={handleKeyDown}
+          >
+            {state.btnType?.modal && (
+              <>
+                <ModalNotice
+                  notices={getNoticeById}
+                  token={token}
+                  closeModal={closeModal}
+                />
+              </>
+            )}
+            {state.btnType?.delete && (
+              <DelNoticeItem notices={resultNotice} closeModal={closeModal} />
+            )}
+            {state.btnType?.add && (
+              <>
+                <ModalAddNotice closeModal={closeModal} />
+              </>
+            )}
+          </Modal>
         )}
-        {/* <ModalAddNotice /> */}
-        {/* <AddNoticeButton getBtnInfo={getBtnInfo} /> */}
-        {/* <ModalNotice /> */}
-      </Container>
+
+        <Container>
+          <Title>Find your favorite pet</Title>
+          <NoticesSearch handleSearch={handleSearch} />
+          <NoticesCategoriesNav getBtnInfo={getBtnInfo} />
+          {isLoading && <Loader />}
+          {Boolean(resultNotice?.length > 0) ? (
+            <NoticesCategoriesList
+              notices={resultNotice}
+              getBtnInfo={getBtnInfo}
+            />
+          ) : (
+            <p style={{ fontSize: '100px' }}>TODO Not Found</p>
+            // <NoticeNotFound />
+          )}
+          {/* <ModalAddNotice /> */}
+          {/* <AddNoticeButton getBtnInfo={getBtnInfo} /> */}
+          {/* <ModalNotice /> */}
+        </Container>
+      </Section>
     </>
   );
 }
