@@ -35,7 +35,6 @@ const initialState = {
       },
     ],
     favorites: [],
-    own: [],
   },
   accessToken: null,
   refreshToken: null,
@@ -76,7 +75,6 @@ const authSlice = createSlice({
       state.user.avatarUrl = user.avatarUrl;
       state.user.myPets = [...user.myPets];
       state.user.favorites = [...user.favorites, '63b4a4794dd4e4742c08c58b'];
-      state.user.own = [...user.own];
       state.accessToken = user.accessToken;
       state.refreshToken = user.refreshToken;
 
@@ -103,7 +101,6 @@ const authSlice = createSlice({
         avatarUrl: null,
         myPets: [],
         favorites: [],
-        own: [],
       };
       state.accessToken = null;
       state.refreshToken = null;
@@ -152,8 +149,6 @@ const authSlice = createSlice({
       state.user.avatarUrl = action.payload.avatarUrl;
       state.user.myPets = [...action.payload.myPets];
       state.user.favorites = [...action.payload.favorites];
-      state.user.own = [...action.payload.own];
-      // state.user = action.payload;
       state.accessToken = action.payload.accessToken;
       state.refreshToken = action.payload.refreshToken;
     },
