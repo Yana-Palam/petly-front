@@ -175,7 +175,7 @@ export const addFavoriteNotice = createAsyncThunk(
     try {
       const tokenLS = thunkAPI.getState().auth.accessToken;
       token.set(tokenLS);
-      await axios.patch(`/notices/own/${_id}/favorites`);
+      await axios.patch(`/notices/user/${_id}/favorites`);
       return _id;
     } catch (error) {
       toast.error("Sorry, can't add favorite notices, server Error!");
@@ -190,7 +190,7 @@ export const deleteFavoriteNotice = createAsyncThunk(
     try {
       const tokenLS = thunkAPI.getState().auth.accessToken;
       token.set(tokenLS);
-      await axios.delete(`/notices/own/${_id}/favorites`);
+      await axios.delete(`/notices/user/${_id}/favorites`);
       return _id;
     } catch (error) {
       toast.error("Sorry, can't delete favorite notices, server Error!");

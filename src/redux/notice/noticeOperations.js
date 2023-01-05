@@ -10,18 +10,25 @@ const token = {
   },
 };
 
+const setTokenRequest = getState => {
+  const tokenLS = getState().auth.accessToken;
+  if (Boolean(tokenLS)) {
+    token.set(tokenLS);
+  }
+  return;
+};
+
 export const fetchByCategory = createAsyncThunk(
   'notice/fetchByCategory',
   async (category, { rejectWithValue, getState }) => {
     try {
       //TODO дописати бек відправка з токеном, але якщо він присутній, то відсилати ще масив токенів, якщо він відсутній то відсилати лише з категорії.
-      const tokenLS = getState().auth.accessToken;
-      if (Boolean(tokenLS)) {
-        token.set(tokenLS);
+      if (category === 'own' || category === 'favorite') {
+        setTokenRequest(getState);
+        const { data } = await axios.get(`/notices/user/${category}`);
+        return data;
       }
-
       const { data } = await axios.get(`/notices/${category}`);
-
       return data;
     } catch (error) {
       return rejectWithValue(error.request.status);
