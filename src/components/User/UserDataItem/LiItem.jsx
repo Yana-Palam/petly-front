@@ -73,9 +73,9 @@ const LiItem = ({ label, name, user, active, setActive, children }) => {
     <>
       <Item ref={active === name ? wrapperRef : null}>
         <Label htmlFor={name}>{label}</Label>
-        {/*{*/}
-        {/*  !children*/}
-        {/*    ?*/}
+        {
+          !children
+            ?
             <Input
               active={active === name}
               disabled={active !== name}
@@ -85,9 +85,9 @@ const LiItem = ({ label, name, user, active, setActive, children }) => {
               value={value || user}
               onChange={onChangeHandler}
             />
-         {/*  :*/}
-         {/*   children*/}
-         {/*}*/}
+           :
+            children
+         }
 
         <Button>
           {active === name ? (
