@@ -85,3 +85,13 @@ export const Input = styled.input`
     margin-right: 24px;
   }
 `;
+
+export const SpanValidation = styled.span`
+  color: red;
+  font-size: 14px;
+  line-height: 22px;
+  margin-left: 69px;
+  @media (${device.tablet}) {
+    margin-left: 111px;
+  }
+  `;
