@@ -1,8 +1,14 @@
 import { useEffect, useState } from 'react';
 // import { createPortal } from 'react-dom';
 import { useNavigate, useParams } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
 import { useFormik } from 'formik';
+import * as Yup from 'yup';
+import {
+  addFavoriteNotice,
+  addOwnNotice,
+} from '../../../redux/auth/authOperations';
 import DatePicker from 'react-date-picker';
 import { showAlertMessage } from '../../../utils/showMessages';
 
@@ -46,24 +52,25 @@ import {
 
 // const portalModal = document.querySelector('#modal-root');
 
-const ModalAddNotice = ({ setShowModal, setArray, closeModal }) => {
+const ModalAddNotice = ({ setArray, closeModal }) => {
   const [page, setPage] = useState(1);
   const [photo, setPhoto] = useState('');
   const { categoryName } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
-  useEffect(() => {
-    const handleKeyDown = e => {
-      if (e.code === 'Escape') setShowModal(false);
-    };
-    document.addEventListener('keydown', handleKeyDown);
+  // useEffect(() => {
+  //   const handleKeyDown = e => {
+  //     if (e.code === 'Escape') setShowModal(false);
+  //   };
+  //   document.addEventListener('keydown', handleKeyDown);
 
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-    // eslint-disable-next-line
-  }, []);
+  //   return () => {
+  //     document.removeEventListener('keydown', handleKeyDown);
+  //   };
+  //   // eslint-disable-next-line
+  // }, []);
 
   // const onBackdropClick = e => {
   //   if (e.currentTarget === e.target) setShowModal(false);
@@ -90,6 +97,29 @@ const ModalAddNotice = ({ setShowModal, setArray, closeModal }) => {
     onSubmit: values => {
       alert(JSON.stringify(values, null, 2));
     },
+    validationSchema: Yup.object({
+      category: Yup.string().required('validation.required'),
+      title: Yup.string()
+        .min(2, 'validation.min')
+        .max(48, 'validation.titleMax')
+        .required('validation.required'),
+      name: Yup.string()
+        .min(2, 'validation.min')
+        .max(16, 'validation.namePetMax'),
+      breed: Yup.string().min(2, 'validation.min').max(24, 'validation.max'),
+      sex: Yup.string().required('validation.required'),
+      location: Yup.string()
+        .min(2, 'validation.min')
+        .max(24, 'validation.max')
+        .required('validation.required'),
+      price: Yup.number()
+        .typeError('validation.priceNum')
+        .integer('validation.priceInt')
+        .required('validation.required'),
+      comments: Yup.string()
+        .min(8, 'validation.commentsMin')
+        .max(120, 'validation.commentsMax'),
+    }),
   });
 
   const {
@@ -140,42 +170,47 @@ const ModalAddNotice = ({ setShowModal, setArray, closeModal }) => {
       showAlertMessage('errors.allFieldsFormat');
       return;
     }
-
     setIsLoading(true);
-    // const transformedPrice = category === 'sell' ? Number(price) : '';
 
-    // const arrayOfData = Object.entries({
-    //   category,
-    //   title,
-    //   name,
-    //   birthdate,
-    //   breed,
-    //   sex,
-    //   location,
-    //   price: transformedPrice,
-    //   comments,
-    //   notices,
-    // });
-    // const filteredArray = arrayOfData.filter(item => item[1]);
-    // const info = filteredArray.reduce((previousValue, feature) => {
-    //   return { ...previousValue, [feature[0]]: feature[1] };
-    // }, {});
+    const transformedPrice = category === 'sell' ? Number(price) : '';
 
-    try {
-      // await addNotice(info);
-      if (categoryName !== 'own') {
-        setShowModal(false);
-        navigate('/notices/own');
-        return;
-      }
-      // const response = await fetchOwnAds();
-      setShowModal(false);
-      // setArray(response);
-    } catch (error) {
-      // showAlertMessage(error.response.data.message);
-    } finally {
-      setIsLoading(false);
-    }
+    const arrayOfData = Object.entries({
+      category,
+      title,
+      name,
+      birthdate,
+      breed,
+      sex,
+      location,
+      price: transformedPrice,
+      comments,
+      notices,
+    });
+    const filteredArray = arrayOfData.filter(item => item[1]);
+    const info = filteredArray.reduce((previousValue, feature) => {
+      return { ...previousValue, [feature[0]]: feature[1] };
+    }, {});
+    dispatch(addFavoriteNotice(info));
+    // setShowModal(false);
+    // // setShowModal(false);
+    // setArray(response);
+    setIsLoading(false);
+    // try {
+    //   await addFavoriteNotice(info);
+    //   if (categoryName !== 'own') {
+    //     // setShowModal(false);
+    //     // dispatch(addFavoriteNotice(info));
+    //     navigate('/notices/own');
+    //     return;
+    //   }
+    //   const response = await addOwnNotice();
+    //   // setShowModal(false);
+    //   setArray(response);
+    // } catch (error) {
+    //   showAlertMessage(error.message);
+    // } finally {
+    //   setIsLoading(false);
+    // }
   };
 
   const onPageChange = () => {
@@ -207,7 +242,11 @@ const ModalAddNotice = ({ setShowModal, setArray, closeModal }) => {
           {page === 1 && (
             <>
               <MaddNotRadioToolbar>
-                <MaddNotLabelToolbar>
+                <MaddNotLabelToolbar
+                // {category === 'lostFound'
+                //     ? activeCategory
+                //   : notActiveCategory}
+                >
                   lost/found
                   <MaddNotInputToolbar
                     type="radio"
