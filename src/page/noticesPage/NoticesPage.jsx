@@ -155,7 +155,7 @@ function NoticesPage() {
               getBtnInfo={getBtnInfo}
             />
           ) : (
-            <p>Not Found</p>
+            <p style={{ fontSize: '100px' }}>TODO Not Found</p>
             // <NoticeNotFound />
           )}
           {/* <ModalAddNotice /> */}

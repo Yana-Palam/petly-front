@@ -106,7 +106,6 @@ const ModalNotice = ({ notices, closeModal, getBtnInfo, token }) => {
               <TextInfo>{sex || noItem}</TextInfo>
             </ItemInfo>
 
-            {/* //TODO деструктуризувати пропс */}
             <ItemInfo key={'email'}>
               <TextInfoTitle>Email:</TextInfoTitle>
               <TextInfo>
@@ -114,7 +113,6 @@ const ModalNotice = ({ notices, closeModal, getBtnInfo, token }) => {
               </TextInfo>
             </ItemInfo>
 
-            {/* //TODO деструктуризувати пропс */}
             <ItemInfo key={'phone'}>
               <TextInfoTitle>Phone:</TextInfoTitle>
               <TextInfo>
@@ -122,7 +120,6 @@ const ModalNotice = ({ notices, closeModal, getBtnInfo, token }) => {
               </TextInfo>
             </ItemInfo>
 
-            {/* //TODO деструктуризувати пропс */}
             {category === 'sell' && (
               <ItemInfo key={'price'}>
                 <TextInfoTitle>Price:</TextInfoTitle>
