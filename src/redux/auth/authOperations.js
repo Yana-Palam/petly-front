@@ -160,9 +160,71 @@ export const deletePet = createAsyncThunk(
       const tokenLS = thunkAPI.getState().auth.accessToken;
       token.set(tokenLS);
       await axios.delete(`/user/pets/${_id}`);
-      return { _id };
+      return _id;
     } catch (error) {
       toast.error("Sorry, can't delete pet, server Error!");
+      return thunkAPI.rejectWithValue(error.request.status);
+    }
+  }
+);
+
+//INFO Notices operations
+export const addFavoriteNotice = createAsyncThunk(
+  'notices/addFavorite',
+  async (_id, thunkAPI) => {
+    try {
+      const tokenLS = thunkAPI.getState().auth.accessToken;
+      token.set(tokenLS);
+      await axios.patch(`/notices/own/${_id}/favorites`);
+      return _id;
+    } catch (error) {
+      toast.error("Sorry, can't add favorite notices, server Error!");
+      return thunkAPI.rejectWithValue(error.request.status);
+    }
+  }
+);
+
+export const deleteFavoriteNotice = createAsyncThunk(
+  'notices/deleteFavorite',
+  async (_id, thunkAPI) => {
+    try {
+      const tokenLS = thunkAPI.getState().auth.accessToken;
+      token.set(tokenLS);
+      await axios.delete(`/notices/own/${_id}/favorites`);
+      return _id;
+    } catch (error) {
+      toast.error("Sorry, can't delete favorite notices, server Error!");
+      return thunkAPI.rejectWithValue(error.request.status);
+    }
+  }
+);
+
+//TODO Синхронізувати запит згідно беку
+export const addOwnNotice = createAsyncThunk(
+  'notices/addOwnNotice',
+  async (notice, thunkAPI) => {
+    try {
+      const tokenLS = thunkAPI.getState().auth.accessToken;
+      token.set(tokenLS);
+      await axios.post(`notices/addnotice`, notice);
+      return { notice };
+    } catch (error) {
+      toast.error("Sorry, can't add notices, server Error!");
+      return thunkAPI.rejectWithValue(error.request.status);
+    }
+  }
+);
+
+export const deleteOwnNotice = createAsyncThunk(
+  'notices/deleteOwnNotice',
+  async (_id, thunkAPI) => {
+    try {
+      const tokenLS = thunkAPI.getState().auth.accessToken;
+      token.set(tokenLS);
+      await axios.delete(`/notices/own/${_id}`);
+      return { _id };
+    } catch (error) {
+      toast.error("Sorry, can't delete notices, server Error!");
       return thunkAPI.rejectWithValue(error.request.status);
     }
   }

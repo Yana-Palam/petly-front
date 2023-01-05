@@ -2,7 +2,10 @@ import { helpers } from 'utils/helpers';
 import { toast } from 'react-toastify';
 
 import { useDispatch } from 'react-redux';
-import { addFavorite, deleteFavorite } from 'redux/auth/authSlice';
+import {
+  addFavoriteNotice,
+  deleteFavoriteNotice,
+} from 'redux/auth/authOperations';
 
 import Box from 'components/Common/Box';
 // import Button from 'components/Common/Button';
@@ -58,9 +61,9 @@ const ModalNotice = ({ notices, closeModal, getBtnInfo, token }) => {
       return;
     }
     if (favorite) {
-      dispatch(deleteFavorite(id));
+      dispatch(deleteFavoriteNotice(id));
     } else {
-      dispatch(addFavorite(id));
+      dispatch(addFavoriteNotice(id));
     }
   };
 
@@ -103,7 +106,6 @@ const ModalNotice = ({ notices, closeModal, getBtnInfo, token }) => {
               <TextInfo>{sex || noItem}</TextInfo>
             </ItemInfo>
 
-            {/* //TODO деструктуризувати пропс */}
             <ItemInfo key={'email'}>
               <TextInfoTitle>Email:</TextInfoTitle>
               <TextInfo>
@@ -111,7 +113,6 @@ const ModalNotice = ({ notices, closeModal, getBtnInfo, token }) => {
               </TextInfo>
             </ItemInfo>
 
-            {/* //TODO деструктуризувати пропс */}
             <ItemInfo key={'phone'}>
               <TextInfoTitle>Phone:</TextInfoTitle>
               <TextInfo>
@@ -119,7 +120,6 @@ const ModalNotice = ({ notices, closeModal, getBtnInfo, token }) => {
               </TextInfo>
             </ItemInfo>
 
-            {/* //TODO деструктуризувати пропс */}
             {category === 'sell' && (
               <ItemInfo key={'price'}>
                 <TextInfoTitle>Price:</TextInfoTitle>

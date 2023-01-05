@@ -88,12 +88,15 @@ export const StyledSubTitle = styled.h4`
   }
 `;
 
-export const StyledSubLink = styled.a`
+export const StyledSubLink = styled.a.attrs(props => ({
+  textDecoration: props.isPhone ? '' : 'underline',
+}))`
   font-family: ${p => p.theme.fonts.main};
   display: block;
   font-weight: 500;
   font-size: 12px;
   line-height: 1.33;
+  text-decoration: ${props => props.textDecoration};
   color: ${props => props.theme.colors.black};
   @media ${device.tablet} {
     font-size: 14px;

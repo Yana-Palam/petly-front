@@ -8,6 +8,10 @@ import {
   deletePet,
   getUserInfo,
   updateUserInfo,
+  addFavoriteNotice,
+  deleteFavoriteNotice,
+  //addOwnNotice,
+  //deleteOwnNotice
 } from './authOperations';
 
 const initialState = {
@@ -43,17 +47,6 @@ const initialState = {
 const authSlice = createSlice({
   name: 'auth',
   initialState,
-  reducers: {
-    addFavorite(state, { payload }) {
-      state.user.favorites.push(payload);
-    },
-
-    deleteFavorite(state, { payload }) {
-      state.user.favorites = state.user.favorites.filter(
-        item => item !== payload
-      );
-    },
-  },
   extraReducers: {
     // --------------------REGISTER OPERATION--------------------
 
@@ -202,9 +195,31 @@ const authSlice = createSlice({
     [deletePet.rejected]: (state, action) => {
       state.error = action.payload;
     },
+
+    //INFO addFavorite Notice
+    [addFavoriteNotice.pending]: state => {
+      state.error = null;
+    },
+    [addFavoriteNotice.fulfilled]: (state, action) => {
+      state.user.favorites.push(action.payload);
+    },
+    [addFavoriteNotice.rejected]: (state, action) => {
+      state.error = action.payload;
+    },
+
+    //INFO deleteFavorite Notice
+    [deleteFavoriteNotice.pending]: state => {
+      state.error = null;
+    },
+    [deleteFavoriteNotice.fulfilled]: (state, action) => {
+      state.user.favorites = state.user.favorites.filter(
+        id => id !== action.payload
+      );
+    },
+    [deleteFavoriteNotice.rejected]: (state, action) => {
+      state.error = action.payload;
+    },
   },
 });
-
-export const { addFavorite, deleteFavorite } = authSlice.actions;
 
 export default authSlice.reducer;

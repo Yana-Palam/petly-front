@@ -30,32 +30,7 @@ function NoticeCategoryItem({
   own,
   getNotice,
 }) {
-  // const dispatch = useDispatch();
-  // const [isFav, setIsFav] = useState(false);
-  // const { userFavorites, ownNotice, userPets } = useSelector(selectUserNotice);
   const noItem = '-------------';
-
-  // useEffect(() => {
-  //   const isFavorites = (userFavorites, id) => {
-  //     if (!userFavorites.length) {
-  //       return;
-  //     }
-  //     const isInclude = userFavorites.find(id => id === _id);
-  //     if (isInclude) {
-  //       setIsFav(true);
-  //     }
-  //   };
-  //   isFavorites(userFavorites, _id);
-  // }, [userFavorites, _id]);
-
-  // const handleFavorite = id => {
-  //   if (!isFav) {
-  //     dispatch(addFavorite(id));
-  //   } else {
-  //     dispatch(deleteFavorite(id));
-  //   }
-  //   setIsFav(!isFav);
-  // };
 
   const handleClick = e => {
     e.preventDefault();
