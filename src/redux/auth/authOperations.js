@@ -33,7 +33,7 @@ axios.interceptors.response.use(
 
           config.headers['Authorization'] = 'Bearer ' + newAccessToken;
           return axios(config);
-        }, 300);
+        }, 500);
       }
     }
     return Promise.reject(error);

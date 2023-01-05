@@ -4,8 +4,6 @@ export const selectAccessToken = state => state.auth.accessToken;
 
 export const selectRefreshToken = state => state.auth.refreshToken;
 
-// export const selectAccessToken = state => state.auth.token;
-
 export const selectIsLoggedIn = state => state.auth.isLoggedIn;
 
 export const selectErrorAuth = state => state.auth.error;
