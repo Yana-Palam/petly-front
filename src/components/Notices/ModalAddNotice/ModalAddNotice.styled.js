@@ -322,9 +322,9 @@ export const MaddNotAccentBtn = styled(MaddNotButton)`
 export const MaddNotRadioToolbar2 = styled.div`
   margin-bottom: 71px;
 
-  @media screen and (min-width: 768px) {
+  /* @media screen and (min-width: 768px) {
     margin-bottom: 87px;
-  }
+  } */
 `;
 
 export const MaddNotInputRadio = styled.input`
