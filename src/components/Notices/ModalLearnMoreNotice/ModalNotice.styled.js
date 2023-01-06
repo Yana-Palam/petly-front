@@ -6,6 +6,7 @@ import EmailTo from 'components/Common/EmailTo';
 // import ButtonIcon from 'components/Common/ButtonIcon';
 import { ReactComponent as IconClose } from 'assets/icons/icon-close.svg';
 import { ReactComponent as Favorite } from 'assets/icons/favorite.svg';
+import { ReactComponent as Delete } from 'assets/icons/delete.svg';
 import { StyledButton } from 'components/Common/Button/Button.styled';
 
 export const ButtonIconBox = styled.div`
@@ -202,3 +203,12 @@ export const AnimalsFavoriteSvg = styled(Favorite)`
 `;
 
 export const BtnTel = styled(CallTo)``;
+
+export const BtnDelOwn = styled(AnimalsBtnFavorite)``;
+
+export const BtnDelSvg = styled(Delete)`
+  width: ${p => `${p.theme.space[4]}px`};
+  height: ${p => `${p.theme.space[4]}px`};
+  fill: #f59256;
+  /* fill: currentColor; */
+`;

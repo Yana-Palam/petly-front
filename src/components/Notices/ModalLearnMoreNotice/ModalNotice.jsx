@@ -31,6 +31,8 @@ import {
   AnimalsFavoriteSvg,
   AnimalsBtnFavorite,
   AnimalsBtn,
+  BtnDelOwn,
+  BtnDelSvg,
 } from './ModalNotice.styled';
 
 const ModalNotice = ({ notice = {}, closeModal, getBtnInfo, token, path }) => {
@@ -50,6 +52,7 @@ const ModalNotice = ({ notice = {}, closeModal, getBtnInfo, token, path }) => {
     owner,
     comments,
     price,
+    own,
   } = notice;
   const dispatch = useDispatch();
 
@@ -159,6 +162,16 @@ const ModalNotice = ({ notice = {}, closeModal, getBtnInfo, token, path }) => {
           <BtnTel phone={owner?.phone}>Contact</BtnTel>
         </AnimalsBtn>
 
+        {own && (
+          <BtnDelOwn
+            type="button"
+            id={_id}
+            // onClick={}
+            data-delete="delete"
+          >
+            Delete <BtnDelSvg />
+          </BtnDelOwn>
+        )}
         {/* //TODO прописати телефон */}
       </BtnBox>
     </Box>
