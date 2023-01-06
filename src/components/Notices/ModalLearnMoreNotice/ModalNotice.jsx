@@ -5,7 +5,9 @@ import {
   addFavoriteNotice,
   deleteFavoriteNotice,
 } from 'redux/auth/authOperations';
+import { deleteOwnNoticeById } from 'redux/notice/noticeOperations';
 import { deleteNoticeFavorite } from 'redux/notice/noticeSlice';
+
 import Box from 'components/Common/Box';
 // import Button from 'components/Common/Button';
 // import ButtonIcon from 'components/Common/ButtonIcon';
@@ -55,6 +57,11 @@ const ModalNotice = ({ notice = {}, closeModal, getBtnInfo, token, path }) => {
     own,
   } = notice;
   const dispatch = useDispatch();
+
+  const delNotice = id => {
+    dispatch(deleteOwnNoticeById(id));
+    closeModal();
+  };
 
   const handleFavorite = async id => {
     if (!Boolean(token)) {
@@ -143,17 +150,13 @@ const ModalNotice = ({ notice = {}, closeModal, getBtnInfo, token, path }) => {
 
       <BtnBox>
         {own && (
-          <BtnDelOwn
-            type="button"
-            id={_id}
-            // onClick={}
-            data-delete="delete"
-          >
+          <BtnDelOwn type="button" id={_id} onClick={() => delNotice(_id)}>
             Delete <BtnDelSvg />
           </BtnDelOwn>
         )}
         <AnimalsBtnFavorite
           type="button"
+          it
           id={_id}
           onClick={() => handleFavorite(_id)}
           data-favorite="favorite"
