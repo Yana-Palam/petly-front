@@ -161,7 +161,7 @@ const ModalNotice = ({ notice = {}, closeModal, getBtnInfo, token, path }) => {
           onClick={() => handleFavorite(_id)}
           data-favorite="favorite"
         >
-          Add to
+          {favorite ? 'Remove' : 'Add to'}
           <AnimalsFavoriteSvg
             style={favorite ? { fill: '#F59256' } : { fill: '#FFFFFF99' }}
           />
