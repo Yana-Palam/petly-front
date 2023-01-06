@@ -15,7 +15,7 @@ export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: ${p => `${p.theme.space[5] + 8}px`};
+  gap: ${p => `${p.theme.space[4] + 8}px`};
 
   @media (${device.fablet}) {
     width: ${p => `${p.theme.space[9] + 106}px`};

@@ -58,7 +58,7 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: ${p => `${p.theme.space[5] + 8}px`};
+  gap: ${p => `${p.theme.space[4] + 8}px`};
 `;
 
 export const InputsWrp = styled.div`
@@ -148,6 +148,26 @@ export const IconEye = styled(BsFillEyeFill)`
 `;
 export const IconEyeSlash = styled(BsFillEyeSlashFill)`
   color: ${p => p.theme.colors.button.primaryBackground};
+`;
+
+export const StyledBtnGoogle = styled.button`
+  display: inline-block;
+  display: flex;
+  align-items: center;
+  padding: 0 10px;
+  font-family: ${p => p.theme.fonts.main};
+  font-size: ${p => p.theme.fontSizes.s};
+  line-height: ${p => p.theme.lineHeights.body};
+  letter-spacing: ${p => p.theme.letterSpacing.l};
+  background: ${p => p.theme.colors.button.secondaryBackground};
+  border: 1px solid;
+  border-color: ${({ theme }) => theme.colors.hover};
+
+  &:hover,
+  &:focus {
+    background-color: #e8e8e8;
+    transition: background-color ${p => p.theme.animation.cubic};
+  }
 `;
 
 export const LinksWrapper = styled.div`

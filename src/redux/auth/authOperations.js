@@ -57,6 +57,36 @@ export const refresh = createAsyncThunk(
   }
 );
 
+export const google = createAsyncThunk(
+  'auth/google',
+  async (_, { rejectWithValue }) => {
+    try {
+      await axios.get('/auth/google');
+    } catch (error) {
+      return rejectWithValue(error.request.status);
+    }
+  }
+);
+
+export const setTokens = createAsyncThunk(
+  'auth/google-setTokens',
+  async (tokens, { rejectWithValue }) => {
+    if (tokens.accessToken) {
+      try {
+        token.set(tokens.accessToken);
+
+        toast(`You have successfully logged into your account`, {
+          icon: <IoMdLogIn size={25} color="green" />,
+        });
+
+        return tokens;
+      } catch (error) {
+        return rejectWithValue(error);
+      }
+    }
+  }
+);
+
 export const register = createAsyncThunk(
   'auth/register',
   async (user, { rejectWithValue }) => {

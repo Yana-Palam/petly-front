@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState, memo } from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import { login, restore } from 'redux/auth/authOperations';
+import { login, restore, google } from 'redux/auth/authOperations';
 import { selectAccessToken } from 'redux/auth/authSelectors';
 import { validationSchema, initialValues } from './ValidationSchema';
 import { AuthBtn } from './LoginForm.styled';
@@ -18,8 +18,10 @@ import {
   EyeBtn,
   IconEye,
   IconEyeSlash,
+  StyledBtnGoogle,
 } from './LoginForm.styled';
 import { motion } from 'framer-motion';
+import { FcGoogle } from 'react-icons/fc';
 import Links from './links/Links';
 
 const inputs = [
@@ -37,6 +39,10 @@ const LoginForm = memo(({ onRestore, showRestore }) => {
 
   const changeVisiblePassword = () => {
     setShowPassword(prev => !prev);
+  };
+
+  const onClickGoogle = () => {
+    dispatch(google());
   };
 
   const formik = useFormik({
@@ -107,12 +113,15 @@ const LoginForm = memo(({ onRestore, showRestore }) => {
                 </InputWrapper>
               ))}
         </InputsWrp>
-        {
-          <AuthBtn type="submit">
-            {showRestore ? 'Send to email' : 'Login'}
-          </AuthBtn>
-        }
+
+        <AuthBtn type="submit">
+          {showRestore ? 'Send to email' : 'Login'}
+        </AuthBtn>
+
         <Links onRestore={onRestore} showRestore={showRestore} />
+        <StyledBtnGoogle onClick={onClickGoogle} type="button">
+          <FcGoogle size="45px" /> Continue with Google
+        </StyledBtnGoogle>
       </Form>
     </FormWrapper>
   );
