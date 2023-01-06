@@ -435,7 +435,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                 </MaddNotButton>
                 <MaddNotAccentBtn
                   type="submit"
-                  // disabled={isLoading ? true : false}
+                  disabled={isLoading ? true : false}
                 >
                   Done
                 </MaddNotAccentBtn>
