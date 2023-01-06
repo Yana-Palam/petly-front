@@ -99,7 +99,7 @@ function NoticesPage() {
       return;
     }
 
-    if (btnType?.modal || btnType?.add) {
+    if (btnType?.modal || btnType?.add || btnType?.delete) {
       openModal();
       return;
     }
@@ -136,7 +136,7 @@ function NoticesPage() {
               </>
             )}
             {state.btnType?.delete && (
-              <DelNoticeItem notices={resultNotice} closeModal={closeModal} />
+              <DelNoticeItem id={state.btnId} closeModal={closeModal} />
             )}
             {state.btnType?.add && (
               <>
