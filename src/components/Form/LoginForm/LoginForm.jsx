@@ -19,8 +19,10 @@ import {
   EyeBtn,
   IconEye,
   IconEyeSlash,
+  StyledBtnGoogle,
 } from './LoginForm.styled';
 import { motion } from 'framer-motion';
+import { FcGoogle } from 'react-icons/fc';
 
 const inputs = [
   { type: 'email', name: 'email', label: 'Email' },
@@ -122,10 +124,10 @@ const LoginForm = () => {
         <Text>
           Don't have an account? <AuthLink to="/register">Register</AuthLink>
         </Text>
+        <StyledBtnGoogle onClick={onClickGoogle} type="button">
+          <FcGoogle size="45px" /> Continue with Google
+        </StyledBtnGoogle>
       </Form>
-      <button onClick={onClickGoogle} type="button">
-        Google
-      </button>
     </FormWrapper>
   );
 };
