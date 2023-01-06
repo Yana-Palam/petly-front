@@ -140,14 +140,31 @@ export const MaddNotRadioToolbar = styled.div`
     margin-bottom: 28px;
   }
 `;
+export const Item = styled.div`
+  display: inline-block;
 
-export const MaddNotInputToolbar = styled.input`
-  /* .radioToolbar input[type='radio']  */
-  display: none;
+  &:first-child {
+    margin-bottom: 12px;
+
+    @media screen and (min-width: 480px) {
+      margin-bottom: 0px;
+    }
+  }
+
+  @media screen and (min-width: 768px) {
+    margin-bottom: 16px;
+  }
+  &:not(:last-child) {
+    margin-right: 8px;
+  }
+  @media screen and (max-width: 325px) {
+    &:not(:last-child) {
+      margin-top: 12px;
+    }
+  }
 `;
 
 export const MaddNotLabelToolbar = styled.label`
-  /* .radioToolbar label { */
   display: inline-block;
 
   font-family: 'Manrope';
@@ -158,9 +175,8 @@ export const MaddNotLabelToolbar = styled.label`
   letter-spacing: 0.04em;
 
   border: 2px solid #f59256;
-  background-color: ${p => {
-    return p.isActive ? '#f59256' : '#ffffff';
-  }};
+  /* background-color: #f59256; */
+
   color: #111111;
   border-radius: 40px;
   cursor: pointer;
@@ -172,38 +188,39 @@ export const MaddNotLabelToolbar = styled.label`
     font-size: 20px;
     line-height: 1.35;
   }
-  &:not(:last-child) {
-    margin-right: 8px;
-  }
-  @media screen and (max-width: 325px) {
-    &:not(:last-child) {
-      margin-top: 12px;
-    }
-  }
+`;
 
-  &:first-child {
-    margin-bottom: 12px;
+export const MaddNotInputToolbar = styled.input`
+  position: absolute;
 
-    @media screen and (min-width: 480px) {
-      margin-bottom: 0px;
-    }
-
-    @media screen and (min-width: 768px) {
-      margin-bottom: 16px;
-    }
-  }
-  &:hover {
+  opacity: 0;
+  z-index: 4;
+  cursor: pointer;
+  width: 240px;
+  height: 24px;
+  margin-right: 10px;
+  &:hover ~ ${MaddNotLabelToolbar} {
     background-color: #f59256;
     color: #ffffff;
   }
+  &:checked + ${Item} {
+    background-color: #f59256;
+    color: #ffffff;
+  }
+  &:checked + ${MaddNotLabelToolbar} {
+    background-color: #f59256;
+    color: #ffffff;
+    /* border: 1px solid yellowgreen; */
+  }
 `;
+
 export const MaddNotLabel = styled.label`
   display: block;
   font-family: 'Manrope';
   font-style: normal;
   font-size: 18px;
   line-height: 1.44;
-  margin-bottom: 8px;
+  margin-bottom: 12px;
 
   @media screen and (min-width: 768px) {
     font-size: 24px;
@@ -224,6 +241,7 @@ export const MaddNotinput = styled.input`
   border-radius: 40px;
   outline: none;
   padding: 11px 14px 12px;
+  margin-bottom: 28px;
 
   @media screen and (min-width: 768px) {
     font-size: 16px;
@@ -281,6 +299,15 @@ export const MaddNotBlock = styled.div`
     flex-direction: row;
     justify-content: center;
   }
+`;
+export const Title = styled.p`
+  font-family: 'Manrope';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.1;
+  margin-bottom: 12px;
+  color: #000000;
 `;
 
 export const MaddNotButton = styled.button`
@@ -363,7 +390,9 @@ export const MaddNotSexLabel = styled.label`
 `;
 
 export const MaddNotLabelMale = styled(MaddNotSexLabel)`
-  background-image: url('../../../assets/images/male.png');
+  &:hover {
+    color: #f59256;
+  }
 
   margin-right: 40px;
 
@@ -372,19 +401,22 @@ export const MaddNotLabelMale = styled(MaddNotSexLabel)`
   }
 `;
 export const MaddNotLabelFemale = styled(MaddNotSexLabel)`
-  background-image: url('../../../assets/images/female.png');
+  &:hover {
+    color: #f59256;
+  }
 `;
 
 export const MaddNotSexDescr = styled.span`
-  /* position: absolute; */
-  /* bottom: -39px; */
+  text-align: center;
   font-family: 'Manrope';
   font-style: normal;
   font-size: 18px;
   line-height: 1.44px;
+  &:hover {
+    color: #f59256;
+  }
 
   @media screen and (min-width: 768px) {
-    /* bottom: -47px; */
     text-align: center;
   }
 `;
