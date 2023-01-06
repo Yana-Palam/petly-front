@@ -11,8 +11,6 @@ import {
   FormWrapper,
   Form,
   Title,
-  Text,
-  AuthLink,
   InputsWrp,
   InputWrapper,
   TextError,
@@ -22,6 +20,7 @@ import {
   IconEyeSlash,
 } from './LoginForm.styled';
 import { motion } from 'framer-motion';
+import Links from './links/Links';
 
 const inputs = [
   { type: 'email', name: 'email', label: 'Email' },
@@ -118,28 +117,7 @@ const LoginForm = ({ onRestore, showRestore }) => {
             {showRestore ? 'Send to email' : 'Login'}
           </AuthBtn>
         }
-        {showRestore ? (
-          ''
-        ) : (
-          <Text>
-            Don't have an account? <AuthLink to="/register">Register</AuthLink>
-          </Text>
-        )}
-        {showRestore ? (
-          <Text>
-            Back to{' '}
-            <AuthLink onClick={onRestore} to="/login">
-              Login?
-            </AuthLink>
-          </Text>
-        ) : (
-          <Text>
-            Forgot password?{' '}
-            <AuthLink onClick={onRestore} to={'/restore'}>
-              Restore
-            </AuthLink>
-          </Text>
-        )}
+        <Links onRestore={onRestore} showRestore={showRestore} />
       </Form>
     </FormWrapper>
   );

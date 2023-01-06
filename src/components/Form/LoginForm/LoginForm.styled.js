@@ -149,3 +149,11 @@ export const IconEye = styled(BsFillEyeFill)`
 export const IconEyeSlash = styled(BsFillEyeSlashFill)`
   color: ${p => p.theme.colors.button.primaryBackground};
 `;
+
+export const LinksWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+`;
