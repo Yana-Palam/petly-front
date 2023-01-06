@@ -142,6 +142,7 @@ export const MaddNotRadioToolbar = styled.div`
 `;
 export const Item = styled.div`
   display: inline-block;
+  position: relative;
 
   &:first-child {
     margin-bottom: 12px;

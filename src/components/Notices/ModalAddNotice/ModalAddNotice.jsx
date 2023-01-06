@@ -245,7 +245,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                     value="lostFound"
                     // onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    checked={select === 'optionA'}
+                    checked={select === 'optionC'}
                     onChange={event => handleSelectChange(event)}
                   />
                   <MaddNotLabelToolbar>lost/found</MaddNotLabelToolbar>
@@ -258,7 +258,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                     value="inGoodHands"
                     // onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    checked={select === 'optionA'}
+                    checked={select === 'optionB'}
                     onChange={event => handleSelectChange(event)}
                   />
                   <MaddNotLabelToolbar>in good hands</MaddNotLabelToolbar>
@@ -304,6 +304,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                   calendarIcon={<ImgClose src={celendar} alt="" />}
                   format="dd.MM.yyyy"
                   dateFormat="dd.MM.yyyy"
+                  selected={birthdate}
                   yearPlaceholder={'years'}
                   monthPlaceholder={'months'}
                   dayPlaceholder={'days'}
