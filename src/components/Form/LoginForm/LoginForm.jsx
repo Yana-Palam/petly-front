@@ -3,7 +3,7 @@ import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { login } from 'redux/auth/authOperations';
+import { login, google } from 'redux/auth/authOperations';
 import { selectAccessToken } from 'redux/auth/authSelectors';
 import { AuthBtn } from './LoginForm.styled';
 import {
@@ -41,6 +41,10 @@ const LoginForm = () => {
   };
 
   const isAuth = useSelector(selectAccessToken);
+
+  const onClickGoogle = () => {
+    dispatch(google());
+  };
 
   const validationSchema = yup.object().shape({
     email: yup
@@ -119,6 +123,9 @@ const LoginForm = () => {
           Don't have an account? <AuthLink to="/register">Register</AuthLink>
         </Text>
       </Form>
+      <button onClick={onClickGoogle} type="button">
+        Google
+      </button>
     </FormWrapper>
   );
 };

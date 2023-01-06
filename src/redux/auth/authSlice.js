@@ -4,6 +4,8 @@ import {
   login,
   logout,
   refresh,
+  google,
+  setTokens,
   addPet,
   deletePet,
   getUserInfo,
@@ -47,6 +49,34 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   extraReducers: {
+    // --------------------GOOGLE OPERATION--------------------
+
+    [google.pending]: state => {
+      state.isLoading = true;
+    },
+    [google.fulfilled]: state => {
+      state.error = null;
+      state.isLoading = false;
+    },
+    [google.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
+    },
+    //---------
+    [setTokens.pending]: state => {
+      state.isLoading = true;
+    },
+    [setTokens.fulfilled]: (state, { payload }) => {
+      state.accessToken = payload.accessToken;
+      state.refreshToken = payload.refreshToken;
+
+      state.isLoggedIn = true;
+      state.isLoading = false;
+    },
+    [setTokens.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
+    },
     // --------------------REGISTER OPERATION--------------------
 
     [register.pending]: state => {
@@ -140,6 +170,12 @@ const authSlice = createSlice({
     [getUserInfo.fulfilled]: (state, action) => {
       state.user = action.payload;
 
+      state.user.email = action.payload.email;
+      state.user.name = action.payload.name;
+      state.user._id = action.payload._id;
+      state.user.city = action.payload.city;
+      state.user.phone = action.payload.phone;
+      state.user.birthday = action.payload.birthday;
       state.user.avatarUrl = action.payload.avatarUrl;
       state.user.myPets = [...action.payload.myPets];
       state.user.favorites = [...action.payload.favorites];
