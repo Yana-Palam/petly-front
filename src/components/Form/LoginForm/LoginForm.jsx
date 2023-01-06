@@ -1,7 +1,7 @@
 import { useFormik } from 'formik';
-// import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useState, memo } from 'react';
+
 import { useNavigate } from 'react-router-dom';
 import { login } from 'redux/auth/authOperations';
 import { selectAccessToken } from 'redux/auth/authSelectors';
@@ -28,7 +28,7 @@ const inputs = [
 ];
 const restoring = [{ type: 'email', name: 'email', label: 'Email' }];
 
-const LoginForm = ({ onRestore, showRestore }) => {
+const LoginForm = memo(({ onRestore, showRestore }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const isAuth = useSelector(selectAccessToken);
@@ -121,6 +121,6 @@ const LoginForm = ({ onRestore, showRestore }) => {
       </Form>
     </FormWrapper>
   );
-};
+});
 
 export default LoginForm;
