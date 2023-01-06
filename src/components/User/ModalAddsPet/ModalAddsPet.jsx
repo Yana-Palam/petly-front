@@ -5,7 +5,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import DatePicker from 'react-date-picker';
 import { showAlertMessage } from '../../../utils/showMessages';
-import { addPet } from '../../../redux/userData/userDataOperation';
+import { addPet } from '../../../redux/auth/authOperations';
 import imgLoad from '../../../assets/images/Modal/loadMobile.png';
 import iconClose from '../../../assets/icons/icon-close.svg';
 import celendar from '../../../assets/icons/calendar.svg';
@@ -29,6 +29,7 @@ import {
   LoadImage,
   InputLoad,
 } from './ModalAddsPet.styled';
+// import { useSelect } from '@mui/base';
 
 const modalContainer = document.getElementById('modal-root');
 
@@ -87,6 +88,7 @@ const ModalAddsPet = ({ setShowModal }) => {
     onSubmit: values => {
       alert(JSON.stringify(values, null, 2));
     },
+
     validationSchema: Yup.object({
       name: Yup.string()
         .min(2, 'validation.min')

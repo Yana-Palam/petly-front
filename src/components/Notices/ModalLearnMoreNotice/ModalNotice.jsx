@@ -1,11 +1,12 @@
 import { helpers } from 'utils/helpers';
 import { toast } from 'react-toastify';
-
 import { useDispatch } from 'react-redux';
 import {
   addFavoriteNotice,
   deleteFavoriteNotice,
 } from 'redux/auth/authOperations';
+import { deleteOwnNoticeById } from 'redux/notice/noticeOperations';
+import { deleteNoticeFavorite } from 'redux/notice/noticeSlice';
 
 import Box from 'components/Common/Box';
 // import Button from 'components/Common/Button';
@@ -32,9 +33,11 @@ import {
   AnimalsFavoriteSvg,
   AnimalsBtnFavorite,
   AnimalsBtn,
+  BtnDelOwn,
+  BtnDelSvg,
 } from './ModalNotice.styled';
 
-const ModalNotice = ({ notices, closeModal, getBtnInfo, token }) => {
+const ModalNotice = ({ notice = {}, closeModal, getBtnInfo, token, path }) => {
   const noItem = '-------------';
   const noPrice = '0';
   const {
@@ -51,20 +54,30 @@ const ModalNotice = ({ notices, closeModal, getBtnInfo, token }) => {
     owner,
     comments,
     price,
-  } = notices;
-
+    own,
+  } = notice;
   const dispatch = useDispatch();
 
-  const handleFavorite = id => {
+  const delNotice = id => {
+    dispatch(deleteOwnNoticeById(id));
+    closeModal();
+  };
+
+  const handleFavorite = async id => {
     if (!Boolean(token)) {
       toast.warn('You are not a registered user!');
       return;
     }
     if (favorite) {
-      dispatch(deleteFavoriteNotice(id));
+      const { payload } = await dispatch(deleteFavoriteNotice(id));
+      if (payload === id && path === 'favorite') {
+        await dispatch(deleteNoticeFavorite(id));
+        closeModal();
+      }
     } else {
       dispatch(addFavoriteNotice(id));
     }
+    return;
   };
 
   return (
@@ -109,14 +122,14 @@ const ModalNotice = ({ notices, closeModal, getBtnInfo, token }) => {
             <ItemInfo key={'email'}>
               <TextInfoTitle>Email:</TextInfoTitle>
               <TextInfo>
-                <TextEmail email={owner.email}>{owner.email}</TextEmail>
+                <TextEmail email={owner?.email}>{owner?.email}</TextEmail>
               </TextInfo>
             </ItemInfo>
 
             <ItemInfo key={'phone'}>
               <TextInfoTitle>Phone:</TextInfoTitle>
               <TextInfo>
-                <TextTel phone={owner.phone}>{owner.phone}</TextTel>
+                <TextTel phone={owner?.phone}>{owner?.phone}</TextTel>
               </TextInfo>
             </ItemInfo>
 
@@ -136,13 +149,19 @@ const ModalNotice = ({ notices, closeModal, getBtnInfo, token }) => {
       </Comment>
 
       <BtnBox>
+        {own && (
+          <BtnDelOwn type="button" id={_id} onClick={() => delNotice(_id)}>
+            Delete <BtnDelSvg />
+          </BtnDelOwn>
+        )}
         <AnimalsBtnFavorite
           type="button"
+          it
           id={_id}
           onClick={() => handleFavorite(_id)}
           data-favorite="favorite"
         >
-          Add to
+          {favorite ? 'Remove' : 'Add to'}
           <AnimalsFavoriteSvg
             style={favorite ? { fill: '#F59256' } : { fill: '#FFFFFF99' }}
           />
@@ -153,7 +172,7 @@ const ModalNotice = ({ notices, closeModal, getBtnInfo, token }) => {
         // onClick={handleClick}
         // data-modal="modal"
         >
-          <BtnTel phone={owner.phone}>Contact</BtnTel>
+          <BtnTel phone={owner?.phone}>Contact</BtnTel>
         </AnimalsBtn>
 
         {/* //TODO прописати телефон */}
