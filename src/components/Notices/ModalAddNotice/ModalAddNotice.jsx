@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
 // import { createPortal } from 'react-dom';
-import { useNavigate, useParams } from 'react-router-dom';
+// import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import {
-  addFavoriteNotice,
+  // addFavoriteNotice,
   addOwnNotice,
 } from '../../../redux/auth/authOperations';
 import DatePicker from 'react-date-picker';
@@ -55,9 +55,9 @@ import {
 const ModalAddNotice = ({ setArray, closeModal }) => {
   const [page, setPage] = useState(1);
   const [photo, setPhoto] = useState('');
-  const { categoryName } = useParams();
+  // const { categoryName } = useParams();
   const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
   const dispatch = useDispatch();
 
   // useEffect(() => {
@@ -248,6 +248,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                       ? s.activeCategory
                       : s.notActiveCategory
                   }
+                  // isActive={(category = 'lostFound')}
                 >
                   lost/found
                   <MaddNotInputToolbar
@@ -265,6 +266,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                       ? s.activeCategory
                       : s.notActiveCategory
                   }
+                  // isActive={(category = 'inGoodHands')}
                 >
                   in good hands
                   <MaddNotInputToolbar
@@ -280,6 +282,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                   className={
                     category === 'sell' ? s.activeCategory : s.notActiveCategory
                   }
+                  // isActive={(category = 'sell')}
                 >
                   sell
                   <MaddNotInputToolbar

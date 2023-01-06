@@ -158,7 +158,9 @@ export const MaddNotLabelToolbar = styled.label`
   letter-spacing: 0.04em;
 
   border: 2px solid #f59256;
-  background-color: #ffffff;
+  background-color: ${p => {
+    return p.isActive ? '#f59256' : '#ffffff';
+  }};
   color: #111111;
   border-radius: 40px;
   cursor: pointer;
