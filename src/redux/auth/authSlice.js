@@ -21,7 +21,7 @@ const initialState = {
     _id: '',
     city: '',
     phone: '',
-    birthday: '',
+    birthday: ' ',
     avatarUrl: null,
     myPets: [
       {
@@ -76,6 +76,7 @@ const authSlice = createSlice({
       state.user.myPets = [...user.myPets];
       state.user.favorites = [...user.favorites, '63b4a4794dd4e4742c08c58b'];
       // state.user.own = [...user.own];
+
       state.accessToken = user.accessToken;
       state.refreshToken = user.refreshToken;
 

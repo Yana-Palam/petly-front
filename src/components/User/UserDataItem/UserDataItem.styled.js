@@ -95,3 +95,30 @@ export const SpanValidation = styled.span`
     margin-left: 111px;
   }
   `;
+
+export const LiPicker = styled.li`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 9px;
+  `;
+
+export const SpanPicker = styled.span`
+  width: 56px;
+  font-weight: 500;
+  //font-size: 12px;
+  //line-height: 16px;
+  letter-spacing: 0.04em;
+  color: #111111;
+  margin-right: 10px;
+
+  font-size: 14px;
+  line-height: 19px;
+
+  @media (${device.tablet}) {
+    width: 83px;
+    font-size: 18px;
+    line-height: 25px;
+    margin-right: 24px;
+  }
+`;
