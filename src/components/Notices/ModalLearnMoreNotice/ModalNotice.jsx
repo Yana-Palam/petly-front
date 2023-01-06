@@ -149,8 +149,14 @@ const ModalNotice = ({ notice = {}, closeModal, getBtnInfo, token, path }) => {
       </Comment>
 
       <BtnBox>
+        {own && (
+          <BtnDelOwn type="button" id={_id} onClick={() => delNotice(_id)}>
+            Delete <BtnDelSvg />
+          </BtnDelOwn>
+        )}
         <AnimalsBtnFavorite
           type="button"
+          it
           id={_id}
           onClick={() => handleFavorite(_id)}
           data-favorite="favorite"
@@ -169,11 +175,6 @@ const ModalNotice = ({ notice = {}, closeModal, getBtnInfo, token, path }) => {
           <BtnTel phone={owner?.phone}>Contact</BtnTel>
         </AnimalsBtn>
 
-        {own && (
-          <BtnDelOwn type="button" id={_id} onClick={() => delNotice(_id)}>
-            Delete <BtnDelSvg />
-          </BtnDelOwn>
-        )}
         {/* //TODO прописати телефон */}
       </BtnBox>
     </Box>
