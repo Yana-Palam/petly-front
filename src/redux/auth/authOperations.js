@@ -4,7 +4,8 @@ import { toast } from 'react-toastify';
 import { IoMdLogIn } from 'react-icons/io';
 import { store } from 'redux/store';
 
-axios.defaults.baseURL = 'https://petly-back.onrender.com/api';
+// axios.defaults.baseURL = 'https://petly-back.onrender.com/api';
+axios.defaults.baseURL = 'http://localhost:3001/api/';
 
 const token = {
   set(token) {
@@ -56,6 +57,36 @@ export const refresh = createAsyncThunk(
   }
 );
 
+export const google = createAsyncThunk(
+  'auth/google',
+  async (_, { rejectWithValue }) => {
+    try {
+      await axios.get('/auth/google');
+    } catch (error) {
+      return rejectWithValue(error.request.status);
+    }
+  }
+);
+
+export const setTokens = createAsyncThunk(
+  'auth/google-setTokens',
+  async (tokens, { rejectWithValue }) => {
+    if (tokens.accessToken) {
+      try {
+        token.set(tokens.accessToken);
+
+        toast(`You have successfully logged into your account`, {
+          icon: <IoMdLogIn size={25} color="green" />,
+        });
+
+        return tokens;
+      } catch (error) {
+        return rejectWithValue(error);
+      }
+    }
+  }
+);
+
 export const register = createAsyncThunk(
   'auth/register',
   async (user, { rejectWithValue }) => {
@@ -87,6 +118,26 @@ export const login = createAsyncThunk(
     } catch (error) {
       if (error.response.status === 401) {
         toast.error('Email or password invalid');
+        return rejectWithValue(error.request.message);
+      }
+      toast.error('Oops, something went wrong');
+      return rejectWithValue(error.request.status);
+    }
+  }
+);
+export const restore = createAsyncThunk(
+  'auth/restore',
+  async (user, { rejectWithValue }) => {
+    console.log(user);
+    try {
+      const { data } = await axios.post('/auth/restore', user);
+      toast(`New password was sent to Your email`, {
+        icon: <IoMdLogIn size={25} color="green" />,
+      });
+      return data;
+    } catch (error) {
+      if (error.response.status === 400) {
+        toast.error('Email not found');
         return rejectWithValue(error.request.message);
       }
       toast.error('Oops, something went wrong');

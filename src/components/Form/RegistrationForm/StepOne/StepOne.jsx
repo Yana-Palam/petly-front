@@ -14,7 +14,7 @@ import {
 } from 'components/Form/LoginForm/LoginForm.styled';
 
 const StepOne = ({ next, data }) => {
-  const passwordRexExp = /^[a-zA-Z0-9]+$/;
+  const passwordRexExp = /^[a-zA-Zа-яА-Я0-9]+$/;
   const emailRegExp = /^[a-zA-Z0-9]+[a-zA-Z0-9_-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9]+$/;
 
   const [showPassword, setShowPassword] = useState(true);

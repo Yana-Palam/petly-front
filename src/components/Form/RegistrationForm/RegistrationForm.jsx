@@ -1,12 +1,18 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { register, login } from 'redux/auth/authOperations';
-import { Text, AuthLink, Title } from '../LoginForm/LoginForm.styled';
+import { register, login, google } from 'redux/auth/authOperations';
+import {
+  Text,
+  AuthLink,
+  Title,
+  StyledBtnGoogle,
+} from '../LoginForm/LoginForm.styled';
 import { Wrapper } from './RegistrationForm.styled';
 import StepOne from './StepOne';
 import StepTwo from './StepTwo';
 import { motion } from 'framer-motion';
+import { FcGoogle } from 'react-icons/fc';
 
 const RegistrationForm = () => {
   const navigate = useNavigate();
@@ -55,6 +61,10 @@ const RegistrationForm = () => {
     <StepTwo next={handleNextStep} prev={handlePrevStep} data={data} />,
   ];
 
+  const onClickGoogle = () => {
+    dispatch(google());
+  };
+
   return (
     <Wrapper
       as={motion.div}
@@ -68,6 +78,9 @@ const RegistrationForm = () => {
         Already have an account?
         <AuthLink to="/login">Login</AuthLink>
       </Text>
+      <StyledBtnGoogle onClick={onClickGoogle} type="button">
+        <FcGoogle size="45px" /> Continue with Google
+      </StyledBtnGoogle>
     </Wrapper>
   );
 };
