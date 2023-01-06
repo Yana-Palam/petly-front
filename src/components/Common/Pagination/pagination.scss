@@ -10,7 +10,6 @@
     height: 32px;
     text-align: center;
     margin: auto 4px;
-    // color: rgba(0, 0, 0, 0.87);
     color: #f59256;
     display: flex;
     box-sizing: border-box;
@@ -40,18 +39,22 @@
 
     .arrow {
       &::before {
-        color: #f59256;
+        color: transparent;
         position: relative;
         content: '';
         display: inline-block;
-        width: 0.4em;
-        height: 0.4em;
-        border-right: 0.12em solid #f59256;
-        border-top: 0.12em solid #f59256;
+        width: 0.5em;
+        height: 0.5em;
+        border-right: 0.12em solid #ff6101;
+        border-top: 0.12em solid #ff6101;
       }
+      //   &:hover::before {
+      //     border-right: 0.12em solid white;
+      //     border-top: 0.12em solid white;
+      //   }
 
       &.left {
-        transform: rotate(-135deg) translate(-50%);
+        transform: rotate(-135deg) translate(-25%);
       }
 
       &.right {
