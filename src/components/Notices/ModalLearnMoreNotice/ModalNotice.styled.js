@@ -165,7 +165,7 @@ export const Comment = styled.p`
 `;
 export const BtnBox = styled.div`
   display: flex;
-  flex-direction: column;
+  flex-direction: column-reverse;
   align-items: center;
   gap: ${p => `${p.theme.space[4] - 4}px`};
 
