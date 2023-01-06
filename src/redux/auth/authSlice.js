@@ -21,7 +21,7 @@ const initialState = {
     _id: '',
     city: '',
     phone: '',
-    birthday: 'DD.MM.YYYY',
+    birthday: ' ',
     avatarUrl: null,
     myPets: [
       {

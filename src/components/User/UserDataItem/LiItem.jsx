@@ -73,22 +73,14 @@ const LiItem = ({ label, name, user, active, setActive, children }) => {
     <>
       <Item ref={active === name ? wrapperRef : null}>
         <Label htmlFor={name}>{label}</Label>
-        {
-          !children
-            ?
-            <Input
-              active={active === name}
-              disabled={active !== name}
-              // type={name === "birthday" ? "date" : "text"}
-              //DD.MM.YYYY
-              name={name}
-              value={value || user}
-              onChange={onChangeHandler}
-            />
-           :
-            children
-         }
-
+        <Input
+          active={active === name}
+          disabled={active !== name}
+          type='text'
+          name={name}
+          value={value || user}
+          onChange={onChangeHandler}
+        />
         <Button>
           {active === name ? (
             <EditIcon onClick={onEditHandler(name)} />
