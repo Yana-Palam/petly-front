@@ -68,8 +68,8 @@ const authSlice = createSlice({
       state.isLoading = true;
     },
     [setTokens.fulfilled]: (state, { payload }) => {
-      state.accessToken = payload.accessToken;
-      state.refreshToken = payload.refreshToken;
+      state.accessToken = payload?.accessToken || null;
+      state.refreshToken = payload?.refreshToken || null;
 
       state.isLoggedIn = true;
       state.isLoading = false;

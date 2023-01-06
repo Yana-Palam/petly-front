@@ -30,7 +30,7 @@ const StepTwo = ({ next, data, prev }) => {
       .string()
       .required()
       .max(13)
-      .matches(phoneRegex, 'Phone number is not valid'),
+      .matches(phoneRegex, 'Phone is not valid. Example: +380XXXXXXXXX'),
   });
   const formik = useFormik({
     initialValues: data,

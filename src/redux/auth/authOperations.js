@@ -4,8 +4,7 @@ import { toast } from 'react-toastify';
 import { IoMdLogIn } from 'react-icons/io';
 import { store } from 'redux/store';
 
-// axios.defaults.baseURL = 'https://petly-back.onrender.com/api';
-axios.defaults.baseURL = 'http://localhost:3001/api/';
+axios.defaults.baseURL = 'https://petly-back.onrender.com/api';
 
 const token = {
   set(token) {
