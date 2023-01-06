@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   register,
   login,
+  restore,
   logout,
   refresh,
   addPet,
@@ -86,6 +87,19 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.error = payload;
     },
+    [restore.pending]: state => {
+      state.isLoading = true;
+    },
+    [restore.fulfilled]: (state, { payload: { user } }) => {
+      state.user.email = user.email;
+
+      state.isLoggedIn = false;
+      state.isLoading = false;
+    },
+    [restore.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
+    },
     // --------------------LOG OUT OPERATION--------------------
 
     [logout.pending]: state => {
@@ -120,7 +134,7 @@ const authSlice = createSlice({
     },
     [refresh.fulfilled]: (
       state,
-      { payload: { refreshToken, accessToken } },
+      { payload: { refreshToken, accessToken } }
     ) => {
       state.accessToken = accessToken;
       state.refreshToken = refreshToken;
@@ -179,7 +193,7 @@ const authSlice = createSlice({
     },
     [deletePet.fulfilled]: (state, action) => {
       state.user.myPets = state.user.myPets.filter(
-        pet => pet._id !== action.payload._id,
+        pet => pet._id !== action.payload._id
       );
     },
     [deletePet.rejected]: (state, action) => {
@@ -203,7 +217,7 @@ const authSlice = createSlice({
     },
     [deleteFavoriteNotice.fulfilled]: (state, action) => {
       state.user.favorites = state.user.favorites.filter(
-        id => id !== action.payload,
+        id => id !== action.payload
       );
     },
     [deleteFavoriteNotice.rejected]: (state, action) => {

@@ -1,10 +1,11 @@
 import { useFormik } from 'formik';
-import * as yup from 'yup';
+// import * as yup from 'yup';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { login } from 'redux/auth/authOperations';
 import { selectAccessToken } from 'redux/auth/authSelectors';
+import { validationSchema, initialValues } from './ValidationSchema';
 import { AuthBtn } from './LoginForm.styled';
 import {
   FormWrapper,
@@ -26,44 +27,17 @@ const inputs = [
   { type: 'email', name: 'email', label: 'Email' },
   { type: 'password', name: 'password', label: 'Password' },
 ];
-const passwordRexExp = /^[a-zA-Z0-9]+$/;
+const restoring = [{ type: 'email', name: 'email', label: 'Email' }];
 
-const emailRegExp = /^[a-zA-Z0-9]+[a-zA-Z0-9_-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9]+$/;
-
-const LoginForm = () => {
+const LoginForm = ({ onRestore, showRestore }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const isAuth = useSelector(selectAccessToken);
 
   const [showPassword, setShowPassword] = useState(true);
 
   const changeVisiblePassword = () => {
     setShowPassword(prev => !prev);
-  };
-
-  const isAuth = useSelector(selectAccessToken);
-
-  const validationSchema = yup.object().shape({
-    email: yup
-      .string()
-      .email()
-      .required()
-      .min(10)
-      .max(63)
-      .matches(emailRegExp, 'Email is not valid')
-      .label('Email'),
-
-    password: yup
-      .string()
-      .min(7)
-      .max(32)
-      .matches(passwordRexExp, 'Password is not valid')
-      .required()
-      .label('Password'),
-  });
-
-  const initialValues = {
-    email: '',
-    password: '',
   };
 
   const formik = useFormik({
@@ -87,37 +61,85 @@ const LoginForm = () => {
       transition={{ duration: 1, delay: 0.2 }}
     >
       <Form onSubmit={formik.handleSubmit}>
-        <Title>Login</Title>
+        {showRestore ? <Title>Restore password</Title> : <Title>Login</Title>}
         <InputsWrp>
-          {inputs.map(({ type, name, label }) => (
-            <InputWrapper key={name}>
-              <Input
-                type={type === 'password' && showPassword ? type : 'text'}
-                name={name}
-                placeholder={label}
-                value={formik.values[name]}
-                onChange={formik.handleChange}
-                error={formik.touched[name] && Boolean(formik.errors[name])}
-              />
-              {formik.touched[name] && formik.errors[name] && (
-                <TextError>{formik.errors[name]}</TextError>
-              )}
-              {type === 'password' && (
-                <EyeBtn type="button" onClick={changeVisiblePassword}>
-                  {showPassword ? (
-                    <IconEye size="26px" />
-                  ) : (
-                    <IconEyeSlash size="26px" />
+          {showRestore
+            ? restoring.map(({ type, name, label }) => (
+                <InputWrapper key={name}>
+                  <Input
+                    type={type === 'password' && showPassword ? type : 'text'}
+                    name={name}
+                    placeholder={label}
+                    value={formik.values[name]}
+                    onChange={formik.handleChange}
+                    error={formik.touched[name] && Boolean(formik.errors[name])}
+                  />
+                  {formik.touched[name] && formik.errors[name] && (
+                    <TextError>{formik.errors[name]}</TextError>
                   )}
-                </EyeBtn>
-              )}
-            </InputWrapper>
-          ))}
+                  {type === 'password' && (
+                    <EyeBtn type="button" onClick={changeVisiblePassword}>
+                      {showPassword ? (
+                        <IconEye size="26px" />
+                      ) : (
+                        <IconEyeSlash size="26px" />
+                      )}
+                    </EyeBtn>
+                  )}
+                </InputWrapper>
+              ))
+            : inputs.map(({ type, name, label }) => (
+                <InputWrapper key={name}>
+                  <Input
+                    type={type === 'password' && showPassword ? type : 'text'}
+                    name={name}
+                    placeholder={label}
+                    value={formik.values[name]}
+                    onChange={formik.handleChange}
+                    error={formik.touched[name] && Boolean(formik.errors[name])}
+                  />
+                  {formik.touched[name] && formik.errors[name] && (
+                    <TextError>{formik.errors[name]}</TextError>
+                  )}
+                  {type === 'password' && (
+                    <EyeBtn type="button" onClick={changeVisiblePassword}>
+                      {showPassword ? (
+                        <IconEye size="26px" />
+                      ) : (
+                        <IconEyeSlash size="26px" />
+                      )}
+                    </EyeBtn>
+                  )}
+                </InputWrapper>
+              ))}
         </InputsWrp>
-        <AuthBtn type="submit">Login</AuthBtn>
-        <Text>
-          Don't have an account? <AuthLink to="/register">Register</AuthLink>
-        </Text>
+        {
+          <AuthBtn type="submit">
+            {showRestore ? 'Send to email' : 'Login'}
+          </AuthBtn>
+        }
+        {showRestore ? (
+          ''
+        ) : (
+          <Text>
+            Don't have an account? <AuthLink to="/register">Register</AuthLink>
+          </Text>
+        )}
+        {showRestore ? (
+          <Text>
+            Back to{' '}
+            <AuthLink onClick={onRestore} to="/login">
+              Login?
+            </AuthLink>
+          </Text>
+        ) : (
+          <Text>
+            Forgot password?{' '}
+            <AuthLink onClick={onRestore} to={'/restore'}>
+              Restore
+            </AuthLink>
+          </Text>
+        )}
       </Form>
     </FormWrapper>
   );

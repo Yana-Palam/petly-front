@@ -94,6 +94,25 @@ export const login = createAsyncThunk(
     }
   }
 );
+export const restore = createAsyncThunk(
+  'auth/restore',
+  async (user, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.post('/auth/restore', user);
+      toast(`New password was sent to Your email`, {
+        icon: <IoMdLogIn size={25} color="green" />,
+      });
+      return data;
+    } catch (error) {
+      if (error.response.status === 400) {
+        toast.error('Email not found');
+        return rejectWithValue(error.request.message);
+      }
+      toast.error('Oops, something went wrong');
+      return rejectWithValue(error.request.status);
+    }
+  }
+);
 
 export const logout = createAsyncThunk(
   'auth/logout',

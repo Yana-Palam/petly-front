@@ -9,6 +9,7 @@ const RegisterPage = lazy(() =>
   import('../page/registrationPage/RegisterPage')
 );
 const LoginPage = lazy(() => import('../page/loginPage/LoginPage'));
+const RestorePage = lazy(() => import('../page/restorePage/RestorePage'));
 const OurFriendsPage = lazy(() =>
   import('../page/ourFriendsPage/OurFriendsPage')
 );
@@ -48,6 +49,14 @@ const AppRoutes = () => {
             }
           />
           <Route
+            path="restore"
+            element={
+              <PublicRouter>
+                <RestorePage />
+              </PublicRouter>
+            }
+          />
+          <Route
             path="friends"
             element={
               <PublicRouter>
@@ -80,7 +89,7 @@ const AppRoutes = () => {
               </PrivateRouter>
             }
           />
-           <Route path="*" element={<NotFoundPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
       </Routes>
     </Suspense>

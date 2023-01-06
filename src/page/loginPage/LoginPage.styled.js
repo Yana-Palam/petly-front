@@ -11,7 +11,6 @@ export const Wrapper = styled(Container)`
   @media ${device.mobileOnly} {
     width: 100%;
   }
-  /* width: 100%; */
   display: flex;
   justify-content: center;
 `;
@@ -26,10 +25,8 @@ export const RegistBg = styled.div`
   background-size: contain;
   height: calc(100vh - 100px);
 
-
   @media ${device.tablet} {
     background-image: url(${bg_tab});
-
   }
 
   @media ${device.tabletOnly} {
