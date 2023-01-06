@@ -4,7 +4,8 @@ import { toast } from 'react-toastify';
 import { IoMdLogIn } from 'react-icons/io';
 import { store } from 'redux/store';
 
-axios.defaults.baseURL = 'https://petly-back.onrender.com/api';
+// axios.defaults.baseURL = 'https://petly-back.onrender.com/api';
+axios.defaults.baseURL = 'http://localhost:3001/api/';
 
 const token = {
   set(token) {
@@ -117,6 +118,26 @@ export const login = createAsyncThunk(
     } catch (error) {
       if (error.response.status === 401) {
         toast.error('Email or password invalid');
+        return rejectWithValue(error.request.message);
+      }
+      toast.error('Oops, something went wrong');
+      return rejectWithValue(error.request.status);
+    }
+  }
+);
+export const restore = createAsyncThunk(
+  'auth/restore',
+  async (user, { rejectWithValue }) => {
+    console.log(user);
+    try {
+      const { data } = await axios.post('/auth/restore', user);
+      toast(`New password was sent to Your email`, {
+        icon: <IoMdLogIn size={25} color="green" />,
+      });
+      return data;
+    } catch (error) {
+      if (error.response.status === 400) {
+        toast.error('Email not found');
         return rejectWithValue(error.request.message);
       }
       toast.error('Oops, something went wrong');
