@@ -20,7 +20,7 @@ export const validationSchema = yup.object().shape({
     .min(7)
     .max(32)
     .matches(passwordRexExp, 'Password is not valid')
-    .required()
+    // .required()
     .label('Password'),
 });
 

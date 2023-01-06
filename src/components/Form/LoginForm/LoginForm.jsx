@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState, memo } from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import { login } from 'redux/auth/authOperations';
+import { login, restore } from 'redux/auth/authOperations';
 import { selectAccessToken } from 'redux/auth/authSelectors';
 import { validationSchema, initialValues } from './ValidationSchema';
 import { AuthBtn } from './LoginForm.styled';
@@ -44,7 +44,11 @@ const LoginForm = memo(({ onRestore, showRestore }) => {
     validationSchema: validationSchema,
 
     onSubmit: async values => {
-      if (!isAuth) {
+      if (!isAuth && showRestore) {
+        dispatch(restore(values.email));
+      }
+
+      if (!isAuth && !showRestore) {
         dispatch(login(values)).then(({ error }) => {
           !error && navigate('/user');
         });
@@ -66,7 +70,7 @@ const LoginForm = memo(({ onRestore, showRestore }) => {
             ? restoring.map(({ type, name, label }) => (
                 <InputWrapper key={name}>
                   <Input
-                    type={type === 'password' && showPassword ? type : 'text'}
+                    type={type}
                     name={name}
                     placeholder={label}
                     value={formik.values[name]}
@@ -75,15 +79,6 @@ const LoginForm = memo(({ onRestore, showRestore }) => {
                   />
                   {formik.touched[name] && formik.errors[name] && (
                     <TextError>{formik.errors[name]}</TextError>
-                  )}
-                  {type === 'password' && (
-                    <EyeBtn type="button" onClick={changeVisiblePassword}>
-                      {showPassword ? (
-                        <IconEye size="26px" />
-                      ) : (
-                        <IconEyeSlash size="26px" />
-                      )}
-                    </EyeBtn>
                   )}
                 </InputWrapper>
               ))

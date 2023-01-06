@@ -4,7 +4,8 @@ import { toast } from 'react-toastify';
 import { IoMdLogIn } from 'react-icons/io';
 import { store } from 'redux/store';
 
-axios.defaults.baseURL = 'https://petly-back.onrender.com/api';
+// axios.defaults.baseURL = 'https://petly-back.onrender.com/api';
+axios.defaults.baseURL = 'http://localhost:3001/api/';
 
 const token = {
   set(token) {
@@ -97,6 +98,7 @@ export const login = createAsyncThunk(
 export const restore = createAsyncThunk(
   'auth/restore',
   async (user, { rejectWithValue }) => {
+    console.log(user);
     try {
       const { data } = await axios.post('/auth/restore', user);
       toast(`New password was sent to Your email`, {
