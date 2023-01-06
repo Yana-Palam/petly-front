@@ -11,7 +11,7 @@ import {
   addFavoriteNotice,
   deleteFavoriteNotice,
 } from 'redux/auth/authOperations';
-
+import { deleteNoticeFavorite } from 'redux/notice/noticeSlice';
 // Components
 import Container from 'components/Common/Container';
 import Modal from 'components/Common/Modal/Modal';
@@ -52,8 +52,6 @@ function NoticesPage() {
 
   const path = useLocation().pathname;
 
-  console.log('notices', resultNotice);
-
   useEffect(() => {
     const q = searchParams.get('q');
     if (Boolean(q)) {
@@ -84,7 +82,7 @@ function NoticesPage() {
   };
 
   /**Get button-id and button-dataset*/
-  const getBtnInfo = (btnId, btnType, favorite) => {
+  const getBtnInfo = async (btnId, btnType, favorite) => {
     //TODO прописати логіку в залежності від кнопки
     setState(prevState => ({
       ...prevState,
@@ -110,7 +108,10 @@ function NoticesPage() {
       if (!favorite) {
         dispatch(addFavoriteNotice(btnId));
       } else {
-        dispatch(deleteFavoriteNotice(btnId));
+        const { payload } = await dispatch(deleteFavoriteNotice(btnId));
+        if (payload === btnId && path.split('/')[2] === 'favorite') {
+          dispatch(deleteNoticeFavorite(btnId));
+        }
       }
     }
     return;
@@ -127,9 +128,10 @@ function NoticesPage() {
             {state.btnType?.modal && (
               <>
                 <ModalNotice
-                  notices={getNoticeById}
+                  notice={getNoticeById}
                   token={token}
                   closeModal={closeModal}
+                  path={path.split('/')[2]}
                 />
               </>
             )}

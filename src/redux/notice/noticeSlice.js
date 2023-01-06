@@ -18,6 +18,10 @@ const noticeSlice = createSlice({
     resetState(state, action) {
       state.notices = initialState;
     },
+
+    deleteNoticeFavorite(state, { payload }) {
+      state.notices = state.notices.filter(notice => notice._id !== payload);
+    },
   },
   extraReducers: {
     // --------------------NOTICE-SEARCH OPERATION--------------------
@@ -38,7 +42,11 @@ const noticeSlice = createSlice({
   },
 });
 
-export const { resetState, resetStateNoticeSlice, changeFavorite } =
-  noticeSlice.actions;
+export const {
+  resetState,
+  resetStateNoticeSlice,
+  changeFavorite,
+  deleteNoticeFavorite,
+} = noticeSlice.actions;
 
 export default noticeSlice.reducer;
