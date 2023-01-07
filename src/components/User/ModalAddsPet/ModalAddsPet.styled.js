@@ -302,7 +302,7 @@ export const AccentBtn = styled.button`
     width: 180px;
     font-size: 20px;
     line-height: 1.35;
-    /* 
+    /*
     &:first-child {
       margin-right: 20px;
     } */

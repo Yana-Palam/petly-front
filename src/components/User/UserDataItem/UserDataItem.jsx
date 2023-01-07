@@ -15,6 +15,19 @@ function UserDataItem() {
         label={'Name:'}
         user={userInfo.name}
       />
+      {/*<BirthdayPicker*/}
+      {/*  active={active}*/}
+      {/*  setActive={setActive}*/}
+      {/*  user={userInfo.birthday}*/}
+      {/*  name={'birthday'}*/}
+      {/*/>*/}
+      <LiItem
+        active={active}
+        setActive={setActive}
+        name={'birthday'}
+        label={'Birthday:'}
+        user={userInfo.birthday}
+      />
 
       <LiItem
         active={active}
@@ -22,14 +35,6 @@ function UserDataItem() {
         name={'email'}
         label={'Email:'}
         user={userInfo.email}
-      />
-
-      <LiItem
-        active={active}
-        setActive={setActive}
-        name={'birthday'}
-        label={'Birthday:'}
-        user={userInfo.birthday}
       />
 
       <LiItem

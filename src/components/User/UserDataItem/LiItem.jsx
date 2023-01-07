@@ -11,7 +11,7 @@ const cityRegex = /^(\w+(,)\s*)+\w+$/;
 const phoneRegex = /^\+380\d{9}$/;
 
 const LiItem = ({ label, name, user, active, setActive, children }) => {
-  const [value, setValue] = useState('');
+  const [value, setValue] = useState();
   const wrapperRef = useRef(null);
   const dispatch = useDispatch();
   const outsideClickHandler = () => {
@@ -22,6 +22,12 @@ const LiItem = ({ label, name, user, active, setActive, children }) => {
   useOutsideClick(wrapperRef, outsideClickHandler);
 
   const [error, setError] = useState('');
+
+  const convertBackToApiFormat = (date) => {
+    if (!date?.length) return;
+    const d = date?.split('-');
+    return [d[0], d[1], d[2]] = [d[2], d[1], d[0]].join('.'); // DD.MM.YYYY
+  }
 
   const onChangeHandler = e => {
     const { name, value } = e.currentTarget;
@@ -62,12 +68,20 @@ const LiItem = ({ label, name, user, active, setActive, children }) => {
   };
 
   const onEditHandler = name => () => {
-    dispatch(updateUserInfo({ [name]: value || user }));
+    const val = name === 'birthday' ? convertBackToApiFormat(value) : value;
     setActive('');
+    if (!val || (val === user)) return;
+    dispatch(updateUserInfo({ [name]: val || user }));
+
   };
 
   const onSetActiveHandler = name => () => setActive(name);
 
+  const convertToInputDateFormat = (date) => {
+    if (!date?.length) return;
+    const d = date?.split('.');
+    return [d[0], d[1], d[2]] = [d[2], d[1], d[0]].join('-'); // YYYY.MM.DD
+  }
 
   return (
     <>
@@ -76,9 +90,9 @@ const LiItem = ({ label, name, user, active, setActive, children }) => {
         <Input
           active={active === name}
           disabled={active !== name}
-          type='text'
+          type={name === "birthday" ? 'date' : 'text'}
           name={name}
-          value={value || user}
+          value={value || (name === 'birthday' ? convertToInputDateFormat(user) : user)} // 10.12.2022 fu(value || user) => 12/10/2022
           onChange={onChangeHandler}
         />
         <Button>
