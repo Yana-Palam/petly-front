@@ -7,7 +7,7 @@ const links = [
     path: '/news',
   },
   {
-    label: 'Notices',
+    label: 'Find pet',
     path: '/notices/sell',
   },
   {

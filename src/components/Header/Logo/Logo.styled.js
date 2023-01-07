@@ -6,7 +6,7 @@ export const LogoContainer = styled(Link)`
   @media ${device.tablet} {
     margin-right: auto;
   }
-  @media ${device.tablet} {
+  @media ${device.desktop} {
     margin-right: 0;
   }
 `;
