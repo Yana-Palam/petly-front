@@ -54,10 +54,9 @@ import {
 const ModalAddNotice = ({ setArray, closeModal }) => {
   const [page, setPage] = useState(1);
   const [photo, setPhoto] = useState('');
-  // const [startDate, setStartDate] = useState(new Date());
-  // const { categoryName } = useParams();
+
   const [isLoading, setIsLoading] = useState(false);
-  // const navigate = useNavigate();
+
   const [select, setSelect] = useState('optionA');
   const dispatch = useDispatch();
 
@@ -71,7 +70,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
       category: 'sell',
       title: '',
       name: '',
-      birthdate: '',
+      birthday: new Date(),
       breed: '',
       sex: 'male',
       location: '',
@@ -92,9 +91,9 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
       name: Yup.string()
         .min(2, 'validation.min')
         .max(16, 'validation.namePetMax'),
-      birthdate: Yup.string()
+      birthday: Yup.string()
         .nullable()
-        .test('birthdate', function (value) {
+        .test('birthday', function (value) {
           return moment().diff(moment(value, 'DD-MM-YYYY'));
         })
         .required('validation.required'),
@@ -118,7 +117,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
     category,
     title,
     name,
-    birthdate,
+    birthday,
     breed,
     sex,
     location,
@@ -172,7 +171,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
       category,
       title,
       name,
-      birthdate,
+      birthday,
       breed,
       sex,
       location,
@@ -187,6 +186,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
     }, {});
     dispatch(addOwnNotice(info));
     setIsLoading(false);
+    closeModal();
   };
 
   const onPageChange = () => {
@@ -223,39 +223,45 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                     type="radio"
                     id="radio1"
                     name="category"
-                    value="lostFound"
+                    value="optionC"
                     // onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    checked={select === 'optionA'}
+                    checked={select === 'optionC'}
                     onChange={event => handleSelectChange(event)}
                   />
-                  <MaddNotLabelToolbar>lost/found</MaddNotLabelToolbar>
+                  <MaddNotLabelToolbar name="category" htmlFor="radio1">
+                    lost/found
+                  </MaddNotLabelToolbar>
                 </Item>
                 <Item>
                   <MaddNotInputToolbar
                     type="radio"
                     id="radio2"
                     name="category"
-                    value="inGoodHands"
+                    value="optionB"
                     // onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    checked={select === 'optionA'}
+                    checked={select === 'optionB'}
                     onChange={event => handleSelectChange(event)}
                   />
-                  <MaddNotLabelToolbar>in good hands</MaddNotLabelToolbar>
+                  <MaddNotLabelToolbar name="category" htmlFor="radio2">
+                    in good hands
+                  </MaddNotLabelToolbar>
                 </Item>
                 <Item>
                   <MaddNotInputToolbar
                     type="radio"
                     id="radio3"
                     name="category"
-                    value="sell"
+                    value="optionA"
                     // onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     checked={select === 'optionA'}
                     onChange={event => handleSelectChange(event)}
                   />
-                  <MaddNotLabelToolbar>sell</MaddNotLabelToolbar>
+                  <MaddNotLabelToolbar name="category" htmlFor="radio3">
+                    sell
+                  </MaddNotLabelToolbar>
                 </Item>
               </MaddNotRadioToolbar>
               <MaddNotLabel forhtml="title">Tittle of ad*</MaddNotLabel>
@@ -278,27 +284,28 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                 onBlur={formik.handleBlur}
                 value={name}
               />
-              <MaddNotLabel forhtml="birthdate">Date</MaddNotLabel>
+              <MaddNotLabel forhtml="birthday">Date</MaddNotLabel>
               <MaddNotinput as={'div'}>
                 <DatePicker
                   clearIcon={null}
                   calendarIcon={<ImgClose src={celendar} alt="" />}
                   format="dd.MM.yyyy"
-                  dateFormat="dd.MM.yyyy"
+                  selected={birthday}
+                  // dateFormat="dd.MM.yyyy"
+                  maxDate={new Date()}
                   yearPlaceholder={'years'}
                   monthPlaceholder={'months'}
                   dayPlaceholder={'days'}
-                  disableFuture
-                  id="birthdate"
-                  name={birthdate}
-                  value={birthdate}
+                  id="birthday"
+                  name="birthday"
+                  value={birthday}
                   onChange={value => {
                     if (!value) {
                       return;
                     }
                     formik.setFieldValue(
-                      'birthdate',
-                      new Date(Date.parse(value))
+                      'birthday',
+                      new Date(Date.parse(value)),
                     );
                   }}
                 />
@@ -332,10 +339,12 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                     <IconMale />
                     <MaddNotInputRadio
                       type="radio"
-                      name="sex"
-                      value="male"
-                      onChange={formik.handleChange}
+                      name="radio"
+                      value="optionA"
+                      // onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
+                      checked={select === 'optionA'}
+                      onChange={event => handleSelectChange(event)}
                     />
                     <MaddNotSexDescr>Male</MaddNotSexDescr>
                   </MaddNotLabelMale>
@@ -343,10 +352,12 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                     <IconFemale />
                     <MaddNotInputRadio
                       type="radio"
-                      name="sex"
-                      value="female"
-                      onChange={formik.handleChange}
+                      name="radio"
+                      value="optionB"
+                      // onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
+                      checked={select === 'optionB'}
+                      onChange={event => handleSelectChange(event)}
                     />
 
                     <MaddNotSexDescr>Female</MaddNotSexDescr>
@@ -380,7 +391,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                     onChange={event => {
                       formik.setFieldValue(
                         'avatar',
-                        event.currentTarget.files[0]
+                        event.currentTarget.files[0],
                       );
                     }}
                   />
@@ -417,6 +428,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                 <MaddNotAccentBtn
                   type="submit"
                   disabled={isLoading ? true : false}
+                  // onSubmit={closeModal}
                 >
                   Done
                 </MaddNotAccentBtn>
