@@ -82,7 +82,7 @@ const ModalAddsPet = ({ setShowModal }) => {
       birthday: new Date(),
       breed: '',
       comments: '',
-      pet: '',
+      avatar: '',
     },
 
     onSubmit: values => {
@@ -104,7 +104,7 @@ const ModalAddsPet = ({ setShowModal }) => {
     }),
   });
 
-  const { pet, name, birthday, breed, comments } = formik.values;
+  const { avatar, name, birthday, breed, comments } = formik.values;
 
   const {
     name: nameError,
@@ -113,17 +113,17 @@ const ModalAddsPet = ({ setShowModal }) => {
   } = formik.errors;
 
   useEffect(() => {
-    if (!pet) {
+    if (!avatar) {
       return;
     }
 
     /* Создаем виртуальную ссылку на загруженный файл */
-    const objectUrl = URL.createObjectURL(pet);
+    const objectUrl = URL.createObjectURL(avatar);
     setPhoto(objectUrl);
 
     // free memory when ever this component is unmounted
     return () => URL.revokeObjectURL(objectUrl);
-  }, [pet]);
+  }, [avatar]);
 
   const onFormSubmit = async e => {
     e.preventDefault();
@@ -134,11 +134,13 @@ const ModalAddsPet = ({ setShowModal }) => {
     }
 
     const toDateFormat = (data, from, to) => {
-      return new Date(data).toLocaleString('en-US', {
-        day: '2-digit',
-        month: '2-digit',
-        year: 'numeric',
-      }).replaceAll(from, to);
+      return new Date(data)
+        .toLocaleString('en-US', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric',
+        })
+        .replaceAll(from, to);
     };
 
     const arrayOfData = Object.entries({
@@ -146,7 +148,7 @@ const ModalAddsPet = ({ setShowModal }) => {
       birthday: toDateFormat(birthday, '/', '.'),
       breed,
       comments,
-      pet,
+      avatar,
     });
 
     const filteredArray = arrayOfData.filter(item => item[1]);
@@ -199,7 +201,7 @@ const ModalAddsPet = ({ setShowModal }) => {
                     }
                     formik.setFieldValue(
                       'birthday',
-                      new Date(Date.parse(value)),
+                      new Date(Date.parse(value))
                     );
                   }}
                 />
@@ -247,11 +249,14 @@ const ModalAddsPet = ({ setShowModal }) => {
                   )}
                   <InputLoad
                     id="file"
-                    name="pet"
+                    name="avatar"
                     type="file"
                     accept=".png, .jpg, .jpeg"
                     onChange={event => {
-                      formik.setFieldValue('pet', event.currentTarget.files[0]);
+                      formik.setFieldValue(
+                        'avatar',
+                        event.currentTarget.files[0]
+                      );
                     }}
                   />
                 </LabelLoad>
@@ -279,7 +284,7 @@ const ModalAddsPet = ({ setShowModal }) => {
         </form>
       </Modal>
     </Backdrop>,
-    modalContainer,
+    modalContainer
   );
 };
 

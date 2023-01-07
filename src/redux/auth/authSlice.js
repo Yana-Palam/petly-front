@@ -216,8 +216,8 @@ const authSlice = createSlice({
     [addPet.pending]: state => {
       state.error = null;
     },
-    [addPet.fulfilled]: (state, action) => {
-      state.user.myPets.push(action.payload);
+    [addPet.fulfilled]: (state, { payload }) => {
+      state.user.myPets.push(payload);
     },
     [addPet.rejected]: (state, action) => {
       state.error = action.payload;

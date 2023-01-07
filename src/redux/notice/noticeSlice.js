@@ -1,5 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchByCategory, deleteOwnNoticeById } from './noticeOperations';
+import {
+  fetchByCategory,
+  addOwnNotice,
+  deleteOwnNoticeById,
+} from './noticeOperations';
 
 export const initialState = {
   notices: [],
@@ -39,6 +43,22 @@ const noticeSlice = createSlice({
       state.isLoading = false;
       state.error = payload;
     },
+    // INFO Add user notice by id
+    [addOwnNotice.pending]: state => {
+      state.error = null;
+      state.isLoading = true;
+    },
+    [addOwnNotice.fulfilled]: (state, { payload }) => {
+      //TODO прописати оновлення стейту в залежності де було додано нотіс
+      // state.notices.push =
+      state.isLoading = false;
+    },
+    [addOwnNotice.rejected]: (state, { payload }) => {
+      state.notices = [];
+      state.isLoading = false;
+      state.error = payload;
+    },
+
     // INFO Delete user notice by id
 
     [deleteOwnNoticeById.pending]: state => {
