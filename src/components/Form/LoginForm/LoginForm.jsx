@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useState, memo } from 'react';
 
 import { useNavigate } from 'react-router-dom';
-import { login, restore, google } from 'redux/auth/authOperations';
+import { login, restore } from 'redux/auth/authOperations';
 import { selectAccessToken } from 'redux/auth/authSelectors';
 import { validationSchema, initialValues } from './ValidationSchema';
 import { AuthBtn } from './LoginForm.styled';
@@ -19,6 +19,7 @@ import {
   IconEye,
   IconEyeSlash,
   StyledBtnGoogle,
+  FlexLink,
 } from './LoginForm.styled';
 import { motion } from 'framer-motion';
 import { FcGoogle } from 'react-icons/fc';
@@ -41,17 +42,13 @@ const LoginForm = memo(({ onRestore, showRestore }) => {
     setShowPassword(prev => !prev);
   };
 
-  const onClickGoogle = () => {
-    dispatch(google());
-  };
-
   const formik = useFormik({
     initialValues: initialValues,
     validationSchema: validationSchema,
 
     onSubmit: async values => {
       if (!isAuth && showRestore) {
-        dispatch(restore(values.email));
+        dispatch(restore({ email: values.email }));
       }
 
       if (!isAuth && !showRestore) {
@@ -119,8 +116,10 @@ const LoginForm = memo(({ onRestore, showRestore }) => {
         </AuthBtn>
 
         <Links onRestore={onRestore} showRestore={showRestore} />
-        <StyledBtnGoogle onClick={onClickGoogle} type="button">
-          <FcGoogle size="45px" /> Continue with Google
+        <StyledBtnGoogle type="button">
+          <FlexLink href="https://petly-back.onrender.com/api/auth/google">
+            <FcGoogle size="45px" /> Continue with Google
+          </FlexLink>
         </StyledBtnGoogle>
       </Form>
     </FormWrapper>

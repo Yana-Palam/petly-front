@@ -124,17 +124,16 @@ export const login = createAsyncThunk(
 );
 export const restore = createAsyncThunk(
   'auth/restore',
-  async (user, { rejectWithValue }) => {
-    console.log(user);
+  async (email, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post('/auth/restore', user);
-      toast(`New password was sent to Your email`, {
+      const { data } = await axios.patch('/auth/restore', email);
+      toast(`Password was sent to Your email`, {
         icon: <IoMdLogIn size={25} color="green" />,
       });
       return data;
     } catch (error) {
       if (error.response.status === 400) {
-        toast.error('Email not found');
+        toast.error('Something went wrong');
         return rejectWithValue(error.request.message);
       }
       toast.error('Oops, something went wrong');

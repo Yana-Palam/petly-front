@@ -177,3 +177,9 @@ export const LinksWrapper = styled.div`
   align-items: center;
   gap: 10px;
 `;
+export const FlexLink = styled.a`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+`;
