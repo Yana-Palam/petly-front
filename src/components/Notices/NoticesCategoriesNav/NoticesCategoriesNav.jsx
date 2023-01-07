@@ -1,7 +1,6 @@
 import { Navigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectAccessToken } from 'redux/auth/authSelectors';
-
 import { categoryButtons, allowCategory } from './category';
 import Box from 'components/Common/Box';
 import AddNoticeButton from 'components/Notices/AddNoticeButton';
@@ -35,7 +34,6 @@ function NoticesCategoriesNav({ getBtnInfo }) {
       ) : (
         <>
           <CategoryPageBox>
-            {' '}
             <Box>
               <CategoryList>
                 {categoryButtons.publicRoute.map(({ pageTitle, link }) => (
