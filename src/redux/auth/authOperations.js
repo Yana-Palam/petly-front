@@ -70,18 +70,16 @@ export const google = createAsyncThunk(
 export const setTokens = createAsyncThunk(
   'auth/google-setTokens',
   async (tokens, { rejectWithValue }) => {
-    if (tokens.accessToken) {
-      try {
-        token.set(tokens.accessToken);
+    try {
+      token.set(tokens.accessToken);
 
-        toast(`You have successfully logged into your account`, {
-          icon: <IoMdLogIn size={25} color="green" />,
-        });
+      toast(`You have successfully logged into your account`, {
+        icon: <IoMdLogIn size={25} color="green" />,
+      });
 
-        return tokens;
-      } catch (error) {
-        return rejectWithValue(error);
-      }
+      return tokens;
+    } catch (error) {
+      return rejectWithValue(error);
     }
   }
 );

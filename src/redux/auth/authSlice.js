@@ -63,19 +63,21 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.error = payload;
     },
-    //---------
+    //------------------------------
     [setTokens.pending]: state => {
       state.isLoading = true;
     },
     [setTokens.fulfilled]: (state, { payload }) => {
-      state.accessToken = payload?.accessToken || null;
-      state.refreshToken = payload?.refreshToken || null;
+      state.accessToken = payload.accessToken;
+      state.refreshToken = payload.refreshToken;
 
       state.isLoggedIn = true;
       state.isLoading = false;
     },
     [setTokens.rejected]: (state, { payload }) => {
       state.isLoading = false;
+      state.isLoggedIn = false;
+
       state.error = payload;
     },
     // --------------------REGISTER OPERATION--------------------
@@ -173,6 +175,8 @@ const authSlice = createSlice({
     },
     [refresh.rejected]: (state, { payload }) => {
       state.isLoading = false;
+      state.isLoggedIn = true;
+
       state.error = payload;
     },
 
