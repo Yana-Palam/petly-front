@@ -6,10 +6,7 @@ import { useDispatch } from 'react-redux';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import moment from 'moment';
-import {
-  // addFavoriteNotice,
-  addOwnNotice,
-} from '../../../redux/auth/authOperations';
+import { addOwnNotice } from 'redux/notice/noticeOperations';
 import DatePicker from 'react-date-picker';
 import { showAlertMessage } from '../../../utils/showMessages';
 
@@ -80,7 +77,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
       location: '',
       price: '',
       comments: '',
-      notices: '',
+      avatar: '',
     },
 
     onSubmit: values => {
@@ -127,7 +124,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
     location,
     price,
     comments,
-    notices,
+    avatar,
   } = formik.values;
 
   // console.log(formik.values);
@@ -142,17 +139,19 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
   } = formik.errors;
 
   useEffect(() => {
-    if (!notices) {
+    if (!avatar) {
       return;
     }
 
     /* Создаем виртуальную ссылку на загруженный файл */
-    const objectUrl = URL.createObjectURL(notices);
+    console.log('avatar', avatar);
+    const objectUrl = URL.createObjectURL(avatar);
+    // console.log('objectUrl', objectUrl);
     setPhoto(objectUrl);
 
     // free memory when ever this component is unmounted
     return () => URL.revokeObjectURL(objectUrl);
-  }, [notices]);
+  }, [avatar]);
 
   const onFormSubmit = async e => {
     e.preventDefault();
@@ -179,33 +178,15 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
       location,
       price: transformedPrice,
       comments,
-      notices,
+      avatar,
     });
+
     const filteredArray = arrayOfData.filter(item => item[1]);
     const info = filteredArray.reduce((previousValue, feature) => {
       return { ...previousValue, [feature[0]]: feature[1] };
     }, {});
     dispatch(addOwnNotice(info));
-    // setShowModal(false);
-    // // setShowModal(false);
-    // setArray(response);
     setIsLoading(false);
-    // try {
-    //   await addFavoriteNotice(info);
-    //   if (categoryName !== 'own') {
-    //     // setShowModal(false);
-    //     // dispatch(addFavoriteNotice(info));
-    //     navigate('/notices/own');
-    //     return;
-    //   }
-    //   const response = await addOwnNotice();
-    //   // setShowModal(false);
-    //   setArray(response);
-    // } catch (error) {
-    //   showAlertMessage(error.message);
-    // } finally {
-    //   setIsLoading(false);
-    // }
   };
 
   const onPageChange = () => {
@@ -233,7 +214,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
         </MaddNotBtnClose>
         <MaddNotTitle>Add pet</MaddNotTitle>
         {page === 1 && <MaddNotDescr>Descr</MaddNotDescr>}
-        <form onSubmit={onFormSubmit}>
+        <form onSubmit={onFormSubmit} /* encType="multipart/form-data" */>
           {page === 1 && (
             <>
               <MaddNotRadioToolbar>
@@ -318,7 +299,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                     }
                     formik.setFieldValue(
                       'birthdate',
-                      new Date(Date.parse(value)),
+                      new Date(Date.parse(value))
                     );
                   }}
                 />
@@ -395,12 +376,12 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                   )}
                   <MaddNotInputLoad
                     id="file"
-                    name="notices"
+                    name="avatar"
                     type="file"
                     onChange={event => {
                       formik.setFieldValue(
-                        'notices',
-                        event.currentTarget.files[0],
+                        'avatar',
+                        event.currentTarget.files[0]
                       );
                     }}
                   />

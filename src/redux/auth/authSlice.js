@@ -33,7 +33,7 @@ const initialState = {
         birthday: '',
         breed: '',
         comments: '',
-        avatarUrl: null,
+        avatarURL: null,
         owner: '',
       },
     ],
@@ -63,19 +63,21 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.error = payload;
     },
-    //---------
+    //------------------------------
     [setTokens.pending]: state => {
       state.isLoading = true;
     },
     [setTokens.fulfilled]: (state, { payload }) => {
-      state.accessToken = payload?.accessToken || null;
-      state.refreshToken = payload?.refreshToken || null;
+      state.accessToken = payload.accessToken;
+      state.refreshToken = payload.refreshToken;
 
       state.isLoggedIn = true;
       state.isLoading = false;
     },
     [setTokens.rejected]: (state, { payload }) => {
       state.isLoading = false;
+      state.isLoggedIn = false;
+
       state.error = payload;
     },
     // --------------------REGISTER OPERATION--------------------
@@ -168,11 +170,13 @@ const authSlice = createSlice({
     ) => {
       state.accessToken = accessToken;
       state.refreshToken = refreshToken;
-
+      state.isLoggedIn = true;
       state.isLoading = false;
     },
     [refresh.rejected]: (state, { payload }) => {
       state.isLoading = false;
+      state.isLoggedIn = false;
+
       state.error = payload;
     },
 
@@ -216,8 +220,8 @@ const authSlice = createSlice({
     [addPet.pending]: state => {
       state.error = null;
     },
-    [addPet.fulfilled]: (state, action) => {
-      state.user.myPets.push(action.payload);
+    [addPet.fulfilled]: (state, { payload }) => {
+      state.user.myPets.push(payload);
     },
     [addPet.rejected]: (state, action) => {
       state.error = action.payload;

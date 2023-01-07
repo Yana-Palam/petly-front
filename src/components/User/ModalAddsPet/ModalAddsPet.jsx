@@ -82,7 +82,7 @@ const ModalAddsPet = ({ setShowModal }) => {
       birthday: new Date(),
       breed: '',
       comments: '',
-      pet: '',
+      avatar: '',
     },
 
     onSubmit: values => {
@@ -104,7 +104,7 @@ const ModalAddsPet = ({ setShowModal }) => {
     }),
   });
 
-  const { pet, name, birthday, breed, comments } = formik.values;
+  const { avatar, name, birthday, breed, comments } = formik.values;
 
   const {
     name: nameError,
@@ -113,17 +113,17 @@ const ModalAddsPet = ({ setShowModal }) => {
   } = formik.errors;
 
   useEffect(() => {
-    if (!pet) {
+    if (!avatar) {
       return;
     }
 
     /* Создаем виртуальную ссылку на загруженный файл */
-    const objectUrl = URL.createObjectURL(pet);
+    const objectUrl = URL.createObjectURL(avatar);
     setPhoto(objectUrl);
 
     // free memory when ever this component is unmounted
     return () => URL.revokeObjectURL(objectUrl);
-  }, [pet]);
+  }, [avatar]);
 
   const onFormSubmit = async e => {
     e.preventDefault();
@@ -133,12 +133,22 @@ const ModalAddsPet = ({ setShowModal }) => {
       return;
     }
 
+    const toDateFormat = (data, from, to) => {
+      return new Date(data)
+        .toLocaleString('en-US', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric',
+        })
+        .replaceAll(from, to);
+    };
+
     const arrayOfData = Object.entries({
       name,
-      birthday,
+      birthday: toDateFormat(birthday, '/', '.'),
       breed,
       comments,
-      pet,
+      avatar,
     });
 
     const filteredArray = arrayOfData.filter(item => item[1]);
@@ -159,19 +169,19 @@ const ModalAddsPet = ({ setShowModal }) => {
         <form onSubmit={onFormSubmit}>
           {page === 1 && (
             <>
-              <Title>Title</Title>
-              <Label forhtml="name">Name</Label>
+              <Title>Add pet</Title>
+              <Label forhtml="name">Name pet</Label>
               <Input
                 type="text"
                 name="name"
                 id="name"
-                placeholder={'Name'}
+                placeholder={'Type name pet'}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={name}
               />
               <Error>{formik.touched.name && nameError && nameError}</Error>
-              <Label forhtml="birthday">Date</Label>
+              <Label forhtml="birthday">Date of birth</Label>
               <Input as={'div'}>
                 <DatePicker
                   clearIcon={null}
@@ -191,7 +201,7 @@ const ModalAddsPet = ({ setShowModal }) => {
                     }
                     formik.setFieldValue(
                       'birthday',
-                      new Date(Date.parse(value)),
+                      new Date(Date.parse(value))
                     );
                   }}
                 />
@@ -202,7 +212,7 @@ const ModalAddsPet = ({ setShowModal }) => {
                 type="text"
                 name="breed"
                 id="breed"
-                placeholder={'Breed'}
+                placeholder={'Type breed'}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={breed}
@@ -220,8 +230,8 @@ const ModalAddsPet = ({ setShowModal }) => {
           )}
           {page === 2 && (
             <>
-              <Title>Title</Title>
-              <Descr>Description</Descr>
+              <Title>Add pet</Title>
+              <Descr>Add photo and some comments</Descr>
               <div>
                 <LabelLoad forhtml="file">
                   {!photo && (
@@ -239,11 +249,14 @@ const ModalAddsPet = ({ setShowModal }) => {
                   )}
                   <InputLoad
                     id="file"
-                    name="pet"
+                    name="avatar"
                     type="file"
                     accept=".png, .jpg, .jpeg"
                     onChange={event => {
-                      formik.setFieldValue('pet', event.currentTarget.files[0]);
+                      formik.setFieldValue(
+                        'avatar',
+                        event.currentTarget.files[0]
+                      );
                     }}
                   />
                 </LabelLoad>
@@ -252,7 +265,7 @@ const ModalAddsPet = ({ setShowModal }) => {
               <Textarea
                 name="comments"
                 id="comments"
-                placeholder={'Comments'}
+                placeholder={'Type comments'}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={comments}
@@ -271,7 +284,7 @@ const ModalAddsPet = ({ setShowModal }) => {
         </form>
       </Modal>
     </Backdrop>,
-    modalContainer,
+    modalContainer
   );
 };
 

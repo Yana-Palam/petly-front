@@ -70,18 +70,16 @@ export const google = createAsyncThunk(
 export const setTokens = createAsyncThunk(
   'auth/google-setTokens',
   async (tokens, { rejectWithValue }) => {
-    if (tokens.accessToken) {
-      try {
-        token.set(tokens.accessToken);
+    try {
+      token.set(tokens.accessToken);
 
-        toast(`You have successfully logged into your account`, {
-          icon: <IoMdLogIn size={25} color="green" />,
-        });
+      toast(`You have successfully logged into your account`, {
+        icon: <IoMdLogIn size={25} color="green" />,
+      });
 
-        return tokens;
-      } catch (error) {
-        return rejectWithValue(error);
-      }
+      return tokens;
+    } catch (error) {
+      return rejectWithValue(error);
     }
   }
 );
@@ -126,17 +124,16 @@ export const login = createAsyncThunk(
 );
 export const restore = createAsyncThunk(
   'auth/restore',
-  async (user, { rejectWithValue }) => {
-    console.log(user);
+  async (email, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post('/auth/restore', user);
-      toast(`New password was sent to Your email`, {
+      const { data } = await axios.patch('/auth/restore', email);
+      toast(`Password was sent to Your email`, {
         icon: <IoMdLogIn size={25} color="green" />,
       });
       return data;
     } catch (error) {
       if (error.response.status === 400) {
-        toast.error('Email not found');
+        toast.error('Something went wrong');
         return rejectWithValue(error.request.message);
       }
       toast.error('Oops, something went wrong');
@@ -194,8 +191,12 @@ export const addPet = createAsyncThunk(
     try {
       const tokenLS = thunkAPI.getState().auth.accessToken;
       token.set(tokenLS);
-      const res = await axios.post('/user/pets', payload);
-      return res.data;
+      const { data } = await axios.post('/user/pets', payload, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      return data;
     } catch (error) {
       toast.error("Sorry, can't add pet, server Error!");
       return thunkAPI.rejectWithValue(error.request.status);
@@ -210,7 +211,7 @@ export const deletePet = createAsyncThunk(
       const tokenLS = thunkAPI.getState().auth.accessToken;
       token.set(tokenLS);
       await axios.delete(`/user/pets/${_id}`);
-      return _id;
+      return { _id };
     } catch (error) {
       toast.error("Sorry, can't delete pet, server Error!");
       return thunkAPI.rejectWithValue(error.request.status);
@@ -244,37 +245,6 @@ export const deleteFavoriteNotice = createAsyncThunk(
       return _id;
     } catch (error) {
       toast.error("Sorry, can't delete favorite notices, server Error!");
-      return thunkAPI.rejectWithValue(error.request.status);
-    }
-  }
-);
-
-//TODO Синхронізувати запит згідно беку
-export const addOwnNotice = createAsyncThunk(
-  'notices/addOwnNotice',
-  async (notice, thunkAPI) => {
-    try {
-      const tokenLS = thunkAPI.getState().auth.accessToken;
-      token.set(tokenLS);
-      await axios.post(`notices/addnotice`, notice);
-      return { notice };
-    } catch (error) {
-      toast.error("Sorry, can't add notices, server Error!");
-      return thunkAPI.rejectWithValue(error.request.status);
-    }
-  }
-);
-
-export const deleteOwnNotice = createAsyncThunk(
-  'notices/deleteOwnNotice',
-  async (_id, thunkAPI) => {
-    try {
-      const tokenLS = thunkAPI.getState().auth.accessToken;
-      token.set(tokenLS);
-      await axios.delete(`/notices/own/${_id}`);
-      return { _id };
-    } catch (error) {
-      toast.error("Sorry, can't delete notices, server Error!");
       return thunkAPI.rejectWithValue(error.request.status);
     }
   }

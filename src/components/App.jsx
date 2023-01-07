@@ -16,7 +16,9 @@ export default function App() {
 
   useEffect(() => {
     if (!isAuth) {
-      dispatch(setTokens({ refreshToken, accessToken }));
+      if (accessToken) {
+        dispatch(setTokens({ refreshToken, accessToken }));
+      }
     }
   }, [dispatch, isAuth, refreshToken, accessToken]);
 
