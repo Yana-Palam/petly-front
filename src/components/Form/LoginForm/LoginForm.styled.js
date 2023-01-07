@@ -169,3 +169,11 @@ export const StyledBtnGoogle = styled.button`
     transition: background-color ${p => p.theme.animation.cubic};
   }
 `;
+
+export const LinksWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+`;

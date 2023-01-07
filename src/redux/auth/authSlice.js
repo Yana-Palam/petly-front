@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import {
   register,
   login,
+  restore,
   logout,
   refresh,
   google,
@@ -67,8 +68,8 @@ const authSlice = createSlice({
       state.isLoading = true;
     },
     [setTokens.fulfilled]: (state, { payload }) => {
-      state.accessToken = payload.accessToken;
-      state.refreshToken = payload.refreshToken;
+      state.accessToken = payload?.accessToken || null;
+      state.refreshToken = payload?.refreshToken || null;
 
       state.isLoggedIn = true;
       state.isLoading = false;
@@ -113,6 +114,19 @@ const authSlice = createSlice({
       state.isLoading = false;
     },
     [login.rejected]: (state, { payload }) => {
+      state.isLoading = false;
+      state.error = payload;
+    },
+    [restore.pending]: state => {
+      state.isLoading = true;
+    },
+    [restore.fulfilled]: (state, { payload: { user } }) => {
+      state.user.email = user.email;
+
+      state.isLoggedIn = false;
+      state.isLoading = false;
+    },
+    [restore.rejected]: (state, { payload }) => {
       state.isLoading = false;
       state.error = payload;
     },

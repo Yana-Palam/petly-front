@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
+import moment from 'moment';
 import {
   // addFavoriteNotice,
   addOwnNotice,
@@ -14,7 +15,6 @@ import { showAlertMessage } from '../../../utils/showMessages';
 
 import Loader from '../../Loader';
 
-import s from './ModalAddNotice.module.css';
 import iconClose from '../../../assets/icons/icon-close.svg';
 import celendar from '../../../assets/icons/calendar.svg';
 import loadMobile from '../../../assets/images/Modal/loadMobile.png';
@@ -46,8 +46,10 @@ import {
   MaddNotThumbLoadImg,
   MaddNotLoadImage,
   MaddNotInputLoad,
+  Title,
   IconMale,
   IconFemale,
+  Item,
 } from './ModalAddNotice.styled';
 
 // const portalModal = document.querySelector('#modal-root');
@@ -55,30 +57,17 @@ import {
 const ModalAddNotice = ({ setArray, closeModal }) => {
   const [page, setPage] = useState(1);
   const [photo, setPhoto] = useState('');
+  // const [startDate, setStartDate] = useState(new Date());
   // const { categoryName } = useParams();
   const [isLoading, setIsLoading] = useState(false);
   // const navigate = useNavigate();
+  const [select, setSelect] = useState('optionA');
   const dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   const handleKeyDown = e => {
-  //     if (e.code === 'Escape') setShowModal(false);
-  //   };
-  //   document.addEventListener('keydown', handleKeyDown);
-
-  //   return () => {
-  //     document.removeEventListener('keydown', handleKeyDown);
-  //   };
-  //   // eslint-disable-next-line
-  // }, []);
-
-  // const onBackdropClick = e => {
-  //   if (e.currentTarget === e.target) setShowModal(false);
-  // };
-
-  // const onBtnCloseClick = () => {
-  //   setShowModal(false);
-  // };
+  const handleSelectChange = event => {
+    const value = event.target.value;
+    setSelect(value);
+  };
 
   const formik = useFormik({
     initialValues: {
@@ -106,6 +95,12 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
       name: Yup.string()
         .min(2, 'validation.min')
         .max(16, 'validation.namePetMax'),
+      birthdate: Yup.string()
+        .nullable()
+        .test('birthdate', function (value) {
+          return moment().diff(moment(value, 'DD-MM-YYYY'));
+        })
+        .required('validation.required'),
       breed: Yup.string().min(2, 'validation.min').max(24, 'validation.max'),
       sex: Yup.string().required('validation.required'),
       location: Yup.string()
@@ -242,58 +237,45 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
           {page === 1 && (
             <>
               <MaddNotRadioToolbar>
-                <MaddNotLabelToolbar
-                  className={
-                    category === 'lostFound'
-                      ? s.activeCategory
-                      : s.notActiveCategory
-                  }
-                  // isActive={(category = 'lostFound')}
-                >
-                  lost/found
+                <Item>
                   <MaddNotInputToolbar
                     type="radio"
                     id="radio1"
                     name="category"
                     value="lostFound"
-                    onChange={formik.handleChange}
+                    // onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
+                    checked={select === 'optionA'}
+                    onChange={event => handleSelectChange(event)}
                   />
-                </MaddNotLabelToolbar>
-                <MaddNotLabelToolbar
-                  className={
-                    category === 'inGoodHands'
-                      ? s.activeCategory
-                      : s.notActiveCategory
-                  }
-                  // isActive={(category = 'inGoodHands')}
-                >
-                  in good hands
+                  <MaddNotLabelToolbar>lost/found</MaddNotLabelToolbar>
+                </Item>
+                <Item>
                   <MaddNotInputToolbar
                     type="radio"
                     id="radio2"
                     name="category"
                     value="inGoodHands"
-                    onChange={formik.handleChange}
+                    // onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
+                    checked={select === 'optionA'}
+                    onChange={event => handleSelectChange(event)}
                   />
-                </MaddNotLabelToolbar>
-                <MaddNotLabelToolbar
-                  className={
-                    category === 'sell' ? s.activeCategory : s.notActiveCategory
-                  }
-                  // isActive={(category = 'sell')}
-                >
-                  sell
+                  <MaddNotLabelToolbar>in good hands</MaddNotLabelToolbar>
+                </Item>
+                <Item>
                   <MaddNotInputToolbar
                     type="radio"
                     id="radio3"
                     name="category"
                     value="sell"
-                    onChange={formik.handleChange}
+                    // onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
+                    checked={select === 'optionA'}
+                    onChange={event => handleSelectChange(event)}
                   />
-                </MaddNotLabelToolbar>
+                  <MaddNotLabelToolbar>sell</MaddNotLabelToolbar>
+                </Item>
               </MaddNotRadioToolbar>
               <MaddNotLabel forhtml="title">Tittle of ad*</MaddNotLabel>
               <MaddNotinput
@@ -318,26 +300,16 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
               <MaddNotLabel forhtml="birthdate">Date</MaddNotLabel>
               <MaddNotinput as={'div'}>
                 <DatePicker
-                  style={{
-                    backgroundColor: 'aliceblue',
-                    height: '24px',
-                    borderRadius: '8px',
-                    fontSize: '14px',
-                    padding: '3px 10px',
-                    border: 'none',
-                  }}
-                  wrapperClassName="react-date-picker__wrapper"
                   clearIcon={null}
                   calendarIcon={<ImgClose src={celendar} alt="" />}
                   format="dd.MM.yyyy"
                   dateFormat="dd.MM.yyyy"
-                  selected={birthdate}
-                  maxDate={new Date()}
                   yearPlaceholder={'years'}
                   monthPlaceholder={'months'}
                   dayPlaceholder={'days'}
+                  disableFuture
                   id="birthdate"
-                  name="birthdate"
+                  name={birthdate}
                   value={birthdate}
                   onChange={value => {
                     if (!value) {
@@ -373,7 +345,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
           {page === 2 && (
             <>
               <MaddNotRadioToolbar2>
-                <MaddNotLabelDistance>Add pet</MaddNotLabelDistance>
+                <MaddNotLabelDistance>The sex*:</MaddNotLabelDistance>
                 <MaddNotBlockOfRadio>
                   <MaddNotLabelMale>
                     <IconMale />
@@ -384,13 +356,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                       onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
                     />
-                    <MaddNotSexDescr
-                      className={`${s.sexDescr} ${
-                        sex === 'male' ? s.active : s.notActive
-                      }`}
-                    >
-                      Male
-                    </MaddNotSexDescr>
+                    <MaddNotSexDescr>Male</MaddNotSexDescr>
                   </MaddNotLabelMale>
                   <MaddNotLabelFemale>
                     <IconFemale />
@@ -402,13 +368,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                       onBlur={formik.handleBlur}
                     />
 
-                    <MaddNotSexDescr
-                      className={`${s.sexDescr} ${
-                        sex === 'female' ? s.active : s.notActive
-                      }`}
-                    >
-                      Female
-                    </MaddNotSexDescr>
+                    <MaddNotSexDescr>Female</MaddNotSexDescr>
                   </MaddNotLabelFemale>
                 </MaddNotBlockOfRadio>
               </MaddNotRadioToolbar2>
@@ -423,8 +383,8 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                 value={location}
               />
 
-              <div className={s.loadImgGroup}>
-                <p>Load the pet’s image:</p>
+              <div>
+                <Title>Load the pet’s image:</Title>
                 <MaddNotLabelLoad forhtml="file">
                   {!photo && <ImgClose src={loadMobile} alt="add_photo" />}
                   {photo && (
@@ -475,7 +435,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                 </MaddNotButton>
                 <MaddNotAccentBtn
                   type="submit"
-                  // disabled={isLoading ? true : false}
+                  disabled={isLoading ? true : false}
                 >
                   Done
                 </MaddNotAccentBtn>
