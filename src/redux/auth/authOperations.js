@@ -190,7 +190,7 @@ export const deletePet = createAsyncThunk(
       const tokenLS = thunkAPI.getState().auth.accessToken;
       token.set(tokenLS);
       await axios.delete(`/user/pets/${_id}`);
-      return _id;
+      return { _id };
     } catch (error) {
       toast.error("Sorry, can't delete pet, server Error!");
       return thunkAPI.rejectWithValue(error.request.status);

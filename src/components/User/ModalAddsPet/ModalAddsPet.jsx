@@ -133,9 +133,17 @@ const ModalAddsPet = ({ setShowModal }) => {
       return;
     }
 
+    const toDateFormat = (data, from, to) => {
+      return new Date(data).toLocaleString('en-US', {
+        day: '2-digit',
+        month: '2-digit',
+        year: 'numeric',
+      }).replaceAll(from, to);
+    };
+
     const arrayOfData = Object.entries({
       name,
-      birthday,
+      birthday: toDateFormat(birthday, '/', '.'),
       breed,
       comments,
       pet,
@@ -159,19 +167,19 @@ const ModalAddsPet = ({ setShowModal }) => {
         <form onSubmit={onFormSubmit}>
           {page === 1 && (
             <>
-              <Title>Title</Title>
-              <Label forhtml="name">Name</Label>
+              <Title>Add pet</Title>
+              <Label forhtml="name">Name pet</Label>
               <Input
                 type="text"
                 name="name"
                 id="name"
-                placeholder={'Name'}
+                placeholder={'Type name pet'}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={name}
               />
               <Error>{formik.touched.name && nameError && nameError}</Error>
-              <Label forhtml="birthday">Date</Label>
+              <Label forhtml="birthday">Date of birth</Label>
               <Input as={'div'}>
                 <DatePicker
                   clearIcon={null}
@@ -202,7 +210,7 @@ const ModalAddsPet = ({ setShowModal }) => {
                 type="text"
                 name="breed"
                 id="breed"
-                placeholder={'Breed'}
+                placeholder={'Type breed'}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={breed}
@@ -220,8 +228,8 @@ const ModalAddsPet = ({ setShowModal }) => {
           )}
           {page === 2 && (
             <>
-              <Title>Title</Title>
-              <Descr>Description</Descr>
+              <Title>Add pet</Title>
+              <Descr>Add photo and some comments</Descr>
               <div>
                 <LabelLoad forhtml="file">
                   {!photo && (
@@ -252,7 +260,7 @@ const ModalAddsPet = ({ setShowModal }) => {
               <Textarea
                 name="comments"
                 id="comments"
-                placeholder={'Comments'}
+                placeholder={'Type comments'}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
                 value={comments}

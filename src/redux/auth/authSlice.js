@@ -32,7 +32,7 @@ const initialState = {
         birthday: '',
         breed: '',
         comments: '',
-        avatarUrl: null,
+        avatarURL: null,
         owner: '',
       },
     ],
