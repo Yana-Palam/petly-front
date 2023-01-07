@@ -192,8 +192,12 @@ export const addPet = createAsyncThunk(
     try {
       const tokenLS = thunkAPI.getState().auth.accessToken;
       token.set(tokenLS);
-      const res = await axios.post('/user/pets', payload);
-      return res.data;
+      const { data } = await axios.post('/user/pets', payload, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      return data;
     } catch (error) {
       toast.error("Sorry, can't add pet, server Error!");
       return thunkAPI.rejectWithValue(error.request.status);
@@ -242,37 +246,6 @@ export const deleteFavoriteNotice = createAsyncThunk(
       return _id;
     } catch (error) {
       toast.error("Sorry, can't delete favorite notices, server Error!");
-      return thunkAPI.rejectWithValue(error.request.status);
-    }
-  }
-);
-
-//TODO Синхронізувати запит згідно беку
-export const addOwnNotice = createAsyncThunk(
-  'notices/addOwnNotice',
-  async (notice, thunkAPI) => {
-    try {
-      const tokenLS = thunkAPI.getState().auth.accessToken;
-      token.set(tokenLS);
-      await axios.post(`notices/addnotice`, notice);
-      return { notice };
-    } catch (error) {
-      toast.error("Sorry, can't add notices, server Error!");
-      return thunkAPI.rejectWithValue(error.request.status);
-    }
-  }
-);
-
-export const deleteOwnNotice = createAsyncThunk(
-  'notices/deleteOwnNotice',
-  async (_id, thunkAPI) => {
-    try {
-      const tokenLS = thunkAPI.getState().auth.accessToken;
-      token.set(tokenLS);
-      await axios.delete(`/notices/own/${_id}`);
-      return { _id };
-    } catch (error) {
-      toast.error("Sorry, can't delete notices, server Error!");
       return thunkAPI.rejectWithValue(error.request.status);
     }
   }

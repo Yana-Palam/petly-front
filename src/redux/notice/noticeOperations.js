@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-
+import { toast } from 'react-toastify';
 const token = {
   set(token) {
     axios.defaults.headers.common.Authorization = `Bearer ${token}`;
@@ -30,6 +30,24 @@ export const fetchByCategory = createAsyncThunk(
       const { data } = await axios.get(`/notices/${category}`);
       return data;
     } catch (error) {
+      return rejectWithValue(error.request.status);
+    }
+  }
+);
+
+export const addOwnNotice = createAsyncThunk(
+  'notices/addOwnNotice',
+  async (notice, { rejectWithValue, getState }) => {
+    try {
+      setTokenRequest(getState);
+      const { data } = await axios.post(`/notices/addnotice`, notice, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+      return data;
+    } catch (error) {
+      toast.error("Sorry, can't add notices, server Error!");
       return rejectWithValue(error.request.status);
     }
   }

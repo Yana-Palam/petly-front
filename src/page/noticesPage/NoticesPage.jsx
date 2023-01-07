@@ -59,6 +59,7 @@ function NoticesPage() {
   //   '', // searchParams.get('q') === null ? '' : searchParams.get('q')
   // );
 
+  console.log('notice', resultNotice);
   const path = useLocation().pathname;
 
   useEffect(() => {
