@@ -22,6 +22,7 @@ import NoticesCategoriesList from 'components/Notices/NoticesCategoriesList';
 // import NoticeNotFound from 'components/Notices/NoticeNotFound';
 import Loader from 'components/Loader';
 import DelNoticeItem from 'components/Notices/DelNoticeItem';
+import Pagination from 'components/Common/Pagination';
 
 // import ModalNotice from '../../components/Notices/ModalNotice/ModalNotice';
 import { Title } from './NoticesPage.styled';
@@ -35,6 +36,7 @@ const initialState = {
   btnId: '',
   favorite: '',
 };
+let PageSize = 2;
 
 function NoticesPage() {
   const [state, setState] = useState(initialState);
@@ -42,9 +44,16 @@ function NoticesPage() {
   const token = useSelector(selectAccessToken);
   const { resultNotice, isLoading } = useSelector(selectNoticeState);
   const [searchParams, setSearchParams] = useSearchParams();
+  const [currentPage, setCurrentPage] = useState(1);
 
   const { isOpen, openModal, closeModal, handleBackdropClick, handleKeyDown } =
     useToggleModal();
+
+  const currentNoticesData = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
+    return resultNotice.slice(firstPageIndex, lastPageIndex);
+  }, [currentPage, resultNotice]);
 
   // const [search, setSearch] = useState(
   //   '', // searchParams.get('q') === null ? '' : searchParams.get('q')
@@ -153,7 +162,7 @@ function NoticesPage() {
           {isLoading && <Loader />}
           {Boolean(resultNotice?.length > 0) ? (
             <NoticesCategoriesList
-              notices={resultNotice}
+              notices={currentNoticesData}
               getBtnInfo={getBtnInfo}
             />
           ) : (
@@ -163,6 +172,12 @@ function NoticesPage() {
           {/* <ModalAddNotice /> */}
           {/* <AddNoticeButton getBtnInfo={getBtnInfo} /> */}
           {/* <ModalNotice /> */}
+          <Pagination
+            currentPage={currentPage}
+            totalCount={resultNotice.length}
+            pageSize={PageSize}
+            onPageChange={page => setCurrentPage(page)}
+          />
         </Container>
       </Section>
     </>
