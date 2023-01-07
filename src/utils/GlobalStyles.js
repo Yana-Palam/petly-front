@@ -75,6 +75,8 @@ const GlobalStyles = createGlobalStyle`
       display: block;
     }
 
+    //in working!!!
+
     .birthday-picker-input .react-date-picker__inputGroup {
       font-weight: 400;
       letter-spacing: 0.04em;
