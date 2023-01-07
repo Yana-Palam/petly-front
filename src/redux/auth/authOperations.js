@@ -5,6 +5,7 @@ import { IoMdLogIn } from 'react-icons/io';
 import { store } from 'redux/store';
 
 axios.defaults.baseURL = 'https://petly-back.onrender.com/api';
+// axios.defaults.baseURL = 'http://localhost:3001/petly-team-project';
 
 const token = {
   set(token) {
