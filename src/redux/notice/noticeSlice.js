@@ -7,6 +7,8 @@ import {
 
 export const initialState = {
   notices: [],
+  page: 1,
+  totalPage: 1,
   isLoading: false,
   error: null,
 };
@@ -36,6 +38,8 @@ const noticeSlice = createSlice({
     },
     [fetchByCategory.fulfilled]: (state, { payload }) => {
       state.notices = [...payload.data];
+      state.page = payload.page;
+      state.totalPage = payload.totalPage;
       state.isLoading = false;
     },
     [fetchByCategory.rejected]: (state, { payload }) => {

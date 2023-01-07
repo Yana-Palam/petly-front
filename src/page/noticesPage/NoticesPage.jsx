@@ -36,31 +36,35 @@ const initialState = {
   btnId: '',
   favorite: '',
 };
-let PageSize = 2;
-
+let limit = 2;
 function NoticesPage() {
   const [state, setState] = useState(initialState);
   const dispatch = useDispatch();
   const token = useSelector(selectAccessToken);
-  const { resultNotice, isLoading } = useSelector(selectNoticeState);
+  const { resultNotice, isLoading, page, totalPage } =
+    useSelector(selectNoticeState);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(page);
 
   const { isOpen, openModal, closeModal, handleBackdropClick, handleKeyDown } =
     useToggleModal();
 
-  const currentNoticesData = useMemo(() => {
-    const firstPageIndex = (currentPage - 1) * PageSize;
-    const lastPageIndex = firstPageIndex + PageSize;
-    return resultNotice.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage, resultNotice]);
+  // const currentNoticesData = useMemo(() => {
+  //   const firstPageIndex = (currentPage - 1) *PageSize;
+  //   const lastPageIndex = firstPageIndex + PageSize;
+  //   return resultNotice.slice(firstPageIndex, lastPageIndex);
+  // }, [currentPage, resultNotice]);
 
   // const [search, setSearch] = useState(
   //   '', // searchParams.get('q') === null ? '' : searchParams.get('q')
   // );
 
   console.log('notice', resultNotice);
-  const path = useLocation().pathname;
+  const category = useLocation().pathname.split('/')[2];
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [category]);
 
   useEffect(() => {
     const q = searchParams.get('q');
@@ -70,11 +74,9 @@ function NoticesPage() {
       // dispatch({ category, q: search });
       // setSearch('');
     } else {
-      const category = path.split('/')[2];
-      dispatch(fetchByCategory(category));
-      // }
+      dispatch(fetchByCategory({ category, page: currentPage, limit }));
     }
-  }, [state.search, path, searchParams, dispatch]);
+  }, [state.search, category, searchParams, dispatch, currentPage]);
 
   /**Select notice by id  */
   const getNoticeById = useMemo(() => {
@@ -119,7 +121,7 @@ function NoticesPage() {
         dispatch(addFavoriteNotice(btnId));
       } else {
         const { payload } = await dispatch(deleteFavoriteNotice(btnId));
-        if (payload === btnId && path.split('/')[2] === 'favorite') {
+        if (payload === btnId && category === 'favorite') {
           dispatch(deleteNoticeFavorite(btnId));
         }
       }
@@ -141,7 +143,7 @@ function NoticesPage() {
                   notice={getNoticeById}
                   token={token}
                   closeModal={closeModal}
-                  path={path.split('/')[2]}
+                  path={category}
                 />
               </>
             )}
@@ -163,20 +165,17 @@ function NoticesPage() {
           {isLoading && <Loader />}
           {Boolean(resultNotice?.length > 0) ? (
             <NoticesCategoriesList
-              notices={currentNoticesData}
+              notices={resultNotice}
               getBtnInfo={getBtnInfo}
             />
           ) : (
             <p style={{ fontSize: '100px' }}>TODO Not Found</p>
             // <NoticeNotFound />
           )}
-          {/* <ModalAddNotice /> */}
-          {/* <AddNoticeButton getBtnInfo={getBtnInfo} /> */}
-          {/* <ModalNotice /> */}
           <Pagination
             currentPage={currentPage}
-            totalCount={resultNotice.length}
-            pageSize={PageSize}
+            totalCount={totalPage}
+            pageSize={totalPage}
             onPageChange={page => setCurrentPage(page)}
           />
         </Container>
