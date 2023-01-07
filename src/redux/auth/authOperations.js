@@ -5,7 +5,6 @@ import { IoMdLogIn } from 'react-icons/io';
 import { store } from 'redux/store';
 
 axios.defaults.baseURL = 'https://petly-back.onrender.com/api';
-// axios.defaults.baseURL = 'http://localhost:3001/api/';
 
 const token = {
   set(token) {
@@ -211,7 +210,7 @@ export const deletePet = createAsyncThunk(
       const tokenLS = thunkAPI.getState().auth.accessToken;
       token.set(tokenLS);
       await axios.delete(`/user/pets/${_id}`);
-      return _id;
+      return { _id };
     } catch (error) {
       toast.error("Sorry, can't delete pet, server Error!");
       return thunkAPI.rejectWithValue(error.request.status);
