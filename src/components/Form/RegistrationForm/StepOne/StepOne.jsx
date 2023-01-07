@@ -15,7 +15,8 @@ import {
 
 const StepOne = ({ next, data }) => {
   const passwordRexExp = /^[a-zA-Zа-яА-Я0-9]+$/;
-  const emailRegExp = /^[a-zA-Z0-9]+[a-zA-Z0-9_-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9]+$/;
+  const emailRegExp =
+    /^[a-zA-Z0-9]+[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9]+$/;
 
   const [showPassword, setShowPassword] = useState(true);
   const [showConfirmPassword, setShowConfirmPassword] = useState(true);
