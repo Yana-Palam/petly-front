@@ -170,12 +170,12 @@ const authSlice = createSlice({
     ) => {
       state.accessToken = accessToken;
       state.refreshToken = refreshToken;
-
+      state.isLoggedIn = true;
       state.isLoading = false;
     },
     [refresh.rejected]: (state, { payload }) => {
       state.isLoading = false;
-      state.isLoggedIn = true;
+      state.isLoggedIn = false;
 
       state.error = payload;
     },
