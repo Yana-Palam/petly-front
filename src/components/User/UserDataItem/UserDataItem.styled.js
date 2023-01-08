@@ -11,8 +11,6 @@ export const Item = styled.li`
 export const Label = styled.label`
   width: 56px;
   font-weight: 500;
-  //font-size: 12px;
-  //line-height: 16px;
   letter-spacing: 0.04em;
   color: #111111;
   margin-right: 10px;
@@ -20,7 +18,7 @@ export const Label = styled.label`
   font-size: 14px;
   line-height: 19px;
 
-  @media (${device.tablet}) {
+  @media ${device.tablet} {
     width: 83px;
     font-size: 18px;
     line-height: 25px;
@@ -32,29 +30,12 @@ export const Button = styled.button`
   display: flex;
   align-items: center;
   justify-content: center;
-  //width: 20px;
-  //height: 20px;
   background: ${p => p.theme.colors.primaryBackground};
   border-radius: ${p => p.theme.radii.round};
   border: ${p => p.theme.borders.none};
   width: 30px;
   height: 30px;
-
-    // @media (${device.tablet}) {
-  //   width: 32px;
-  //   height: 32px;
-  // }
-`;
-
-// export const ImgDelete = styled.img`
-//   width: 12px;
-//   height: 12px;
-//
-//   @media (${device.fablet}) {
-//     width: 20px;
-//     height: 20px;
-//   }
-// `;
+  `;
 
 export const Input = styled.input`
   width: 170px;
@@ -63,8 +44,6 @@ export const Input = styled.input`
   padding-left: 12px;
   border: 1px solid transparent;
   font-weight: 400;
-  //font-size: 12px;
-  //line-height: 16px;
   letter-spacing: 0.04em;
 
   font-size: 14px;
@@ -77,7 +56,7 @@ export const Input = styled.input`
     background: #FDF7F2;
     border: 1px solid rgba(245, 146, 86, 0.5);
     border-radius: 40px;
-  `} @media (${device.tablet}) {
+  `} @media ${device.tablet} {
     width: 216px;
     height: 32px;
     font-size: 18px;
@@ -91,34 +70,8 @@ export const SpanValidation = styled.span`
   font-size: 14px;
   line-height: 22px;
   margin-left: 69px;
-  @media (${device.tablet}) {
+  @media ${device.tablet} {
     margin-left: 111px;
   }
   `;
 
-export const LiPicker = styled.li`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 9px;
-  `;
-
-export const SpanPicker = styled.span`
-  width: 56px;
-  font-weight: 500;
-  //font-size: 12px;
-  //line-height: 16px;
-  letter-spacing: 0.04em;
-  color: #111111;
-  margin-right: 10px;
-
-  font-size: 14px;
-  line-height: 19px;
-
-  @media (${device.tablet}) {
-    width: 83px;
-    font-size: 18px;
-    line-height: 25px;
-    margin-right: 24px;
-  }
-`;

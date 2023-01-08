@@ -12,14 +12,14 @@ export const LiItem = styled.li`
   padding: 20px;
   margin-bottom: 20px;
 
-  @media (${device.desktop}) {
+  @media ${device.desktop} {
     margin-bottom: 22px;
   }
 }
 
-@media (${device.fabletAndMobileOnly}) {
+@media ${device.fabletAndMobileOnly} {
   flex-direction: column;
-   align-items: center;
+  align-items: center;
 }
 `;
 
@@ -27,10 +27,11 @@ export const UlWrap = styled.ul`
   display: flex;
   flex-direction: column;
 
-  @media (${device.fabletAndMobileOnly}) {
+  @media ${device.fabletAndMobileOnly} {
     margin-top: 20px;
+    width: 235px;
   }
-  @media (${device.tablet}) {
+  @media ${device.tablet} {
     margin-left: 32px;
   }
 `;
@@ -50,7 +51,7 @@ export const Img = styled.img`
   height: 161px;
   border-radius: 40px;
 
-  @media (${device.fabletAndMobileOnly}) {
+  @media ${device.fabletAndMobileOnly} {
     width: 240px;
     height: 240px;
   }
@@ -60,6 +61,10 @@ export const Span = styled.span`
   font-weight: 500;
 `;
 
+export const SpanComments = styled.span`
+  margin-left: 5px;
+`;
+
 export const Text = styled.p`
   font-weight: 400;
   font-size: 16px;
@@ -67,6 +72,15 @@ export const Text = styled.p`
   align-items: center;
   letter-spacing: 0.04em;
   color: ${p => p.theme.colors.black};
+
+  @media ${device.fabletAndMobileOnly} {
+    width: 235px;
+    word-wrap: break-word;
+  }
+
+  @media ${device.mobileOnly} {
+    font-size: 14px;
+  }
 `;
 
 export const Button = styled.button`
@@ -88,7 +102,7 @@ export const Button = styled.button`
     fill: ${p => p.theme.colors.accent}
   }
 
-  @media (${device.fabletAndMobileOnly}) {
+  @media ${device.fabletAndMobileOnly} {
     right: 20px;
     top: 268px;
   }

@@ -2,6 +2,7 @@ import LiItem from './LiItem';
 import { useSelector } from 'react-redux';
 import React, { useState } from 'react';
 import { selectUserData } from 'redux/auth/authSelectors';
+
 function UserDataItem() {
   const userInfo = useSelector(selectUserData);
   const [active, setActive] = useState(''); // name
@@ -15,12 +16,6 @@ function UserDataItem() {
         label={'Name:'}
         user={userInfo.name}
       />
-      {/*<BirthdayPicker*/}
-      {/*  active={active}*/}
-      {/*  setActive={setActive}*/}
-      {/*  user={userInfo.birthday}*/}
-      {/*  name={'birthday'}*/}
-      {/*/>*/}
       <LiItem
         active={active}
         setActive={setActive}
@@ -28,7 +23,6 @@ function UserDataItem() {
         label={'Birthday:'}
         user={userInfo.birthday}
       />
-
       <LiItem
         active={active}
         setActive={setActive}
@@ -36,7 +30,6 @@ function UserDataItem() {
         label={'Email:'}
         user={userInfo.email}
       />
-
       <LiItem
         active={active}
         setActive={setActive}
@@ -44,7 +37,6 @@ function UserDataItem() {
         label={'Phone:'}
         user={userInfo.phone}
       />
-
       <LiItem
         active={active}
         setActive={setActive}

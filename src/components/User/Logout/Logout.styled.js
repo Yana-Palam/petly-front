@@ -14,16 +14,10 @@ export const Button = styled.button`
   margin-top: 12px;
   padding: 0;
 
-  // @media (${device.mobileOnly}) {
-  //   margin-left: 145px;
-  // }
-  // @media (${device.fabletOnly}) {
-  //   margin-left: 318px;
-  // }
-  @media (${device.tabletOnly}) {
+  @media ${device.tabletOnly}{
     margin-top: 10px;
   }
-  @media (${device.desktop}) {
+  @media ${device.desktop} {
     margin-top: 16px;
   }
 `;
