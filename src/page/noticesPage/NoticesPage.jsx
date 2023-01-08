@@ -19,7 +19,7 @@ import ModalNotice from 'components/Notices/ModalLearnMoreNotice/ModalNotice';
 import NoticesSearch from 'components/Notices/NoticesSearch';
 import NoticesCategoriesNav from 'components/Notices/NoticesCategoriesNav';
 import NoticesCategoriesList from 'components/Notices/NoticesCategoriesList';
-import NoticeNotFound from 'components/Notices/noticeNotFound/NoticeNotFound';
+import NoticeNotFound from 'components/Notices/NoticeNotFound/NoticeNotFound';
 import Loader from 'components/Loader';
 import DelNoticeItem from 'components/Notices/DelNoticeItem';
 import Pagination from 'components/Common/Pagination';

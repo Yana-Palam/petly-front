@@ -1,9 +1,8 @@
 import { useEffect, useRef } from 'react';
 import Typed from 'typed.js';
-import { Title, Img, Wrap } from './noticeNotFound.styled';
+import { Title, Img, Wrap } from './NoticeNotFound.styled';
 import noticeNotFound from '../../../../src/assets/images/notcat.jpg';
 function NoticeNotFound() {
-
   const el = useRef(null);
 
   useEffect(() => {
@@ -22,7 +21,6 @@ function NoticeNotFound() {
       <Img src={noticeNotFound} />
       <Title ref={el}>Nothing was found according to your request.</Title>;
     </Wrap>
-
   );
 }
 
