@@ -14,10 +14,10 @@ export const DivPhoto = styled.div`
   background: ${p => p.theme.colors.primaryBackground};
   border-radius: ${p => p.theme.radii.round};
 
-  @media (${device.fabletAndMobileOnly}) {
+  @media ${device.fabletAndMobileOnly} {
     margin-bottom: 40px;
   }
-  @media (${device.desktop}) {
+  @media ${device.desktop} {
     margin-bottom: 32px;
     margin-left: 89px;
   }
@@ -29,21 +29,18 @@ export const ImgPhoto = styled.img`
   border-radius: ${p => p.theme.radii.round};
 `;
 
-export const ImgAddFoto = styled.img`
-
-`;
 
 export const Div = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  @media (${device.tablet}) {
+  @media ${device.tablet} {
     flex-direction: row-reverse;
     justify-content: space-between;
     align-items: flex-start;
   }
-  @media (${device.desktop}) {
+  @media ${device.desktop} {
     flex-direction: column;
   }
 `;
@@ -56,16 +53,15 @@ export const Button = styled.button`
   position: absolute;
   fill: ${p => p.theme.colors.accent};
 
-
-  @media (${device.fabletAndMobileOnly}) {
+  @media ${device.fabletAndMobileOnly} {
     top: 228px;
     right: -25px;
   }
-  @media (${device.tablet}) {
+  @media ${device.tablet} {
     top: 241px;
     right: -6px;
   }
-  @media (${device.desktop}) {
+  @media ${device.desktop} {
     top: 224px;
     right: -61px;
   }

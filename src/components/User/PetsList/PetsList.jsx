@@ -7,7 +7,7 @@ import {
   Img,
   LiWrapComment,
   Button,
-  Span,
+  Span, SpanComments,
 } from './PatsList.styled';
 import { ReactComponent as DeleteIcon } from 'assets/icons/delete.svg';
 
@@ -29,7 +29,7 @@ function PetsList() {
     <ul>
       {pets.map(pet => (
         <LiItem key={pet._id}>
-          <Img src={pet.avatarURL} alt="cat" />
+          <Img src={pet.avatarURL} alt='cat' />
           <UlWrap>
             <LiWrap>
               <Text>
@@ -50,12 +50,12 @@ function PetsList() {
             <LiWrapComment>
               <Text>
                 <Span>Comments:</Span>
-                {pet.comments}
+                <SpanComments>{pet.comments}</SpanComments>
               </Text>
             </LiWrapComment>
           </UlWrap>
           <Button onClick={onDeleteHandler(pet._id)}>
-            <DeleteIcon width="24" height="24" />
+            <DeleteIcon width='24' height='24' />
           </Button>
         </LiItem>
       ))}

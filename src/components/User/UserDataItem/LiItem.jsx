@@ -10,7 +10,7 @@ const emailRegExp = /^[a-zA-Z0-9]+[a-zA-Z0-9_-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9]+$/;
 const cityRegex = /^(\w+(,)\s*)+\w+$/;
 const phoneRegex = /^\+380\d{9}$/;
 
-const LiItem = ({ label, name, user, active, setActive, children }) => {
+const LiItem = ({ label, name, user, active, setActive }) => {
   const [value, setValue] = useState();
   const wrapperRef = useRef(null);
   const dispatch = useDispatch();
@@ -27,7 +27,7 @@ const LiItem = ({ label, name, user, active, setActive, children }) => {
     if (!date?.length) return;
     const d = date?.split('-');
     return [d[0], d[1], d[2]] = [d[2], d[1], d[0]].join('.'); // DD.MM.YYYY
-  }
+  };
 
   const onChangeHandler = e => {
     const { name, value } = e.currentTarget;
@@ -81,7 +81,7 @@ const LiItem = ({ label, name, user, active, setActive, children }) => {
     if (!date?.length) return;
     const d = date?.split('.');
     return [d[0], d[1], d[2]] = [d[2], d[1], d[0]].join('-'); // YYYY.MM.DD
-  }
+  };
 
   return (
     <>
@@ -90,7 +90,7 @@ const LiItem = ({ label, name, user, active, setActive, children }) => {
         <Input
           active={active === name}
           disabled={active !== name}
-          type={name === "birthday" ? 'date' : 'text'}
+          type={name === 'birthday' ? 'date' : 'text'}
           name={name}
           value={value || (name === 'birthday' ? convertToInputDateFormat(user) : user)} // 10.12.2022 fu(value || user) => 12/10/2022
           onChange={onChangeHandler}

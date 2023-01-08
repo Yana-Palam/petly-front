@@ -9,12 +9,12 @@ export const DivUserInfo = styled.div`
   margin-top: 18px;
   padding: 20px 23px;
 
-  @media (${device.tablet}) {
+  @media ${device.tablet} {
     height: 311px;
     margin-top: 40px;
     padding: 24px 40px 24px 32px;
   }
-  @media (${device.desktop}) {
+  @media ${device.desktop} {
     height: 541px;
     margin-top: 24px;
     padding: 20px 16px;
@@ -23,7 +23,7 @@ export const DivUserInfo = styled.div`
 
 export const DivWrapperMain = styled.div`
   display: flex;
-  @media (${device.noDesktop}) {
+  @media ${device.noDesktop} {
     flex-direction: column;
   }
 `;
@@ -32,7 +32,7 @@ export const DivWrap = styled.div`
   display: flex;
   flex-direction: column;
 
-  @media (${device.fablet}) {
+  @media ${device.fablet} {
     margin-right: 32px;
   }
 `;
@@ -43,23 +43,23 @@ export const Title = styled.h2`
   line-height: 38px;
   color: ${p => p.theme.colors.black};
 
-  @media (${device.mobileOnly}) {
+  @media ${device.mobileOnly} {
     font-size: 20px;
     line-height: 27px;
   }
-  @media (${device.fabletAndMobileOnly}) {
+  @media ${device.fabletAndMobileOnly} {
     padding-left: 20px;
   }
-  @media (${device.tabletOnly}) {
+  @media ${device.tabletOnly} {
     padding-left: 32px;
   }
-  @media (${device.desktop}) {
+  @media ${device.desktop} {
     padding-left: 16px;
   }
 `;
 
 export const DivLogout = styled.div`
-  @media (${device.fabletAndMobileOnly}) {
+  @media ${device.fabletAndMobileOnly} {
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -70,14 +70,14 @@ export const Div = styled.div`
   width: 100%;
   padding-right: 20px;
 
-  @media (${device.fabletAndMobileOnly}) {
+  @media ${device.fabletAndMobileOnly} {
     padding-left: 20px;
   }
-  @media (${device.tabletOnly}) {
+  @media ${device.tabletOnly} {
     padding-right: 32px;
     padding-left: 32px;
   }
-  @media (${device.desktop}) {
+  @media ${device.desktop} {
     padding-right: 16px;
   }
 `;

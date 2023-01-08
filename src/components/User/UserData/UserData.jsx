@@ -6,7 +6,6 @@ import {
   Span,
   ImgPhoto,
   DivWrap,
-  ImgAddFoto,
   EditWrap,
 } from './UserData.styled';
 import { ReactComponent as CameraIcon } from 'assets/icons/Camera.svg';
@@ -32,7 +31,7 @@ function UserData() {
           {userPhoto ? (
             <ImgPhoto src={userPhoto} alt="photo" />
           ) : (
-            <ImgAddFoto src={addIcon} alt="" />
+            <img src={addIcon} alt="" />
           )}
         </DivPhoto>
 

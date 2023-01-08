@@ -12,16 +12,16 @@ export const DivWrap = styled.div`
   justify-content: space-between;
   align-items: center;
 
-  @media (${device.fabletAndMobileOnly}) {
+  @media ${device.fabletAndMobileOnly} {
     margin-top: 40px;
     margin-bottom: 26px;
   }
 
-  @media (${device.tabletOnly}) {
+  @media ${device.tabletOnly} {
     margin-top: 20px;
     margin-bottom: 22px;
   }
-  @media (${device.desktop}) {
+  @media ${device.desktop} {
     margin-bottom: 24px;
   }
 `;
@@ -32,7 +32,7 @@ export const Title = styled.h2`
   line-height: 38px;
   color: ${p => p.theme.colors.black};
 
-  @media (${device.mobileOnly}) {
+  @media ${device.mobileOnly} {
     font-size: 20px;
     line-height: 27px;
   }
