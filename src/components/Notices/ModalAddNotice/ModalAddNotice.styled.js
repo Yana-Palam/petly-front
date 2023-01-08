@@ -28,16 +28,18 @@ export const IconFemale = styled(Female)`
 
 export const MaddNotModal = styled.div`
   position: relative;
-  padding: 20px 0px;
+  padding: 10px 0px;
+  width: auto;
   @media screen and (min-width: 480px) {
-    padding: 20px 0px;
+    padding: 10px 0px;
+    width: 408px;
   }
   @media screen and (min-width: 768px) {
-    padding: 20px 60px;
+    padding: 10px 60px;
     width: 608px;
   }
   @media screen and (min-width: 1280px) {
-    padding: 8px 60px;
+    padding: 4px 60px;
     width: 608px;
   }
   /* position: absolute;
@@ -132,7 +134,7 @@ export const MaddNotDescr = styled.p`
 export const MaddNotRadioToolbar = styled.div`
   margin-bottom: 32px;
   display: grid;
-  grid-template-columns: repeat(2, auto);
+  grid-template-columns: repeat(1, auto);
   gap: 10px;
 
   @media screen and (min-width: 768px) {
@@ -143,7 +145,11 @@ export const MaddNotRadioToolbar = styled.div`
     justify-content: start;
   }
 `;
-export const DivBox = styled.div``;
+export const DivBox = styled.div`
+  /* display: grid;
+  grid-template-columns: repeat(1, auto);
+  gap: 10px; */
+`;
 
 export const Item = styled.div`
   display: inline-block;
@@ -343,7 +349,7 @@ export const MaddNotButton = styled.button`
   padding-bottom: 9px;
 
   @media screen and (min-width: 480px) {
-    width: 180px;
+    width: 100%;
     height: 44px;
   }
 

@@ -132,6 +132,7 @@ function NoticesPage() {
       <Section>
         {isOpen && (
           <Modal
+            style={{ alignItems: 'baseline' }}
             handleBackdropClick={handleBackdropClick}
             handleKeyDown={handleKeyDown}
           >

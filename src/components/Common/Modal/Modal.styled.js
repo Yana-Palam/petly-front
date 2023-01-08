@@ -7,7 +7,7 @@ export const ModalBackdrop = styled.div`
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   background-color: rgba(33, 33, 33, 0.12);
   display: flex;
 
@@ -16,7 +16,7 @@ export const ModalBackdrop = styled.div`
   pointer-events: all;
   overflow: scroll;
 
-  @media ${device.tablet} {
+  @media ${device.tabletOnly} {
     align-items: center;
   }
 `;
@@ -28,6 +28,7 @@ export const ModalContent = styled.div`
 
   @media ${device.tablet} {
     padding: 32px 20px;
+    /* position: relative; */
   }
   /* @media ${device.tablet} {
     padding: 40px 20px;

@@ -45,11 +45,13 @@ import {
   IconMale,
   IconFemale,
   Item,
-  // DivBox,
+  DivBox,
   MadBox,
 } from './ModalAddNotice.styled';
+import useMatchMedia from '../../../hooks/useMatchMedia/useMatchMedia';
 
 const ModalAddNotice = ({ closeModal }) => {
+  const { isMobile } = useMatchMedia();
   const [page, setPage] = useState(1);
   const [photo, setPhoto] = useState('');
 
@@ -211,39 +213,73 @@ const ModalAddNotice = ({ closeModal }) => {
                     lost/found
                   </MaddNotLabelToolbar>
                 </Item>
-
-                {/* <DivBox> */}
-                <Item>
-                  <MaddNotInputToolbar
-                    type="radio"
-                    id="optionB"
-                    name="category"
-                    value="in-good-hands"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    checked={select === 'optionB'}
-                    onChangeCapture={event => handleSelectChange(event)}
-                  />
-                  <MaddNotLabelToolbar htmlFor="optionB">
-                    in good hands
-                  </MaddNotLabelToolbar>
-                </Item>
-                <Item>
-                  <MaddNotInputToolbar
-                    type="radio"
-                    id="optionA"
-                    value={('optionA', 'sell')}
-                    name="category"
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    checked={select === 'optionA'}
-                    onChangeCapture={event => handleSelectChange(event)}
-                  />
-                  <MaddNotLabelToolbar htmlFor="optionA">
-                    sell
-                  </MaddNotLabelToolbar>
-                </Item>
-                {/* </DivBox> */}
+                {isMobile ? (
+                  <DivBox>
+                    <Item>
+                      <MaddNotInputToolbar
+                        type="radio"
+                        id="optionB"
+                        name="category"
+                        value="in-good-hands"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        checked={select === 'optionB'}
+                        onChangeCapture={event => handleSelectChange(event)}
+                      />
+                      <MaddNotLabelToolbar htmlFor="optionB">
+                        in good hands
+                      </MaddNotLabelToolbar>
+                    </Item>
+                    <Item>
+                      <MaddNotInputToolbar
+                        type="radio"
+                        id="optionA"
+                        value={('optionA', 'sell')}
+                        name="category"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        checked={select === 'optionA'}
+                        onChangeCapture={event => handleSelectChange(event)}
+                      />
+                      <MaddNotLabelToolbar htmlFor="optionA">
+                        sell
+                      </MaddNotLabelToolbar>
+                    </Item>
+                  </DivBox>
+                ) : (
+                  <>
+                    <Item>
+                      <MaddNotInputToolbar
+                        type="radio"
+                        id="optionB"
+                        name="category"
+                        value="in-good-hands"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        checked={select === 'optionB'}
+                        onChangeCapture={event => handleSelectChange(event)}
+                      />
+                      <MaddNotLabelToolbar htmlFor="optionB">
+                        in good hands
+                      </MaddNotLabelToolbar>
+                    </Item>
+                    <Item>
+                      <MaddNotInputToolbar
+                        type="radio"
+                        id="optionA"
+                        value={('optionA', 'sell')}
+                        name="category"
+                        onChange={formik.handleChange}
+                        onBlur={formik.handleBlur}
+                        checked={select === 'optionA'}
+                        onChangeCapture={event => handleSelectChange(event)}
+                      />
+                      <MaddNotLabelToolbar htmlFor="optionA">
+                        sell
+                      </MaddNotLabelToolbar>
+                    </Item>
+                  </>
+                )}
               </MaddNotRadioToolbar>
               <MaddNotLabel forHtml="title">Tittle of ad*</MaddNotLabel>
               <MaddNotinput
