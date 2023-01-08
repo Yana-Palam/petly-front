@@ -129,7 +129,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
     avatar,
   } = formik.values;
 
-  console.log(formik.values);
+  // console.log(formik.values);
 
   const {
     title: titleError,
