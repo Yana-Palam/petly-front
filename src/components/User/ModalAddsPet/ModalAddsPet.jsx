@@ -61,12 +61,12 @@ const ModalAddsPet = ({ setShowModal }) => {
   const onPageChange = () => {
     if (page === 1) {
       if (name === '' || breed === '') {
-        showAlertMessage('errors.allFields');
+        showAlertMessage('Fill out all fields');
         return;
       }
 
       if (nameError || breedError) {
-        showAlertMessage('errors.allFieldsFormat');
+        showAlertMessage('Fill out all fields correctly');
         return;
       }
 

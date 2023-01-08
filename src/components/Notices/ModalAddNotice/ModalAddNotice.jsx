@@ -3,8 +3,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { useFormik } from 'formik';
-import * as Yup from 'yup';
-import moment from 'moment';
+import { validationSchema, initialValues } from './ValidationSchema';
 import { addOwnNotice } from 'redux/notice/noticeOperations';
 import DatePicker from 'react-date-picker';
 import { showAlertMessage } from '../../../utils/showMessages';
@@ -48,7 +47,7 @@ import {
   Item,
 } from './ModalAddNotice.styled';
 
-const ModalAddNotice = ({ setArray, closeModal }) => {
+const ModalAddNotice = ({ closeModal }) => {
   const [page, setPage] = useState(1);
   const [photo, setPhoto] = useState('');
 
@@ -69,51 +68,12 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
   };
 
   const formik = useFormik({
-    initialValues: {
-      category: 'sell',
-      title: '',
-      name: '',
-      birthday: new Date(),
-      breed: '',
-      sex: 'male',
-      location: '',
-      price: '',
-      comments: '',
-      avatar: '',
-    },
+    initialValues: initialValues,
 
     onSubmit: values => {
       alert(JSON.stringify(values, null, 2));
     },
-    validationSchema: Yup.object({
-      category: Yup.string().required('validation.required'),
-      title: Yup.string()
-        .min(2, 'validation.min')
-        .max(48, 'validation.titleMax')
-        .required('validation.required'),
-      name: Yup.string()
-        .min(2, 'validation.min')
-        .max(16, 'validation.namePetMax'),
-      birthday: Yup.string()
-        .nullable()
-        .test('birthday', function (value) {
-          return moment().diff(moment(value, 'DD-MM-YYYY'));
-        })
-        .required('validation.required'),
-      breed: Yup.string().min(2, 'validation.min').max(24, 'validation.max'),
-      sex: Yup.string().required('validation.required'),
-      location: Yup.string()
-        .min(2, 'validation.min')
-        .max(24, 'validation.max')
-        .required('validation.required'),
-      price: Yup.number()
-        .typeError('validation.priceNum')
-        .integer('validation.priceInt')
-        .required('validation.required'),
-      comments: Yup.string()
-        .min(8, 'validation.commentsMin')
-        .max(120, 'validation.commentsMax'),
-    }),
+    validationSchema: validationSchema,
   });
 
   const {
@@ -159,11 +119,11 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
     e.preventDefault();
 
     if (location === '' || (category === 'sell' && price === '')) {
-      showAlertMessage('errors.allFields');
+      showAlertMessage('Fill out all fields');
       return;
     }
     if (locationError || commentsError || (category === 'sell' && priceError)) {
-      showAlertMessage('errors.allFieldsFormat');
+      showAlertMessage('Put location as: city, district');
       return;
     }
     setIsLoading(true);
@@ -208,12 +168,12 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
   const onPageChange = () => {
     if (page === 1) {
       if (title === '') {
-        showAlertMessage('errors.allFields');
+        showAlertMessage('Fill out all fields');
         return;
       }
 
       if (titleError || nameError || breedError) {
-        showAlertMessage('errors.allFieldsFormat');
+        showAlertMessage('Fill out all fields correctly');
         return;
       }
       setPage(2);
@@ -280,7 +240,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                   </MaddNotLabelToolbar>
                 </Item>
               </MaddNotRadioToolbar>
-              <MaddNotLabel forhtml="title">Tittle of ad*</MaddNotLabel>
+              <MaddNotLabel forHtml="title">Tittle of ad*</MaddNotLabel>
               <MaddNotinput
                 type="text"
                 name="title"
@@ -290,7 +250,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                 onBlur={formik.handleBlur}
                 value={title}
               />
-              <MaddNotLabel forhtml="name">Name pet</MaddNotLabel>
+              <MaddNotLabel forHtml="name">Name pet</MaddNotLabel>
               <MaddNotinput
                 type="text"
                 name="name"
@@ -300,7 +260,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                 onBlur={formik.handleBlur}
                 value={name}
               />
-              <MaddNotLabel forhtml="birthday">Date</MaddNotLabel>
+              <MaddNotLabel forHtml="birthday">Date</MaddNotLabel>
               <MaddNotinput as={'div'}>
                 <DatePicker
                   clearIcon={null}
@@ -326,7 +286,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                   }}
                 />
               </MaddNotinput>
-              <MaddNotLabel forhtml="breed">Breed</MaddNotLabel>
+              <MaddNotLabel forHtml="breed">Breed</MaddNotLabel>
               <MaddNotinput
                 type="text"
                 name="breed"
@@ -382,7 +342,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                   </MaddNotLabelFemale>
                 </MaddNotBlockOfRadio>
               </MaddNotRadioToolbar2>
-              <MaddNotLabel forhtml="location">Location:</MaddNotLabel>
+              <MaddNotLabel forHtml="location">Location:</MaddNotLabel>
               <MaddNotinput
                 type="text"
                 name="location"
@@ -395,7 +355,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
 
               <div>
                 <Title>Load the pet’s image:</Title>
-                <MaddNotLabelLoad forhtml="file">
+                <MaddNotLabelLoad forHtml="file">
                   {!photo && <ImgClose src={loadMobile} alt="add_photo" />}
                   {photo && (
                     <MaddNotThumbLoadImg>
@@ -417,7 +377,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
               </div>
               {category === 'sell' && (
                 <>
-                  <MaddNotLabel forhtml="price">Price</MaddNotLabel>
+                  <MaddNotLabel forHtml="price">Price</MaddNotLabel>
                   <MaddNotinput
                     type="text"
                     name="price"
@@ -429,7 +389,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                   />
                 </>
               )}
-              <MaddNotLabel forhtml="comments">Comments</MaddNotLabel>
+              <MaddNotLabel forHtml="comments">Comments</MaddNotLabel>
               <MaddNotTextarea
                 name="comments"
                 id="comments"

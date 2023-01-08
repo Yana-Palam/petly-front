@@ -28,18 +28,18 @@ function OurFriendsPage() {
   }, []);
   return (
     <>
-    <Section>
-      <StyledContainer
-        as={motion.div}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.6, delay: 0.4 }}
-      >
-        <StyledTitle>Our friend</StyledTitle>
-        {isLoading && <Loader />}
-        {error && <div>{error.message}</div>}
-        {friends && <Friends friends={friends} />}
-      </StyledContainer>
+      <Section>
+        <StyledContainer
+          as={motion.div}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.6, delay: 0.4 }}
+        >
+          <StyledTitle>Our friends</StyledTitle>
+          {isLoading && <Loader />}
+          {error && <div>{error.message}</div>}
+          {friends && <Friends friends={friends} />}
+        </StyledContainer>
       </Section>
     </>
   );
