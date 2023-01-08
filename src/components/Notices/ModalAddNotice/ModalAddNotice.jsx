@@ -237,7 +237,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                     type="radio"
                     id="optionC"
                     name="category"
-                    value="lost/found"
+                    value="lost-found"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     checked={select === 'optionC'}
@@ -252,7 +252,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                     type="radio"
                     id="optionB"
                     name="category"
-                    value="in good hands"
+                    value="in-good-hands"
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     checked={select === 'optionB'}
@@ -319,7 +319,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                     }
                     formik.setFieldValue(
                       'birthday',
-                      new Date(Date.parse(value)),
+                      new Date(Date.parse(value))
                     );
                   }}
                 />
@@ -407,7 +407,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                     onChange={event => {
                       formik.setFieldValue(
                         'avatar',
-                        event.currentTarget.files[0],
+                        event.currentTarget.files[0]
                       );
                     }}
                   />

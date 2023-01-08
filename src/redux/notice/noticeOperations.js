@@ -52,6 +52,7 @@ export const addOwnNotice = createAsyncThunk(
           'Content-Type': 'multipart/form-data',
         },
       });
+      console.log(data.category);
       return data;
     } catch (error) {
       toast.error("Sorry, can't add notices, server Error!");
