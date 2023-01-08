@@ -78,7 +78,7 @@ const LiItem = ({ label, name, user, active, setActive }) => {
   const onSetActiveHandler = name => () => setActive(name);
 
   const convertToInputDateFormat = (date) => {
-    if (!date?.length) return;
+    if (!date?.length) return '';
     const d = date?.split('.');
     return [d[0], d[1], d[2]] = [d[2], d[1], d[0]].join('-'); // YYYY.MM.DD
   };
@@ -92,7 +92,7 @@ const LiItem = ({ label, name, user, active, setActive }) => {
           disabled={active !== name}
           type={name === 'birthday' ? 'date' : 'text'}
           name={name}
-          value={value || (name === 'birthday' ? convertToInputDateFormat(user) : user)} // 10.12.2022 fu(value || user) => 12/10/2022
+          value={value || (name === 'birthday' ? convertToInputDateFormat(user) : user) || ''} // 10.12.2022 fu(value || user) => 12/10/2022
           onChange={onChangeHandler}
         />
         <Button>
