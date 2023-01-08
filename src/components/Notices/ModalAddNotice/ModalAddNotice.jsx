@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
-// import { createPortal } from 'react-dom';
-// import { useNavigate } from 'react-router-dom';
+
 import { useDispatch } from 'react-redux';
 
 import { useFormik } from 'formik';
@@ -49,8 +48,6 @@ import {
   Item,
 } from './ModalAddNotice.styled';
 
-// const portalModal = document.querySelector('#modal-root');
-
 const ModalAddNotice = ({ setArray, closeModal }) => {
   const [page, setPage] = useState(1);
   const [photo, setPhoto] = useState('');
@@ -58,11 +55,17 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
   const [isLoading, setIsLoading] = useState(false);
 
   const [select, setSelect] = useState('optionA');
+  const [sel, setSel] = useState('optA');
   const dispatch = useDispatch();
 
   const handleSelectChange = event => {
-    const value = event.target.value;
+    const value = event.target.id;
     setSelect(value);
+  };
+  const handleSelectSex = event => {
+    const value = event.target.id;
+
+    setSel(value);
   };
 
   const formik = useFormik({
@@ -126,7 +129,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
     avatar,
   } = formik.values;
 
-  // console.log(formik.values);
+  console.log(formik.values);
 
   const {
     title: titleError,
@@ -143,16 +146,16 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
     }
 
     /* Создаем виртуальную ссылку на загруженный файл */
-    console.log('avatar', avatar);
+
     const objectUrl = URL.createObjectURL(avatar);
-    // console.log('objectUrl', objectUrl);
+
     setPhoto(objectUrl);
 
     // free memory when ever this component is unmounted
     return () => URL.revokeObjectURL(objectUrl);
   }, [avatar]);
 
-  const onFormSubmit = async e => {
+  const onFormSubmit = e => {
     e.preventDefault();
 
     if (location === '' || (category === 'sell' && price === '')) {
@@ -167,11 +170,21 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
 
     const transformedPrice = category === 'sell' ? Number(price) : '';
 
+    const toDateFormat = (data, from, to) => {
+      return new Date(data)
+        .toLocaleString('en-US', {
+          day: '2-digit',
+          month: '2-digit',
+          year: 'numeric',
+        })
+        .replaceAll(from, to);
+    };
+
     const arrayOfData = Object.entries({
       category,
       title,
       name,
-      birthday,
+      birthday: toDateFormat(birthday, '/', '.'),
       breed,
       sex,
       location,
@@ -184,6 +197,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
     const info = filteredArray.reduce((previousValue, feature) => {
       return { ...previousValue, [feature[0]]: feature[1] };
     }, {});
+
     dispatch(addOwnNotice(info));
     setIsLoading(false);
     closeModal();
@@ -221,45 +235,45 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                 <Item>
                   <MaddNotInputToolbar
                     type="radio"
-                    id="radio1"
+                    id="optionC"
                     name="category"
-                    value="optionC"
-                    // onChange={formik.handleChange}
+                    value="lost/found"
+                    onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     checked={select === 'optionC'}
-                    onChange={event => handleSelectChange(event)}
+                    onChangeCapture={event => handleSelectChange(event)}
                   />
-                  <MaddNotLabelToolbar name="category" htmlFor="radio1">
+                  <MaddNotLabelToolbar htmlFor="optionC">
                     lost/found
                   </MaddNotLabelToolbar>
                 </Item>
                 <Item>
                   <MaddNotInputToolbar
                     type="radio"
-                    id="radio2"
+                    id="optionB"
                     name="category"
-                    value="optionB"
-                    // onChange={formik.handleChange}
+                    value="in good hands"
+                    onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     checked={select === 'optionB'}
-                    onChange={event => handleSelectChange(event)}
+                    onChangeCapture={event => handleSelectChange(event)}
                   />
-                  <MaddNotLabelToolbar name="category" htmlFor="radio2">
+                  <MaddNotLabelToolbar htmlFor="optionB">
                     in good hands
                   </MaddNotLabelToolbar>
                 </Item>
                 <Item>
                   <MaddNotInputToolbar
                     type="radio"
-                    id="radio3"
+                    id="optionA"
+                    value={('optionA', 'sell')}
                     name="category"
-                    value="optionA"
-                    // onChange={formik.handleChange}
+                    onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     checked={select === 'optionA'}
-                    onChange={event => handleSelectChange(event)}
+                    onChangeCapture={event => handleSelectChange(event)}
                   />
-                  <MaddNotLabelToolbar name="category" htmlFor="radio3">
+                  <MaddNotLabelToolbar htmlFor="optionA">
                     sell
                   </MaddNotLabelToolbar>
                 </Item>
@@ -339,28 +353,30 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                     <IconMale />
                     <MaddNotInputRadio
                       type="radio"
-                      name="radio"
-                      value="optionA"
-                      // onChange={formik.handleChange}
+                      id="optA"
+                      name="sex"
+                      value="male"
+                      onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
-                      checked={select === 'optionA'}
-                      onChange={event => handleSelectChange(event)}
+                      checked={sel === 'optA'}
+                      onChangeCapture={event => handleSelectSex(event)}
                     />
-                    <MaddNotSexDescr>Male</MaddNotSexDescr>
+                    <MaddNotSexDescr id="optA">Male</MaddNotSexDescr>
                   </MaddNotLabelMale>
                   <MaddNotLabelFemale>
                     <IconFemale />
                     <MaddNotInputRadio
                       type="radio"
-                      name="radio"
-                      value="optionB"
-                      // onChange={formik.handleChange}
+                      id="optB"
+                      name="sex"
+                      value="female"
+                      onChange={formik.handleChange}
                       onBlur={formik.handleBlur}
-                      checked={select === 'optionB'}
-                      onChange={event => handleSelectChange(event)}
+                      checked={sel === 'optB'}
+                      onChangeCapture={event => handleSelectSex(event)}
                     />
 
-                    <MaddNotSexDescr>Female</MaddNotSexDescr>
+                    <MaddNotSexDescr id="optB">Female</MaddNotSexDescr>
                   </MaddNotLabelFemale>
                 </MaddNotBlockOfRadio>
               </MaddNotRadioToolbar2>
