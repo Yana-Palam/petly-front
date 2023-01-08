@@ -5,7 +5,6 @@ import { IoMdLogIn } from 'react-icons/io';
 import { store } from 'redux/store';
 
 axios.defaults.baseURL = 'https://petly-back.onrender.com/api';
-// axios.defaults.baseURL = 'http://localhost:3001/petly-team-project';
 
 const token = {
   set(token) {
@@ -17,66 +16,52 @@ const token = {
 };
 
 axios.interceptors.response.use(
-  res => {
+  async res => {
     return res;
   },
   async error => {
     const { response, config } = error;
     if (response.status === 401) {
       const state = store.getState();
-      const accessToken = state.auth.accessToken;
+      const token = state.auth.accessToken;
 
-      if (accessToken) {
-        store.dispatch(refresh());
+      if (token) {
+        const { accessToken, refreshToken } = await refreshTokens();
 
-        setTimeout(() => {
-          const newAccessToken = state.auth.accessToken;
+        store.dispatch(
+          setTokens({
+            accessToken,
+            refreshToken,
+          })
+        );
 
-          config.headers['Authorization'] = 'Bearer ' + newAccessToken;
-          return axios(config);
-        }, 500);
+        config.headers['Authorization'] = 'Bearer ' + accessToken;
+        return axios(config);
       }
     }
     return Promise.reject(error);
   }
 );
 
-export const refresh = createAsyncThunk(
-  'auth/refresh',
-  async (_, { getState, rejectWithValue }) => {
-    const state = getState();
-    const refreshToken = state.auth.refreshToken;
+const refreshTokens = async () => {
+  const state = store.getState();
+  const refreshToken = state.auth.refreshToken;
 
-    try {
-      const { data } = await axios.post('/auth/refresh', { refreshToken });
-      token.set(data.accessToken);
-      return data;
-    } catch (error) {
-      return rejectWithValue(error.request.status);
-    }
-  }
-);
+  try {
+    const { data } = await axios.post('/auth/refresh', { refreshToken });
+    token.set(data.accessToken);
 
-export const google = createAsyncThunk(
-  'auth/google',
-  async (_, { rejectWithValue }) => {
-    try {
-      await axios.get('/auth/google');
-    } catch (error) {
-      return rejectWithValue(error.request.status);
-    }
+    return data;
+  } catch (error) {
+    throw error;
   }
-);
+};
 
 export const setTokens = createAsyncThunk(
-  'auth/google-setTokens',
+  'auth/set-tokens',
   async (tokens, { rejectWithValue }) => {
     try {
       token.set(tokens.accessToken);
-
-      toast(`You have successfully logged into your account`, {
-        icon: <IoMdLogIn size={25} color="green" />,
-      });
 
       return tokens;
     } catch (error) {
