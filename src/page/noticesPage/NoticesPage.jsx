@@ -39,6 +39,7 @@ const initialState = {
   favorite: '',
 };
 let limit = 8;
+
 function NoticesPage() {
   const [state, setState] = useState(initialState);
   const dispatch = useDispatch();
@@ -130,37 +131,46 @@ function NoticesPage() {
   return (
     <>
       <Section>
-        {isOpen && (
+        {isOpen && state.btnType?.modal && (
           <Modal
-            style={{ alignItems: 'baseline' }}
             handleBackdropClick={handleBackdropClick}
             handleKeyDown={handleKeyDown}
+            style={{ alignItems: 'center' }}
           >
-            {state.btnType?.modal && (
-              <>
-                <ModalNotice
-                  notice={getNoticeById}
-                  token={isLogin}
-                  closeModal={closeModal}
-                  path={category}
-                />
-              </>
-            )}
+            <>
+              <ModalNotice
+                notice={getNoticeById}
+                token={isLogin}
+                closeModal={closeModal}
+                path={category}
+              />
+            </>
+          </Modal>
+        )}
+        {/* -------------------------------------КУДА ВСТАВИТЬ ЭТОТ ДЕЛИТ??????----------------------------------- */}
+        {isOpen && state.btnType?.delete && (
+          <DelNoticeItem id={state.btnId} closeModal={closeModal} />
+        )}
+        {isOpen && state.btnType?.add && (
+          <Modal
+            handleBackdropClick={handleBackdropClick}
+            handleKeyDown={handleKeyDown}
+            style={{ alignItems: 'flexStart' }}
+          >
+            <>
+              <ModalAddNotice closeModal={closeModal} />
+            </>
             {state.btnType?.delete && (
               <DelNoticeItem id={state.btnId} closeModal={closeModal} />
             )}
-            {state.btnType?.add && (
-              <>
-                <ModalAddNotice closeModal={closeModal} />
-              </>
-            )}
-            {/* {state.btnType?.add && (
+          </Modal>
+        )}
+        {/* {state.btnType?.add && (
               <>
                 <ModalAddPetNotice closeModal={closeModal} />
               </>
             )} */}
-          </Modal>
-        )}
+        {/* )} */}
         <Container>
           <Title>Find your favorite pet</Title>
           <NoticesSearch handleSearch={handleSearch} />

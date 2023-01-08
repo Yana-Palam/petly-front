@@ -7,7 +7,7 @@ export const ModalBackdrop = styled.div`
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100%;
+  height: 100vh;
   background-color: rgba(33, 33, 33, 0.12);
   display: flex;
 
@@ -17,7 +17,7 @@ export const ModalBackdrop = styled.div`
   overflow: scroll;
 
   @media ${device.tabletOnly} {
-    align-items: center;
+    align-items: flex-start;
   }
 `;
 
