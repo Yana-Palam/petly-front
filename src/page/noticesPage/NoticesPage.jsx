@@ -143,7 +143,6 @@ function NoticesPage() {
             )}
           </Modal>
         )}
-
         <Container>
           <Title>Find your favorite pet</Title>
           <NoticesSearch handleSearch={handleSearch} />
