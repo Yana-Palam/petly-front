@@ -14,6 +14,9 @@ export const selectNoticeState = state => {
     acc.push(newObject);
     return acc;
   }, []);
+  // .sort((a, b) => {
+  //   return Number(a.own) - Number(b.own);
+  // });
   return { resultNotice, isLoading, error, page, totalPage };
 };
 

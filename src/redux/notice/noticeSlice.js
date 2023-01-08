@@ -53,8 +53,12 @@ const noticeSlice = createSlice({
       state.isLoading = true;
     },
     [addOwnNotice.fulfilled]: (state, { payload }) => {
-      //TODO прописати оновлення стейту в залежності де було додано нотіс
-      // state.notices.push =
+      for (const notice of state.notices) {
+        if (notice.category === payload.category) {
+          state.notices.push(payload);
+        }
+        break;
+      }
       state.isLoading = false;
     },
     [addOwnNotice.rejected]: (state, { payload }) => {

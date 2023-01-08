@@ -36,7 +36,7 @@ const initialState = {
   btnId: '',
   favorite: '',
 };
-let limit = 2;
+let limit = 8;
 function NoticesPage() {
   const [state, setState] = useState(initialState);
   const dispatch = useDispatch();
@@ -49,30 +49,16 @@ function NoticesPage() {
   const { isOpen, openModal, closeModal, handleBackdropClick, handleKeyDown } =
     useToggleModal();
 
-  // const currentNoticesData = useMemo(() => {
-  //   const firstPageIndex = (currentPage - 1) *PageSize;
-  //   const lastPageIndex = firstPageIndex + PageSize;
-  //   return resultNotice.slice(firstPageIndex, lastPageIndex);
-  // }, [currentPage, resultNotice]);
-
-  // const [search, setSearch] = useState(
-  //   '', // searchParams.get('q') === null ? '' : searchParams.get('q')
-  // );
-
-  console.log('notice', resultNotice);
   const category = useLocation().pathname.split('/')[2];
 
   useEffect(() => {
     setCurrentPage(1);
-  }, [category]);
+  }, [category, searchParams]);
 
   useEffect(() => {
     const q = searchParams.get('q');
     if (Boolean(q)) {
-      // console.log(111111, { category, q: search });
-      //TOTO dispatch /api/notices/:category?q=search
-      // dispatch({ category, q: search });
-      // setSearch('');
+      dispatch(fetchByCategory({ category, page: currentPage, limit, q }));
     } else {
       dispatch(fetchByCategory({ category, page: currentPage, limit }));
     }
@@ -86,10 +72,10 @@ function NoticesPage() {
 
   /**Search info by search form */
   const handleSearch = q => {
-    setState(prevState => ({
-      ...prevState,
-      search: q,
-    }));
+    // setState(prevState => ({
+    //   ...prevState,
+    //   search: q,
+    // }));
     setSearchParams({ q });
   };
 
@@ -157,7 +143,6 @@ function NoticesPage() {
             )}
           </Modal>
         )}
-
         <Container>
           <Title>Find your favorite pet</Title>
           <NoticesSearch handleSearch={handleSearch} />
@@ -169,7 +154,7 @@ function NoticesPage() {
               getBtnInfo={getBtnInfo}
             />
           ) : (
-            <p style={{ fontSize: '100px' }}>TODO Not Found</p>
+            <p>TODO</p>
             // <NoticeNotFound />
           )}
           <Pagination
