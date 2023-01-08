@@ -1,7 +1,6 @@
 import * as yup from 'yup';
 
 export const passwordRexExp = /^[a-zA-Zа-яА-Я0-9]+$/;
-
 export const emailRegExp =
   /^[a-zA-Z0-9]+[a-zA-Z0-9._-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9]+$/;
 
