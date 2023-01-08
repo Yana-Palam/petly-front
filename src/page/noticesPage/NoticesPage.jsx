@@ -51,9 +51,10 @@ function NoticesPage() {
 
   const category = useLocation().pathname.split('/')[2];
 
-  useEffect(() => {
+  useMemo(() => {
     setCurrentPage(1);
-  }, [category, searchParams]);
+    // eslint-disable-next-line
+  }, [category, state.search]);
 
   useEffect(() => {
     const q = searchParams.get('q');
