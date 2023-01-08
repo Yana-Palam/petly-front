@@ -46,6 +46,7 @@ import {
   IconMale,
   IconFemale,
   Item,
+  MadBox,
 } from './ModalAddNotice.styled';
 
 const ModalAddNotice = ({ setArray, closeModal }) => {
@@ -321,7 +322,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                     }
                     formik.setFieldValue(
                       'birthday',
-                      new Date(Date.parse(value))
+                      new Date(Date.parse(value)),
                     );
                   }}
                 />
@@ -346,8 +347,9 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
               </MaddNotBlock>
             </>
           )}
+
           {page === 2 && (
-            <>
+            <MadBox>
               <MaddNotRadioToolbar2>
                 <MaddNotLabelDistance>The sex*:</MaddNotLabelDistance>
                 <MaddNotBlockOfRadio>
@@ -409,7 +411,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                     onChange={event => {
                       formik.setFieldValue(
                         'avatar',
-                        event.currentTarget.files[0]
+                        event.currentTarget.files[0],
                       );
                     }}
                   />
@@ -451,7 +453,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
                   Done
                 </MaddNotAccentBtn>
               </MaddNotBlock>
-            </>
+            </MadBox>
           )}
         </form>
       </MaddNotModal>
