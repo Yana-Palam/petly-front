@@ -19,21 +19,41 @@ export const RegistBg = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-image: url(${bg_mob});
+ 
+  @media ${device.mobileOnly} { 
+    background-image: url(${bg_mob});
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: contain;
-  height: calc(100vh - 100px);
+  height: 100vh;
+}
+
+@media ${device.fabletOnly} {
+  background-image: url(${bg_tab});
+  background-repeat: no-repeat;
+  background-position: bottom;
+  background-size: contain;
+   height: calc(100vh - 75px);
+ }
+
 
   @media ${device.tablet} {
     background-image: url(${bg_tab});
+    background-repeat: no-repeat;
+    background-position: bottom;
+    background-size: contain;
+     height: calc(100vh - 130px);
   }
 
   @media ${device.tabletOnly} {
     background-image: url(${bg_desk});
+   
   }
 
   @media ${device.desktop} {
     background-image: url(${bg_desk});
+    height: calc(100vh - 120px);
   }
 `;
+
+
