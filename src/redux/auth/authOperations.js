@@ -165,7 +165,7 @@ export const updateUserInfo = createAsyncThunk(
       const { data } = await axios.patch(`/user/update`, payload);
       return data;
     } catch (error) {
-      toast.error("Sorry, can't update user, server Error!");
+      toast.error("Sorry, can't update user, something went wrong!");
       return thunkAPI.rejectWithValue(error.request.status);
     }
   }
@@ -184,7 +184,7 @@ export const addPet = createAsyncThunk(
       });
       return data;
     } catch (error) {
-      toast.error("Sorry, can't add pet, server Error!");
+      toast.error("Sorry, can't add pet, something went wrong!");
       return thunkAPI.rejectWithValue(error.request.status);
     }
   }
@@ -199,7 +199,7 @@ export const deletePet = createAsyncThunk(
       await axios.delete(`/user/pets/${_id}`);
       return { _id };
     } catch (error) {
-      toast.error("Sorry, can't delete pet, server Error!");
+      toast.error("Sorry, can't delete pet, something went wrong!");
       return thunkAPI.rejectWithValue(error.request.status);
     }
   }
@@ -215,7 +215,7 @@ export const addFavoriteNotice = createAsyncThunk(
       await axios.patch(`/notices/user/${_id}/favorites`);
       return _id;
     } catch (error) {
-      toast.error("Sorry, can't add favorite notices, server Error!");
+      toast.error("Sorry, can't add favorite notices, something went wrong!");
       return thunkAPI.rejectWithValue(error.request.status);
     }
   }
@@ -230,7 +230,9 @@ export const deleteFavoriteNotice = createAsyncThunk(
       await axios.delete(`/notices/user/${_id}/favorites`);
       return _id;
     } catch (error) {
-      toast.error("Sorry, can't delete favorite notices, server Error!");
+      toast.error(
+        "Sorry, can't delete favorite notices, something went wrong!"
+      );
       return thunkAPI.rejectWithValue(error.request.status);
     }
   }

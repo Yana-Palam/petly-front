@@ -4,7 +4,6 @@ import {
   login,
   restore,
   logout,
-  // refresh,
   setTokens,
   addPet,
   deletePet,
@@ -12,17 +11,15 @@ import {
   updateUserInfo,
   addFavoriteNotice,
   deleteFavoriteNotice,
-  //addOwnNotice,
-  //deleteOwnNotice
 } from './authOperations';
 
 const initialState = {
   user: {
-    email: '',
-    name: '',
-    _id: '',
-    city: '',
-    phone: '',
+    email: null,
+    name: null,
+    _id: null,
+    city: null,
+    phone: null,
     birthday: ' ',
     avatarUrl: null,
     myPets: [
@@ -89,13 +86,6 @@ const authSlice = createSlice({
       state.user.name = user.name;
       state.accessToken = user.accessToken;
       state.refreshToken = user.refreshToken;
-      // state.user.city = user.city;
-      // state.user.phone = user.phone;
-      // state.user.birthday = user.birthday;
-      // state.user.avatarUrl = user.avatarUrl;
-      // state.user.myPets = [...user.myPets];
-      // state.user.favorites = [...user.favorites];
-
       state.isLoggedIn = true;
       state.isLoading = false;
     },
@@ -137,7 +127,6 @@ const authSlice = createSlice({
       };
       state.accessToken = null;
       state.refreshToken = null;
-
       state.isLoggedIn = false;
       state.isLoading = false;
     },
@@ -145,26 +134,6 @@ const authSlice = createSlice({
       state.isLoading = false;
       state.error = payload;
     },
-    // --------------------REFRESH OPERATION--------------------
-
-    // [refresh.pending]: state => {
-    //   state.isLoading = true;
-    // },
-    // [refresh.fulfilled]: (
-    //   state,
-    //   { payload: { refreshToken, accessToken } }
-    // ) => {
-    //   state.accessToken = accessToken;
-    //   state.refreshToken = refreshToken;
-    //   state.isLoggedIn = true;
-    //   state.isLoading = false;
-    // },
-    // [refresh.rejected]: (state, { payload }) => {
-    //   state.isLoading = false;
-    //   state.isLoggedIn = false;
-
-    //   state.error = payload;
-    // },
 
     //-----------------USER-------------------------------
 
@@ -186,6 +155,7 @@ const authSlice = createSlice({
       state.user.favorites = [...action.payload.favorites];
       state.accessToken = action.payload.accessToken;
       state.refreshToken = action.payload.refreshToken;
+      state.isLoggedIn = true;
     },
     [getUserInfo.rejected]: (state, action) => {
       state.error = action.payload;
