@@ -110,17 +110,15 @@ const LoginForm = memo(({ onRestore, showRestore }) => {
                 </InputWrapper>
               ))}
         </InputsWrp>
-
         <AuthBtn type="submit">
           {showRestore ? 'Send to email' : 'Login'}
         </AuthBtn>
-
-        <Links onRestore={onRestore} showRestore={showRestore} />
         <StyledBtnGoogle type="button">
           <FlexLink href="https://petly-back.onrender.com/api/auth/google">
-            <FcGoogle size="45px" /> Continue with Google
+            <FcGoogle size="35px" /> Continue with Google
           </FlexLink>
         </StyledBtnGoogle>
+        <Links onRestore={onRestore} showRestore={showRestore} />
       </Form>
     </FormWrapper>
   );

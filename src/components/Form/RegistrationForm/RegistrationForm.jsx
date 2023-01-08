@@ -71,15 +71,16 @@ const RegistrationForm = () => {
     >
       <Title>Registration</Title>
       {steps[currentStep]}
+      <StyledBtnGoogle type="button">
+        <FlexLink href="https://petly-back.onrender.com/api/auth/google">
+          <FcGoogle size="32px" /> Continue with Google
+        </FlexLink>
+      </StyledBtnGoogle>
       <Text>
         Already have an account?
         <AuthLink to="/login">Login</AuthLink>
       </Text>
-      <StyledBtnGoogle type="button">
-        <FlexLink href="https://petly-back.onrender.com/api/auth/google">
-          <FcGoogle size="45px" /> Continue with Google
-        </FlexLink>
-      </StyledBtnGoogle>
+      
     </Wrapper>
   );
 };
