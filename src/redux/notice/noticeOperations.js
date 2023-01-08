@@ -22,17 +22,28 @@ export const fetchByCategory = createAsyncThunk(
   'notice/fetchByCategory',
   async (request, { rejectWithValue, getState }) => {
     const { category, page, limit } = request;
-    request.q = request.q ? request.q : '';
+    // request.q = request.q ? request.q : '';
     try {
       if (category === 'own' || category === 'favorite') {
         setTokenRequest(getState);
+        // const { data } = await axios.get(
+        //   `/notices/user/${category}?q=${request.q}&page=${page}&limit=${limit}`
+        // );
         const { data } = await axios.get(
-          `/notices/user/${category}?q=${request.q}&page=${page}&limit=${limit}`
+          `/notices/user/${category}?page=${page}&limit=${limit}${
+            request.q ? `&q=${request.q}` : ''
+          }`
         );
+
         return data;
       }
+      // const { data } = await axios.get(
+      //   `/notices/${category}?q=${request.q}&page=${page}&limit=${limit}`
+      // );
       const { data } = await axios.get(
-        `/notices/${category}?q=${request.q}&page=${page}&limit=${limit}`
+        `/notices/${category}?page=${page}&limit=${limit}${
+          request.q ? `&q=${request.q}` : ''
+        }`
       );
 
       return data;
@@ -52,7 +63,6 @@ export const addOwnNotice = createAsyncThunk(
           'Content-Type': 'multipart/form-data',
         },
       });
-      console.log(data.category);
       return data;
     } catch (error) {
       toast.error("Sorry, can't add notices, server Error!");
