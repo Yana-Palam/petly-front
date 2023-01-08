@@ -1,16 +1,16 @@
 export const categoryButtons = {
   publicRoute: [
     {
+      pageTitle: 'sell',
+      link: 'sell',
+    },
+    {
       pageTitle: 'lost/found',
       link: 'lost-found',
     },
     {
       pageTitle: 'in good hands',
-      link: 'for-free',
-    },
-    {
-      pageTitle: 'sell',
-      link: 'sell',
+      link: 'in-good-hands',
     },
   ],
   privateRoute: [
@@ -28,7 +28,7 @@ export const categoryButtons = {
 export const allowCategory = [
   'sell',
   'lost-found',
-  'for-free',
+  'in-good-hands',
   'favorite',
   'own',
 ];

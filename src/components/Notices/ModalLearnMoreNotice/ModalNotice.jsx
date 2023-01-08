@@ -166,12 +166,7 @@ const ModalNotice = ({ notice = {}, closeModal, getBtnInfo, token, path }) => {
             style={favorite ? { fill: '#F59256' } : { fill: '#FFFFFF99' }}
           />
         </AnimalsBtnFavorite>
-        <AnimalsBtn
-        // type="button"
-        // id={_id}
-        // onClick={handleClick}
-        // data-modal="modal"
-        >
+        <AnimalsBtn>
           <BtnTel phone={owner?.phone}>Contact</BtnTel>
         </AnimalsBtn>
 

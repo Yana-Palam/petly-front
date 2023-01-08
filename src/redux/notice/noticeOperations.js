@@ -22,16 +22,17 @@ export const fetchByCategory = createAsyncThunk(
   'notice/fetchByCategory',
   async (request, { rejectWithValue, getState }) => {
     const { category, page, limit } = request;
+    request.q = request.q ? request.q : '';
     try {
       if (category === 'own' || category === 'favorite') {
         setTokenRequest(getState);
         const { data } = await axios.get(
-          `/notices/user/${category}?page=${page}&limit=${limit}`
+          `/notices/user/${category}?q=${request.q}&page=${page}&limit=${limit}`
         );
         return data;
       }
       const { data } = await axios.get(
-        `/notices/${category}?page=${page}&limit=${limit}`
+        `/notices/${category}?q=${request.q}&page=${page}&limit=${limit}`
       );
 
       return data;
