@@ -394,7 +394,20 @@ const ModalAddNotice = ({ closeModal }) => {
                 onBlur={formik.handleBlur}
                 value={location}
               />
-
+              {category === 'sell' && (
+                <>
+                  <MaddNotLabel forHtml="price">Price</MaddNotLabel>
+                  <MaddNotinput
+                    type="text"
+                    name="price"
+                    id="price"
+                    placeholder={'price'}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={price}
+                  />
+                </>
+              )}
               <div>
                 <Title>Load the pet’s image:</Title>
                 <MaddNotLabelLoad forHtml="file">
@@ -417,20 +430,7 @@ const ModalAddNotice = ({ closeModal }) => {
                   />
                 </MaddNotLabelLoad>
               </div>
-              {category === 'sell' && (
-                <>
-                  <MaddNotLabel forHtml="price">Price</MaddNotLabel>
-                  <MaddNotinput
-                    type="text"
-                    name="price"
-                    id="price"
-                    placeholder={'price'}
-                    onChange={formik.handleChange}
-                    onBlur={formik.handleBlur}
-                    value={price}
-                  />
-                </>
-              )}
+
               <MaddNotLabel forHtml="comments">Comments</MaddNotLabel>
               <MaddNotTextarea
                 name="comments"
