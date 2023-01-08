@@ -1,12 +1,12 @@
 import { Typography } from '@mui/material';
+import Section from 'components/Common/Section';
+import { motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import SearchInput from '../../components/Common/SearchInput';
 import Loader from '../../components/Loader';
 import NewsList from '../../components/News/NewsList';
 import { getDate } from '../../services/api/DataApi';
 import { StyledContainer, StyledTitle } from './NewsPage.styled';
-import { motion } from 'framer-motion';
-import Section from 'components/Common/Section';
 
 function NewsPage() {
   const [news, setNews] = useState([]);
@@ -53,28 +53,28 @@ function NewsPage() {
 
   return (
     <>
-    <Section>
-      <StyledContainer
-        as={motion.div}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1.6, delay: 0.4 }}
-      >
-        <StyledTitle>News page</StyledTitle>
-        <SearchInput
-          onChange={changeHandler}
-          value={q}
-          clearInput={clearInput}
-        />
-        {isLoading && <Loader />}
-        {error && <div>{error.message}</div>}
-        {!error && !isLoading && search(news).length === 0 && (
-          <Typography component={'p'} sx={{ textAlign: 'center' }}>
-            News not found
-          </Typography>
-        )}
-        {news && <NewsList news={search(news)} />}
-      </StyledContainer>
+      <Section>
+        <StyledContainer
+          as={motion.div}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.6, delay: 0.4 }}
+        >
+          <StyledTitle>News</StyledTitle>
+          <SearchInput
+            onChange={changeHandler}
+            value={q}
+            clearInput={clearInput}
+          />
+          {isLoading && <Loader />}
+          {error && <div>{error.message}</div>}
+          {!error && !isLoading && search(news).length === 0 && (
+            <Typography component={'p'} sx={{ textAlign: 'center' }}>
+              News not found
+            </Typography>
+          )}
+          {news && <NewsList news={search(news)} />}
+        </StyledContainer>
       </Section>
     </>
   );
