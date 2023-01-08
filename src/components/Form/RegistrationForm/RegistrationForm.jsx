@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { register, login, google } from 'redux/auth/authOperations';
+import { register, login } from 'redux/auth/authOperations';
 import {
   Text,
   AuthLink,
   Title,
   StyledBtnGoogle,
+  FlexLink,
 } from '../LoginForm/LoginForm.styled';
 import { Wrapper } from './RegistrationForm.styled';
 import StepOne from './StepOne';
@@ -61,10 +62,6 @@ const RegistrationForm = () => {
     <StepTwo next={handleNextStep} prev={handlePrevStep} data={data} />,
   ];
 
-  const onClickGoogle = () => {
-    dispatch(google());
-  };
-
   return (
     <Wrapper
       as={motion.div}
@@ -78,8 +75,10 @@ const RegistrationForm = () => {
         Already have an account?
         <AuthLink to="/login">Login</AuthLink>
       </Text>
-      <StyledBtnGoogle onClick={onClickGoogle} type="button">
-        <FcGoogle size="45px" /> Continue with Google
+      <StyledBtnGoogle type="button">
+        <FlexLink href="https://petly-back.onrender.com/api/auth/google">
+          <FcGoogle size="45px" /> Continue with Google
+        </FlexLink>
       </StyledBtnGoogle>
     </Wrapper>
   );

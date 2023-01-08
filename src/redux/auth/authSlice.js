@@ -4,8 +4,7 @@ import {
   login,
   restore,
   logout,
-  refresh,
-  google,
+  // refresh,
   setTokens,
   addPet,
   deletePet,
@@ -51,26 +50,12 @@ const authSlice = createSlice({
   initialState,
   extraReducers: {
     // --------------------GOOGLE OPERATION--------------------
-
-    [google.pending]: state => {
-      state.isLoading = true;
-    },
-    [google.fulfilled]: state => {
-      state.error = null;
-      state.isLoading = false;
-    },
-    [google.rejected]: (state, { payload }) => {
-      state.isLoading = false;
-      state.error = payload;
-    },
-    //------------------------------
     [setTokens.pending]: state => {
       state.isLoading = true;
     },
     [setTokens.fulfilled]: (state, { payload }) => {
       state.accessToken = payload.accessToken;
       state.refreshToken = payload.refreshToken;
-
       state.isLoggedIn = true;
       state.isLoading = false;
     },
@@ -116,8 +101,10 @@ const authSlice = createSlice({
     },
     [login.rejected]: (state, { payload }) => {
       state.isLoading = false;
+      state.isLoggedIn = false;
       state.error = payload;
     },
+    //-------------------------------RESTORE-------------------------
     [restore.pending]: state => {
       state.isLoading = true;
     },
@@ -160,24 +147,24 @@ const authSlice = createSlice({
     },
     // --------------------REFRESH OPERATION--------------------
 
-    [refresh.pending]: state => {
-      state.isLoading = true;
-    },
-    [refresh.fulfilled]: (
-      state,
-      { payload: { refreshToken, accessToken } }
-    ) => {
-      state.accessToken = accessToken;
-      state.refreshToken = refreshToken;
-      state.isLoggedIn = true;
-      state.isLoading = false;
-    },
-    [refresh.rejected]: (state, { payload }) => {
-      state.isLoading = false;
-      state.isLoggedIn = false;
+    // [refresh.pending]: state => {
+    //   state.isLoading = true;
+    // },
+    // [refresh.fulfilled]: (
+    //   state,
+    //   { payload: { refreshToken, accessToken } }
+    // ) => {
+    //   state.accessToken = accessToken;
+    //   state.refreshToken = refreshToken;
+    //   state.isLoggedIn = true;
+    //   state.isLoading = false;
+    // },
+    // [refresh.rejected]: (state, { payload }) => {
+    //   state.isLoading = false;
+    //   state.isLoggedIn = false;
 
-      state.error = payload;
-    },
+    //   state.error = payload;
+    // },
 
     //-----------------USER-------------------------------
 
