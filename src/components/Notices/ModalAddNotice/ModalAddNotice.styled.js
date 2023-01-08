@@ -28,6 +28,18 @@ export const IconFemale = styled(Female)`
 
 export const MaddNotModal = styled.div`
   position: relative;
+  padding: 20px 0px;
+  @media screen and (min-width: 480px) {
+    padding: 20px 0px;
+  }
+  @media screen and (min-width: 768px) {
+    padding: 20px 60px;
+    width: 608px;
+  }
+  @media screen and (min-width: 1280px) {
+    padding: 8px 60px;
+    width: 608px;
+  }
   /* position: absolute;
   top: 50%;
   left: 50%;
@@ -38,17 +50,7 @@ export const MaddNotModal = styled.div`
   overflow: auto;
   border-radius: 20px;
   padding: 40px 20px;
-  background: #ffffff;
-
-  @media {device.fablet} {
-    width: 480px;
-  }
-  @media {device.tablet} {
-    width: 608px;
-    border-radius: 40px;
-    padding: 40px 80px;
-    box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
-  } */
+  background: #ffffff; */
 `;
 export const ImgClose = styled.img`
   width: 21px;
@@ -56,8 +58,8 @@ export const ImgClose = styled.img`
 `;
 export const MaddNotBtnClose = styled.button`
   position: absolute;
-  top: 20px;
-  right: 20px;
+  top: -2px;
+  right: 0px;
 
   width: 34px;
   height: 34px;
@@ -73,13 +75,11 @@ export const MaddNotBtnClose = styled.button`
   @media screen and (min-width: 768px) {
     width: 44px;
     height: 44px;
-    top: 20px;
-    right: 20px;
   }
 
   @media screen and (min-width: 1280px) {
-    top: 24px;
-    right: 24px;
+    top: -10px;
+    right: 0px;
   }
   &:hover {
     background-color: #f59256;
@@ -131,11 +131,20 @@ export const MaddNotDescr = styled.p`
 
 export const MaddNotRadioToolbar = styled.div`
   margin-bottom: 32px;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 10px;
 
   @media screen and (min-width: 768px) {
     margin-bottom: 28px;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 0;
+    justify-content: start;
   }
 `;
+export const DivBox = styled.div``;
+
 export const Item = styled.div`
   display: inline-block;
 
@@ -165,13 +174,15 @@ export const MaddNotLabelToolbar = styled.label`
 
   font-family: 'Manrope';
   font-style: normal;
+  font-weight: 500;
   font-size: 14px;
   line-height: 1.36;
   text-align: center;
   letter-spacing: 0.04em;
 
   border: 2px solid #f59256;
-  /* background-color: #f59256; */
+  /* width: 162px;
+  height: 47px; */
 
   color: #111111;
   border-radius: 40px;
@@ -181,8 +192,11 @@ export const MaddNotLabelToolbar = styled.label`
 
   @media screen and (min-width: 768px) {
     padding: 10px 28px;
-    font-size: 20px;
-    line-height: 1.35;
+    font-family: 'Manrope';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 24px;
+    line-height: 1.1;
   }
 `;
 
@@ -213,6 +227,7 @@ export const MaddNotLabel = styled.label`
   display: block;
   font-family: 'Manrope';
   font-style: normal;
+  font-weight: 500;
   font-size: 18px;
   line-height: 1.44;
   margin-bottom: 12px;
@@ -288,8 +303,12 @@ export const MaddNotTextarea = styled.textarea`
 export const MaddNotBlock = styled.div`
   display: flex;
   flex-direction: column-reverse;
-  margin-top: 40px;
-
+  margin-top: 12px;
+  @media screen and (min-width: 359px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
   @media screen and (min-width: 768px) {
     flex-direction: row;
     justify-content: center;
@@ -323,8 +342,14 @@ export const MaddNotButton = styled.button`
   padding-top: 9px;
   padding-bottom: 9px;
 
+  @media screen and (min-width: 480px) {
+    width: 180px;
+    height: 44px;
+  }
+
   @media screen and (min-width: 768px) {
     width: 180px;
+    height: 44px;
   }
   &:first-child {
     @media screen and (min-width: 768px) {
@@ -332,11 +357,14 @@ export const MaddNotButton = styled.button`
     }
   }
 
-  /* &:last-child {
+  &:last-child {
+    @media screen and (min-width: 359px) {
+      margin-top: 12px;
+    }
     @media screen and (min-width: 768px) {
-      margin-bottom: 12px;
-    } */
-  /* } */
+      margin-top: 0;
+    }
+  }
 `;
 export const MaddNotAccentBtn = styled(MaddNotButton)`
   background-color: #f59256;
@@ -345,14 +373,29 @@ export const MaddNotAccentBtn = styled(MaddNotButton)`
 
 export const MaddNotRadioToolbar2 = styled.div`
   margin-bottom: 71px;
-
-  /* @media screen and (min-width: 768px) {
-    margin-bottom: 87px;
-  } */
 `;
+export const MadBox = styled.div`
+  @media screen and (min-width: 480px) {
+    padding: 20px 0px;
 
+    /* width: 408px; */
+  }
+  @media screen and (min-width: 480px) {
+    padding: 20px 60px;
+    width: 408px;
+  }
+  @media screen and (min-width: 768px) {
+    padding: 0;
+    width: auto;
+  }
+`;
 export const MaddNotLabelDistance = styled(MaddNotLabel)`
   margin-bottom: 16px;
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 24px;
+  line-height: 1.1;
 
   @media screen and (min-width: 768px) {
     margin-bottom: 28px;

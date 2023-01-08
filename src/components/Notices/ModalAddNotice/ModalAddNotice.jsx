@@ -45,6 +45,8 @@ import {
   IconMale,
   IconFemale,
   Item,
+  // DivBox,
+  MadBox,
 } from './ModalAddNotice.styled';
 
 const ModalAddNotice = ({ closeModal }) => {
@@ -209,6 +211,8 @@ const ModalAddNotice = ({ closeModal }) => {
                     lost/found
                   </MaddNotLabelToolbar>
                 </Item>
+
+                {/* <DivBox> */}
                 <Item>
                   <MaddNotInputToolbar
                     type="radio"
@@ -239,6 +243,7 @@ const ModalAddNotice = ({ closeModal }) => {
                     sell
                   </MaddNotLabelToolbar>
                 </Item>
+                {/* </DivBox> */}
               </MaddNotRadioToolbar>
               <MaddNotLabel forHtml="title">Tittle of ad*</MaddNotLabel>
               <MaddNotinput
@@ -281,7 +286,7 @@ const ModalAddNotice = ({ closeModal }) => {
                     }
                     formik.setFieldValue(
                       'birthday',
-                      new Date(Date.parse(value))
+                      new Date(Date.parse(value)),
                     );
                   }}
                 />
@@ -306,8 +311,9 @@ const ModalAddNotice = ({ closeModal }) => {
               </MaddNotBlock>
             </>
           )}
+
           {page === 2 && (
-            <>
+            <MadBox>
               <MaddNotRadioToolbar2>
                 <MaddNotLabelDistance>The sex*:</MaddNotLabelDistance>
                 <MaddNotBlockOfRadio>
@@ -369,7 +375,7 @@ const ModalAddNotice = ({ closeModal }) => {
                     onChange={event => {
                       formik.setFieldValue(
                         'avatar',
-                        event.currentTarget.files[0]
+                        event.currentTarget.files[0],
                       );
                     }}
                   />
@@ -411,7 +417,7 @@ const ModalAddNotice = ({ closeModal }) => {
                   Done
                 </MaddNotAccentBtn>
               </MaddNotBlock>
-            </>
+            </MadBox>
           )}
         </form>
       </MaddNotModal>
