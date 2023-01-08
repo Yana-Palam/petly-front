@@ -131,11 +131,20 @@ export const MaddNotDescr = styled.p`
 
 export const MaddNotRadioToolbar = styled.div`
   margin-bottom: 32px;
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 10px;
 
   @media screen and (min-width: 768px) {
     margin-bottom: 28px;
+    display: grid;
+    grid-template-columns: repeat(2, auto);
+    gap: 0;
+    justify-content: start;
   }
 `;
+export const DivBox = styled.div``;
+
 export const Item = styled.div`
   display: inline-block;
 

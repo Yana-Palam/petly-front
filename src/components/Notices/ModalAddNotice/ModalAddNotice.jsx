@@ -45,6 +45,7 @@ import {
   IconMale,
   IconFemale,
   Item,
+  // DivBox,
   MadBox,
 } from './ModalAddNotice.styled';
 
@@ -210,6 +211,8 @@ const ModalAddNotice = ({ closeModal }) => {
                     lost/found
                   </MaddNotLabelToolbar>
                 </Item>
+
+                {/* <DivBox> */}
                 <Item>
                   <MaddNotInputToolbar
                     type="radio"
@@ -240,6 +243,7 @@ const ModalAddNotice = ({ closeModal }) => {
                     sell
                   </MaddNotLabelToolbar>
                 </Item>
+                {/* </DivBox> */}
               </MaddNotRadioToolbar>
               <MaddNotLabel forHtml="title">Tittle of ad*</MaddNotLabel>
               <MaddNotinput
