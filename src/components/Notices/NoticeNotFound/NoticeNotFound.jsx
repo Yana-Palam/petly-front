@@ -19,7 +19,7 @@ function NoticeNotFound() {
   return (
     <Wrap>
       <Img src={noticeNotFound} />
-      <Title ref={el}>Nothing was found according to your request.</Title>;
+      <Title ref={el}></Title>;
     </Wrap>
   );
 }
