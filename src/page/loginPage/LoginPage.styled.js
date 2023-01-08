@@ -25,7 +25,7 @@ export const RegistBg = styled.div`
   background-repeat: no-repeat;
   background-position: bottom;
   background-size: contain;
-  height: 100vh;
+  height: calc(100vh - 90px);
 }
 
 @media ${device.fabletOnly} {

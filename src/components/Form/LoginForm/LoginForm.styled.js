@@ -151,18 +151,36 @@ export const IconEyeSlash = styled(BsFillEyeSlashFill)`
 `;
 
 export const StyledBtnGoogle = styled.button`
-  display: inline-block;
+display: inline-block;
   display: flex;
   align-items: center;
-  padding: 0 10px;
+  background: transparent;
+  border: 1px solid;
+
+
+@media ${device.mobileOnly} { 
+  border-color: ${({ theme }) => theme.colors.hover};
+  border-radius: ${p => p.theme.radii.xxl};
+  font-family: ${p => p.theme.fonts.main};
+  font-size: ${p => p.theme.fontSizes.xxs};
+  line-height: ${p => p.theme.lineHeights.body};
+letter-spacing: ${p => p.theme.letterSpacing.xxs};
+padding: ${p => `${p.theme.space[2] + 2}px ${p.theme.space[2] + 6}px`};
+height: ${p => `${p.theme.space[5] + 5}px`};
+}
+
+@media ${device.fablet} {
+  border-color: ${({ theme }) => theme.colors.hover};
+  border-radius: ${p => p.theme.radii.xxl};
   font-family: ${p => p.theme.fonts.main};
   font-size: ${p => p.theme.fontSizes.s};
   line-height: ${p => p.theme.lineHeights.body};
-  letter-spacing: ${p => p.theme.letterSpacing.l};
-  background: ${p => p.theme.colors.button.secondaryBackground};
-  border: 1px solid;
-  border-color: ${({ theme }) => theme.colors.hover};
+letter-spacing: ${p => p.theme.letterSpacing.l};
+padding: ${p => `${p.theme.space[2] + 2}px ${p.theme.space[2] + 12}px`};
+height: ${p => `${p.theme.space[5] + 11}px`};
 
+}
+  
   &:hover,
   &:focus {
     background-color: #e8e8e8;
