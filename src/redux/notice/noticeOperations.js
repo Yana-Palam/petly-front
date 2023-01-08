@@ -20,14 +20,32 @@ const setTokenRequest = getState => {
 
 export const fetchByCategory = createAsyncThunk(
   'notice/fetchByCategory',
-  async (category, { rejectWithValue, getState }) => {
+  async (request, { rejectWithValue, getState }) => {
+    const { category, page, limit } = request;
+    // request.q = request.q ? request.q : '';
     try {
       if (category === 'own' || category === 'favorite') {
         setTokenRequest(getState);
-        const { data } = await axios.get(`/notices/user/${category}`);
+        // const { data } = await axios.get(
+        //   `/notices/user/${category}?q=${request.q}&page=${page}&limit=${limit}`
+        // );
+        const { data } = await axios.get(
+          `/notices/user/${category}?page=${page}&limit=${limit}${
+            request.q ? `&q=${request.q}` : ''
+          }`
+        );
+
         return data;
       }
-      const { data } = await axios.get(`/notices/${category}`);
+      // const { data } = await axios.get(
+      //   `/notices/${category}?q=${request.q}&page=${page}&limit=${limit}`
+      // );
+      const { data } = await axios.get(
+        `/notices/${category}?page=${page}&limit=${limit}${
+          request.q ? `&q=${request.q}` : ''
+        }`
+      );
+
       return data;
     } catch (error) {
       return rejectWithValue(error.request.status);

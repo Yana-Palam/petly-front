@@ -5,8 +5,8 @@ import { device } from 'utils/device';
 export const AddPetBox = styled.div`
   width: 115px;
   position: fixed;
-  top: 80%;
-  right: ${p => `${p.theme.space[5]}px`};
+  top: 75%;
+  right: ${p => `${p.theme.space[0]}px`};
   display: flex;
   align-items: center;
   gap: ${p => `${p.theme.space[3] + 4}px`};

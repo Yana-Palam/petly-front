@@ -5,7 +5,7 @@ export const selectNoticeState = state => {
   // const ownNotice = state.auth.user.own;
   const favNotice = state.auth.user.favorites;
 
-  const { notices, isLoading, error } = state.notice;
+  const { notices, isLoading, error, page, totalPage } = state.notice;
   const resultNotice = notices.reduce((acc, notice) => {
     // const own = helpers.isElemArray(ownNotice, notice._id);
     const own = notice?.owner?._id === userId ? true : false;
@@ -14,7 +14,10 @@ export const selectNoticeState = state => {
     acc.push(newObject);
     return acc;
   }, []);
-  return { resultNotice, isLoading, error };
+  // .sort((a, b) => {
+  //   return Number(a.own) - Number(b.own);
+  // });
+  return { resultNotice, isLoading, error, page, totalPage };
 };
 
 export const selectNotices = state => {

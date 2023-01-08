@@ -7,13 +7,13 @@ import * as Yup from 'yup';
 import moment from 'moment';
 import { addOwnNotice } from 'redux/notice/noticeOperations';
 import DatePicker from 'react-date-picker';
-import { showAlertMessage } from '../../../utils/showMessages';
+import { showAlertMessage } from 'utils/showMessages';
 
-import Loader from '../../Loader';
+import Loader from 'components/Loader';
 
-import iconClose from '../../../assets/icons/icon-close.svg';
-import celendar from '../../../assets/icons/calendar.svg';
-import loadMobile from '../../../assets/images/Modal/loadMobile.png';
+import iconClose from 'assets/icons/icon-close.svg';
+import celendar from 'assets/icons/calendar.svg';
+import loadMobile from 'assets/images/Modal/loadMobile.png';
 
 import {
   MaddNotModal,
@@ -46,14 +46,12 @@ import {
   IconMale,
   IconFemale,
   Item,
-} from './ModalAddNotice.styled';
+} from './ModalAddPetNotice.styled';
 
-const ModalAddNotice = ({ setArray, closeModal }) => {
+const ModalAddPetNotice = ({ setArray, closeModal }) => {
   const [page, setPage] = useState(1);
   const [photo, setPhoto] = useState('');
-
   const [isLoading, setIsLoading] = useState(false);
-
   const [select, setSelect] = useState('optionA');
   const [sel, setSel] = useState('optA');
   const dispatch = useDispatch();
@@ -64,7 +62,6 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
   };
   const handleSelectSex = event => {
     const value = event.target.id;
-
     setSel(value);
   };
 
@@ -129,8 +126,6 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
     avatar,
   } = formik.values;
 
-  // console.log(formik.values);
-
   const {
     title: titleError,
     name: nameError,
@@ -144,13 +139,9 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
     if (!avatar) {
       return;
     }
-
     /* Создаем виртуальную ссылку на загруженный файл */
-
     const objectUrl = URL.createObjectURL(avatar);
-
     setPhoto(objectUrl);
-
     // free memory when ever this component is unmounted
     return () => URL.revokeObjectURL(objectUrl);
   }, [avatar]);
@@ -229,7 +220,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
           <ImgClose src={iconClose} alt="" />
         </MaddNotBtnClose>
         <MaddNotTitle>Add pet</MaddNotTitle>
-        {page === 1 && <MaddNotDescr>Descr</MaddNotDescr>}
+        {page === 1 && <MaddNotDescr>Fill in the form fields</MaddNotDescr>}
         <form onSubmit={onFormSubmit} /* encType="multipart/form-data" */>
           {page === 1 && (
             <>
@@ -464,4 +455,4 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
   );
 };
 
-export default ModalAddNotice;
+export default ModalAddPetNotice;

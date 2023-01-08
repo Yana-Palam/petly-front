@@ -84,7 +84,7 @@ const ModalNotice = ({ notice = {}, closeModal, getBtnInfo, token, path }) => {
     <Box position="relative">
       <ButtonIconBox>
         <ButtonIcon onClick={closeModal}>
-          <IconCloseModal />
+          <IconCloseModal aria-label="close modal" />
         </ButtonIcon>
       </ButtonIconBox>
 
@@ -166,12 +166,7 @@ const ModalNotice = ({ notice = {}, closeModal, getBtnInfo, token, path }) => {
             style={favorite ? { fill: '#F59256' } : { fill: '#FFFFFF99' }}
           />
         </AnimalsBtnFavorite>
-        <AnimalsBtn
-        // type="button"
-        // id={_id}
-        // onClick={handleClick}
-        // data-modal="modal"
-        >
+        <AnimalsBtn>
           <BtnTel phone={owner?.phone}>Contact</BtnTel>
         </AnimalsBtn>
 

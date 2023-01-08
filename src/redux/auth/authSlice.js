@@ -84,18 +84,17 @@ const authSlice = createSlice({
       state.isLoading = true;
     },
     [login.fulfilled]: (state, { payload: { user } }) => {
+      state.user._id = user._id;
       state.user.email = user.email;
       state.user.name = user.name;
-      state.user._id = user._id;
-      state.user.city = user.city;
-      state.user.phone = user.phone;
-      state.user.birthday = user.birthday;
-      state.user.avatarUrl = user.avatarUrl;
-      state.user.myPets = [...user.myPets];
-      state.user.favorites = [...user.favorites, '63b4a4794dd4e4742c08c58b'];
-
       state.accessToken = user.accessToken;
       state.refreshToken = user.refreshToken;
+      // state.user.city = user.city;
+      // state.user.phone = user.phone;
+      // state.user.birthday = user.birthday;
+      // state.user.avatarUrl = user.avatarUrl;
+      // state.user.myPets = [...user.myPets];
+      // state.user.favorites = [...user.favorites];
 
       state.isLoggedIn = true;
       state.isLoading = false;

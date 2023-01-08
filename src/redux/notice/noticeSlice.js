@@ -7,6 +7,8 @@ import {
 
 export const initialState = {
   notices: [],
+  page: 1,
+  totalPage: 1,
   isLoading: false,
   error: null,
 };
@@ -36,6 +38,8 @@ const noticeSlice = createSlice({
     },
     [fetchByCategory.fulfilled]: (state, { payload }) => {
       state.notices = [...payload.data];
+      state.page = payload.page;
+      state.totalPage = payload.totalPage;
       state.isLoading = false;
     },
     [fetchByCategory.rejected]: (state, { payload }) => {
@@ -49,8 +53,12 @@ const noticeSlice = createSlice({
       state.isLoading = true;
     },
     [addOwnNotice.fulfilled]: (state, { payload }) => {
-      //TODO прописати оновлення стейту в залежності де було додано нотіс
-      // state.notices.push =
+      for (const notice of state.notices) {
+        if (notice.category === payload.category) {
+          state.notices.push(payload);
+        }
+        break;
+      }
       state.isLoading = false;
     },
     [addOwnNotice.rejected]: (state, { payload }) => {

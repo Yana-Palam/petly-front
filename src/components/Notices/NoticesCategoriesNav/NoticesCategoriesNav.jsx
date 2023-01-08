@@ -1,7 +1,7 @@
 import { Navigate, useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
-import { selectAccessToken } from 'redux/auth/authSelectors';
-
+// import { useSelector } from 'react-redux';
+// import { selectAccessToken } from 'redux/auth/authSelectors';
+// import useMatchMedia from 'hooks/useMatchMedia';
 import { categoryButtons, allowCategory } from './category';
 import Box from 'components/Common/Box';
 import AddNoticeButton from 'components/Notices/AddNoticeButton';
@@ -14,7 +14,9 @@ import {
 } from './NoticesCategoriesNav.styled';
 // import { selectAccessToken } from 'redux/auth/authSelectors';
 
-function NoticesCategoriesNav({ getBtnInfo }) {
+function NoticesCategoriesNav({ getBtnInfo, token }) {
+  // const { isDesktop } = useMatchMedia();
+
   const handleClick = e => {
     e.preventDefault();
     const btnId = e.currentTarget.id;
@@ -26,8 +28,15 @@ function NoticesCategoriesNav({ getBtnInfo }) {
     getBtnInfo(btnId, btnType);
   };
 
+  // let publicRoute = [];
+  // if (isDesktop) {
+  //   publicRoute = [...categoryButtons.publicRoute.reverse()];
+  // } else {
+  //   publicRoute = [...categoryButtons.publicRoute];
+  // }
+
   const { category } = useParams();
-  const token = useSelector(selectAccessToken);
+  // const token = useSelector(selectAccessToken);
   return (
     <>
       {!Boolean(allowCategory.find(item => item === category)) ? (
@@ -35,7 +44,6 @@ function NoticesCategoriesNav({ getBtnInfo }) {
       ) : (
         <>
           <CategoryPageBox>
-            {' '}
             <Box>
               <CategoryList>
                 {categoryButtons.publicRoute.map(({ pageTitle, link }) => (

@@ -4,9 +4,10 @@ import { useLocation, useSearchParams } from 'react-router-dom';
 
 import useToggleModal from 'hooks/toggleModal';
 
-import { selectAccessToken } from 'redux/auth/authSelectors';
+import { selectAccessToken, selectIsLoggedIn } from 'redux/auth/authSelectors';
 import { fetchByCategory } from 'redux/notice/noticeOperations';
 import { selectNoticeState } from 'redux/notice/noticeSelectors';
+
 import {
   addFavoriteNotice,
   deleteFavoriteNotice,
@@ -19,7 +20,7 @@ import ModalNotice from 'components/Notices/ModalLearnMoreNotice/ModalNotice';
 import NoticesSearch from 'components/Notices/NoticesSearch';
 import NoticesCategoriesNav from 'components/Notices/NoticesCategoriesNav';
 import NoticesCategoriesList from 'components/Notices/NoticesCategoriesList';
-// import NoticeNotFound from 'components/Notices/NoticeNotFound';
+import NoticeNotFound from 'components/Notices/NoticeNotFound/NoticeNotFound';
 import Loader from 'components/Loader';
 import DelNoticeItem from 'components/Notices/DelNoticeItem';
 import Pagination from 'components/Common/Pagination';
@@ -27,6 +28,7 @@ import Pagination from 'components/Common/Pagination';
 // import ModalNotice from '../../components/Notices/ModalNotice/ModalNotice';
 import { Title } from './NoticesPage.styled';
 import ModalAddNotice from 'components/Notices/ModalAddNotice';
+// import ModalAddPetNotice from 'components/Notices/ModalAddPetNotice';
 import { toast } from 'react-toastify';
 import Section from 'components/Common/Section';
 
@@ -36,45 +38,36 @@ const initialState = {
   btnId: '',
   favorite: '',
 };
-let PageSize = 2;
-
+let limit = 8;
 function NoticesPage() {
   const [state, setState] = useState(initialState);
   const dispatch = useDispatch();
   const token = useSelector(selectAccessToken);
-  const { resultNotice, isLoading } = useSelector(selectNoticeState);
+  const isLogin = useSelector(selectIsLoggedIn);
+
+  const { resultNotice, isLoading, page, totalPage } =
+    useSelector(selectNoticeState);
   const [searchParams, setSearchParams] = useSearchParams();
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(page);
 
   const { isOpen, openModal, closeModal, handleBackdropClick, handleKeyDown } =
     useToggleModal();
 
-  const currentNoticesData = useMemo(() => {
-    const firstPageIndex = (currentPage - 1) * PageSize;
-    const lastPageIndex = firstPageIndex + PageSize;
-    return resultNotice.slice(firstPageIndex, lastPageIndex);
-  }, [currentPage, resultNotice]);
+  const category = useLocation().pathname.split('/')[2];
 
-  // const [search, setSearch] = useState(
-  //   '', // searchParams.get('q') === null ? '' : searchParams.get('q')
-  // );
-
-  console.log('notice', resultNotice);
-  const path = useLocation().pathname;
+  useMemo(() => {
+    setCurrentPage(1);
+    // eslint-disable-next-line
+  }, [category, state.search]);
 
   useEffect(() => {
     const q = searchParams.get('q');
     if (Boolean(q)) {
-      // console.log(111111, { category, q: search });
-      //TOTO dispatch /api/notices/:category?q=search
-      // dispatch({ category, q: search });
-      // setSearch('');
+      dispatch(fetchByCategory({ category, page: currentPage, limit, q }));
     } else {
-      const category = path.split('/')[2];
-      dispatch(fetchByCategory(category));
-      // }
+      dispatch(fetchByCategory({ category, page: currentPage, limit }));
     }
-  }, [state.search, path, searchParams, dispatch]);
+  }, [state.search, category, searchParams, dispatch, currentPage]);
 
   /**Select notice by id  */
   const getNoticeById = useMemo(() => {
@@ -84,10 +77,10 @@ function NoticesPage() {
 
   /**Search info by search form */
   const handleSearch = q => {
-    setState(prevState => ({
-      ...prevState,
-      search: q,
-    }));
+    // setState(prevState => ({
+    //   ...prevState,
+    //   search: q,
+    // }));
     setSearchParams({ q });
   };
 
@@ -119,7 +112,7 @@ function NoticesPage() {
         dispatch(addFavoriteNotice(btnId));
       } else {
         const { payload } = await dispatch(deleteFavoriteNotice(btnId));
-        if (payload === btnId && path.split('/')[2] === 'favorite') {
+        if (payload === btnId && category === 'favorite') {
           dispatch(deleteNoticeFavorite(btnId));
         }
       }
@@ -127,6 +120,13 @@ function NoticesPage() {
     return;
   };
 
+  const onPageChange = page => {
+    setCurrentPage(page);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
   return (
     <>
       <Section>
@@ -139,9 +139,9 @@ function NoticesPage() {
               <>
                 <ModalNotice
                   notice={getNoticeById}
-                  token={token}
+                  token={isLogin}
                   closeModal={closeModal}
-                  path={path.split('/')[2]}
+                  path={category}
                 />
               </>
             )}
@@ -153,31 +153,31 @@ function NoticesPage() {
                 <ModalAddNotice closeModal={closeModal} />
               </>
             )}
+            {/* {state.btnType?.add && (
+              <>
+                <ModalAddPetNotice closeModal={closeModal} />
+              </>
+            )} */}
           </Modal>
         )}
-
         <Container>
           <Title>Find your favorite pet</Title>
           <NoticesSearch handleSearch={handleSearch} />
-          <NoticesCategoriesNav getBtnInfo={getBtnInfo} />
+          <NoticesCategoriesNav getBtnInfo={getBtnInfo} token={isLogin} />
           {isLoading && <Loader />}
           {Boolean(resultNotice?.length > 0) ? (
             <NoticesCategoriesList
-              notices={currentNoticesData}
+              notices={resultNotice}
               getBtnInfo={getBtnInfo}
             />
           ) : (
-            <p style={{ fontSize: '100px' }}>TODO Not Found</p>
-            // <NoticeNotFound />
+            <NoticeNotFound />
           )}
-          {/* <ModalAddNotice /> */}
-          {/* <AddNoticeButton getBtnInfo={getBtnInfo} /> */}
-          {/* <ModalNotice /> */}
           <Pagination
             currentPage={currentPage}
-            totalCount={resultNotice.length}
-            pageSize={PageSize}
-            onPageChange={page => setCurrentPage(page)}
+            totalCount={totalPage}
+            pageSize={totalPage}
+            onPageChange={page => onPageChange(page)}
           />
         </Container>
       </Section>
