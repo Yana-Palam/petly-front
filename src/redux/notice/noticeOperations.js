@@ -22,6 +22,7 @@ export const fetchByCategory = createAsyncThunk(
   'notice/fetchByCategory',
   async (request, { rejectWithValue, getState }) => {
     const { category, page, limit } = request;
+    console.log(category, page, limit);
     try {
       if (category === 'own' || category === 'favorite') {
         setTokenRequest(getState);

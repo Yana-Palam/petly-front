@@ -182,10 +182,6 @@ export const AnimalsBtn = styled(StyledButton)`
   height: 40px;
   /* margin-left: auto;
   margin-right: auto; */
-  &:hover {
-    color: ${p => p.theme.colors.hover};
-    border-color: ${p => p.theme.colors.hover};
-  }
 `;
 export const AnimalsBtnFavorite = styled(AnimalsBtn)`
   background-color: white;
@@ -194,6 +190,10 @@ export const AnimalsBtnFavorite = styled(AnimalsBtn)`
   align-items: center;
   justify-content: center;
   gap: 14px;
+  &:hover {
+    color: ${p => p.theme.colors.hover};
+    border-color: ${p => p.theme.colors.hover};
+  }
 `;
 
 export const AnimalsFavoriteSvg = styled(Favorite)`
@@ -202,7 +202,13 @@ export const AnimalsFavoriteSvg = styled(Favorite)`
   fill: currentColor;
 `;
 
-export const BtnTel = styled(CallTo)``;
+export const BtnTel = styled(CallTo)`
+  color: white;
+  &:hover,
+  &:focus {
+    color: white;
+  }
+`;
 
 export const BtnDelOwn = styled(AnimalsBtnFavorite)``;
 
