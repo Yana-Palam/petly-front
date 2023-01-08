@@ -84,7 +84,7 @@ const ModalNotice = ({ notice = {}, closeModal, getBtnInfo, token, path }) => {
     <Box position="relative">
       <ButtonIconBox>
         <ButtonIcon onClick={closeModal}>
-          <IconCloseModal />
+          <IconCloseModal aria-label="close modal" />
         </ButtonIcon>
       </ButtonIconBox>
 

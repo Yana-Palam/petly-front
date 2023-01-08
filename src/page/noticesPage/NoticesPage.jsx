@@ -120,6 +120,13 @@ function NoticesPage() {
     return;
   };
 
+  const onPageChange = page => {
+    setCurrentPage(page);
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth',
+    });
+  };
   return (
     <>
       <Section>
@@ -170,7 +177,7 @@ function NoticesPage() {
             currentPage={currentPage}
             totalCount={totalPage}
             pageSize={totalPage}
-            onPageChange={page => setCurrentPage(page)}
+            onPageChange={page => onPageChange(page)}
           />
         </Container>
       </Section>
