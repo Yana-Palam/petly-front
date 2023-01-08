@@ -28,7 +28,7 @@ export const categoryButtons = {
 export const allowCategory = [
   'sell',
   'lost-found',
-  'for-free',
+  'in-good-hands',
   'favorite',
   'own',
 ];
