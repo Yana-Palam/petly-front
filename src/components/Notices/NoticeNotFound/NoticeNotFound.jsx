@@ -19,7 +19,7 @@ function NoticeNotFound() {
   return (
     <Wrap>
       <Img src={noticeNotFound} />
-      <Title ref={el}></Title>;
+      <Title ref={el}></Title>
     </Wrap>
   );
 }

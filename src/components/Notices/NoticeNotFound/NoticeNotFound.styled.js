@@ -5,7 +5,7 @@ export const Wrap = styled.div`
   position: relative;
 `;
 export const Img = styled.img`
-  position: absolute;
+  border-radius: 40px;
 `;
 export const Title = styled.h2`
   position: absolute;
