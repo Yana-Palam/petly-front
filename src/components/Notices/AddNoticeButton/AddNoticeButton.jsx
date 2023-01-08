@@ -7,10 +7,10 @@ function AddNoticeButton({ handleClick }) {
   return (
     <>
       <AddPetBox>
-        {!isMobile && <span>Add Pet </span>}
+        {!isMobile && <span>Add pet </span>}
         <AddPetBtn onClick={handleClick} type="button" id="1" data-add="add">
           <AddPetSvg />
-          {isMobile && <span>Add Pet </span>}
+          {isMobile && <span>Add pet </span>}
         </AddPetBtn>
       </AddPetBox>
     </>
