@@ -47,7 +47,6 @@ function NoticesSearch({ handleSearch }) {
             id="search"
             type="text"
             name="search"
-            autoFocus
             autoComplete="off"
             onChange={formik.handleChange}
             placeholder="Search"
