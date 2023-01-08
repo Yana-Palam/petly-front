@@ -48,12 +48,13 @@ function NoticeCategoryItem({
             id={_id}
             onClick={handleClick}
             data-favorite="favorite"
+            aria-label="add to favorite"
           >
             <IconFavorite favorite={favorite.toString()} />
           </NoticeFavoriteBtn>
         </Box>
 
-        <ImgNotice src={avatarURL} alt="Animal" />
+        <ImgNotice src={avatarURL} alt="Animal" loading="lazy" />
         <WrapNoticeCategory>
           <NoticeCategory>{category}</NoticeCategory>
         </WrapNoticeCategory>
