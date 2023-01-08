@@ -196,8 +196,8 @@ export const MaddNotInputToolbar = styled.input`
   opacity: 0;
   z-index: 4;
   cursor: pointer;
-  width: 240px;
-  height: 24px;
+  width: inherit;
+  height: inherit;
   margin-right: 10px;
   &:hover ~ ${MaddNotLabelToolbar} {
     background-color: #f59256;
@@ -210,7 +210,6 @@ export const MaddNotInputToolbar = styled.input`
   &:checked + ${MaddNotLabelToolbar} {
     background-color: #f59256;
     color: #ffffff;
-    /* border: 1px solid yellowgreen; */
   }
 `;
 
@@ -356,10 +355,6 @@ export const MaddNotRadioToolbar2 = styled.div`
   } */
 `;
 
-export const MaddNotInputRadio = styled.input`
-  display: none;
-`;
-
 export const MaddNotLabelDistance = styled(MaddNotLabel)`
   margin-bottom: 16px;
 
@@ -373,7 +368,7 @@ export const MaddNotBlockOfRadio = styled.div`
   margin-bottom: 32px;
 `;
 
-export const MaddNotSexLabel = styled.label`
+export const MaddNotSexLabel = styled.div`
   position: relative;
   display: block;
   width: 40px;
@@ -390,9 +385,10 @@ export const MaddNotSexLabel = styled.label`
 `;
 
 export const MaddNotLabelMale = styled(MaddNotSexLabel)`
-  &:hover {
+  /* &:hover {
     color: #f59256;
-  }
+  } */
+  position: relative;
 
   margin-right: 40px;
 
@@ -401,39 +397,54 @@ export const MaddNotLabelMale = styled(MaddNotSexLabel)`
   }
 `;
 export const MaddNotLabelFemale = styled(MaddNotSexLabel)`
-  &:hover {
+  position: relative;
+  /* &:hover {
     color: #f59256;
-  }
+  } */
 `;
-
-export const MaddNotSexDescr = styled.span`
+export const MaddNotSexDescr = styled.label`
   text-align: center;
   font-family: 'Manrope';
   font-style: normal;
   font-size: 18px;
   line-height: 1.44px;
-  &:hover {
+  /* &:hover {
     color: #f59256;
-  }
+  } */
 
   @media screen and (min-width: 768px) {
     text-align: center;
   }
 `;
-export const MaddNotActive = styled(MaddNotSexDescr)`
-  color: #f59256;
-`;
-export const MaddNotNotActive = styled(MaddNotSexDescr)`
-  color: #111111;
+export const MaddNotInputRadio = styled.input`
+  /* display: none; */
+  position: absolute;
+
+  opacity: 0;
+  top: 50px;
+  left: -2px;
+  z-index: 4;
+  cursor: pointer;
+  width: inherit;
+  height: inherit;
+  margin-right: 10px;
+  &:hover ~ ${MaddNotSexDescr} {
+    /* background-color: #f59256; */
+    color: #f59256;
+  }
+  /* &:checked + ${Item} {
+    background-color: #f59256;
+    color: #ffffff;
+  } */
+  &:checked + ${MaddNotSexDescr} {
+    /* background-color: #f59256; */
+    color: #f59256;
+  }
 `;
 
 export const MaddNotInputLoad = styled.input`
   display: none;
 `;
-
-// .titleLoad {
-//   composes: label;
-// }
 
 export const MaddNotLabelLoad = styled.label`
   display: flex;
