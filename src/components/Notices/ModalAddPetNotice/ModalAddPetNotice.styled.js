@@ -15,40 +15,8 @@ export const IconFemale = styled(Female)`
   height: 60px;
 `;
 
-// export const MaddNotBackdrop = styled.div`
-//   z-index: 99;
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   height: 100%;
-//   background-color: rgba(17, 17, 17, 0.6);
-//   backdrop-filter: blur(10px);
-// `;
-
 export const MaddNotModal = styled.div`
   position: relative;
-  /* position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  width: 90%;
-  max-height: 90%;
-  overflow: auto;
-  border-radius: 20px;
-  padding: 40px 20px;
-  background: #ffffff;
-
-  @media {device.fablet} {
-    width: 480px;
-  }
-  @media {device.tablet} {
-    width: 608px;
-    border-radius: 40px;
-    padding: 40px 80px;
-    box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
-  } */
 `;
 export const ImgClose = styled.img`
   width: 21px;

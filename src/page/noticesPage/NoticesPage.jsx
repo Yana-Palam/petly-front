@@ -4,9 +4,10 @@ import { useLocation, useSearchParams } from 'react-router-dom';
 
 import useToggleModal from 'hooks/toggleModal';
 
-import { selectAccessToken } from 'redux/auth/authSelectors';
+import { selectAccessToken, selectIsLoggedIn } from 'redux/auth/authSelectors';
 import { fetchByCategory } from 'redux/notice/noticeOperations';
 import { selectNoticeState } from 'redux/notice/noticeSelectors';
+
 import {
   addFavoriteNotice,
   deleteFavoriteNotice,
@@ -27,6 +28,7 @@ import Pagination from 'components/Common/Pagination';
 // import ModalNotice from '../../components/Notices/ModalNotice/ModalNotice';
 import { Title } from './NoticesPage.styled';
 import ModalAddNotice from 'components/Notices/ModalAddNotice';
+// import ModalAddPetNotice from 'components/Notices/ModalAddPetNotice';
 import { toast } from 'react-toastify';
 import Section from 'components/Common/Section';
 
@@ -41,6 +43,8 @@ function NoticesPage() {
   const [state, setState] = useState(initialState);
   const dispatch = useDispatch();
   const token = useSelector(selectAccessToken);
+  const isLogin = useSelector(selectIsLoggedIn);
+
   const { resultNotice, isLoading, page, totalPage } =
     useSelector(selectNoticeState);
   const [searchParams, setSearchParams] = useSearchParams();
@@ -128,7 +132,7 @@ function NoticesPage() {
               <>
                 <ModalNotice
                   notice={getNoticeById}
-                  token={token}
+                  token={isLogin}
                   closeModal={closeModal}
                   path={category}
                 />
@@ -142,12 +146,17 @@ function NoticesPage() {
                 <ModalAddNotice closeModal={closeModal} />
               </>
             )}
+            {/* {state.btnType?.add && (
+              <>
+                <ModalAddPetNotice closeModal={closeModal} />
+              </>
+            )} */}
           </Modal>
         )}
         <Container>
           <Title>Find your favorite pet</Title>
           <NoticesSearch handleSearch={handleSearch} />
-          <NoticesCategoriesNav getBtnInfo={getBtnInfo} />
+          <NoticesCategoriesNav getBtnInfo={getBtnInfo} token={isLogin} />
           {isLoading && <Loader />}
           {Boolean(resultNotice?.length > 0) ? (
             <NoticesCategoriesList
