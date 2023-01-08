@@ -43,7 +43,7 @@ export const FormWrapper = styled.div`
 
   @media ${device.fablet} {
     width: ${p => `${p.theme.space[9] + 96}px`};
-    padding: ${p => `${p.theme.space[5] + 28}px ${p.theme.space[6] + 16}px`};
+    padding: ${p => `${p.theme.space[4] + 28}px ${p.theme.space[6] + 16}px`};
     background: ${p => p.theme.colors.white};
     box-shadow: 7px 4px 14px rgba(0, 0, 0, 0.11);
     border-radius: ${p => p.theme.radii.xxl};
