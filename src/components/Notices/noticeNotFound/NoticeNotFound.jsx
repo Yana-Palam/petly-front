@@ -1,8 +1,28 @@
+import { useEffect, useRef } from 'react';
+import Typed from 'typed.js';
+import { Title, Img, Wrap } from './noticeNotFound.styled';
+import noticeNotFound from '../../../../src/assets/images/notcat.jpg';
 function NoticeNotFound() {
+
+  const el = useRef(null);
+
+  useEffect(() => {
+    const typed = new Typed(el.current, {
+      strings: ['Add pets here.'],
+      typeSpeed: 50,
+      showCursor: false,
+    });
+
+    return () => {
+      typed.destroy();
+    };
+  }, []);
   return (
-    <>
-      <div>Not found for you request</div>
-    </>
+    <Wrap>
+      <Img src={noticeNotFound} />
+      <Title ref={el}>Nothing was found according to your request.</Title>;
+    </Wrap>
+
   );
 }
 
