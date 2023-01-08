@@ -1,6 +1,7 @@
 import { Navigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectAccessToken } from 'redux/auth/authSelectors';
+// import useMatchMedia from 'hooks/useMatchMedia';
 import { categoryButtons, allowCategory } from './category';
 import Box from 'components/Common/Box';
 import AddNoticeButton from 'components/Notices/AddNoticeButton';
@@ -14,6 +15,8 @@ import {
 // import { selectAccessToken } from 'redux/auth/authSelectors';
 
 function NoticesCategoriesNav({ getBtnInfo }) {
+  // const { isDesktop } = useMatchMedia();
+
   const handleClick = e => {
     e.preventDefault();
     const btnId = e.currentTarget.id;
@@ -24,6 +27,13 @@ function NoticesCategoriesNav({ getBtnInfo }) {
   const getNotice = (btnId, btnType) => {
     getBtnInfo(btnId, btnType);
   };
+
+  // let publicRoute = [];
+  // if (isDesktop) {
+  //   publicRoute = [...categoryButtons.publicRoute.reverse()];
+  // } else {
+  //   publicRoute = [...categoryButtons.publicRoute];
+  // }
 
   const { category } = useParams();
   const token = useSelector(selectAccessToken);
