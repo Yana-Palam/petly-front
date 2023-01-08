@@ -155,7 +155,7 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
     return () => URL.revokeObjectURL(objectUrl);
   }, [avatar]);
 
-  const onFormSubmit = e => {
+  const onFormSubmit = async e => {
     e.preventDefault();
 
     if (location === '' || (category === 'sell' && price === '')) {
@@ -198,9 +198,11 @@ const ModalAddNotice = ({ setArray, closeModal }) => {
       return { ...previousValue, [feature[0]]: feature[1] };
     }, {});
 
-    dispatch(addOwnNotice(info));
+    const { payload } = await dispatch(addOwnNotice(info));
+    if (payload?.category === info?.category) {
+      closeModal();
+    }
     setIsLoading(false);
-    closeModal();
   };
 
   const onPageChange = () => {
