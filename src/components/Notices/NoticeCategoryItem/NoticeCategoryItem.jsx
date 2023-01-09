@@ -76,7 +76,7 @@ function NoticeCategoryItem({
             <NoticeItemInfoTitle> Age:</NoticeItemInfoTitle>
             <NoticeItemInfoValue>
               {/* {birthday || noItem} */}
-              {helpers.getAge(birthday)}
+              {helpers.getAge(birthday) || noItem}
             </NoticeItemInfoValue>
           </NoticeItemInfo>
           {category === 'sell' && (
