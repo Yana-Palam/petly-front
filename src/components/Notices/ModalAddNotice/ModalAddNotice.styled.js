@@ -15,16 +15,16 @@ export const IconFemale = styled(Female)`
   height: 60px;
 `;
 
-// export const MaddNotBackdrop = styled.div`
-//   z-index: 99;
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   height: 100%;
-//   background-color: rgba(17, 17, 17, 0.6);
-//   backdrop-filter: blur(10px);
-// `;
+export const MaddNotBackdrop = styled.div`
+  z-index: 99;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(17, 17, 17, 0.6);
+  backdrop-filter: blur(10px);
+`;
 
 export const MaddNotModal = styled.div`
   position: relative;
@@ -61,7 +61,7 @@ export const ImgClose = styled.img`
 export const MaddNotBtnClose = styled.button`
   position: absolute;
   top: -25px;
-  right: 25px;
+  right: 0px;
 
   width: 34px;
   height: 34px;
@@ -78,7 +78,7 @@ export const MaddNotBtnClose = styled.button`
     width: 44px;
     height: 44px;
     top: -25px;
-    right: 25px;
+    right: -64px;
   }
 
   @media ${device.desktop} {
@@ -360,15 +360,19 @@ export const MaddNotButton = styled.button`
     height: 44px;
   }
   &:first-child {
+    @media screen and (min-width: 320px) {
+      margin-top: 12px;
+    }
     @media screen and (min-width: 768px) {
       margin-right: 20px;
+      margin-top: 0;
     }
   }
 
   &:last-child {
-    @media screen and (min-width: 359px) {
+    /* @media screen and (min-width: 320px) {
       margin-top: 12px;
-    }
+    } */
     @media screen and (min-width: 768px) {
       margin-top: 0;
     }
