@@ -23,12 +23,21 @@ export const NavListItem = styled.li`
 export const NavLinkItem = styled(NavLink)`
   font-family: ${({ theme }) => theme.fonts.main};
   font-weight: ${({ theme }) => theme.fontWeights.medium};
-  font-size: ${({ theme }) => theme.fontSizes.xl};
   line-height: ${({ theme }) => theme.lineHeights.body};
   letter-spacing: ${({ theme }) => theme.letterSpacing.l};
   text-transform: ${({ theme }) => theme.textTransform.cap};
-
   color: ${({ theme }) => theme.colors.black};
+
+  @media ${device.mobile} {
+    font-size: ${({ theme }) => theme.fontSizes.xl};
+  }
+  @media ${device.tablet} {
+    font-size: ${({ theme }) => theme.fontSizes.xxl};
+  }
+
+  @media ${device.desktop} {
+    font-size: ${({ theme }) => theme.fontSizes.sm};
+  }
 
   &:hover,
   &:focus,
