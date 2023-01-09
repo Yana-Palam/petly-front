@@ -15,21 +15,22 @@ export const IconFemale = styled(Female)`
   height: 60px;
 `;
 
-// export const MaddNotBackdrop = styled.div`
-//   z-index: 99;
-//   position: fixed;
-//   top: 0;
-//   left: 0;
-//   width: 100%;
-//   height: 100%;
-//   background-color: rgba(17, 17, 17, 0.6);
-//   backdrop-filter: blur(10px);
-// `;
+export const MaddNotBackdrop = styled.div`
+  z-index: 99;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(17, 17, 17, 0.6);
+  backdrop-filter: blur(10px);
+`;
 
 export const MaddNotModal = styled.div`
   position: relative;
-  padding: 10px 0px;
+  /* padding: 10px 0px;
   width: auto;
+
   @media screen and (min-width: 480px) {
     padding: 10px 0px;
     width: 408px;
@@ -41,7 +42,7 @@ export const MaddNotModal = styled.div`
   @media screen and (min-width: 1280px) {
     padding: 4px 60px;
     width: 608px;
-  }
+  } */
   /* position: absolute;
   top: 50%;
   left: 50%;

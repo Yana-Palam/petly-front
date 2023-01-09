@@ -322,7 +322,7 @@ const ModalAddNotice = ({ closeModal }) => {
                     }
                     formik.setFieldValue(
                       'birthday',
-                      new Date(Date.parse(value))
+                      new Date(Date.parse(value)),
                     );
                   }}
                 />
@@ -424,7 +424,7 @@ const ModalAddNotice = ({ closeModal }) => {
                     onChange={event => {
                       formik.setFieldValue(
                         'avatar',
-                        event.currentTarget.files[0]
+                        event.currentTarget.files[0],
                       );
                     }}
                   />
