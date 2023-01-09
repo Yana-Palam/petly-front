@@ -1,18 +1,20 @@
 import { useEffect, useState } from 'react';
-
 import { useDispatch } from 'react-redux';
+import useMatchMedia from 'hooks/useMatchMedia/useMatchMedia';
 
+import DatePicker from 'react-date-picker';
 import { useFormik } from 'formik';
 import { validationSchema, initialValues } from './ValidationSchema';
+
 import { addOwnNotice } from 'redux/notice/noticeOperations';
-import DatePicker from 'react-date-picker';
-import { showAlertMessage } from '../../../utils/showMessages';
+import { showAlertMessage } from 'utils/showMessages';
 
-import Loader from '../../Loader';
+import Loader from 'components/Loader';
+// import Box from 'components/Common/Box';
 
-import iconClose from '../../../assets/icons/icon-close.svg';
-import celendar from '../../../assets/icons/calendar.svg';
-import loadMobile from '../../../assets/images/Modal/loadMobile.png';
+import iconClose from 'assets/icons/icon-close.svg';
+import celendar from 'assets/icons/calendar.svg';
+import loadMobile from 'assets/images/Modal/loadMobile.png';
 
 import {
   MaddNotModal,
@@ -48,7 +50,6 @@ import {
   DivBox,
   MadBox,
 } from './ModalAddNotice.styled';
-import useMatchMedia from '../../../hooks/useMatchMedia/useMatchMedia';
 
 const ModalAddNotice = ({ closeModal }) => {
   const { isMobile } = useMatchMedia();

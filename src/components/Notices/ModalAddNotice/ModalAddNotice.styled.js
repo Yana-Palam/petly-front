@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-// import { device } from 'utils/device';
+import { device } from 'utils/device';
 
 import { ReactComponent as Male } from 'assets/icons/male.svg';
 import { ReactComponent as Female } from 'assets/icons/female.svg';
@@ -28,20 +28,20 @@ export const IconFemale = styled(Female)`
 
 export const MaddNotModal = styled.div`
   position: relative;
-  padding: 10px 0px;
+  /* padding: 10px 0px;
   width: auto;
-  @media screen and (min-width: 480px) {
+  @media {device.fablet} {
     padding: 10px 0px;
     width: 408px;
   }
-  @media screen and (min-width: 768px) {
+  @media {device.tablet} {
     padding: 10px 60px;
     width: 608px;
   }
-  @media screen and (min-width: 1280px) {
+  @media {device.desktop} {
     padding: 4px 60px;
     width: 608px;
-  }
+  } */
   /* position: absolute;
   top: 50%;
   left: 50%;
@@ -60,8 +60,8 @@ export const ImgClose = styled.img`
 `;
 export const MaddNotBtnClose = styled.button`
   position: absolute;
-  top: -2px;
-  right: 0px;
+  top: -25px;
+  right: 25px;
 
   width: 34px;
   height: 34px;
@@ -74,14 +74,16 @@ export const MaddNotBtnClose = styled.button`
 
   background-color: #fdf7f2;
 
-  @media screen and (min-width: 768px) {
+  @media ${device.tablet} {
     width: 44px;
     height: 44px;
+    top: -25px;
+    right: 25px;
   }
 
-  @media screen and (min-width: 1280px) {
-    top: -10px;
-    right: 0px;
+  @media ${device.desktop} {
+    top: -20px;
+    right: -50px;
   }
   &:hover {
     background-color: #f59256;

@@ -25,7 +25,7 @@ export default function Modal({
 
   return createPortal(
     <ModalBackdrop onClick={handleBackdropClick} up={up}>
-      <ModalContent>{children}</ModalContent>
+      <ModalContent up={up}>{children}</ModalContent>
     </ModalBackdrop>,
     modalRoot
   );
