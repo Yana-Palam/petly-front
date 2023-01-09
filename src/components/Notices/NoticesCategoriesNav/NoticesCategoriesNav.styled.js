@@ -31,7 +31,7 @@ export const CategoryPage = styled(NavLink)`
   color: ${p => p.theme.colors.text.secondaryText};
 
   font-family: ${p => p.theme.fonts.body};
-  font-size: ${p => p.theme.fontSizes.xs};
+  font-size: ${p => p.theme.fontSizes.sm};
   line-height: ${p => p.theme.lineHeights.nav};
   font-weight: ${p => p.theme.fontWeights.medium};
   letter-spacing: ${p => p.theme.letterSpacing.l};
@@ -52,7 +52,7 @@ export const CategoryPage = styled(NavLink)`
 
   @media ${device.tablet} {
     padding: ${p => `${p.theme.space[3] + 2}px ${p.theme.space[5] - 4}px`};
-    font-size: ${p => p.theme.fontSizes.m};
+    /* font-size: ${p => p.theme.fontSizes.m}; */
     /* margin-bottom: ${p => `${p.theme.space[6] - 4}px`}; */
   }
 `;
