@@ -8,7 +8,7 @@ function UserNav({ closeMobMenu }) {
     <AccountLinkWrapper>
       <AccentLink
         onClick={closeMobMenu}
-        style={{ padding: '8px 36px' }}
+        style={{ padding: '9px 30px' }}
         to="/user"
       >
         <Account alt="account logo" style={{ marginRight: '14px' }} />
