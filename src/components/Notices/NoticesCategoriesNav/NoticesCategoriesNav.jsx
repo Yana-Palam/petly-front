@@ -14,7 +14,7 @@ import {
 } from './NoticesCategoriesNav.styled';
 // import { selectAccessToken } from 'redux/auth/authSelectors';
 
-function NoticesCategoriesNav({ getBtnInfo, token }) {
+function NoticesCategoriesNav({ getBtnInfo, token, isLogin }) {
   // const { isDesktop } = useMatchMedia();
 
   const handleClick = e => {
@@ -55,6 +55,7 @@ function NoticesCategoriesNav({ getBtnInfo, token }) {
                 ))}
 
                 {Boolean(token) &&
+                  Boolean(isLogin) &&
                   categoryButtons.privateRoute.map(({ pageTitle, link }) => (
                     <CategoryListItem key={pageTitle}>
                       <CategoryPage to={`/notices/${link}`}>
