@@ -98,7 +98,7 @@ function NoticesPage() {
       !Boolean(token) &&
       (btnType?.favorite || btnType?.add || btnType?.delete)
     ) {
-      toast.warn('You are not a registered user!');
+      toast.warn('Sorry, first register or log in to your account.');
       return;
     }
 
