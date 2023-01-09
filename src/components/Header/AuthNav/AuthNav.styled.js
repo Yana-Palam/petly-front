@@ -27,11 +27,12 @@ export const Li = styled.li`
 
 export const LinkStyled = styled(NavLink)`
   display: flex;
+  align-items: center;
   padding: 8px 28px;
+  height: 44px;
 
   font-family: ${({ theme }) => theme.fonts.main};
   font-weight: ${({ theme }) => theme.fontWeights.medium};
-  font-size: ${({ theme }) => theme.fontSizes.xs};
   line-height: ${({ theme }) => theme.lineHeights.nav};
   letter-spacing: ${({ theme }) => theme.letterSpacing.l};
   text-transform: ${({ theme }) => theme.textTransform.cap};
@@ -42,6 +43,16 @@ export const LinkStyled = styled(NavLink)`
   border-radius: ${({ theme }) => theme.radii.xxl};
   border: ${({ theme }) => theme.borders.normal};
   border-color: ${({ theme }) => theme.colors.accent};
+
+  @media ${device.mobile} {
+    font-size: ${({ theme }) => theme.fontSizes.xs};
+  }
+  @media ${device.tablet} {
+    font-size: ${({ theme }) => theme.fontSizes.s};
+  }
+  @media ${device.desktop} {
+    font-size: ${({ theme }) => theme.fontSizes.sm};
+  }
 
   &:hover,
   &:focus,
@@ -57,16 +68,18 @@ export const LinkStyled = styled(NavLink)`
 `;
 
 export const AccentLink = styled(LinkStyled)`
+  display: flex;
+  align-items: center;
+
   min-width: 95px;
 
   color: ${({ theme }) => theme.colors.white};
   background-color: ${({ theme }) => theme.colors.accent};
   border-color: ${({ theme }) => theme.colors.accent};
-  }
 
-   &:hover,
-   &:focus,
-   &.active {
+  &:hover,
+  &:focus,
+  &.active {
     color: ${({ theme }) => theme.colors.black};
     background-color: ${({ theme }) => theme.colors.white};
     transition: color ${p => p.theme.animation.cubic};

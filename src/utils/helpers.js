@@ -3,6 +3,7 @@ const getAge = birthday => {
 
   const dateNow = new Date().getFullYear();
   const age = dateNow - new Date(birthday).getFullYear();
+  if (age < 1) return ' less than a year';
   if (age > 1) return age + ' years';
   if (age === 1) return age + ' year';
   if (age === 0) {
