@@ -137,8 +137,14 @@ export const MaddNotRadioToolbar = styled.div`
   margin-bottom: 32px;
   display: grid;
   grid-template-columns: repeat(1, auto);
-  gap: 10px;
-
+  gap: 0px;
+  @media screen and (min-width: 480px) {
+    /* margin-bottom: 28px;
+    display: grid;
+    grid-template-columns: repeat(2, auto); */
+    gap: 10px;
+    /* justify-content: start; */
+  }
   @media screen and (min-width: 768px) {
     margin-bottom: 28px;
     display: grid;
@@ -310,9 +316,9 @@ export const MaddNotTextarea = styled.textarea`
 
 export const MaddNotBlock = styled.div`
   display: flex;
-  flex-direction: column-reverse;
+  /* flex-direction: column-reverse; */
   margin-top: 12px;
-  @media screen and (min-width: 359px) {
+  @media screen and (min-width: 320px) {
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -370,9 +376,9 @@ export const MaddNotButton = styled.button`
   }
 
   &:last-child {
-    /* @media screen and (min-width: 320px) {
+    @media screen and (min-width: 320px) {
       margin-top: 12px;
-    } */
+    }
     @media screen and (min-width: 768px) {
       margin-top: 0;
     }
