@@ -27,7 +27,7 @@ export const ModalBackdrop = styled.div`
 
   ${p =>
     p.up?.add === 'add' && {
-      paddingTop: `${p.theme.space[6] - 14}px`,
+      alignItems: 'flex-start',
     }}
 `;
 
