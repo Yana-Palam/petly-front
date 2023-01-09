@@ -25,7 +25,18 @@ export const ModalBackdrop = styled.div`
   @media ${device.tablet} {
     align-items: center;
   }
-
+  @media ${device.fablet} {
+    ${p =>
+      p.up?.add === 'add' && {
+        alignItems: 'flex-start',
+      }}
+  }
+  @media ${device.tablet} {
+    ${p =>
+      p.up?.add === 'add' && {
+        alignItems: 'flex-start',
+      }}
+  }
   @media ${device.desktop} {
     ${p =>
       p.up?.add === 'add' && {
