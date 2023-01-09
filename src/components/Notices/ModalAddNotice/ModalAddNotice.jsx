@@ -194,7 +194,9 @@ const ModalAddNotice = ({ closeModal }) => {
           <ImgClose src={iconClose} alt="" />
         </MaddNotBtnClose>
         <MaddNotTitle>Add pet</MaddNotTitle>
-        {page === 1 && <MaddNotDescr>Descr</MaddNotDescr>}
+        {page === 1 && (
+          <MaddNotDescr>Choose the category that suits you:</MaddNotDescr>
+        )}
         <form onSubmit={onFormSubmit} /* encType="multipart/form-data" */>
           {page === 1 && (
             <>
