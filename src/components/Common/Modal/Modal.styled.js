@@ -19,6 +19,7 @@ export const ModalBackdrop = styled.div`
   overflow: scroll;
   @media ${device.fabletAndMobileOnly} {
     padding-top: 50px;
+    padding-bottom: 100px;
   }
 
   @media ${device.tablet} {
