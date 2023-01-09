@@ -127,6 +127,8 @@ function NoticesPage() {
       behavior: 'smooth',
     });
   };
+
+  const up = state.btnType;
   return (
     <>
       <Section>
@@ -134,6 +136,7 @@ function NoticesPage() {
           <Modal
             handleBackdropClick={handleBackdropClick}
             handleKeyDown={handleKeyDown}
+            up={up}
           >
             {state.btnType?.modal && (
               <>

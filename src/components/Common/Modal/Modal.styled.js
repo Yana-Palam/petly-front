@@ -8,7 +8,9 @@ export const ModalBackdrop = styled.div`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(33, 33, 33, 0.12);
+  background-color: rgba(17, 17, 17, 0.6);
+  backdrop-filter: blur(10px);
+
   display: flex;
 
   justify-content: center;
@@ -18,9 +20,15 @@ export const ModalBackdrop = styled.div`
   @media ${device.fabletAndMobileOnly} {
     padding-top: 50px;
   }
+
   @media ${device.tablet} {
     align-items: center;
   }
+
+  ${p =>
+    p.up?.add === 'add' && {
+      paddingTop: `${p.theme.space[6] - 14}px`,
+    }}
 `;
 
 export const ModalContent = styled.div`
