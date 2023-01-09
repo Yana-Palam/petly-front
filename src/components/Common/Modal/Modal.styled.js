@@ -15,7 +15,9 @@ export const ModalBackdrop = styled.div`
   align-items: baseline;
   pointer-events: all;
   overflow: scroll;
-
+  @media ${device.fabletAndMobileOnly} {
+    padding-top: 50px;
+  }
   @media ${device.tablet} {
     align-items: center;
   }
