@@ -10,6 +10,7 @@ export default function Modal({
   children = '',
   handleKeyDown = () => {},
   handleBackdropClick = () => {},
+  up,
   // closeModal = () => {},
 }) {
   const { lockScroll, UnlockScroll } = useScrollLock();
@@ -23,7 +24,7 @@ export default function Modal({
   }, [handleKeyDown, lockScroll, UnlockScroll]);
 
   return createPortal(
-    <ModalBackdrop onClick={handleBackdropClick}>
+    <ModalBackdrop onClick={handleBackdropClick} up={up}>
       <ModalContent>{children}</ModalContent>
     </ModalBackdrop>,
     modalRoot
