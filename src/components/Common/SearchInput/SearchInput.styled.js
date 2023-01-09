@@ -3,7 +3,7 @@ import { IoMdCloseCircleOutline } from 'react-icons/io';
 import styled from 'styled-components';
 import { device } from 'utils/device';
 
-export const Form = styled.form`
+export const Form = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
