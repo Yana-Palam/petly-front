@@ -25,10 +25,12 @@ export const ModalBackdrop = styled.div`
     align-items: center;
   }
 
-  ${p =>
-    p.up?.add === 'add' && {
-      alignItems: 'flex-start',
-    }}
+  @media ${device.desktop} {
+    ${p =>
+      p.up?.add === 'add' && {
+        alignItems: 'flex-start',
+      }}
+  }
 `;
 
 export const ModalContent = styled.div`
@@ -36,13 +38,17 @@ export const ModalContent = styled.div`
   border-radius: ${p => `${p.theme.space[5] + 8}px`};
   background-color: ${p => p.theme.colors.white};
 
+  ${p =>
+    p.up?.add === 'add' && {
+      padding: '40px 20px',
+    }};
+
   @media ${device.tablet} {
     padding: 32px 20px;
+
+    ${p =>
+      p.up?.add === 'add' && {
+        padding: '40px 80px',
+      }};
   }
-  /* @media ${device.tablet} {
-    padding: 40px 20px;
-  } */
-  /* @media ${device.desktop} {
-    width: ${p => `${p.theme.space[8] + 32}px`};
-  } */
 `;

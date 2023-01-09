@@ -166,7 +166,11 @@ function NoticesPage() {
         <Container>
           <Title>Find your favorite pet</Title>
           <NoticesSearch handleSearch={handleSearch} />
-          <NoticesCategoriesNav getBtnInfo={getBtnInfo} token={isLogin} />
+          <NoticesCategoriesNav
+            getBtnInfo={getBtnInfo}
+            token={isLogin}
+            isLogin={isLogin}
+          />
           {isLoading && <Loader />}
           {Boolean(resultNotice?.length > 0) ? (
             <NoticesCategoriesList
